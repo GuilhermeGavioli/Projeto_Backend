@@ -1,0 +1,6 @@
+.env
+node_modules
+request.http
+info.txt
+hello.txt
+.gitignore
