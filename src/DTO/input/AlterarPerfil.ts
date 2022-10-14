@@ -11,7 +11,7 @@ export default class InputAlterarPerfilDTO{
     public image ?: string;
 
 
-    constructor(email: string, name: string, city: string, password: string, gender: string, birthDate: string, aboutMe?: string, bio?: string, image?: string) {
+    constructor(name: string, email: string,  password: string, gender: string, city: string, birthDate: string, aboutMe?: string, bio?: string, image?: string) {
         this.email = email;
         this.name = name;
         this.city = city;

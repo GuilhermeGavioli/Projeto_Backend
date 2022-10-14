@@ -8,27 +8,33 @@ app.use(express.urlencoded({ extended: false }));
 
 console.log('hi2')
 
+import { InMemoryImpl } from './Repository/MySql'
 const inMemoryRepo = new InMemoryImpl();
 
 import AlterarPerfil from './UseCases/AlterarPerfil'
 import Cryptography from './Services/Cryptography'
 
-app.get('/alterarPerfil', ProtectionAgainstNonAuthenticatedUsers, (req, res) => {
-    const { name, city, email, password, gender, birthDate } = req.body
+import InputAlterarPerfilDTO from './DTO/input/AlterarPerfil'
+app.post('/alterarPerfil', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => {
+    const { name, city, email, password, gender, birthDate, aboutMe, bio, image } = req.body
     if (!name || !city || !email || !password || !gender || !birthDate) return res.send('empty field');
-
-    const tokenEmail = res.locals.userInfo?.email;
+    const inputData = new InputAlterarPerfilDTO(name, email, password, gender, city, birthDate, aboutMe, bio, image );
+    const tokenEmail = await res.locals.userInfo?.email;
     
-    const alterarPerfil = new AlterarPerfil(inMemoryRepo);
-    alterarPerfil.execute(tokenEmail, )
-    return res.json('hi');
+    
+    const cryptography = new Cryptography(inputData.password);
+    
+    const alterarPerfil = new AlterarPerfil(inMemoryRepo, cryptography);
+    const outputData = await alterarPerfil.execute(tokenEmail, inputData);
+    return res.json(outputData);
+   
 })
 
 
 import InputCadastrarDTO from './DTO/input/cadastrar'
 import Cadastrar from './UseCases/Cadastrar'
 import MySql from './Repository/MySql'
-import { InMemoryImpl } from './Repository/MySql'
+
 import { UUIDLibrary } from './Services/IdGenerator'
 
 import OutputCadastrarDTO from './DTO/output/cadastrar'
@@ -37,11 +43,11 @@ import Authentication from './Services/Authentication';
 
 
 app.post('/cadastrar',ProtectionAgainstAuthenticatedUsers, async (req: Request, res: Response) => {
-    const { name, city, email, password, gender, birthDate } = req.body
+    const { name, email, password, gender, city, birthDate } = req.body
     if (!name || !city || !email || !password || !gender || !birthDate) return res.send('empty field');
    
     
-    const inputData = new InputCadastrarDTO(name, city, email, password, gender, birthDate);
+    const inputData = new InputCadastrarDTO(name,email, password, gender,city, birthDate);
 
     const mySql = new MySql();
   
@@ -99,7 +105,8 @@ async function ProtectionAgainstNonAuthenticatedUsers (req: Request, res: Respon
 
 
     if (!userTokenFormated) return res.json(outputData);
-    res.locals.userInfo = outputData;
+    res.locals.userInfo = userTokenFormated;
+    
     next();
 }
 

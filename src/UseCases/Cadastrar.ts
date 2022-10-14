@@ -22,7 +22,7 @@ export default class Cadastrar{
     public async execute(inputData: InputCadastrarDTO): Promise<OutputCadastrarDTO> {
         const id = this.idGenerator.generate();
         const hashedPassword = await this.cryptography.hash();
-        const produtor = new Produtor(id, inputData.name, inputData.email, hashedPassword, inputData.gender, inputData.birthDate);
+        const produtor = new Produtor(id, inputData.name, inputData.email, hashedPassword, inputData.gender, inputData.city, inputData.birthDate);
         await this.repository.save(produtor);
         return new OutputCadastrarDTO("Usuario criado com sucesso", 200, false);
     }

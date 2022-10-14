@@ -2,7 +2,7 @@ import Repository from "./Repository";
 import Produtor from "../Entity/Produtor";
 
 
-export default class MySql implements Repository{
+export default class MySql implements Repository {
     constructor(){}
     
     public async save(produtor: Produtor): Promise<void> {
@@ -13,8 +13,8 @@ export default class MySql implements Repository{
         return null;
     }
 
-    public async updateOne(produtor: Produtor ): Promise<void> {
-        
+    public async updateOne(email: string, updatedProdutor: Produtor): Promise<void> {
+        return;
     }
 }
 
@@ -38,18 +38,14 @@ export class InMemoryImpl implements Repository {
         return this.produtores;
     }
 
-    public updateOne(email: string, newInputs: InputAlterarPerfilDTO): Promise<void> {
-        let idToBeStored;
-        const foundProdutor = this.produtores.map(produtor => {
+    public async updateOne(email: string, updatedProdutor: Produtor): Promise<void> {
+        console.log('updated: ' + JSON.stringify(updatedProdutor))
+        this.produtores.map(produtor => {
             if (produtor.getEmail() == email) {
-                idToBeStored = produtor.getId();
-                produtor = new Produtor(idToBeStored, newInputs.);
+                produtor.city = updatedProdutor.city;
+                // problema estava aqui naose pode fazer objecto = objecto
             }
         })
-  
-
-        newInputs.aboutMe
-        console.log('updated');
     }
 
 }

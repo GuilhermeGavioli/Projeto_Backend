@@ -6,7 +6,7 @@ export default class InputCadastrarDTO{
     public gender: string;
     public birthDate: string; //date
 
-    constructor(name: string, city: string,email: string, password: string, gender: string, birthDate: string ) {
+    constructor(name: string, email: string, password: string, gender: string, city: string, birthDate: string ) {
         this.name = name;
         this.city = city;
         this.email = email;
