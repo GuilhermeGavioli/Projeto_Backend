@@ -1,5 +1,6 @@
 import InputAlterarPerfilDTO from "../DTO/input/AlterarPerfil";
 import OutputCadastrarDTO from "../DTO/output/cadastrar";
+import PayloadInfoDTO from "../DTO/input/PayloadDTO";
 
 import Produtor from "../Entity/Produtor";
 import Repository from "../Repository/Repository";
@@ -16,16 +17,18 @@ export default class AlterarPerfil {
         this.cryptography = cryptography;
     }
 
-    public async execute(tokenEmail: string, inputData: InputAlterarPerfilDTO): Promise<OutputCadastrarDTO> {
+    public async execute(token: PayloadInfoDTO, inputData: InputAlterarPerfilDTO): Promise<OutputCadastrarDTO> {
         // console.log(inputData.email)
-        if (tokenEmail != inputData.email) return new OutputCadastrarDTO("Permission denied, can't alter other user information", 400, true);
-        const foundUser = await this.repository.getOne(tokenEmail);
+        const foundUser = await this.repository.getOne(token.email);
         if (!foundUser) return new OutputCadastrarDTO("Erro inesperado. usuario nao exite. Tente novamente", 400, true);
 
-        const hashedPassword = await this.cryptography.hash();
-        const produtorAtualizado = new Produtor(foundUser.getId(), inputData.name, inputData.email, hashedPassword, inputData.gender, inputData.city, inputData.birthDate, inputData.aboutMe, inputData.bio, inputData.image);
+        if (token.email !== foundUser.email) return new OutputCadastrarDTO("Permission denied. Can't alter other user information. emails don't match", 400, true);
+        if (token.user_id !== foundUser.id) return new OutputCadastrarDTO("Permission denied. Can't alter other user information. ids don't match", 400, true);
 
-        await this.repository.updateOne(tokenEmail, produtorAtualizado);
+        const hashedPassword = await this.cryptography.hash();
+        const produtorAtualizado = new Produtor(foundUser.getId(), inputData.name, token.email, hashedPassword, inputData.gender, inputData.city, inputData.birthDate, inputData.aboutMe, inputData.bio, inputData.image);
+
+        await this.repository.updateOne(token.email, produtorAtualizado);
         return new OutputCadastrarDTO("Alterado com sucesso", 200, false);
     }
 }

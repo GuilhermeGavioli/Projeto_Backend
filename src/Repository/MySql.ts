@@ -42,8 +42,16 @@ export class InMemoryImpl implements Repository {
         console.log('updated: ' + JSON.stringify(updatedProdutor))
         this.produtores.map(produtor => {
             if (produtor.getEmail() == email) {
+                produtor.id = updatedProdutor.getId();
+                produtor.name = updatedProdutor.getName();
+                produtor.email = updatedProdutor.getEmail();
+                produtor.password = updatedProdutor.getPassword();
+                produtor.gender = updatedProdutor.gender;
                 produtor.city = updatedProdutor.city;
-                // problema estava aqui naose pode fazer objecto = objecto
+                produtor.birthDate = updatedProdutor.birthDate;
+                produtor.aboutMe = updatedProdutor.aboutMe;
+                produtor.bio = updatedProdutor.bio;
+                produtor.image = updatedProdutor.image;
             }
         })
     }

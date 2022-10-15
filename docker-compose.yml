@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+ 
+  # backend-test:
+  #   container_name: backend-test
+  #   build: .
+  #   ports:
+  #     - 3000
+  #   volumes:
+  #     - .:/app
+    # networks:
+    #   - my-nodemon-nginx-network
+  mysql-service:
+    container_name: mysql-container
+    build: ./database
+    network_mode: host ##for now
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: test
+    ports:
+      - "3306:3306"
+  # nginx-loadbalancer:
+  #   image: nginx:1.17.6-alpine
+  #   ports:
+  #     - 8000:80
+  #   depends_on:
+  #     - nodemonapp-one
+  #     - nodemonapp-two
+  #   networks:
+  #     - my-nodemon-nginx-network
+
+
+# networks:
+#   my-nodemon-nginx-network:
+#     driver: bridge

@@ -1,6 +1,5 @@
 
 export default class InputAlterarPerfilDTO{
-    public email: string;
     public name: string;
     public city: string;
     public password: string;
@@ -11,8 +10,7 @@ export default class InputAlterarPerfilDTO{
     public image ?: string;
 
 
-    constructor(name: string, email: string,  password: string, gender: string, city: string, birthDate: string, aboutMe?: string, bio?: string, image?: string) {
-        this.email = email;
+    constructor(name: string,  password: string, gender: string, city: string, birthDate: string, aboutMe?: string, bio?: string, image?: string) {
         this.name = name;
         this.city = city;
         this.password = password;

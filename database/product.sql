@@ -1,0 +1,9 @@
+-- CREATE TABLE product (
+--     p_id  VARCHAR(255) NOT NULL UNIQUE,
+--     product_name VARCHAR(255) NOT NULL,
+--     owner_id VARCHAR(255) NOT NULL UNIQUE,
+--     created_at DATE NOT NULL,
+--     updated_at DATE,
+--     FOREIGN KEY (p_id) REFERENCES user(user_id),
+--     PRIMARY KEY(p_id)
+-- );

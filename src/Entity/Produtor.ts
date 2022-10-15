@@ -1,17 +1,16 @@
 
 export default class Produtor{
-    private id: string;
-    private email: string;
-    private name: string;
+    public id: string;
+    public email: string;
+    public name: string;
     public  city: string;
-    private password: string;
-    private gender: string;
-    private birthDate: string; //date
+    public password: string;
+    public gender: string;
+    public birthDate: string; //date
 
     public aboutMe?: string;
     public bio?: string;
     public image?: string;
-
 
 
     constructor(id: string, name: string, email: string, password: string, gender: string, city: string, birthDate: string,

@@ -7,6 +7,38 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 console.log('hi2')
+import mysql from 'mysql2'
+
+
+async function dbfunctions() {
+    
+    try {
+        
+        const conn: mysql.Connection = mysql.createConnection({
+            host: 'localhost',
+            user: 'root',
+            database: 'test',
+            password: 'password',
+            port: 3306
+        });
+        console.log('connected');
+        conn.query("SELECT * FROM users;", function(err, results, fields) {
+            console.log(results); // results contains rows returned by server
+            console.log(fields); // fields contains extra meta data about results, if available
+          });
+     
+      
+    } catch (err) { 
+        console.log('error db: ' + err)
+    }
+    
+}
+
+// dbfunctions();
+
+
+
+
 
 import { InMemoryImpl } from './Repository/MySql'
 const inMemoryRepo = new InMemoryImpl();
@@ -16,16 +48,19 @@ import Cryptography from './Services/Cryptography'
 
 import InputAlterarPerfilDTO from './DTO/input/AlterarPerfil'
 app.post('/alterarPerfil', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => {
-    const { name, city, email, password, gender, birthDate, aboutMe, bio, image } = req.body
-    if (!name || !city || !email || !password || !gender || !birthDate) return res.send('empty field');
-    const inputData = new InputAlterarPerfilDTO(name, email, password, gender, city, birthDate, aboutMe, bio, image );
-    const tokenEmail = await res.locals.userInfo?.email;
+    const { name, city, password, gender, birthDate, aboutMe, bio, image } = req.body
+    if (!name || !city || !password || !gender || !birthDate) return res.send('empty field');
+    const inputData = new InputAlterarPerfilDTO(name, password, gender, city, birthDate, aboutMe, bio, image );
+    
+    const token = await res.locals.userInfo;
+
     
     
     const cryptography = new Cryptography(inputData.password);
     
     const alterarPerfil = new AlterarPerfil(inMemoryRepo, cryptography);
-    const outputData = await alterarPerfil.execute(tokenEmail, inputData);
+    // nao e so pq ele tem o token, que ele pode editar, é preciso validar se o usuario a ser editado é o mesmo do dentro do token :)
+    const outputData = await alterarPerfil.execute(token, inputData);
     return res.json(outputData);
    
 })
@@ -117,4 +152,4 @@ async function ProtectionAgainstNonAuthenticatedUsers (req: Request, res: Respon
 
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Listening on ... ${PORT}`))
+app.listen(PORT, () => console.log(`Listening on port: ... ${PORT}`))
