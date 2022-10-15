@@ -12,6 +12,7 @@ services:
     # networks:
     #   - my-nodemon-nginx-network
   mysql-service:
+    
     container_name: mysql-container
     build: ./database
     network_mode: host ##for now
