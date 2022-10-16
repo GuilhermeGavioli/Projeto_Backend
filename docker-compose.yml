@@ -2,36 +2,36 @@ version: '3'
 
 services:
  
-  # backend-test:
-  #   container_name: backend-test
+  # backend-node:
+  #   depends_on:
+  #     - database-mysql
+  #   container_name: backend-node
   #   build: .
   #   ports:
-  #     - 3000
+  #     - "3000:3000"
   #   volumes:
   #     - .:/app
-    # networks:
-    #   - my-nodemon-nginx-network
-  mysql-service:
-    
-    container_name: mysql-container
+  #   networks:
+  #     - my-node-mysql-network
+  #   environment:
+  #     - PORT=3000
+  #     - JWT_SECRET=test
+  #     - ABC=16
+
+  database-mysql:
+    container_name: database-mysql
     build: ./database
-    network_mode: host ##for now
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: test
     ports:
       - "3306:3306"
-  # nginx-loadbalancer:
-  #   image: nginx:1.17.6-alpine
-  #   ports:
-  #     - 8000:80
-  #   depends_on:
-  #     - nodemonapp-one
-  #     - nodemonapp-two
-  #   networks:
-  #     - my-nodemon-nginx-network
-
+    # networks:
+    #   - my-node-mysql-network
+    
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=test
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
 
 # networks:
-#   my-nodemon-nginx-network:
+#   my-node-mysql-network:
 #     driver: bridge

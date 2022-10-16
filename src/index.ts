@@ -9,38 +9,81 @@ app.use(express.urlencoded({ extended: false }));
 console.log('hi2')
 import mysql from 'mysql2'
 
+console.log(process.env.ABC);
 
-async function dbfunctions() {
+
+// async function dbfunctions() {
     
-    try {
+//     try {
         
-        const conn: mysql.Connection = mysql.createConnection({
-            host: 'localhost',
-            user: 'root',
-            database: 'test',
-            password: 'password',
-            port: 3306
-        });
-        console.log('connected');
-        conn.query("SELECT * FROM users;", function(err, results, fields) {
-            console.log(results); // results contains rows returned by server
-            console.log(fields); // fields contains extra meta data about results, if available
-          });
+//         const conn: mysql.Connection = mysql.createConnection({
+//             host: 'localhost',
+//             user: 'root',
+//             database: 'test',
+//             password: 'password',
+//             port: 3306
+//         });
+//         console.log('connected');
+//         conn.query("SELECT * FROM user;", function (err, results, fields) {
+//             if (err) console.log('ERRORRRR '+ err)
+//             console.log(results);
+//         });
+
+//         conn.query(
+//             'INSERT INTO user (userid, full_name, email, user_password, user_gender, addr_state, birth_date, created_at) VALUES (" ", "Joao", "joao@gmail.com", "123", 1, "SP","2000-01-14", "2022-10-15");', function (err, results, fields) {
+//             if (err) console.log('ERRORRRR from insert '+ err)
+//             console.log(results);
+//         });
+
+//         conn.query(
+//             'INSERT INTO product (product_id, product_name, product_image, owner_id, created_at) VALUES ("1515a", "laranja", "foto154", "a6d1ac", "2022-10-15");', function (err, results, fields) {
+//             if (err) console.log('ERRORRRR from insert '+ err)
+//             console.log(results);
+//         });
+//         // conn.query(
+//         //     'INSERT INTO product (product_id, product_name, product_image, owner_id, created_at) VALUES ("af16b", "laranja", "foto154", "a6d1ac", "2022-10-15");', function (err, results, fields) {
+//         //     if (err) console.log('ERRORRRR from insert '+ err)
+//         //     console.log(results);
+//         // });
+        
      
+        
+//         conn.query("SELECT * FROM product;", function(err, results, fields) {
+//             console.log(results);
+//         });
+//         conn.query("SELECT * FROM user;", function(err, results, fields) {
+//             console.log(results);
+//         });
+
+   
+//         conn.query('UPDATE user SET userid="12345" WHERE userid="a6d1ac";', function(err, results, fields) {
+//             // console.log(results);
+//         });
+
+//         //
       
-    } catch (err) { 
-        console.log('error db: ' + err)
-    }
+//         console.log('---------------------------------------------------------------')
+//         conn.query("SELECT * FROM user;", function(err, results, fields) {
+//             console.log(results);
+//         });
+
+//         conn.query("SELECT * FROM product;", function(err, results, fields) {
+//             console.log(results);
+//         });
+
+//     } catch (err) { 
+//         console.log('error db: ' + err)
+//     }
     
-}
+// }
 
 // dbfunctions();
+import MySql from './Repository/MySql';
+const mySqlDatabase = new MySql('localhost', 'root', 'test', 'password', 3306);
 
 
 
-
-
-import { InMemoryImpl } from './Repository/MySql'
+import { InMemoryImpl } from './Repository/InMemoryRepo'
 const inMemoryRepo = new InMemoryImpl();
 
 import AlterarPerfil from './UseCases/AlterarPerfil'
@@ -66,9 +109,25 @@ app.post('/alterarPerfil', ProtectionAgainstNonAuthenticatedUsers, async (req, r
 })
 
 
+import InputCriarProdutoDTO from './DTO/input/CriarProdutoDTO'
+import CriarProduto from './UseCases/CriarProduto'
+app.post('/criarProduto', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => {
+    const { name, description, image} = req.body
+    if (!name || !description || !image) return res.send('empty field');
+    
+    const token = await res.locals.userInfo;
+    const inputData = new InputCriarProdutoDTO(token.id, name, description, image);
+    
+    const uuid = new UUIDLibrary();
+    const outputData = await new CriarProduto(mySqlDatabase, uuid).execute(inputData);
+    return res.json(outputData);
+
+})
+
+
 import InputCadastrarDTO from './DTO/input/cadastrar'
 import Cadastrar from './UseCases/Cadastrar'
-import MySql from './Repository/MySql'
+
 
 import { UUIDLibrary } from './Services/IdGenerator'
 
@@ -84,20 +143,19 @@ app.post('/cadastrar',ProtectionAgainstAuthenticatedUsers, async (req: Request, 
     
     const inputData = new InputCadastrarDTO(name,email, password, gender,city, birthDate);
 
-    const mySql = new MySql();
   
 
     const uuid = new UUIDLibrary();
     const cryptography = new Cryptography(inputData.password);
 
-    const cadastrar = new Cadastrar(inMemoryRepo, uuid, cryptography);
+    const cadastrar = new Cadastrar(mySqlDatabase, uuid, cryptography);
     const outputData = await cadastrar.execute(inputData);
     
     return res.json(outputData);
 })
 
 app.get('/get', (req, res) => { 
-    return res.json(inMemoryRepo.getAll());
+    return res.json(inMemoryRepo.getAllUsers());
 })
 
 import InputLogarDTO from './DTO/input/logar';
@@ -108,11 +166,10 @@ app.post('/login', ProtectionAgainstAuthenticatedUsers, async (req: Request, res
     if (!email || !password) return res.send('error')
     const inputData = new InputLogarDTO(email, password);
 
-    const mySql = new MySql();
     const authentication = new Authentication();
     const cryptography = new Cryptography(inputData.password);
 
-    const logar = new Logar(inMemoryRepo, cryptography, authentication);
+    const logar = new Logar(mySqlDatabase, cryptography, authentication);
     const outputData = await logar.execute(inputData);
     return res.json(outputData);
 
@@ -144,9 +201,6 @@ async function ProtectionAgainstNonAuthenticatedUsers (req: Request, res: Respon
     
     next();
 }
-
-
-
 
 
 

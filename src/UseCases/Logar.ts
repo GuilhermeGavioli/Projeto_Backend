@@ -20,13 +20,14 @@ export default class Logar{
 
     public async execute(inputData: InputLogarDTO): Promise<OutputLogarDTO> {
 
-        const userFound = await this.repository.getOne(inputData.email);
+        const userFound = await this.repository.getOneUser(inputData.email);
+        console.log('f '+ userFound)
         if (!userFound) return new OutputLogarDTO("Usuario nao encontrado", 404, true);
         
-        const passwordsMatch = await this.cryptography.compare(userFound.getPassword());
+        const passwordsMatch = await this.cryptography.compare(userFound.user_password);
         if (!passwordsMatch) return new OutputLogarDTO("Senhas nao correspondem", 404, true);
     
-        const payload = new PayloadInfoDTO(userFound.getId(), userFound.getName(), userFound.getEmail(), "");
+        const payload = new PayloadInfoDTO(userFound.userid, userFound.full_name, userFound.email, userFound.user_image);
         const payloadObject = await payload.getPayloadObject();
         const token = await this.authentication.generateToken(payloadObject);
         return new OutputLogarDTO("logado", 200, false, token);
