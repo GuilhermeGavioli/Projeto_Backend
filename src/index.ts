@@ -4,79 +4,47 @@ import express, {Request, Response, NextFunction} from 'express';
 const app = express();
 
 app.use(express.json());
-app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
+import cors from 'cors'
+
+const corsOptions = {
+    origin: 'http://localhost.com',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+app.use(cors())
 
 console.log('hi2')
 import mysql from 'mysql2'
 
 console.log(process.env.ABC);
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs')
 
 
-// async function dbfunctions() {
-    
-//     try {
-        
-//         const conn: mysql.Connection = mysql.createConnection({
-//             host: 'localhost',
-//             user: 'root',
-//             database: 'test',
-//             password: 'password',
-//             port: 3306
-//         });
-//         console.log('connected');
-//         conn.query("SELECT * FROM user;", function (err, results, fields) {
-//             if (err) console.log('ERRORRRR '+ err)
-//             console.log(results);
-//         });
 
-//         conn.query(
-//             'INSERT INTO user (userid, full_name, email, user_password, user_gender, addr_state, birth_date, created_at) VALUES (" ", "Joao", "joao@gmail.com", "123", 1, "SP","2000-01-14", "2022-10-15");', function (err, results, fields) {
-//             if (err) console.log('ERRORRRR from insert '+ err)
-//             console.log(results);
-//         });
+app.get('/pagecadastrar',(req, res) => { 
+    res.render("cadastrar");
+})
 
-//         conn.query(
-//             'INSERT INTO product (product_id, product_name, product_image, owner_id, created_at) VALUES ("1515a", "laranja", "foto154", "a6d1ac", "2022-10-15");', function (err, results, fields) {
-//             if (err) console.log('ERRORRRR from insert '+ err)
-//             console.log(results);
-//         });
-//         // conn.query(
-//         //     'INSERT INTO product (product_id, product_name, product_image, owner_id, created_at) VALUES ("af16b", "laranja", "foto154", "a6d1ac", "2022-10-15");', function (err, results, fields) {
-//         //     if (err) console.log('ERRORRRR from insert '+ err)
-//         //     console.log(results);
-//         // });
-        
-     
-        
-//         conn.query("SELECT * FROM product;", function(err, results, fields) {
-//             console.log(results);
-//         });
-//         conn.query("SELECT * FROM user;", function(err, results, fields) {
-//             console.log(results);
-//         });
+app.get('/pagelogin',(req, res) => { 
+    res.render("login");
+})
 
-   
-//         conn.query('UPDATE user SET userid="12345" WHERE userid="a6d1ac";', function(err, results, fields) {
-//             // console.log(results);
-//         });
+app.get('/pagehome', ProtectionAgainstAuthenticatedUsers,(req, res) => { 
+    res.render("home");
+})
 
-//         //
-      
-//         console.log('---------------------------------------------------------------')
-//         conn.query("SELECT * FROM user;", function(err, results, fields) {
-//             console.log(results);
-//         });
+app.get('/pagealterarusuario', ProtectionAgainstAuthenticatedUsers,(req, res) => { 
+    res.render("alterar");
+})
 
-//         conn.query("SELECT * FROM product;", function(err, results, fields) {
-//             console.log(results);
-//         });
+app.get('/pagecriarproduto', ProtectionAgainstAuthenticatedUsers,(req, res) => { 
+    res.render("criarproduto");
+})
 
-//     } catch (err) { 
-//         console.log('error db: ' + err)
-//     }
-    
-// }
+
+
+
 
 // dbfunctions();
 import MySql from './Repository/MySql';
@@ -139,11 +107,11 @@ import Authentication from './Services/Authentication';
 
 
 app.post('/cadastrar',ProtectionAgainstAuthenticatedUsers, async (req: Request, res: Response) => {
-    const { name, email, password, gender, city, birthDate } = req.body
-    if (!name || !city || !email || !password || !gender || !birthDate) return res.send('empty field');
+    const { name, email, password, gender, city, bornDate } = req.body
+    if (!name || !city || !email || !password || !gender || !bornDate) return res.send('empty field');
    
     
-    const inputData = new InputCadastrarDTO(name,email, password, gender,city, birthDate);
+    const inputData = new InputCadastrarDTO(name,email, password, gender,city, bornDate);
 
   
 
@@ -231,13 +199,17 @@ app.post('/deleteProduct', ProtectionAgainstNonAuthenticatedUsers, async (req: R
 
 })
 
-async function ProtectionAgainstAuthenticatedUsers (req: Request, res: Response, next: NextFunction) {
+async function ProtectionAgainstAuthenticatedUsers(req: Request, res: Response, next: NextFunction) {
+    console.log('hi')
     const tokenSent = req.headers['authorization']
     if (!tokenSent) return next();
+    console.log(tokenSent)
     const authentication = new Authentication();
     const userTokenFormated = authentication.validateToken(tokenSent);
     if (!userTokenFormated) return next();
+    console.log(userTokenFormated)
     const outputData = new OutputCadastrarDTO("User is already authenticated", 401, true)
+    // return res.render("login");
     return res.json(outputData);
 }
 
@@ -257,6 +229,16 @@ async function ProtectionAgainstNonAuthenticatedUsers (req: Request, res: Respon
     next();
 }
 
+app.get('/auth', (req: Request, res: Response) => {
+    console.log('hello')
+    const tokenSent = req.headers['authorization'];
+    if (!tokenSent) return res.json({ auth: false });
+    console.log(tokenSent)
+    const authentication = new Authentication();
+    const userTokenFormated = authentication.validateToken(tokenSent);
+    if (!userTokenFormated) return res.json({ auth: false });
+    return res.json({ auth: true });
+})
 
 
 

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Produto</title>
+    <style>
+        .main-container{
+            visibility: hidden;
+        }
+
+        #spinning{
+            border-radius: 50%;
+            border: 3px solid black;
+            border-bottom: 3px solid white;
+            margin: auto;
+            position: absolute;
+            inset: 0 0 175px 0;
+            width: 50px;
+            height: 50px;
+            animation: infinite 1s rotate linear;
+            visibility: hidden;
+        }
+
+        @keyframes rotate{
+            from{transform: rotate(0deg);}
+            to{transform: rotate(359deg);}
+        }
+    </style>
+</head>
+<body>
+    <div id="spinning"></div>
+    
+    <div class="main-container">
+
+        <h1>Criar produto</h1>
+        <input type="text" placeholder="nome-produto">
+        <textarea type="text" placeholder="meu produto"></textarea>
+        <input type="file" accept="image/png, image/jpeg, image/jpg">
+        
+        
+    
+        <a href="./alterar.html">alterar</a>
+        <a href="./cadastrar.html">cadastrar</a>
+        <a href="./login.html">login</a>
+    </div>
+    
+    
+    <script defer>
+        window.onload = async () => {
+            const spinning = document.getElementById("spinning");
+            spinning.style.visibility = 'visible'
+            const main = document.querySelector('.main-container');
+            main.style.visibility = 'hidden'
+
+            const token = getStoredToken();
+            if (token){
+                const res = await fetch("http://localhost:3000/auth", {
+                    method: "GET",
+                    headers: {
+                        "Content-type": "application/json",
+                        "authorization": token
+                    }
+                })
+                const data = await res.json();
+                if (!data.auth) {
+                    return window.location.href = 'http://localhost:3000/pagelogin';
+                }
+                if (data.auth) {
+                    main.style.visibility = 'visible'
+                    spinning.style.visibility = 'hidden'
+                    return;
+                }
+            }
+            window.location.href = 'http://localhost:3000/pagelogin'
+        }
+
+        function getStoredToken(){
+            // const cookieToken = document.cookie = "token=" + token
+            const localToken = window.localStorage.getItem("token");
+            return localToken
+        }
+    </script>
+</body>
+</html>
