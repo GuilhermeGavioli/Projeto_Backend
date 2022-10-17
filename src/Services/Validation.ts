@@ -8,8 +8,12 @@ class Validation{
 // passwords match // passwords length // password contains letters and numbers (and special characters)
 // name length (>4)
 // gender == male || gender == female
-// 
+//
 
-// data de nascimento 
+// data de nascimento
 
 // passwords match
+
+
+//gender == 1 || 2
+//validate if date is in correct format

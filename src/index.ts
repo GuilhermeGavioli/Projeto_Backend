@@ -4,6 +4,7 @@ import express, {Request, Response, NextFunction} from 'express';
 const app = express();
 
 app.use(express.json());
+app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
 
 console.log('hi2')
@@ -83,8 +84,8 @@ const mySqlDatabase = new MySql('localhost', 'root', 'test', 'password', 3306);
 
 
 
-import { InMemoryImpl } from './Repository/InMemoryRepo'
-const inMemoryRepo = new InMemoryImpl();
+// import { InMemoryImpl } from './Repository/InMemoryRepo'
+// const inMemoryRepo = new InMemoryImpl();
 
 import AlterarPerfil from './UseCases/AlterarPerfil'
 import Cryptography from './Services/Cryptography'
@@ -101,7 +102,7 @@ app.post('/alterarPerfil', ProtectionAgainstNonAuthenticatedUsers, async (req, r
     
     const cryptography = new Cryptography(inputData.password);
     
-    const alterarPerfil = new AlterarPerfil(inMemoryRepo, cryptography);
+    const alterarPerfil = new AlterarPerfil(mySqlDatabase, cryptography);
     // nao e so pq ele tem o token, que ele pode editar, é preciso validar se o usuario a ser editado é o mesmo do dentro do token :)
     const outputData = await alterarPerfil.execute(token, inputData);
     return res.json(outputData);
@@ -116,7 +117,8 @@ app.post('/criarProduto', ProtectionAgainstNonAuthenticatedUsers, async (req, re
     if (!name || !description || !image) return res.send('empty field');
     
     const token = await res.locals.userInfo;
-    const inputData = new InputCriarProdutoDTO(token.id, name, description, image);
+    console.log(token);
+    const inputData = new InputCriarProdutoDTO(token.user_id, name, description, image);
     
     const uuid = new UUIDLibrary();
     const outputData = await new CriarProduto(mySqlDatabase, uuid).execute(inputData);
@@ -154,12 +156,39 @@ app.post('/cadastrar',ProtectionAgainstAuthenticatedUsers, async (req: Request, 
     return res.json(outputData);
 })
 
-app.get('/get', (req, res) => { 
-    return res.json(inMemoryRepo.getAllUsers());
+app.get('/get', async (req, res) => {
+    const allUsers = await mySqlDatabase.getAllUsers();
+    return res.json(allUsers);
+})
+
+app.get('/get/:procurarnadescricao/:nomeprodutor', async (req, res) => {
+    const nomeprodutor = req.params.nomeprodutor.toString().toLowerCase();
+    const procurarnadescricao = req.params.procurarnadescricao.toString().toLowerCase();
+    console.log(nomeprodutor);
+    const usersFound = await mySqlDatabase.findManyUsersByName(nomeprodutor, (procurarnadescricao == "true"));
+    console.log(usersFound)
+    return res.json(usersFound);
+})
+
+app.get('/getproduto/:procurarnadescricao/:nomeproduto', async (req, res) => {
+    const nomeproduto = req.params.nomeproduto.toString().toLowerCase();
+    const procurarnadescricao = req.params.procurarnadescricao.toString().toLowerCase();
+    console.log(nomeproduto);
+    const productFound = await mySqlDatabase.findManyProductsByName(nomeproduto, (procurarnadescricao == "true"));
+    console.log(productFound)
+    return res.json(productFound);
+})
+
+app.get('/getprodutosfromUser/:idprodutor', async (req, res) => {
+    const idprodutor = req.params.idprodutor.toString().toLowerCase();
+    const productFound = await mySqlDatabase.findProductsFromUser(idprodutor);
+    return res.json(productFound);
 })
 
 import InputLogarDTO from './DTO/input/logar';
 import Logar from './UseCases/Logar';
+import DeletarUsuario from './UseCases/DeletarUsuario';
+import DeletarProduto from './UseCases/DeletarProduto';
 
 app.post('/login', ProtectionAgainstAuthenticatedUsers, async (req: Request, res: Response) => {
     const { email, password } = req.body
@@ -175,6 +204,32 @@ app.post('/login', ProtectionAgainstAuthenticatedUsers, async (req: Request, res
 
 })
 
+app.post('/deleteUser', ProtectionAgainstNonAuthenticatedUsers, async (req: Request, res: Response) => {
+    const { password } = req.body
+    if (!password) return res.send('error')
+
+    const token = await res.locals.userInfo;
+
+    
+    const cryptography = new Cryptography(password);
+    const deletarUsuario = new DeletarUsuario(mySqlDatabase, cryptography);
+
+    const outputData = await deletarUsuario.execute(token.user_id, token.email);
+    return res.json(outputData);
+})
+
+app.post('/deleteProduct', ProtectionAgainstNonAuthenticatedUsers, async (req: Request, res: Response) => {
+    const { product_id } = req.body
+    if (!product_id) return res.send('error')
+
+    const token = await res.locals.userInfo;
+
+    const deletarProduto = new DeletarProduto(mySqlDatabase);
+
+    const outputData = await deletarProduto.execute(product_id, token.user_id);
+    return res.json(outputData);
+
+})
 
 async function ProtectionAgainstAuthenticatedUsers (req: Request, res: Response, next: NextFunction) {
     const tokenSent = req.headers['authorization']

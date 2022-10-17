@@ -20,7 +20,7 @@ export default class Cadastrar{
     }
 
     public async execute(inputData: InputCadastrarDTO): Promise<OutputCadastrarDTO> {
-        const foundUser = await this.repository.getOneUser(inputData.email);
+        const foundUser = await this.repository.findUserByEmail(inputData.email);
         if (foundUser) return new OutputCadastrarDTO("Usuario ja existe", 403, true);
         const id = this.idGenerator.generate();
         const hashedPassword = await this.cryptography.hash();

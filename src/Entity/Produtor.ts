@@ -3,7 +3,7 @@ export default class Produtor{
     public id: string;
     public email: string;
     public name: string;
-    public  city: string;
+    public city: string;
     public password: string;
     public gender: string;
     public birthDate: string; //date

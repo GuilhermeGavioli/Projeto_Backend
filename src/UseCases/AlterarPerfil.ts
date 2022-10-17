@@ -18,15 +18,16 @@ export default class AlterarPerfil {
     }
 
     public async execute(token: PayloadInfoDTO, inputData: InputAlterarPerfilDTO): Promise<OutputCadastrarDTO> {
-        // console.log(inputData.email)
-        const foundUser = await this.repository.getOneUser(token.email);
+
+        const foundUser = await this.repository.findUserByEmail(token.email);
         if (!foundUser) return new OutputCadastrarDTO("Erro inesperado. usuario nao exite. Tente novamente", 400, true);
 
         if (token.email !== foundUser.email) return new OutputCadastrarDTO("Permission denied. Can't alter other user information. emails don't match", 400, true);
-        if (token.user_id !== foundUser.id) return new OutputCadastrarDTO("Permission denied. Can't alter other user information. ids don't match", 400, true);
+        if (token.user_id !== foundUser.userid) return new OutputCadastrarDTO("Permission denied. Can't alter other user information. ids don't match", 400, true);
 
         const hashedPassword = await this.cryptography.hash();
-        const produtorAtualizado = new Produtor(foundUser.getId(), inputData.name, token.email, hashedPassword, inputData.gender, inputData.city, inputData.birthDate, inputData.aboutMe, inputData.bio, inputData.image);
+
+        const produtorAtualizado = new Produtor(foundUser.userid, inputData.name, token.email, hashedPassword, inputData.gender, inputData.city, inputData.birthDate, inputData.aboutMe, inputData.bio, inputData.image);
 
         await this.repository.updateOneUser(token.email, produtorAtualizado);
         return new OutputCadastrarDTO("Alterado com sucesso", 200, false);

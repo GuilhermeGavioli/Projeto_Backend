@@ -20,8 +20,7 @@ export default class Logar{
 
     public async execute(inputData: InputLogarDTO): Promise<OutputLogarDTO> {
 
-        const userFound = await this.repository.getOneUser(inputData.email);
-        console.log('f '+ userFound)
+        const userFound = await this.repository.findUserByEmail(inputData.email);
         if (!userFound) return new OutputLogarDTO("Usuario nao encontrado", 404, true);
         
         const passwordsMatch = await this.cryptography.compare(userFound.user_password);
