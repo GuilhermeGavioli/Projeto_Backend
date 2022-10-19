@@ -118,7 +118,7 @@
 
         async function cadastrar(userData){
             console.log('runnning')
-            const res = await fetch("http://localhost:3000/cadastrar", {
+            const res = await fetch("http://localhost:3000/registeruser", {
                 method: "POST",
                 body: JSON.stringify(userData),
                 headers: {

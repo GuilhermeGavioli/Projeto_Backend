@@ -37,7 +37,6 @@ export default class MySql implements Repository {
     }
 
 
-
     public async saveUser(produtor: Produtor): Promise<void> {
         const date = new Date();
         await this.connection.query(
@@ -133,9 +132,9 @@ export default class MySql implements Repository {
         await this.connection.query(`DELETE FROM user WHERE userid="${id}" && email="${email}";`);
     }
 
-    // SOLVE: if db has 100.000 thousands of products
+    // SOLVE: if db had 100.000 thousands of products
     // how to: limit max number to 20
-    // users request +20 then +20 then +20 then +20;
+    // users request +20 then +20 then +20 then +20; 
     public async findManyProductsByName(name: string, queryDescriptionAlso: boolean): Promise<GetOneOutputDTO[] | null> {
         if (queryDescriptionAlso) {
             const [rows] = await this.connection.execute(`SELECT 
@@ -157,7 +156,5 @@ export default class MySql implements Repository {
             return rows;
         }
      }
-
-    
 }
 

@@ -11,13 +11,14 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-app.use(cors())
+app.use(cors());
 
 export const mySqlDatabase = new MySql('localhost', 'root', 'test', 'password', 3306);
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs')
+import path from 'path'
+app.use(express.static(path.join(__dirname + '/views')));
 
 
 app.get('/pagecadastrar',(req, res) => { 
@@ -32,8 +33,9 @@ app.get('/pagehome',(req, res) => {
     res.render("home");
 })
 
-app.get('/pagealterarusuario',(req, res) => { 
-    res.render("alterar");
+app.get('/pagealterarusuario', (req, res) => {
+    console.log(res.locals.userInfo)
+    res.render("alterarperfil", {data: "hello"});
 })
 
 app.get('/pagecriarproduto',(req, res) => { 
@@ -63,10 +65,9 @@ app.get('/getproduto/:procurarnadescricao/:nomeproduto', controllers.getProdutos
 //     return res.json(productFound);
 // })
 
-
+app.post('')
 
 app.get('/auth', controllers.authValidation)
-
 
 
 const PORT = process.env.PORT || 3000;

@@ -15,6 +15,7 @@ export default class Cryptography{
     //this.password == user password
     // hashed = right one saved on the db
     async compare(hashed: string): Promise<boolean>{
+        
         return await bcrypt.compare(this.password, hashed);
     }
 }

@@ -102,12 +102,24 @@ export const controllers = {
         return res.json(productFound);
     },
 
-    authValidation: (req: Request, res: Response) => {
+    authValidation: async (req: Request, res: Response) => {
         const tokenSent = req.headers['authorization'];
+        const infoRequired = req.headers['required_info'];
+
+        if (infoRequired === "*")  console.log('aaaaa ' + infoRequired)
+
         if (!tokenSent) return res.json({ auth: false });
         const authentication = new Authentication();
         const userTokenFormated = authentication.validateToken(tokenSent);
         if (!userTokenFormated) return res.json({ auth: false });
+        res.locals.userInfo = userTokenFormated;
+        if (infoRequired === "*") { 
+            const fullUser = await mySqlDatabase.findUserByEmail(userTokenFormated.email);
+            if (fullUser?.user_password) fullUser.user_password = "";
+            
+            
+            return res.json({auth: true, fullUser})
+        }
         return res.json({ auth: true });
     }
 

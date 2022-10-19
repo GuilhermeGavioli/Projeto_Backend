@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./alterarperfil.css" type="text/css">
+    <script src="https://kit.fontawesome.com/69266619cf.js" crossorigin="anonymous"></script>
+    <script src="./alterarperfil.js" defer></script>
+</head>
+<body>
+    <h1> <%= data %> </h1>
+    <div id="spinning"></div>
+    <div class="success-message-container">
+        <!-- Perfil atualizado com sucesso -->
+    </div>
+
+    <div class="fail-message-container">
+        <!-- Algo deu errado. Tente novamente -->
+    </div>
+
+    <div class="janela-confirmacao">
+        <button id="close-btn" style="float:right;" onclick="closePainel()">x</button>
+        <h1>Confirmar</h1>
+        <p style="color: #747474; font-size: 1.2em; font-weight: 600; font-family: 'Inter', sans-serif;">Sua conta e seus posts serão deletados para sempre. Confirmar?</p>
+        <button id="confirmar-btn">
+            <div id="inside-confirmar-btn-circle" style="pointer-events: none;"></div>
+            <span id="confirmar-btn-text" style="pointer-events: none;">Confirmar</span>
+        </button>
+    </div>
+    
+    <div class="container">
+        <div class="c1">
+            <div class="c1-first-container"><h1 class="main-title">Editar Perfil</h1></div>
+            <div class="c1-second-container">
+                <div class="circle">
+                    <img id="circle-change-image-cover" src="https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg"
+                    style="background-size: contain; width: 100%; height: 100%;"
+                    ></img>
+                </div>
+                <div class="profile-email" id="profile-email-input">joaodasilva@gmail.com</div>
+                
+                    <input type="text" value="Joao da Silva" id="profile-name-input" style="height: 50px; font-size: 1.2em; color: #b9b9b9">
+                
+            </div>
+            <div class="c1-third-container"></div>
+
+        </div>    
+
+
+
+
+        <div class="c2">
+            <div class="c2-first-container" >
+                <div style="flex-grow: 1; border-bottom: 1px solid rgba(201, 201, 201, 0.819); border-radius: 2px;">
+
+                    <div class="label-plus-input-container">
+                        <label>Cidade</label>
+                        <input type="text" class="form-field-input" id="profile-cidade-input" value="São Paulo - SP">
+                    </div>
+                    <div class="label-plus-input-container">
+                        <label>Sobre</label>
+                        <textarea name=""  cols="30" rows="13" id="profile-sobre-input"></textarea>
+                    </div>
+                </div>
+                <div class="label-plus-input-container" >
+                    <label>Bio</label>
+                    <textarea name="" cols="30" rows="09" id="profile-bio-input"></textarea>
+                </div>
+            </div>
+            <div class="c2-second-container">
+                <div class="label-plus-input-container">
+                    <label>Data de Nascimento</label>
+                    <input type="text" class="form-field-input" id="profile-data-nascimento-input" value="">
+                </div>
+                <div class="label-plus-input-container">
+                    <label>Genero</label>
+                    <select name="select" id="profile-genero-input">
+                        <option value="1">Masculino</option>
+                        <option value="2">Feminino</option>
+                        <option value="3" selected>Outro</option>
+                      </select>
+                </div>
+                <div class="label-plus-input-container">
+                    <label>Sociais</label>
+                    <input type="text"  class="social-input" value="meufacebook.com.br" id="profile-social-one-input" style="margin-top: 0;">
+                    <input type="text" class="social-input" value="meuinstagram.com.br" id="profile-social-two-input">
+                    <input type="text" class="social-input" value="(11) 97584-8533" id="profile-social-three-input">
+                </div>
+                <button id="salvar-btn">
+                    <div id="inside-salvar-btn-circle" style="pointer-events: none;"></div>
+                    <div id="salvar-btn-text" style="pointer-events: none;">Salvar</div>
+                    </button>
+            </div>
+        </div>
+        <div class="c3">
+            <div class="c3-first-container">
+                <div class="avancado-container">
+                    <div style="background: white; padding: 20px 15px 20px 15px; box-sizing: border-box">
+                        <h1 style="color: #868686;"><i class="fa-solid fa-circle-exclamation" style="font-size: 0.9em; margin-right: 8px; color: #A9A9A9;"></i>Avançado</h1>
+                        <p style="color: #747474;">Todas as suas publicaçoes serão deletadas.</p>
+                    </div>
+
+                    <div class="label-plus-input-container" style="width: 100%">
+                        <label>Alterar Senha</label>
+                        <input type="password" class="form-field-input" value="verysecret password" id="profile-password-input">
+                    </div>
+
+                    <button id="deletar-btn">
+                    
+                        Deletar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
