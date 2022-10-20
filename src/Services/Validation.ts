@@ -1,5 +1,13 @@
 class Validation{
 
+    constructor() { 
+        
+    }
+    
+
+    constructor(){}
+
+
 }
 
 
@@ -17,3 +25,8 @@ class Validation{
 
 //gender == 1 || 2
 //validate if date is in correct format
+
+// yyyy-mm-dd
+// 2020-10-10
+if (date.length > 9) //error 
+if (date.toString().substring(0,3))

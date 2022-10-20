@@ -44,14 +44,14 @@ export const controllers = {
     },
 
     alterarUser: async (req: Request, res: Response) => {
-        const { name, city, password, gender, birthDate, aboutMe, bio, image } = req.body
-        if (!name || !city || !password || !gender || !birthDate) return res.json({error: true, message: "Empty field"});
-        const inputData = new InputAlterarPerfilDTO(name, password, gender, city, birthDate, aboutMe, bio, image );
-        const token = await res.locals.userInfo;
-        const cryptography = new Cryptography(inputData.password);
-        const alterarPerfil = new AlterarPerfil(mySqlDatabase, cryptography);
-        const outputData = await alterarPerfil.execute(token, inputData);
-        return res.json(outputData);
+            const { name, city, password, gender, birthDate, aboutMe, bio, image } = req.body
+            if (!name || !city || !gender || !birthDate) return res.json({error: true, message: "Empty field"});
+            const inputData = new InputAlterarPerfilDTO(name, password, gender, city, birthDate, aboutMe, bio, image );
+            const token = await res.locals.userInfo;
+            const cryptography = new Cryptography(inputData.password);
+            const alterarPerfil = new AlterarPerfil(mySqlDatabase, cryptography);
+            const outputData = await alterarPerfil.execute(token, inputData);
+            return res.json(outputData);
     },
 
     deletarUser: async (req: Request, res: Response) => {
@@ -66,10 +66,10 @@ export const controllers = {
 
     acharUsuariosPorNome: async (req: Request, res: Response) => {
         const nomeprodutor = req.params.nomeprodutor.toString().toLowerCase();
+        console.log(nomeprodutor)
+        if (!nomeprodutor) return res.json({error: true, message: "Empty field"}); 
         const procurarnadescricao = req.params.procurarnadescricao.toString().toLowerCase();
-        console.log(nomeprodutor);
         const usersFound = await mySqlDatabase.findManyUsersByName(nomeprodutor, (procurarnadescricao == "true"));
-        console.log(usersFound)
         return res.json(usersFound);
     },
 
@@ -77,7 +77,6 @@ export const controllers = {
         const { name, description, image} = req.body
         if (!name || !description || !image) return res.json({error: true, message: "Empty field"});
         const token = await res.locals.userInfo;
-        console.log(token);
         const inputData = new InputCriarProdutoDTO(token.user_id, name, description, image);
         const uuid = new UUIDLibrary();
         const outputData = await new CriarProduto(mySqlDatabase, uuid).execute(inputData);
@@ -96,9 +95,7 @@ export const controllers = {
     getProdutos: async (req: Request, res: Response) => {
         const nomeproduto = req.params.nomeproduto.toString().toLowerCase();
         const procurarnadescricao = req.params.procurarnadescricao.toString().toLowerCase();
-        console.log(nomeproduto);
         const productFound = await mySqlDatabase.findManyProductsByName(nomeproduto, (procurarnadescricao == "true"));
-        console.log(productFound)
         return res.json(productFound);
     },
 
@@ -116,8 +113,6 @@ export const controllers = {
         if (infoRequired === "*") { 
             const fullUser = await mySqlDatabase.findUserByEmail(userTokenFormated.email);
             if (fullUser?.user_password) fullUser.user_password = "";
-            
-            
             return res.json({auth: true, fullUser})
         }
         return res.json({ auth: true });

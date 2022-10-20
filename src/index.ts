@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
-export const mySqlDatabase = new MySql('localhost', 'root', 'test', 'password', 3306);
+// export const mySqlDatabase = new MySql('localhost', 'root', 'test', 'password', 3306);
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs')
@@ -40,6 +40,10 @@ app.get('/pagealterarusuario', (req, res) => {
 
 app.get('/pagecriarproduto',(req, res) => { 
     res.render("criarproduto");
+})
+
+app.get('/pageprocurarusuario',(req, res) => { 
+    res.render("procurarusuario");
 })
 
 

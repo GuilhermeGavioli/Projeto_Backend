@@ -1,0 +1,73 @@
+.header{
+    width: 100vw;
+    background-color: royalblue;
+    height: 85px;
+    display: flex;
+    justify-content: end;
+    position: fixed;
+    align-items: center;
+    z-index: 1;
+}
+
+.profile-icon-circle{
+    margin-right: 55px;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    background-color: white;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+}
+
+li{
+    list-style: none;
+    margin-top: 15px;
+    font-family: 'Inter', sans-serif;
+    font-size: .9em;
+}
+.profile-icon-painel{
+    visibility: hidden;
+    font-weight: 200;
+    width: 140px;
+    height: 180px;
+    background-color: gray;
+    z-index: 2;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    margin: auto;
+    box-sizing: border-box;
+    padding: 20px 15px 20px 15px;
+}
+.logout-btn{
+    margin-top: 40px;
+    margin-left: 25px;
+    border-radius: 3px;
+    border: none;
+    padding: 2px 23px 2px 23px;
+}
+
+#spinning{
+    border-radius: 50%;
+    border: 3px solid black;
+    border-bottom: 3px solid white;
+    margin: auto;
+    position: absolute;
+    inset: 0 0 175px 0;
+    width: 50px;
+    height: 50px;
+    animation: infinite 1s rotate linear;
+    visibility: hidden;
+}
+
+@keyframes rotate{
+    from{transform: rotate(0deg);}
+    to{transform: rotate(359deg);}
+}
+
+.container{
+    width: 80vw;
+    height: 800px;
+    background-color: red;
+}

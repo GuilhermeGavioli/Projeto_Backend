@@ -1,0 +1,380 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');/*label INTER*/ 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap');
+
+body{
+    background-color: gray;
+    margin: 0;
+    padding: 0;
+    /* display: flex; */
+}
+
+.card-title{
+    font-size: 1em;  white-space: nowrap;
+    overflow: hidden;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0 15px 0 15px;
+    text-overflow: ellipsis;
+}
+
+.card-text{
+    font-size: 0.7em;
+    max-height: 80px;
+    box-sizing: border-box;
+    padding: 4px;
+    background-color: whitesmoke;
+    margin: 0;
+    line-height: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.no-user-found-container{
+    font-family: 'Inter', sans-serif;
+    background-color: yellow;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 300px;
+}
+.resultados-container-sem-info{
+    visibility: hidden;
+    padding: 50px 0 50px 0;
+}
+
+.resultados-container-sem-info, .resultados-container-com-info{
+    position: absolute;
+    visibility: hidden;
+    background-color: white;
+    width: 90%;
+    height: 90%;
+    margin: auto;
+}
+
+.resultados-container-com-info{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 340px;
+    box-sizing: border-box;
+    padding: 20px;
+    margin-top: 0;
+}
+
+.c1-first-container{
+    margin: auto;
+    background-color: greenyellow;
+    width: 98%;
+    height: fit-content;
+    
+}
+
+.pesquisar-btn{
+    background-color: #51750A;
+    margin-left: 0;
+    border: none;
+    padding: 15px 0 15px 0;
+    border-radius: 0 5px 5px 0;
+    height: 100%;
+
+}
+
+.c1-second-container{
+
+    margin: auto;
+    background-color: blue;
+    width: 98%;
+    height: 600px;
+    height: fit-content;
+    padding: 0 0 50px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0;
+}
+
+.card-container{
+    margin: auto;
+    height: 320px;
+    width: 190px;
+    background-color: gray;
+}
+
+.card-first{
+    height: 50%;
+    background-color: rgb(179, 40, 40);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-circle{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: whitesmoke;
+}
+
+.card-second{
+    height: 50%;
+    background-color: rgb(86, 24, 24);
+    width: 100%;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.card-title-container{
+    width: 90%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: green;
+    padding: 0;
+}
+
+.card-text-container{
+    width: 90%;
+    max-height: 85px;
+    overflow: hidden;
+    background-color: #C10606;
+    margin-bottom: 15px;
+}
+
+.card-button-container{
+    background-color: rgb(208, 208, 208);
+    height: 40px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.pesquisar-btn{
+    border: none;
+    color: white;
+    margin-right: 8px;
+    height: 45px;
+    width: 100px;
+    background-color: rgb(53, 13, 13);
+    box-sizing: unset;
+    padding: 0 20px 0 20px;
+    font-size: 1.25em;
+}
+
+input, select{
+    font-family: 'Inter', sans-serif;
+    font-size: 1.15em;
+    font-weight: 300;
+    height: 45px;
+    border: none;
+    width: 450px;
+    margin: 0;
+    color: #7f7f7f;
+    border-radius: 5px 0 0 5px;
+    font-weight: 200;
+    box-sizing: border-box;
+    padding-left: 8px;
+}
+.success-message-container, .fail-message-container{
+    font-family: 'Inter', sans-serif;
+    color: white;
+    font-size: 1.6em;
+    font-weight: lighter;
+    text-align: center;
+    position: fixed;
+    margin: auto;
+    inset: -150px 0 0 0;
+    bottom: unset;
+    z-index: 2;
+    border-radius: 15px;
+    padding: 38px 75px 38px 75px;
+    width: fit-content;
+    height: fit-content;
+    transition: 0.3s ease-in-out;
+}
+
+.janela-confirmacao{
+    position: fixed;
+    inset: 0 0 105px 0;
+    margin: auto;
+    width: fit-content;
+    padding: 25px;
+    height: fit-content;
+    
+    margin: auto;
+    background-color: rgba(255, 255, 255, 0.836);
+    z-index: 1;
+    visibility: hidden;
+    opacity: 20%;
+    transition: 0.15s ease-in-out;
+}
+
+/* .success-message-container {
+    background: linear-gradient(to bottom, #95d920, #72b006);
+}
+
+.fail-message-container{
+    background: linear-gradient(to bottom, #D21B1B, #C10606);
+} */
+
+h1{
+    font-family: 'Inter', sans-serif;
+    color: #565656;
+}
+.main-title{
+    font-weight: bolder;
+    font-size: 3.0em;
+}
+
+
+
+@keyframes spinningSalvarButton {
+    from { transform: rotate(0deg); }
+    to {  transform: rotate(360deg); }
+}
+
+
+
+
+
+
+.container{
+    max-width: 1000px;
+    margin: auto;
+    display: grid;
+    background-color: black;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1100px;
+    grid-template-areas: 
+                        "c1";
+}
+
+.c1{
+    grid-area: c1;
+    background-color: red;
+    padding: 10px 15px 10px 15px;
+    position: relative;
+}
+
+
+
+
+
+
+#profile-name-input{
+    width: 365px;
+    width: 85%;
+}
+
+#circle-change-image-cover{
+    position: absolute;
+    height: 55px;
+    margin: auto;
+    background-color: rgba(245, 245, 245, 0.767);
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+
+
+
+
+
+
+
+
+
+
+@media (max-width:800px) {
+    body{
+        background-color: rgb(95, 13, 219);
+        width: 100vw;
+        padding: 0;
+        margin: 0;
+    }
+
+    input{
+        height: 54px;
+        width: 400px;
+        font-size: 1.3em;
+    }
+
+    .container{
+        grid-template-rows: 850px 1450px 600px;
+        min-width: 400px;
+        width: 100%;
+        max-width: none;
+        background-color: rgb(68, 255, 0);
+    }
+
+    
+
+    
+
+    
+    
+    
+    
+   
+    
+    .c1{
+        background-color: rgb(255, 27, 2);
+        padding: 10px 0 10px 0;
+        width: 100%;
+        min-width: 400px;
+    }
+
+
+    .c1-second-container{
+        width: 100%;
+        background-color: black;
+    }
+    
+    .c1-third-container{
+        visibility: hidden;
+    }
+    
+    
+
+
+
+    
+    input, select{
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1em;
+    height: 50px;
+    width: 96%;
+    color: #686868;
+    font-weight: 200;
+}
+
+
+
+.success-message-container, .fail-message-container{
+    font-family: 'Inter', sans-serif;
+    color: white;
+    font-size: 1.6em;
+    font-weight: lighter;
+    text-align: center;
+    position: fixed;
+    margin: auto;
+    inset: -150px 0 0 0;
+    bottom: unset;
+    z-index: 2;
+    border-radius: 15px;
+    padding: 38px 15px 38px 15px;
+    width: fit-content;
+    height: fit-content;
+    transition: 0.3s ease-in-out;
+}
+
+}

@@ -2,23 +2,71 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap');
 
 body{
-    background-color: #F5F5F5;
+    /* background-color: gray; */
     margin: 0;
     padding: 0;
-    /* display: flex; */
 }
 
+.header{
+    width: 100vw;
+    background-color: royalblue;
+    height: 85px;
+    display: flex;
+    justify-content: end;
+    position: fixed;
+    align-items: center;
+    z-index: 1;
+}
+
+.profile-icon-circle{
+    margin-right: 55px;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    background-color: white;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+}
+
+li{
+    list-style: none;
+    margin-top: 15px;
+    font-family: 'Inter', sans-serif;
+    font-size: .9em;
+}
+.profile-icon-painel{
+    visibility: hidden;
+    font-weight: 200;
+    width: 140px;
+    height: 180px;
+    background-color: gray;
+    z-index: 2;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    margin: auto;
+    box-sizing: border-box;
+    padding: 20px 15px 20px 15px;
+}
+.logout-btn{
+    margin-top: 40px;
+    margin-left: 25px;
+    border-radius: 3px;
+    border: none;
+    padding: 2px 23px 2px 23px;
+}
 
 #spinning{
     border-radius: 50%;
     border: 3px solid black;
-    border-bottom: 3px solid rgba(255, 255, 255, 0);
+    border-bottom: 3px solid white;
     margin: auto;
     position: absolute;
     inset: 0 0 175px 0;
     width: 50px;
     height: 50px;
-    animation: infinite 0.5s rotate linear;
+    animation: infinite 1s rotate linear;
     visibility: hidden;
 }
 
@@ -81,27 +129,23 @@ h1{
 label{
     font-family: 'Inter', sans-serif;
     margin-bottom: 5px;
-    color: #616161;
+    color: #555555;
 }
 input, select{
-  
-    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
     font-size: 1.15em;
     font-weight: 300;
-    height: 42px;
+    height: 50px;
     width: 99%;
-    color: #9e9e9e;
-    border: 2px solid #dfdfdf;
-    font-weight: lighter;
+    color: #686868;
+    font-weight: 200;
     box-sizing: border-box;
-    padding-left: 8px;
+    padding-left: 15px;
 }
 select{
     width: 100%;
 }
 textarea{
-    border-radius: 6px;
-    border: 1px solid #dfdfdf;
     font-family: 'Inter', sans-serif;
     width: 99%;
     resize: none;
@@ -122,15 +166,27 @@ textarea{
     border: none;
 }
 
-#salvar-btn{
-    margin-top: 85px;
-}
-
 #confirmar-btn, #salvar-btn{
     position: relative;
 }
 
+ #spinning{
+            border-radius: 50%;
+            border: 3px solid black;
+            border-bottom: 3px solid white;
+            margin: auto;
+            position: absolute;
+            inset: 0 0 175px 0;
+            width: 50px;
+            height: 50px;
+            animation: infinite 1s rotate linear;
+            visibility: hidden;
+        }
 
+        @keyframes rotate{
+            from{transform: rotate(0deg);}
+            to{transform: rotate(359deg);}
+        }
 
 #inside-confirmar-btn-circle, #inside-salvar-btn-circle{
     position: absolute;
@@ -151,7 +207,7 @@ textarea{
 }
 
 #confirmar-btn, #deletar-btn{
-    background: linear-gradient(to bottom, #be1a1a, #981010);
+    background: linear-gradient(to bottom, #BB1C1C, #7D0909);
     /* padding: 17px 53px 17px 53px; */
     margin-right: 0;
     font-weight: 500;
@@ -167,11 +223,11 @@ textarea{
 .form-field-input{
     width: 100%;
     height: 45px;
-  
+    background-color: red;
 }
 
 .social-input{
-    margin-top: 15px;
+    margin-top: 10px;
     width: 80%;
 }
 
@@ -179,18 +235,20 @@ textarea{
     max-width: 1000px;
     margin: auto;
     display: grid;
-    visibility: hidden;
+    padding-top: 185px;
+    background-color: black;
     grid-template-columns: 1fr;
     grid-template-rows: 600px 700px 400px;
     grid-template-areas: 
                         "c1"
                         "c2"
                         "c3";
+                        visibility: hidden;
 }
 
 .c1{
     grid-area: c1;
-
+    background-color: red;
     padding: 10px 15px 10px 15px;
     position: relative;
 }
@@ -199,7 +257,7 @@ textarea{
 
 .c1-second-container{
     margin: auto;
-
+    background-color: blue;
     width: 480px;
     height: 350px;
     height: fit-content;
@@ -212,14 +270,9 @@ textarea{
     width: 250px;
     height: 250px;
     border-radius: 50%;
-    background-color: rgb(255, 255, 255);
+    background-color: green;
     overflow: hidden;
     position: relative;
-}
-
-.circle:hover{
-    opacity: 70%;
-    cursor: pointer;
 }
 
 #profile-name-input{
@@ -231,15 +284,14 @@ textarea{
     position: absolute;
     height: 55px;
     margin: auto;
-    background-color: rgba(142, 142, 142, 0.791);
-    z-index: 1;
+    background-color: rgba(245, 245, 245, 0.767);
     right: 0;
     left: 0;
     bottom: 0;
 }
 
 .profile-email{
-    color: #969696;
+    color: #757575;
     font-family: 'Inter', sans-serif;
     margin: 35px 0 15px 0;
 }
@@ -258,12 +310,14 @@ textarea{
 
 .c2{
     grid-area: c2;
+    background-color: green;
     display: flex;
     justify-content: space-between;
     padding: 15px 20px 15px 20px;
 }
 
 .c2-first-container{
+    background-color: brown;
     width: 47%;
     height: 620px;
     display: flex;
@@ -278,12 +332,14 @@ textarea{
     display: flex;
     flex-direction: column;
     width: 90%;
-    margin-top: 30px;
+    margin-top: 15px;
+    background-color: gray;
 }
 .c2-second-container{
     padding: 15px 0 15px 0;
     width: 47%;
-    height: 620px;
+    height: 575px;
+    background-color: yellow;
 }
 
 
@@ -291,7 +347,7 @@ textarea{
 .c3{
     font-family: 'Inter', sans-serif;
     grid-area: c3;
-
+    background-color: blue;
     /* padding: 15px 0 15px 0; */
     display: flex;
     justify-content: center;
@@ -300,7 +356,7 @@ textarea{
 .c3-first-container{
     width: 100%;
     height: 100%;
-
+    background-color: yellow;
     padding: 0px 20px 0 20px;
 }
 
@@ -308,6 +364,7 @@ textarea{
     box-sizing: border-box;
     width: 47%;
     height: 90%;
+    background-color: rgb(23, 202, 119);
 }
 
 
@@ -317,7 +374,7 @@ textarea{
 
 @media (max-width:800px) {
     body{
-      
+        background-color: rgb(95, 13, 219);
         width: 100vw;
         padding: 0;
         margin: 0;
@@ -330,19 +387,18 @@ textarea{
     }
 
     .container{
-        grid-template-rows: 600px 1600px 600px;
+        grid-template-rows: 850px 1450px 600px;
         min-width: 400px;
         width: 100%;
         max-width: none;
-        max-width: 500px;
-
+        background-color: rgb(68, 255, 0);
     }
 
     .circle{
         width: 345px;
         height: 345px;
         border-radius: 50%;
-    
+        background-color: green;
     }
     #circle-change-image-cover{
         height: 75px;  
@@ -355,7 +411,7 @@ textarea{
     }
 
     #profile-name-input{
-        height: 90px;
+        height: 75px;
     }
 
     
@@ -365,7 +421,7 @@ textarea{
    
     
     .c1{
-
+        background-color: rgb(255, 27, 2);
         padding: 10px 0 10px 0;
     }
 
@@ -376,6 +432,7 @@ textarea{
 
     .c1-second-container{
         width: 100%;
+        background-color: black;
     }
     
     .c1-third-container{
@@ -389,10 +446,10 @@ textarea{
         align-items: center;
         justify-content: center;
         padding: 0;
-
+        background-color: rgba(255, 255, 255, 0.131);
     }
     .c2-first-container{
-
+        background-color: rgba(165, 42, 42, 0);
         width: 100%;
         height: 35%;
     }
@@ -400,6 +457,7 @@ textarea{
     .c2-second-container{
         width: 100%;
         height: 35%;
+        background-color: yellow;
     }
 
     .social-input{
@@ -408,6 +466,9 @@ textarea{
     }
 
     .c3{
+
+        background-color: blue;
+        /* padding: 15px 0 15px 0; */
         display: flex;
         justify-content: center;
         width: 100%;
@@ -417,6 +478,7 @@ textarea{
         width: 100%;
         height: 100%;
         min-width: 400px;
+        background-color: yellow;
         padding: 0px 0 0 0;
     }
     
@@ -424,6 +486,7 @@ textarea{
         width: 90%;
         margin: auto;
         height: 75%;
+        background-color: rgb(182, 7, 7);
     }
     #deletar-btn{
         margin-top: 105px;
@@ -431,6 +494,7 @@ textarea{
 
     .label-plus-input-container{
         width: 100%;
+        background-color: #7D0909;
     }
     .form-field-input{
         width: 96%;

@@ -106,18 +106,21 @@ export default class MySql implements Repository {
 
     // used by user
     public async updateOneUser(email: string, produtor: Produtor): Promise<void> {
+
         const date = new Date();
-        await this.connection.query(`UPDATE user SET
-        userid="${produtor.id}",
-        full_name="${produtor.getName()}",
-        user_password="${produtor.getPassword()}", 
-        user_gender="${produtor.gender}",
-        addr_state="${produtor.city}",
-        birth_date="${produtor.birthDate}", 
-        about_me="${produtor.aboutMe}", 
-        bio="${produtor.bio}", 
-        user_image="${produtor.image}",
-        updated_at="${new Date(date).toISOString().split('T')[0]}" WHERE email="${email}";`);
+       
+            await this.connection.query(`UPDATE user SET
+            userid="${produtor.id}",
+            full_name="${produtor.getName()}",
+            user_password="${produtor.getPassword()}", 
+            user_gender="${produtor.gender}",
+            addr_state="${produtor.city}",
+            birth_date="${produtor.birthDate}", 
+            about_me="${produtor.aboutMe}", 
+            bio="${produtor.bio}", 
+            user_image="${produtor.image}",
+            updated_at="${new Date(date).toISOString().split('T')[0]}" WHERE email="${email}";`);
+       
     }
 
 

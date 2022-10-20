@@ -9,8 +9,21 @@
     <script src="https://kit.fontawesome.com/69266619cf.js" crossorigin="anonymous"></script>
     <script src="./alterarperfil.js" defer></script>
 </head>
-<body>
-    <h1> <%= data %> </h1>
+<body onclickclose="true">
+
+    <header class="header" onclickclose="true">
+        <div class="profile-icon-circle">
+            <div class="profile-icon-painel">
+    
+                
+                <li style="margin-top: 0;">editar perfil</li>
+                <li>criar</li>
+                <li>meus produtos</li>
+                <button class="logout-btn">Logout</button>
+            </div>
+        </div>
+    </header>
+    <!-- <h1> <%= data %> </h1> -->
     <div id="spinning"></div>
     <div class="success-message-container">
         <!-- Perfil atualizado com sucesso -->
@@ -30,18 +43,18 @@
         </button>
     </div>
     
-    <div class="container">
-        <div class="c1">
+    <div class="container" onclickclose="true">
+        <div class="c1" onclickclose="true">
             <div class="c1-first-container"><h1 class="main-title">Editar Perfil</h1></div>
-            <div class="c1-second-container">
-                <div class="circle">
+            <div class="c1-second-container" onclickclose="true">
+                <div class="circle" >
                     <img id="circle-change-image-cover" src="https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg"
                     style="background-size: contain; width: 100%; height: 100%;"
                     ></img>
                 </div>
-                <div class="profile-email" id="profile-email-input">joaodasilva@gmail.com</div>
+                <div class="profile-email" id="profile-email-input"></div>
                 
-                    <input type="text" value="Joao da Silva" id="profile-name-input" style="height: 50px; font-size: 1.2em; color: #b9b9b9">
+                    <input type="text" value="" id="profile-name-input" style="height: 50px; font-size: 1.2em; color: #b9b9b9">
                 
             </div>
             <div class="c1-third-container"></div>
@@ -51,13 +64,13 @@
 
 
 
-        <div class="c2">
+        <div class="c2" onclickclose="true">
             <div class="c2-first-container" >
                 <div style="flex-grow: 1; border-bottom: 1px solid rgba(201, 201, 201, 0.819); border-radius: 2px;">
 
                     <div class="label-plus-input-container">
                         <label>Cidade</label>
-                        <input type="text" class="form-field-input" id="profile-cidade-input" value="São Paulo - SP">
+                        <input type="text" class="form-field-input" id="profile-cidade-input" value="">
                     </div>
                     <div class="label-plus-input-container">
                         <label>Sobre</label>
@@ -84,7 +97,7 @@
                 </div>
                 <div class="label-plus-input-container">
                     <label>Sociais</label>
-                    <input type="text"  class="social-input" value="meufacebook.com.br" id="profile-social-one-input" style="margin-top: 0;">
+                    <input type="text"  class="social-input" value=""  placeholder="Numero para contato" id="profile-social-one-input" style="margin-top: 0;">
                     <input type="text" class="social-input" value="meuinstagram.com.br" id="profile-social-two-input">
                     <input type="text" class="social-input" value="(11) 97584-8533" id="profile-social-three-input">
                 </div>
@@ -104,7 +117,9 @@
 
                     <div class="label-plus-input-container" style="width: 100%">
                         <label>Alterar Senha</label>
-                        <input type="password" class="form-field-input" value="verysecret password" id="profile-password-input">
+                        <input type="password" class="form-field-input" value="" id="profile-password-input">
+                        <label>Confirmar Senha</label>
+                        <input type="password" class="form-field-input" value="" id="profile-password-input">
                     </div>
 
                     <button id="deletar-btn">

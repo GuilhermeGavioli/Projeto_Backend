@@ -1,18 +1,39 @@
 console.log("giF");
 
 const salvarButton = document.getElementById("salvar-btn");
-salvarButton.addEventListener("click", (e) => {
+salvarButton.addEventListener("click", async (e) => {
+
   runSpinAnimation(e.target);
+  const updatedUserObject = getAllInputedInfo();
+  const token = getStoredToken();
+  
+  const res = await fetch("http://localhost:3000/alteraruser", {
+    method: "POST",
+    body: JSON.stringify(updatedUserObject),
+      headers: {
+        "Content-type": "application/json",
+        authorization: token,
+        required_info: "",
+      },
+    });
+  const data = await res.json();
+  console.log(data)
 
-  setTimeout(() => {
-    stopSpinAnimation(e.target);
-    showMessage("Perfil atualizado com sucesso", false);
-  }, 1750);
+  stopSpinAnimation(e.target);
 
+  if (!data.error) { 
+    showMessage(data.message, false);
+  }
+
+  if (data.error) { 
+    showMessage(data.message, true);
+  }
+  
+  
   setTimeout(() => {
     hideMessage();
-  }, 3500);
-});
+  }, 2500);
+})
 
 function runSpinAnimation(button) {
   console.log(button);
@@ -78,10 +99,13 @@ confirmarButton.addEventListener("click", (e) => {
 });
 
 window.onload = async () => {
-  const spinning = document.getElementById("spinning");
-  spinning.style.visibility = "visible";
+  profilePainel.style.visibility = "hidden"
+
+    const spinning = document.getElementById("spinning");
+    spinning.style.visibility = "visible";
   const main = document.querySelector(".container");
   main.style.visibility = "hidden";
+
 
   const token = getStoredToken();
   if (token) {
@@ -114,15 +138,15 @@ function getStoredToken() {
   return localToken;
 }
 
-async function fitInformationOnInputs(data) {
+ function fitInformationOnInputs(data) {
   const emailInput = document.getElementById("profile-email-input");
-  emailInput.innerHTML = await data.email;
+  emailInput.innerHTML = data.email;
 
   const nameInput = document.getElementById("profile-name-input");
-  nameInput.value = await data.full_name;
+  nameInput.value = data.full_name;
 
   const cidadeInput = document.getElementById("profile-cidade-input");
-  cidadeInput.value = await data?.addr_state;
+  cidadeInput.value = data?.addr_state;
 
   const sobreInput = document.getElementById("profile-sobre-input");
   sobreInput.value = data.about_me;
@@ -145,3 +169,71 @@ async function fitInformationOnInputs(data) {
   );
   const passwordInput = document.getElementById("profile-password-input");
 }
+
+
+
+
+function getAllInputedInfo() {
+  const nameValue = document.getElementById("profile-name-input").value
+
+
+  const cidadeValue = document.getElementById("profile-cidade-input").value
+
+
+  const sobreValue = document.getElementById("profile-sobre-input").value
+ 
+
+  const bioValue = document.getElementById("profile-bio-input").value
+
+
+  const dataNascimentoValue = document.getElementById("profile-data-nascimento-input").value
+
+
+  const generoValue = document.getElementById("profile-genero-input").value
+
+  const socialOneValue = document.getElementById("profile-social-one-input").value
+  const socialTwoValue = document.getElementById("profile-social-two-input").value
+  const socialThreeValue = document.getElementById("profile-social-three-input").value
+
+  const passwordValue = document.getElementById("profile-password-input").value
+ 
+
+  const updatedUserObject = {
+    name: nameValue,
+    city: cidadeValue,
+    password: passwordValue,
+    gender: Number(generoValue),
+    birthDate: dataNascimentoValue,
+    aboutMe: sobreValue,
+    bio: bioValue,
+    image: ""
+  }
+
+  // name, city, password, gender, birthDate, aboutMe, bio, image
+
+  return updatedUserObject;
+  
+}
+
+
+
+//toggle icon bar
+const profilePainel = document.querySelector('.profile-icon-painel')
+
+window.addEventListener('click', (e) => {
+  if (e.target.getAttribute('onclickclose') != null) { 
+    profilePainel.style.visibility = "hidden";
+  }
+})
+
+
+document.querySelector('.profile-icon-circle').addEventListener('click', (e) => {
+  if (e.target.getAttribute('class').toString() == "profile-icon-circle") {
+    profilePainel.style.visibility = profilePainel.style.visibility == "hidden" ? "visible" : "hidden";
+  }
+})
+
+document.querySelector('.logout-btn').addEventListener('click', async (e) => {
+  await window.localStorage.removeItem('token')
+  window.location.reload();
+})
