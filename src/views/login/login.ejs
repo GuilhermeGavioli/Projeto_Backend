@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./login.css" type="text/css">
+    <script src="./login.js" defer></script>
+    <title>Login</title>
+</head>
+    <style>
+        .main-container{
+            visibility: hidden;
+        }
+
+        #spinning{
+            border-radius: 50%;
+            border: 3px solid black;
+            border-bottom: 3px solid white;
+            margin: auto;
+            position: absolute;
+            inset: 0 0 175px 0;
+            width: 50px;
+            height: 50px;
+            animation: infinite 1s rotate linear;
+            visibility: hidden;
+        }
+
+        @keyframes rotate{
+            from{transform: rotate(0deg);}
+            to{transform: rotate(359deg);}
+        }
+    </style>
+<body>
+    <div id="spinning"></div>
+
+    <div class="fail-message-container">
+        
+    </div>
+    
+    <div class="container">
+        <h1>Login</h1>
+        <label for="">Email</label>
+        <input type="text" id="field-email" style="margin-bottom: 15px;">
+        <label for="">Senha</label>
+        <input type="password" id="field-password">
+        
+        <button type="submit" id="btn-logar">
+            <div id="inside-login-btn-circle" style="pointer-events: none;"></div>
+            <span id="login-btn-text" style="pointer-events: none;">Login</span>
+        </button>
+
+
+        <p style="margin-top: 15px; width: 95%; text-align: right; margin-bottom: 5px; font-size: .7em; color: #555555;">
+            Não possui uma conta?
+            <a href="./pagealterarusuario" style="text-decoration: none; color: #58840d;">Registre-se</a>
+
+        </p>
+        <!-- <a href="./pagecadastrar">cadastrar</a>
+        <a href="./pagecriarproduto">criarproduto</a> -->
+    </div>
+
+
+  
+
+</body>
+</html>

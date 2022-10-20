@@ -2,11 +2,21 @@
 
 const pesquisarButton = document.querySelector('.pesquisar-btn')
 const pesquisarInput = document.getElementById('pesquisar-input')
-pesquisarInput.value
+const procurarDescricaoInput = document.getElementById('procurar-descricao-input')
 
-pesquisarButton.addEventListener("click", async () => { 
+procurarDescricaoInput.addEventListener("click", (e) => {
+    if (e.target.getAttribute('checked').toString() == 'false') return e.target.setAttribute('checked', 'true')
+    e.target.setAttribute('checked', 'false');
+})
+
+pesquisarButton.addEventListener("click", async () => {
     if (!(pesquisarInput.value).toString().trim()) return pesquisarInput.value = "";
-    const res = await fetch(`http://localhost:3000/get/true/${pesquisarInput.value}`);
+    
+
+    const isChecked =  procurarDescricaoInput.getAttribute('checked')
+        
+
+    const res = await fetch(`http://localhost:3000/get/${isChecked}/${pesquisarInput.value}`);
     const data = await res.json();
     console.log(JSON.stringify(data))
     console.log(JSON.stringify(data.length))

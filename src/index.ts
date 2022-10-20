@@ -13,11 +13,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
-// export const mySqlDatabase = new MySql('localhost', 'root', 'test', 'password', 3306);
+export const mySqlDatabase = new MySql('localhost', 'root', 'test', 'password', 3306);
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs')
 import path from 'path'
+app.use(express.static(path.join(__dirname + '/views' + '/test')));
+app.use(express.static(path.join(__dirname + '/views' + '/home')));
+app.use(express.static(path.join(__dirname + '/views' + '/alterarUsuario')));
+app.use(express.static(path.join(__dirname + '/views' + '/procurarUsuario')));
+app.use(express.static(path.join(__dirname + '/views' + '/login')));
 app.use(express.static(path.join(__dirname + '/views')));
 
 
@@ -25,25 +30,29 @@ app.get('/pagecadastrar',(req, res) => {
     res.render("cadastrar");
 })
 
+app.get('/pagetest',(req, res) => { 
+    res.render(path.join("test", "test"));
+})
+
+
 app.get('/pagelogin',(req, res) => { 
-    res.render("login");
+    res.render(path.join("login", "login"));
 })
 
 app.get('/pagehome',(req, res) => { 
-    res.render("home");
+    res.render(path.join("home", "home"));
 })
 
 app.get('/pagealterarusuario', (req, res) => {
-    console.log(res.locals.userInfo)
-    res.render("alterarperfil", {data: "hello"});
+    res.render(path.join("alterarUsuario", "alterarperfil"));
 })
 
 app.get('/pagecriarproduto',(req, res) => { 
-    res.render("criarproduto");
+    // res.render(path.join("alterarUsuario", "alterarperfil"));
 })
 
 app.get('/pageprocurarusuario',(req, res) => { 
-    res.render("procurarusuario");
+    res.render(path.join("procurarUsuario", "procurarUsuario"));
 })
 
 

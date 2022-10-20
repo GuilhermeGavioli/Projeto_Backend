@@ -35,16 +35,7 @@ salvarButton.addEventListener("click", async (e) => {
   }, 2500);
 })
 
-function runSpinAnimation(button) {
-  console.log(button);
-  button.firstElementChild.style.visibility = "visible";
-  button.lastElementChild.style.visibility = "hidden";
-}
 
-function stopSpinAnimation(button) {
-  button.firstElementChild.style.visibility = "hidden";
-  button.lastElementChild.style.visibility = "visible";
-}
 
 function showMessage(message, error) {
   if (error) {
@@ -97,6 +88,17 @@ confirmarButton.addEventListener("click", (e) => {
     hideMessage();
   }, 3500);
 });
+
+function runSpinAnimation(button) {
+  console.log(button);
+  button.firstElementChild.style.visibility = "visible";
+  button.lastElementChild.style.visibility = "hidden";
+}
+
+function stopSpinAnimation(button) {
+  button.firstElementChild.style.visibility = "hidden";
+  button.lastElementChild.style.visibility = "visible";
+}
 
 window.onload = async () => {
   profilePainel.style.visibility = "hidden"

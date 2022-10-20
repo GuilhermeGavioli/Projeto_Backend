@@ -5,6 +5,7 @@ body{
     /* background-color: gray; */
     margin: 0;
     padding: 0;
+    user-select: none;
 }
 
 .header{
@@ -14,8 +15,9 @@ body{
     display: flex;
     justify-content: end;
     position: fixed;
+
     align-items: center;
-    z-index: 1;
+    z-index: 2;
 }
 
 .profile-icon-circle{
@@ -119,11 +121,11 @@ li{
 
 h1{
     font-family: 'Inter', sans-serif;
-    color: #565656;
+    color: #3a3a3a;
 }
 .main-title{
-    font-weight: bolder;
-    font-size: 3.0em;
+    font-weight: 600;
+    font-size: 2.8em;
 }
 
 label{
@@ -238,7 +240,7 @@ textarea{
     padding-top: 185px;
     background-color: black;
     grid-template-columns: 1fr;
-    grid-template-rows: 600px 700px 400px;
+    grid-template-rows: 600px 700px 600px;
     grid-template-areas: 
                         "c1"
                         "c2"
@@ -263,30 +265,33 @@ textarea{
     height: fit-content;
     display: flex;
     flex-direction: column;
+    padding: 25px 0 25px 0;
     align-items: center;
 }
 
 .circle{
-    width: 250px;
-    height: 250px;
+    width: 220px;
+    height: 220px;
     border-radius: 50%;
     background-color: green;
     overflow: hidden;
     position: relative;
+    z-index: 0;
 }
 
 #profile-name-input{
-    width: 365px;
     width: 85%;
 }
 
 #circle-change-image-cover{
     position: absolute;
     height: 55px;
+    width: 50px;
     margin: auto;
-    background-color: rgba(245, 245, 245, 0.767);
+    background-color: rgba(44, 150, 30, 0.841);
     right: 0;
     left: 0;
+    z-index: 1;
     bottom: 0;
 }
 
@@ -333,6 +338,8 @@ textarea{
     flex-direction: column;
     width: 90%;
     margin-top: 15px;
+    box-sizing: border-box;
+    padding: 12px 15px 12px 15px;
     background-color: gray;
 }
 .c2-second-container{
@@ -358,12 +365,15 @@ textarea{
     height: 100%;
     background-color: yellow;
     padding: 0px 20px 0 20px;
+    display: flex;
+    align-items: center;
 }
 
 .avancado-container{
     box-sizing: border-box;
     width: 47%;
     height: 90%;
+    padding: 15px;
     background-color: rgb(23, 202, 119);
 }
 
@@ -395,8 +405,8 @@ textarea{
     }
 
     .circle{
-        width: 345px;
-        height: 345px;
+        width: 330px;
+        height: 330px;
         border-radius: 50%;
         background-color: green;
     }
