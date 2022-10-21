@@ -1,5 +1,6 @@
 "use strict";
 exports.__esModule = true;
+var cadastrar_1 = require("../DTO/output/cadastrar");
 var UserValidation = /** @class */ (function () {
     function UserValidation(name, email, password, gender, address, birthDate, aboutMe, bio, user_image) {
         this.InvalideNameCharacters = [
@@ -9,13 +10,17 @@ var UserValidation = /** @class */ (function () {
             "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
             "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"
         ];
-        this.name = name === null || name === void 0 ? void 0 : name.toString().toLocaleLowerCase();
-        this.email = email === null || email === void 0 ? void 0 : email.toString().toLocaleLowerCase();
-        this.password = password === null || password === void 0 ? void 0 : password.toString().toLocaleLowerCase();
-        this.gender = gender === null || gender === void 0 ? void 0 : gender.toString().toLocaleLowerCase();
+        try {
+            this.name = name === null || name === void 0 ? void 0 : name.toString().toLocaleLowerCase();
+            this.email = email === null || email === void 0 ? void 0 : email.toString().toLocaleLowerCase();
+            this.password = password === null || password === void 0 ? void 0 : password.toString().toLocaleLowerCase();
+            this.gender = gender === null || gender === void 0 ? void 0 : gender.toString();
+        }
+        catch (err) {
+            console.log("eeeeeeee" + err);
+        }
     }
     UserValidation.prototype.validate = function () {
-        var _this = this;
         var whichOnesToValidate = [];
         if (this.name)
             whichOnesToValidate.push("name");
@@ -25,17 +30,29 @@ var UserValidation = /** @class */ (function () {
             whichOnesToValidate.push("password");
         if (this.gender)
             whichOnesToValidate.push("gender");
-        var areFieldsValids = whichOnesToValidate.map(function (item) {
-            if (item == "name")
-                return _this.validateName(_this.name);
-            if (item == "email")
-                return _this.validateName(_this.email);
-            if (item == "password")
-                return _this.validateName(_this.password);
-        });
-        areFieldsValids.map(function (boolField) {
-            console.log(boolField);
-        });
+        for (var i = 0; i < whichOnesToValidate.length; i++) {
+            if (whichOnesToValidate[i].toString() == "name") {
+                var isNameValid = this.validateName(this.name);
+                if (!isNameValid)
+                    return new cadastrar_1["default"]("Name is invalid", 403, true);
+            }
+            if (whichOnesToValidate[i].toString() == "email") {
+                var isEmailValid = this.validateEmail(this.email);
+                if (!isEmailValid)
+                    return new cadastrar_1["default"]("Email is invalid", 403, true);
+            }
+            if (whichOnesToValidate[i].toString() == "password") {
+                var isPasswordValid = this.validatePassword(this.password);
+                if (!isPasswordValid)
+                    return new cadastrar_1["default"]("Password is invalid", 403, true);
+            }
+            if (whichOnesToValidate[i].toString() == "gender") {
+                var isGenderValid = this.validateGender(this.gender);
+                if (!isGenderValid)
+                    return new cadastrar_1["default"]("Gender field is must be one of the three types", 403, true);
+            }
+        }
+        return new cadastrar_1["default"]("ok", 200, false);
     };
     UserValidation.prototype.validateName = function (name) {
         if (!name)
@@ -47,7 +64,21 @@ var UserValidation = /** @class */ (function () {
     UserValidation.prototype.validateEmail = function (email) {
         if (!email)
             return null;
-        if (email.length < 5 || email.length > 100)
+        if (email.length < 6 || email.length > 100)
+            return false;
+        return true;
+    };
+    UserValidation.prototype.validatePassword = function (password) {
+        if (!password)
+            return null;
+        if (password.length < 5 || password.length > 25)
+            return false;
+        return true;
+    };
+    UserValidation.prototype.validateGender = function (gender) {
+        if (!gender)
+            return null;
+        if (gender !== "0" && gender !== "1" && gender !== "2")
             return false;
         return true;
     };
@@ -82,4 +113,5 @@ var UserValidation = /** @class */ (function () {
 // 2020-10-10
 // if (date.length > 9) //error
 // if (date.toString().substring(0,3))
-new UserValidation("gu", null, "151515").validate();
+//nome //email //password, //genero
+console.log(new UserValidation("guilherme", null, "151515", 2).validate());
