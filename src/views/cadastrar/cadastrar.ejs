@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>cadastrar</title>
+    <link rel="stylesheet" href="./cadastrar.css">
+    <script src="./cadastrar.js" defer></script>
 </head>
     <style>
         .main-container{
@@ -33,115 +35,55 @@
     
     <div id="spinning"></div>
 
-    <div class="main-container">
+    <div class="fail-message-container">
+        
+    </div>
     
-        <h1>cadastrar</h1>
-        <input type="text" placeholder="name" id="field-name">
-        <input type="text" placeholder="email" id="field-email">
-        <input type="text" placeholder="password" id="field-password">
-        <input type="text" placeholder="city" id="field-city">
-        
-        <label>genero</label>
-        <select name="gender" id="field-gender">
-            <option value="1">masculino</option>
-            <option value="2">feminino</option>
-        </select>
-        
+    <div class="container">
+        <h1>Cadastro</h1>
+        <label for="">Nome</label>
+        <input type="text" id="field-name" style="margin-bottom: 15px;">
+        <label for="">Email</label>
+        <input type="text" id="field-email" style="margin-bottom: 15px;">
+        <label for="">Senha</label>
+        <input type="password" id="field-password" style="margin-bottom: 15px;">
+        <label for="">Confirmar Senha</label>
+        <input type="password" id="field-confirmar-senha" style="margin-bottom: 15px;">
+        <label for="">Data de Nascimento</label>
+        <input type="date" id="field-data-nascimento">
+        <div style="display: flex; width: 90%; margin: auto; margin-top: 15px;">
+            <div  style="width: 65%">
+                <label for="">Cidade</label>
+                <input type="text" id="field-city">
+            </div>
+            <div style="width: 35%;">
+                <label for="">Genero</label>
+                <select name="genero" id="field-gender" >
+                    <option value="1">Masculino</option>
+                    <option value="2">Feminino</option>
+                    <option value="3">Outro</option>
+                </select>
 
-        <input type="text" placeholder="DD" id="field-day-born-date">
-        <input type="text" placeholder="MM" id="field-month-born-date">
-        <input type="text" placeholder="YYYY" id="field-year-born-date">
-
-        <button type="submit" id="btn-cadastrar">cadastrar</button>
+            </div>
+        </div>
         
-        <a href="./alterar">alterar</a>
-        <a href="./criarproduto.html">criarproduto</a>
-        <a href="./pagelogin">login</a>
+        <button type="submit" id="btn-cadastrar">
+            <div id="inside-login-btn-circle" style="pointer-events: none;"></div>
+            <span id="login-btn-text" style="pointer-events: none;">Registrar</span>
+        </button>
 
+
+        <p style="margin-top: 15px; width: 95%; text-align: right; margin-bottom: 5px; font-size: .7em; color: #555555;">
+            Já possui uma conta?
+            <a href="./pagelogin" style="text-decoration: none; color: #58840d;">Login</a>
+
+        </p>
+        <!-- <a href="./pagecadastrar">cadastrar</a>
+        <a href="./pagecriarproduto">criarproduto</a> -->
     </div>
 
 
-    <script defer>
-        window.onload = async () => {
-            const spinning = document.getElementById("spinning");
-            spinning.style.visibility = 'visible'
-            const main = document.querySelector('.main-container');
-            main.style.visibility = 'hidden'
-
-            const token = getStoredToken();
-            if (token){
-                const res = await fetch("http://localhost:3000/auth", {
-                    method: "GET",
-                    headers: {
-                        "Content-type": "application/json",
-                        "authorization": token
-                    }
-                })
-                const data = await res.json();
-                console.log(data)
-                if (!data.auth) {
-                    main.style.visibility = 'visible'
-                    spinning.style.visibility = 'hidden'
-                    return
-                }
-                if (data.auth) window.location.href = 'http://localhost:3000/pagehome'
-            }
-            document.querySelector('.main-container').style.visibility = 'visible'
-            spinning.style.visibility = 'hidden'
-            return
-        }
-        
-
-        const name = document.getElementById("field-name");
-        const email = document.getElementById("field-email");
-        const password = document.getElementById("field-password");
-        const city = document.getElementById("field-city");
-        const gender = document.getElementById("field-gender");
-        const born_day_date = document.getElementById("field-day-born-date");
-        const born_month_date = document.getElementById("field-month-born-date");
-        const born_year_date = document.getElementById("field-year-born-date");
-        const buttonCadastrar = document.getElementById("btn-cadastrar");
-        
-        buttonCadastrar.addEventListener("click", (e) => {
-            e.preventDefault();
-            const bornDate = buildDateFormat(born_day_date.value, born_month_date.value, born_year_date.value)
-            const userData = {
-                name: name.value,
-                email: email.value,
-                password: password.value,
-                gender: Number(gender.value),
-                city: city.value,
-                bornDate: bornDate,
-            }
-            cadastrar(userData);
-        })
-
-        async function cadastrar(userData){
-            console.log('runnning')
-            const res = await fetch("http://localhost:3000/registeruser", {
-                method: "POST",
-                body: JSON.stringify(userData),
-                headers: {
-                   
-                    "Content-type": "application/json",
-                    
-                }
-            })
-            const data = await res.json();
-            console.log(data)
-        }
-
-        function buildDateFormat(day, month, year){
-            return year + "-" + month + "-" + day
-        }
-
-        function getStoredToken(){
-            // const cookieToken = document.cookie = "token=" + token
-            const localToken = window.localStorage.getItem("token");
-            return localToken
-        }
-
-    </script>
+  
 
 </body>
 </html>

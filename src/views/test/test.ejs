@@ -5,12 +5,85 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./test.css" type="text/css">
-    <title>Document</title>
-
+    <script src="./login.js" defer></script>
+    <title>Register</title>
 </head>
-<body>
-    <h1>test</h1>
+    <style>
+        .main-container{
+            visibility: hidden;
+        }
 
+        #spinning{
+            border-radius: 50%;
+            border: 3px solid black;
+            border-bottom: 3px solid white;
+            margin: auto;
+            position: absolute;
+            inset: 0 0 175px 0;
+            width: 50px;
+            height: 50px;
+            animation: infinite 1s rotate linear;
+            visibility: hidden;
+        }
+
+        @keyframes rotate{
+            from{transform: rotate(0deg);}
+            to{transform: rotate(359deg);}
+        }
+    </style>
+<body>
+    <div id="spinning"></div>
+
+    <div class="fail-message-container">
+        
+    </div>
     
+    <div class="container">
+        <h1>Cadastro</h1>
+        <label for="">Nome</label>
+        <input type="text" id="field-email" style="margin-bottom: 15px;">
+        <label for="">Email</label>
+        <input type="text" id="field-email" style="margin-bottom: 15px;">
+        <label for="">Senha</label>
+        <input type="password" id="field-email" style="margin-bottom: 15px;">
+        <label for="">Confirmar Senha</label>
+        <input type="password" id="field-email" style="margin-bottom: 15px;">
+        <label for="">Data de Nascimento</label>
+        <input type="date" id="field-password">
+        <div style="display: flex; width: 90%; margin: auto; margin-top: 15px;">
+            <div  style="width: 65%">
+                <label for="">Localizacao</label>
+                <input type="text">
+
+            </div>
+            <div style="width: 35%;">
+                <label for="">Genero</label>
+                <select name="genero" id="" >
+                    <option value="1">Masculino</option>
+                    <option value="2">Feminino</option>
+                    <option value="3">Outro</option>
+                </select>
+
+            </div>
+        </div>
+        
+        <button type="submit" id="btn-logar">
+            <div id="inside-login-btn-circle" style="pointer-events: none;"></div>
+            <span id="login-btn-text" style="pointer-events: none;">Registrar</span>
+        </button>
+
+
+        <p style="margin-top: 15px; width: 95%; text-align: right; margin-bottom: 5px; font-size: .7em; color: #555555;">
+            Já possui uma conta?
+            <a href="./pagelogin" style="text-decoration: none; color: #58840d;">Login</a>
+
+        </p>
+        <!-- <a href="./pagecadastrar">cadastrar</a>
+        <a href="./pagecriarproduto">criarproduto</a> -->
+    </div>
+
+
+  
+
 </body>
 </html>

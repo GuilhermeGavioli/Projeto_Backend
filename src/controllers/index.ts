@@ -44,14 +44,14 @@ export const controllers = {
     },
 
     alterarUser: async (req: Request, res: Response) => {
-            const { name, city, password, gender, birthDate, aboutMe, bio, image } = req.body
-            if (!name || !city || !gender || !birthDate) return res.json({error: true, message: "Empty field"});
-            const inputData = new InputAlterarPerfilDTO(name, password, gender, city, birthDate, aboutMe, bio, image );
-            const token = await res.locals.userInfo;
-            const cryptography = new Cryptography(inputData.password);
-            const alterarPerfil = new AlterarPerfil(mySqlDatabase, cryptography);
-            const outputData = await alterarPerfil.execute(token, inputData);
-            return res.json(outputData);
+        const { name, city, password, gender, birthDate, aboutMe, bio, image } = req.body
+        if (!name || !city || !gender || !birthDate) return res.json({error: true, message: "Empty field"});
+        const inputData = new InputAlterarPerfilDTO(name, password, gender, city, birthDate, aboutMe, bio, image );
+        const token = await res.locals.userInfo;
+        const cryptography = new Cryptography(inputData.password);
+        const alterarPerfil = new AlterarPerfil(mySqlDatabase, cryptography);
+        const outputData = await alterarPerfil.execute(token, inputData);
+        return res.json(outputData);
     },
 
     deletarUser: async (req: Request, res: Response) => {
@@ -91,6 +91,8 @@ export const controllers = {
         const outputData = await deletarProduto.execute(product_id, token.user_id);
         return res.json(outputData);
     },
+
+    //alterar produtos
 
     getProdutos: async (req: Request, res: Response) => {
         const nomeproduto = req.params.nomeproduto.toString().toLowerCase();

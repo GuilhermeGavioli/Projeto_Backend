@@ -23,11 +23,12 @@ app.use(express.static(path.join(__dirname + '/views' + '/home')));
 app.use(express.static(path.join(__dirname + '/views' + '/alterarUsuario')));
 app.use(express.static(path.join(__dirname + '/views' + '/procurarUsuario')));
 app.use(express.static(path.join(__dirname + '/views' + '/login')));
+app.use(express.static(path.join(__dirname + '/views' + '/cadastrar')));
 app.use(express.static(path.join(__dirname + '/views')));
 
 
 app.get('/pagecadastrar',(req, res) => { 
-    res.render("cadastrar");
+    res.render(path.join("cadastrar", "cadastrar"));
 })
 
 app.get('/pagetest',(req, res) => { 
