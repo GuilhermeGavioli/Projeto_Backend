@@ -50,6 +50,14 @@ export default class MySql implements Repository {
         return rows;
     }
 
+    // used by user
+    public async findUserById(id: string): Promise<GetOneOutputDTO | null> {
+        const [[rows]] = await this.connection.execute(`SELECT * from user WHERE userid="${id}";`);
+        if (!rows) return null;
+        return rows;
+    }
+
+
     //used by the application
     public async findProduct(id: string, owner_id: string): Promise<any | null> {
         const [[rows]] = await this.connection.execute(`SELECT * from product WHERE product_id="${id}" && owner_id="${owner_id}";`);
@@ -106,9 +114,8 @@ export default class MySql implements Repository {
 
     // used by user
     public async updateOneUser(email: string, produtor: Produtor): Promise<void> {
-
         const date = new Date();
-       
+        if (produtor.image) {
             await this.connection.query(`UPDATE user SET
             userid="${produtor.id}",
             full_name="${produtor.getName()}",
@@ -120,7 +127,18 @@ export default class MySql implements Repository {
             bio="${produtor.bio}", 
             user_image="${produtor.image}",
             updated_at="${new Date(date).toISOString().split('T')[0]}" WHERE email="${email}";`);
-       
+            return;
+        }
+        await this.connection.query(`UPDATE user SET
+        userid="${produtor.id}",
+        full_name="${produtor.getName()}",
+        user_password="${produtor.getPassword()}", 
+        user_gender="${produtor.gender}",
+        addr_state="${produtor.city}",
+        birth_date="${produtor.birthDate}", 
+        about_me="${produtor.aboutMe}", 
+        bio="${produtor.bio}", 
+        updated_at="${new Date(date).toISOString().split('T')[0]}" WHERE email="${email}";`);
     }
 
 

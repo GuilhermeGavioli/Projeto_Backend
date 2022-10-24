@@ -51,6 +51,6 @@ CREATE TABLE product(
     updated_at DATE,
     PRIMARY KEY(product_id),
     FOREIGN KEY (owner_id) REFERENCES user(userid)
-     ON UPDATE CASCADE 
-     ON DELETE CASCADE
+    ON UPDATE CASCADE 
+    ON DELETE CASCADE
 );

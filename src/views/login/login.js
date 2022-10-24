@@ -55,7 +55,6 @@ async function logar(userData){
     const data = await res.json();
     if (data.token && !data.error) {
         storeToken(data.token);
-        alert('logado');
         window.location.href = 'http://localhost:3000/pagealterarusuario'
         return
     }

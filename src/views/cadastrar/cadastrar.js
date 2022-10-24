@@ -30,6 +30,7 @@ window.onload = async () => {
 const nameInput = document.getElementById("field-name");
 const email = document.getElementById("field-email");
 const password = document.getElementById("field-password");
+const confirmPassword = document.getElementById("field-confirmar-senha");
 const city = document.getElementById("field-city");
 const gender = document.getElementById("field-gender");
 const dataNascimento = document.getElementById("field-data-nascimento");
@@ -55,6 +56,7 @@ buttonCadastrar.addEventListener("click", async (e) => {
         name: nameInput.value,
         email: email.value,
         password: password.value,
+        confirmPassword: confirmPassword.value,
         gender: Number(gender.value),
         city: city.value,
         bornDate: dataNascimento.value,

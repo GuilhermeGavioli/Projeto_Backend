@@ -1,38 +1,71 @@
 console.log("giF");
+const MAXSIZEPERMITED = 230000;
+
+const files = document.getElementById("files");
+files.onchange = ((e) => { 
+  console.log(e.target.files[0].size)
+   if (e.target.files[0].size > MAXSIZEPERMITED) {
+     e.target.value = "";
+     showMessage("Tamanho da imagem não permitido. Sua requisição será negada", true);
+
+     setTimeout(() => {
+       hideMessage();
+     }, 2500);
+
+
+     return;
+  }
+  const obj = URL.createObjectURL(e.target.files[0])
+  document.getElementById('circle-change-image-cover').setAttribute('src', obj)
+})
+
+
 
 const salvarButton = document.getElementById("salvar-btn");
 salvarButton.addEventListener("click", async (e) => {
-
+  e.preventDefault();
   runSpinAnimation(e.target);
-  const updatedUserObject = getAllInputedInfo();
+
   const token = getStoredToken();
-  
-  const res = await fetch("http://localhost:3000/alteraruser", {
-    method: "POST",
-    body: JSON.stringify(updatedUserObject),
-      headers: {
-        "Content-type": "application/json",
-        authorization: token,
-        required_info: "",
-      },
+  const updatedUserObject = getAllInputedInfo();
+
+  const formData = new FormData();
+  formData.append("name", updatedUserObject.name);
+  formData.append("city", updatedUserObject.city);
+  formData.append("password", updatedUserObject.password);
+  formData.append("confirmPassword", updatedUserObject.confirmPasswordValue);
+  formData.append("gender", updatedUserObject.gender);
+  formData.append("birthDate", updatedUserObject.birthDate);
+  formData.append("aboutMe", updatedUserObject.aboutMe);
+  formData.append("bio", updatedUserObject.bio);
+  formData.append("token", token);
+
+  if (files.files) { 
+    for(let i =0; i < files.files.length; i++) {
+      formData.append("files", files.files[i]);
+    }
+  }
+ 
+  try {
+    const res = await fetch("http://localhost:3000/testimage", {
+      method: "POST",
+      body: formData,
+      headers: {},
     });
-  const data = await res.json();
-  console.log(data)
+    const data = await res.json();
+    stopSpinAnimation(e.target);
 
-  stopSpinAnimation(e.target);
-
-  if (!data.error) { 
-    showMessage(data.message, false);
-  }
-
-  if (data.error) { 
-    showMessage(data.message, true);
-  }
+    if (!data) showMessage(data.message, true);
+    if (!data.error) showMessage(data.message, false);
+    if (data.error) showMessage(data.message, true);
   
+    setTimeout(() => hideMessage(), 2500);
   
-  setTimeout(() => {
-    hideMessage();
-  }, 2500);
+  } catch (err) { 
+    stopSpinAnimation(e.target);
+    showMessage("Erro. A imagem pode conter um tamanho maior que o permitido...", true);
+    setTimeout(() => hideMessage(), 2500);
+  }
 })
 
 
@@ -76,17 +109,45 @@ function closePainel() {
 // })
 
 const confirmarButton = document.getElementById("confirmar-btn");
-confirmarButton.addEventListener("click", (e) => {
+confirmarButton.addEventListener("click", async (e) => {
   runSpinAnimation(e.target);
 
-  setTimeout(() => {
-    stopSpinAnimation(e.target);
-    showMessage("Erro. Tente novamente.", true);
-  }, 1750);
+ 
 
+  const token = getStoredToken();
+
+  console.log(token)
+  // try {
+    console.log('here')
+    
+    const res = await fetch('http://localhost:3000/deleteuser', {
+      method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: token,
+    }
+    })
+    const data = await res.json()
+    console.log(data);
+  if (!data) showMessage(data.message, true);
+
+  if (!data.error) {
+    showMessage(data.message, false);
+    alert('Usuario deletado com sucesso');
+    
+    window.localStorage.removeItem('token')
+    window.location.reload();
+  }
+  
+  if (data.error) { 
+    showMessage(data.message, true);
+  }
+  
+  stopSpinAnimation(e.target);
   setTimeout(() => {
     hideMessage();
-  }, 3500);
+  }, 2500);
+  
 });
 
 function runSpinAnimation(button) {
@@ -126,6 +187,7 @@ window.onload = async () => {
     if (data.auth) {
       console.log(data);
       main.style.visibility = "visible";
+      document.querySelector('header').style.visibility = 'visible'
       spinning.style.visibility = "hidden";
       fitInformationOnInputs(data.fullUser);
       return;
@@ -140,7 +202,26 @@ function getStoredToken() {
   return localToken;
 }
 
- function fitInformationOnInputs(data) {
+function fitInformationOnInputs(data) {
+  
+  const imageInput = document.getElementById("circle-change-image-cover");
+  const headerCircle = document.querySelector('.profile-icon-circle')
+ 
+
+  if (data.user_image) {
+    const src = `http://localhost:3000/file_system/${data.user_image}`
+    imageInput.setAttribute('src', src);
+    headerCircle.setAttribute('src', src)
+    
+  }
+  else { 
+    const alternativeSrc = `http://localhost:3000/file_system/app/default_user_image.png`
+    imageInput.setAttribute('src', alternativeSrc);
+    headerCircle.setAttribute('src', alternativeSrc)
+  }
+    
+
+
   const emailInput = document.getElementById("profile-email-input");
   emailInput.innerHTML = data.email;
 
@@ -177,20 +258,10 @@ function getStoredToken() {
 
 function getAllInputedInfo() {
   const nameValue = document.getElementById("profile-name-input").value
-
-
   const cidadeValue = document.getElementById("profile-cidade-input").value
-
-
   const sobreValue = document.getElementById("profile-sobre-input").value
- 
-
   const bioValue = document.getElementById("profile-bio-input").value
-
-
   const dataNascimentoValue = document.getElementById("profile-data-nascimento-input").value
-
-
   const generoValue = document.getElementById("profile-genero-input").value
 
   const socialOneValue = document.getElementById("profile-social-one-input").value
@@ -198,23 +269,20 @@ function getAllInputedInfo() {
   const socialThreeValue = document.getElementById("profile-social-three-input").value
 
   const passwordValue = document.getElementById("profile-password-input").value
- 
+  const confirmPasswordValue = document.getElementById("profile-confirmar-password-input").value
 
   const updatedUserObject = {
     name: nameValue,
     city: cidadeValue,
     password: passwordValue,
+    confirmPasswordValue: confirmPasswordValue,
     gender: Number(generoValue),
     birthDate: dataNascimentoValue,
     aboutMe: sobreValue,
     bio: bioValue,
-    image: ""
   }
 
-  // name, city, password, gender, birthDate, aboutMe, bio, image
-
   return updatedUserObject;
-  
 }
 
 
@@ -235,7 +303,7 @@ document.querySelector('.profile-icon-circle').addEventListener('click', (e) => 
   }
 })
 
-document.querySelector('.logout-btn').addEventListener('click', async (e) => {
-  await window.localStorage.removeItem('token')
+document.querySelector('.logout-btn').addEventListener('click', (e) => {
+  window.localStorage.removeItem('token')
   window.location.reload();
 })

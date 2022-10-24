@@ -15,7 +15,7 @@ body{
     display: flex;
     justify-content: end;
     position: fixed;
-
+    visibility: hidden;
     align-items: center;
     z-index: 2;
 }
@@ -27,8 +27,8 @@ body{
     width: 60px;
     background-color: white;
     cursor: pointer;
-    position: relative;
     z-index: 2;
+    position: relative;
 }
 
 li{
@@ -43,21 +43,27 @@ li{
     width: 140px;
     height: 180px;
     background-color: gray;
-    z-index: 2;
+    z-index: 3;
     position: absolute;
-    top: 30px;
-    right: 30px;
+    top: 50px;
+    right: 90px;
     margin: auto;
     box-sizing: border-box;
     padding: 20px 15px 20px 15px;
 }
 .logout-btn{
-    margin-top: 40px;
+    margin-top: 27px;
     margin-left: 25px;
     border-radius: 3px;
     border: none;
     padding: 2px 23px 2px 23px;
 }
+
+/* margin-top: 50px;
+    margin-left: 15px;
+    border-radius: 3px;
+    border: none;
+    padding: 5px 35px 5px 35px; */
 
 #spinning{
     border-radius: 50%;
@@ -279,6 +285,21 @@ textarea{
     z-index: 0;
 }
 
+#files{
+    background-color: rgb(255, 255, 255);
+    z-index: 2;
+    position: absolute;
+    margin: auti;
+    inset: 0 0 0 0;
+    width: 100%;
+    height: 120%;
+    opacity: 0%;
+    cursor: pointer;
+}
+#files:hover{
+    opacity: 5%;
+}
+
 #profile-name-input{
     width: 85%;
 }
@@ -303,10 +324,14 @@ textarea{
 
 
 .c1-third-container{
+    font-family: 'Inter', sans-serif;
     margin: auto;
     background-color: whitesmoke;
+    color: #8d8d8d;
     width: 275px;
     height: 135px;
+    box-sizing: border-box;
+    padding: 5px 15px 5px 15px;
     position: absolute;
     top: 132px;
     right: 0;
@@ -616,8 +641,8 @@ li{
     background-color: gray;
     z-index: 2;
     position: absolute;
-    top: 30px;
-    right: 30px;
+    top: 40px;
+    right: 50px;
     margin: auto;
     box-sizing: border-box;
     padding: 20px 15px 20px 15px;

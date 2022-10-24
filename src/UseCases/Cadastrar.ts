@@ -24,7 +24,7 @@ export default class Cadastrar{
         if (foundUser) return new OutputCadastrarDTO("Usuario ja existe", 403, true);
         const id = this.idGenerator.generate();
         const hashedPassword = await this.cryptography.hash();
-        const produtor = new Produtor(id, inputData.name, inputData.email, hashedPassword, inputData.gender, inputData.city, inputData.birthDate);
+        const produtor = new Produtor(id, inputData.name, inputData.email, hashedPassword, Number(inputData.gender), inputData.city, inputData.birthDate);
         await this.repository.saveUser(produtor);
         return new OutputCadastrarDTO("Usuario criado com sucesso", 200, false);
     }

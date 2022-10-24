@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="../profile.css">
+    <script src="../profile.js" defer></script>
+</head>
+<body>
+    <span id="userid" userid="<%= userFound.userid %>" style="visibility: hidden"> </span>
+
+    <header class="header" onclickclose="true">
+        home bla bla bla
+        <img class="header-circle" src="">
+            <div class="header-painel" style="visibility: hidden;">
+                <li style="margin-top: 0;"><a href="http://localhost:3000/pagealterarusuario">Meu Perfil</a></li>
+                <li><a href="/criar">Criar</a></li>
+                <li><a href="/criar">Meus produtos</a></li>
+                <button class="logout-btn">Logout</button>
+            </div>
+        </img>
+    </header>
+   
+
+
+    <img src="http://localhost:3000/file_system/<%= userFound.user_image %>" style="width: 300px; margin-top: 70px" alt="">
+    <h1><%= userFound.full_name %></h1>
+    <p><%= userFound.user_gender %></p>
+    <p><%= userFound.addr_state %></p>
+    <p><%= userFound.birth_date.toString(); %></p>
+    <p><%= userFound.about_me %></p>
+    <p><%= userFound.bio %></p>
+
+
+
+
+    
+
+    
+    
+    
+
+    
+</body>
+</html>

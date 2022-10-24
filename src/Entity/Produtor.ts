@@ -5,7 +5,7 @@ export default class Produtor{
     public name: string;
     public city: string;
     public password: string;
-    public gender: string;
+    public gender: number;
     public birthDate: string; //date
 
     public aboutMe?: string;
@@ -13,7 +13,7 @@ export default class Produtor{
     public image?: string;
 
 
-    constructor(id: string, name: string, email: string, password: string, gender: string, city: string, birthDate: string,
+    constructor(id: string, name: string, email: string, password: string, gender: number, city: string, birthDate: string,
         aboutMe?: string,
         bio?: string,
         image?: string,

@@ -27,15 +27,15 @@ export default class AlterarPerfil {
 
         const hashedPassword = await this.cryptography.hash();
         
-        const produtorAtualizado = new Produtor(foundUser.userid, inputData.name, token.email, hashedPassword, inputData.gender, inputData.city, inputData.birthDate, inputData.aboutMe, inputData.bio, inputData.image);
+        const produtorAtualizado = new Produtor(foundUser.userid, inputData.name, token.email, hashedPassword, inputData.gender, inputData.city, inputData.birthDate, inputData.aboutMe, inputData.bio, inputData?.image);
         
         if (inputData.password.trim() == "") produtorAtualizado.password = foundUser.user_password
-
 
         try {
             await this.repository.updateOneUser(token.email, produtorAtualizado);
             return new OutputCadastrarDTO("Alterado com sucesso", 200, false);
         } catch (err) {
+            console.log(err)
             return new OutputCadastrarDTO("Algo inesperado aconteceu. Tente novamente", 403, true);
         }
     }

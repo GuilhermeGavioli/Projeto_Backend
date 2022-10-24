@@ -64,8 +64,15 @@ function createCard(item) {
     const cardFirst = document.createElement('div')
     cardFirst.className = "card-first";
 
-    const cardCircle = document.createElement('div')
+    const cardCircle = document.createElement('img')
     cardCircle.className = "card-circle";
+    if (item.user_image) { 
+        cardCircle.setAttribute('src', `http://localhost:3000/file_system/${item.user_image}`)
+    } else {        
+        cardCircle.setAttribute('src', 'http://localhost:3000/file_system/app/default_user_image.png')
+    }
+    
+    
 
     const cardSecond = document.createElement('div')
     cardSecond.className = "card-second";
@@ -91,7 +98,7 @@ function createCard(item) {
     visitarButton.className = "visitar-btn";
     visitarButton.innerHTML = "Visitar Perfil";
     visitarButton.addEventListener('click', ()=> { 
-        window.location.href = 'http://localhost:3000/page'
+        window.location.href = `http://localhost:3000/pageprofile/${item.userid}`
     })
 
 

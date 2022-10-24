@@ -1,5 +1,5 @@
 import 'dotenv/config'
-import express from 'express';
+import express, {Request, Response, NextFunction} from 'express';
 import cors from 'cors'
 
 import { controllers } from './controllers/index'
@@ -17,6 +17,7 @@ export const mySqlDatabase = new MySql('localhost', 'root', 'test', 'password', 
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs')
+
 import path from 'path'
 app.use(express.static(path.join(__dirname + '/views' + '/test')));
 app.use(express.static(path.join(__dirname + '/views' + '/home')));
@@ -24,8 +25,13 @@ app.use(express.static(path.join(__dirname + '/views' + '/alterarUsuario')));
 app.use(express.static(path.join(__dirname + '/views' + '/procurarUsuario')));
 app.use(express.static(path.join(__dirname + '/views' + '/login')));
 app.use(express.static(path.join(__dirname + '/views' + '/cadastrar')));
+app.use(express.static(path.join(__dirname + '/views' + '/criarProduto')));
+app.use(express.static(path.join(__dirname + '/file_system')));
+app.use(express.static(path.join(__dirname + '/file_system/app')));
+app.use(express.static(path.join(__dirname + '/file_system/products')));
 app.use(express.static(path.join(__dirname + '/views')));
 
+app.use(express.static(path.join(__dirname + '/views' + '/profile')));
 
 app.get('/pagecadastrar',(req, res) => { 
     res.render(path.join("cadastrar", "cadastrar"));
@@ -36,9 +42,26 @@ app.get('/pagetest',(req, res) => {
 })
 
 
+
+app.get('/file_system/:filename',(req, res) => { 
+    res.sendFile(path.join(__dirname, 'file_system', req.params.filename))
+})
+
+app.get('/file_system/app/:filename',(req, res) => { 
+    res.sendFile(path.join(__dirname, 'file_system', 'app', req.params.filename))
+})
+
+app.get('/file_system/app/:filename',(req, res) => { 
+    res.sendFile(path.join(__dirname, 'file_system', 'product', req.params.filename))
+})
+
+
 app.get('/pagelogin',(req, res) => { 
     res.render(path.join("login", "login"));
 })
+
+// app.get('/get/:idprodutor', controllers.acharUsuarioPorId) // achar por id //
+app.get('/pageprofile/:idprodutor', controllers.acharUsuarioPorId);
 
 app.get('/pagehome',(req, res) => { 
     res.render(path.join("home", "home"));
@@ -49,7 +72,7 @@ app.get('/pagealterarusuario', (req, res) => {
 })
 
 app.get('/pagecriarproduto',(req, res) => { 
-    // res.render(path.join("alterarUsuario", "alterarperfil"));
+    res.render(path.join("criarProduto", "criarProduto"));
 })
 
 app.get('/pageprocurarusuario',(req, res) => { 
@@ -59,17 +82,35 @@ app.get('/pageprocurarusuario',(req, res) => {
 
 
 
+import { uploadUser, uploadProduct } from './multer'
+
+
+
+app.post('/testimage', uploadUser.single("files"), controllers.alterarUserWithImageTest)
+
+app.post('/testimagecriarproduto', uploadProduct.single("files2"), controllers.criarProdutoWithImageTeste)
+
+
+
+
+
+
+
+
+
 // User routes
 app.post('/loginuser', ProtectionAgainstAuthenticatedUsers, controllers.logarUser)
 app.post('/registeruser', ProtectionAgainstAuthenticatedUsers, controllers.registerUser)
 app.post('/alteraruser', ProtectionAgainstNonAuthenticatedUsers,controllers.alterarUser )
 app.post('/deleteuser', ProtectionAgainstNonAuthenticatedUsers, controllers.deletarUser)
-app.get('/get/:procurarnadescricao/:nomeprodutor', controllers.acharUsuariosPorNome)
+app.get('/get/:procurarnadescricao/:nomeprodutor', controllers.acharUsuariosPorNome) // achar por nome / descricao / usado pelo usuario
 
 //Produto routes
 app.post('/criarProduto', ProtectionAgainstNonAuthenticatedUsers, controllers.criarProduto )
 app.post('deletarProduto', ProtectionAgainstNonAuthenticatedUsers, controllers.deletarProduto)
 app.get('/getproduto/:procurarnadescricao/:nomeproduto', controllers.getProdutos)
+
+app.get('/getprodutosfromuser/:produtorId', controllers.getProdutosFromUser)
 
 
 
@@ -79,7 +120,7 @@ app.get('/getproduto/:procurarnadescricao/:nomeproduto', controllers.getProdutos
 //     return res.json(productFound);
 // })
 
-app.post('')
+
 
 app.get('/auth', controllers.authValidation)
 

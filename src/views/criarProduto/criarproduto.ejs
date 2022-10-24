@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./criarproduto.js" defer></script>
+    <title>Criar Produto</title>
+    <style>
+        .main-container{
+            visibility: hidden;
+        }
+
+        #spinning{
+            border-radius: 50%;
+            border: 3px solid black;
+            border-bottom: 3px solid white;
+            margin: auto;
+            position: absolute;
+            inset: 0 0 175px 0;
+            width: 50px;
+            height: 50px;
+            animation: infinite 1s rotate linear;
+            visibility: hidden;
+        }
+
+        @keyframes rotate{
+            from{transform: rotate(0deg);}
+            to{transform: rotate(359deg);}
+        }
+    </style>
+</head>
+<body>
+    <div id="spinning"></div>
+    
+    <div class="main-container">
+
+        <h1>Criar produto</h1>
+        <input type="text" placeholder="nome-produto" id="product-name">
+        <textarea type="text" placeholder="meu produto" id="product-description"></textarea>
+        <input type="file" name="file" id="product-file" accept="image/png, image/jpeg, image/jpg">
+        <button type="button" id="criar-btn">Criar</button>
+        
+    
+        <a href="./alterar.html">alterar</a>
+        <a href="./cadastrar.html">cadastrar</a>
+        <a href="./login.html">login</a>
+    </div>
+    
+    
+    
+</body>
+</html>

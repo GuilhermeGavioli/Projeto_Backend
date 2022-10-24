@@ -12,16 +12,16 @@
 <body onclickclose="true">
 
     <header class="header" onclickclose="true">
-        <div class="profile-icon-circle">
+        <img class="profile-icon-circle" src="">
             <div class="profile-icon-painel">
     
                 
-                <li style="margin-top: 0;">editar perfil</li>
-                <li>criar</li>
-                <li>meus produtos</li>
+                <li style="margin-top: 0;"><a href="#">editar perfil</a></li>
+                <li><a href="/criar">criar</a></li>
+                <li><a href="/criar">meus produtos</a></li>
                 <button class="logout-btn">Logout</button>
             </div>
-        </div>
+        </img>
     </header>
 
     <div id="spinning"></div>
@@ -43,12 +43,13 @@
         </button>
     </div>
     
-    <div class="container" onclickclose="true">
+    <form class="container" onclickclose="true" id="form">
         <div class="c1" onclickclose="true">
             <div class="c1-first-container"><h1 class="main-title">Editar Perfil</h1></div>
             <div class="c1-second-container" onclickclose="true">
                 <div class="circle" >
-                    <img id="circle-change-image-cover" src="https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg"
+                    <input type="file" name="file" id="files" accept="image/png, image/jpeg, image/jpg">
+                    <img id="circle-change-image-cover" src=""
                     style="background-size: contain; width: 100%; height: 100%;"
                     ></img>
                 </div>
@@ -57,7 +58,10 @@
                     <input type="text" value="" id="profile-name-input" style="height: 50px; font-size: 1.2em; color: #b9b9b9">
                 
             </div>
-            <div class="c1-third-container"></div>
+            <div class="c1-third-container">
+                <h2>Imagens de Perfil: </h2>
+                <li>O tamanho máximo para imagens é de 230KB</li>
+            </div>
 
         </div>    
 
@@ -84,7 +88,7 @@
             </div>
             <div class="c2-second-container">
                 <div class="label-plus-input-container">
-                    <label>Data de Nascimento</label>
+                    <label>Data de Nascimento - yyyy-mm-dd</label>
                     <input type="text" class="form-field-input" id="profile-data-nascimento-input" value="">
                 </div>
                 <div class="label-plus-input-container">
@@ -123,13 +127,13 @@
                         <input type="password" class="form-field-input" value="" id="profile-confirmar-password-input">
                     </div>
 
-                    <button id="deletar-btn">
+                    <button id="deletar-btn" type="button">
                     
                         Deletar</button>
                 </div>
 
             </div>
         </div>
-    </div>
+    </form>
 </body>
 </html>

@@ -4,86 +4,94 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./test.css" type="text/css">
-    <script src="./login.js" defer></script>
-    <title>Register</title>
+    <!-- <link rel="stylesheet" href="./test.css" type="text/css"> -->
+    <title>imagetest</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    
+    <!-- <link href="https://releases.transloadit.com/uppy/v3.2.0/uppy.min.css" rel="stylesheet"> -->
 </head>
     <style>
-        .main-container{
-            visibility: hidden;
-        }
-
-        #spinning{
-            border-radius: 50%;
-            border: 3px solid black;
-            border-bottom: 3px solid white;
-            margin: auto;
-            position: absolute;
-            inset: 0 0 175px 0;
-            width: 50px;
-            height: 50px;
-            animation: infinite 1s rotate linear;
-            visibility: hidden;
-        }
-
-        @keyframes rotate{
-            from{transform: rotate(0deg);}
-            to{transform: rotate(359deg);}
-        }
+       
     </style>
 <body>
-    <div id="spinning"></div>
-
-    <div class="fail-message-container">
-        
-    </div>
+   
     
     <div class="container">
-        <h1>Cadastro</h1>
-        <label for="">Nome</label>
-        <input type="text" id="field-email" style="margin-bottom: 15px;">
-        <label for="">Email</label>
-        <input type="text" id="field-email" style="margin-bottom: 15px;">
-        <label for="">Senha</label>
-        <input type="password" id="field-email" style="margin-bottom: 15px;">
-        <label for="">Confirmar Senha</label>
-        <input type="password" id="field-email" style="margin-bottom: 15px;">
-        <label for="">Data de Nascimento</label>
-        <input type="date" id="field-password">
-        <div style="display: flex; width: 90%; margin: auto; margin-top: 15px;">
-            <div  style="width: 65%">
-                <label for="">Localizacao</label>
-                <input type="text">
+        <h1>imagetest</h1>
+       
+        <!-- method="POST" 
+        action="/testimage" 
+        enctype="multipart/form-data" -->
+            <img src="" id="image-test" alt="">
+        <!-- const { name, city, password, gender, birthDate, aboutMe, bio } = req.body -->
+            <form id="form"
+            >
+                <input type="file" name="files" id="files"/>
+                <input type="text" name="name" value="guilherme" />
+                <input type="text" name="city" value="sp - sao paulo" />
+                <input type="text" name="password" value="151516" />
+                <input type="text" name="gender" value="1" />
+                <input type="text" name="birthDate" value="2000-10-10" />
+                <input type="text" name="aboutMe" value="meu about me about me about me" />
+                <input type="text" name="bio" value="minha bio bio bio" />
+                <!-- <input type="hidden" name="email" id="email" value="xiiguilhermeiix@gmail.com" /> -->
+                <button type="submit" id="go">GO</button>
 
-            </div>
-            <div style="width: 35%;">
-                <label for="">Genero</label>
-                <select name="genero" id="" >
-                    <option value="1">Masculino</option>
-                    <option value="2">Feminino</option>
-                    <option value="3">Outro</option>
-                </select>
-
-            </div>
+            </form>
+         
         </div>
-        
-        <button type="submit" id="btn-logar">
-            <div id="inside-login-btn-circle" style="pointer-events: none;"></div>
-            <span id="login-btn-text" style="pointer-events: none;">Registrar</span>
-        </button>
+    
+
+        <script defer>
+            const files = document.getElementById("files");
+            files.onchange = ((e) => {
+                console.log(e.target.files)
+                const obj = URL.createObjectURL(e.target.files[0])
+                document.getElementById('image-test').setAttribute('src', obj)
+                console.log('hi')
+                console.log(e.target)
+                e.target.setAttribute('src', e.target.result)
+            })
 
 
-        <p style="margin-top: 15px; width: 95%; text-align: right; margin-bottom: 5px; font-size: .7em; color: #555555;">
-            Já possui uma conta?
-            <a href="./pagelogin" style="text-decoration: none; color: #58840d;">Login</a>
+            const form = document.getElementById('form')
+            form.addEventListener('submit', async (e) => {
+                const token = getStoredToken();
+                e.preventDefault();
 
-        </p>
-        <!-- <a href="./pagecadastrar">cadastrar</a>
-        <a href="./pagecriarproduto">criarproduto</a> -->
-    </div>
+                const formData = new FormData();
+                formData.append("name", "guilherme");
+                formData.append("city", "sp - sao paulo");
+                formData.append("password", "151516");
+                formData.append("gender", "1");
+                formData.append("birthDate", "2000-10-10");
+                formData.append("aboutMe", "meu about me about me about me");
+                formData.append("bio", "minha bio bio bio");
+                formData.append("token", token);
+
+                for(let i =0; i < files.files.length; i++) {
+                    formData.append("files", files.files[i]);
+                }
+                
+                const res = await fetch("http://localhost:3000/testimage", {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        // "Content-Type": 'multipart/form-data'
+                    }
+                })
+                const data = await res.json();
+                console.log(data)
+            })
 
 
-  
+            function getStoredToken(){
+                const localToken = window.localStorage.getItem("token");
+                return localToken
+            }   
+           
+        </script>
 
+    
 </body>
 </html>

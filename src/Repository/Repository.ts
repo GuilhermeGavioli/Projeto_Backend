@@ -5,6 +5,8 @@ import GetOneOutputDTO from "../DTO/output/GetOneDTO";
 export default interface Repository{
     saveUser(produtor: Produtor): Promise<void>;
     findUserByEmail(email: string): Promise<GetOneOutputDTO | null>;
+    findUserById(id: string): Promise<GetOneOutputDTO | null>;
+
     findManyUsersByName(name: string, queryDescriptionAlso: boolean): Promise<GetOneOutputDTO[] | null>; 
     getAllUsers(): Promise<GetOneOutputDTO[] | null>;
     updateOneUser(email: string, produtor: Produtor): Promise<void>;
