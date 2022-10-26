@@ -18,7 +18,10 @@ export const mySqlDatabase = new MySql('localhost', 'root', 'test', 'password', 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs')
 
+
 import path from 'path'
+app.use(express.static(path.join(__dirname + '/views')));
+
 app.use(express.static(path.join(__dirname + '/views' + '/test')));
 app.use(express.static(path.join(__dirname + '/views' + '/home')));
 app.use(express.static(path.join(__dirname + '/views' + '/alterarUsuario')));
@@ -26,12 +29,14 @@ app.use(express.static(path.join(__dirname + '/views' + '/procurarUsuario')));
 app.use(express.static(path.join(__dirname + '/views' + '/login')));
 app.use(express.static(path.join(__dirname + '/views' + '/cadastrar')));
 app.use(express.static(path.join(__dirname + '/views' + '/criarProduto')));
+app.use(express.static(path.join(__dirname + '/views' + '/profile')));
+
+
 app.use(express.static(path.join(__dirname + '/file_system')));
 app.use(express.static(path.join(__dirname + '/file_system/app')));
+app.use(express.static(path.join(__dirname + '/file_system/user')));
 app.use(express.static(path.join(__dirname + '/file_system/products')));
-app.use(express.static(path.join(__dirname + '/views')));
 
-app.use(express.static(path.join(__dirname + '/views' + '/profile')));
 
 app.get('/pagecadastrar',(req, res) => { 
     res.render(path.join("cadastrar", "cadastrar"));
@@ -43,15 +48,15 @@ app.get('/pagetest',(req, res) => {
 
 
 
-app.get('/file_system/:filename',(req, res) => { 
-    res.sendFile(path.join(__dirname, 'file_system', req.params.filename))
+app.get('/file_system/user/:filename',(req, res) => { 
+    res.sendFile(path.join(__dirname, 'file_system', 'user', req.params.filename))
 })
 
 app.get('/file_system/app/:filename',(req, res) => { 
     res.sendFile(path.join(__dirname, 'file_system', 'app', req.params.filename))
 })
 
-app.get('/file_system/app/:filename',(req, res) => { 
+app.get('/file_system/product/:filename',(req, res) => { 
     res.sendFile(path.join(__dirname, 'file_system', 'product', req.params.filename))
 })
 
@@ -88,7 +93,7 @@ import { uploadUser, uploadProduct } from './multer'
 
 app.post('/testimage', uploadUser.single("files"), controllers.alterarUserWithImageTest)
 
-app.post('/testimagecriarproduto', uploadProduct.single("files2"), controllers.criarProdutoWithImageTeste)
+app.post('/testimagecriarproduto', uploadProduct.single("productFile"), controllers.criarProdutoWithImageTeste)
 
 
 

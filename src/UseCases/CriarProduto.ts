@@ -14,11 +14,11 @@ export default class CriarProduto{
     }
 
     public async execute(inputData: InputCriarProdutoDTO): Promise<OutputCadastrarDTO> {
-        const id = this.idGenerator.generate();
-        const produto = new Produto(inputData.user_id, id, inputData.p_name, inputData.p_description, inputData.p_image);
+        const product_id = this.idGenerator.generate();
+        const produto = new Produto(product_id, inputData.p_name, inputData.p_image, inputData.p_description, inputData.user_id);
         try {
             await this.repository.saveProduct(produto);
-            return new OutputCadastrarDTO("Produto criado com Sucesso", 200, true);
+            return new OutputCadastrarDTO("Produto criado com Sucesso", 200, false);
         } catch (err) {
             return new OutputCadastrarDTO("Erro inesperado: " + err + " Tente novamente.", 403, true);
         }

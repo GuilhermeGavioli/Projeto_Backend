@@ -113,17 +113,21 @@ export const controllers = {
 
     },
 
-    criarProdutoWithImageTeste: async (req: Request, res: Response) => { 
-        console.log(req.body)
-        // console.log(req)
-        const { name, description, file, token } = req.body
-        console.log(name)
-        console.log(description)
-        console.log(file)
-        console.log(token)
-        if (!name || !description || !file || !token) return res.json({ error: true, message: "Empty field" });
-        return res.json('ok')
+    criarProdutoWithImageTeste: async (req: Request, res: Response) => {
+   
 
+        console.log('here')
+        const { name, description, token } = req.body
+        if (!name || !description || !req.file || !token) return res.json({ error: true, message: "Empty field" });
+
+        const isUserValid = new Authentication().validateToken(token);
+        if (!isUserValid) return res.json('token invalid sir');
+      
+        const inputData = new InputCriarProdutoDTO(isUserValid.user_id, name, description, req.file.filename);
+
+        const uuid = new UUIDLibrary();
+        const outputData = await new CriarProduto(mySqlDatabase, uuid).execute(inputData);
+        return res.json(outputData);
     },
 
     deletarUser: async (req: Request, res: Response) => {
@@ -182,6 +186,7 @@ export const controllers = {
     getProdutosFromUser: async (req: Request, res: Response) => {
         console.log('aqui')
         const produtorId = req.params.produtorId.toString().toLowerCase();
+        console.log(produtorId)
         const productsFound = await mySqlDatabase.findProductsFromUser(produtorId);
         console.log(productsFound)
         return res.json(productsFound);

@@ -66,8 +66,8 @@ function createCard(item) {
 
     const cardCircle = document.createElement('img')
     cardCircle.className = "card-circle";
-    if (item.user_image) { 
-        cardCircle.setAttribute('src', `http://localhost:3000/file_system/${item.user_image}`)
+    if (item.user_image) {
+        cardCircle.setAttribute('src', `http://localhost:3000/file_system/user/${item.user_image}`)
     } else {        
         cardCircle.setAttribute('src', 'http://localhost:3000/file_system/app/default_user_image.png')
     }

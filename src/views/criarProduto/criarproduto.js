@@ -57,8 +57,9 @@ function convertDataToForm(data) {
   const form = new FormData();
   form.append("name", data.productName);
   form.append("description", data.productDescription);
-  form.append("files2", data.productImageFile);
+  form.append("productFile", data.productImageFile);
   form.append("token", getStoredToken());
+  return form
 }
 
 async function sendData(formData) {

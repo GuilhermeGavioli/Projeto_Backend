@@ -20,7 +20,7 @@ body{
     z-index: 2;
 }
 
-.profile-icon-circle{
+.header-circle{
     margin-right: 55px;
     border-radius: 50%;
     height: 60px;
@@ -37,8 +37,7 @@ li{
     font-family: 'Inter', sans-serif;
     font-size: .9em;
 }
-.profile-icon-painel{
-    visibility: hidden;
+.header-painel{
     font-weight: 200;
     width: 140px;
     height: 180px;
@@ -616,7 +615,7 @@ textarea{
     z-index: 2;
 }
 
-.profile-icon-circle{
+.header-circle{
     margin-right: 18px;
     border-radius: 50%;
     height: 60px;
@@ -633,7 +632,7 @@ li{
     font-family: 'Inter', sans-serif;
     font-size: 1em;
 }
-.profile-icon-painel{
+.header-painel{
     visibility: hidden;
     font-weight: 200;
     width: 155px;

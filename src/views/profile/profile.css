@@ -8,8 +8,12 @@ body{
     user-select: none;
     background-color: red;
     height: 200vh;
+    width: 100vw;
+    overflow-x: hidden;
 }
 
+
+/*  H E A D E R  */
 .header{
     width: 100vw;
     background-color: royalblue;
@@ -17,6 +21,7 @@ body{
     display: flex;
     justify-content: end;
     position: fixed;
+    top: 0;
     align-items: center;
     z-index: 2;
 }
@@ -59,4 +64,258 @@ li{
     border-radius: 3px;
     border: none;
     padding: 2px 23px 2px 23px;
+}
+
+
+/*  CONTAINER */
+.container{
+    max-width: 1300px;
+    
+    display: grid;
+    width: 1300px;
+    width: 95%;
+    margin: auto;
+    margin-top: 100px;
+    margin-bottom: 200px;
+    background-color: black;
+    grid-template-columns: 1fr;
+    grid-template-rows: 600px 375px auto;
+    grid-template-areas: 
+                        "c1"
+                        "c2"
+                        "c3";
+                        padding: 5px;
+                        box-sizing: border-box;
+                        row-gap: 45px;
+
+    place-items: center;
+}
+
+.c1{
+    grid-area: c1;
+    width: 85%;
+    max-width: 1100px;
+    background-color: rgb(60, 9, 9);
+    box-sizing: border-box;
+    /* padding: 10px 15px 10px 15px; */
+    display: flex;
+    font-family: 'Inter', sans-serif;
+
+}
+
+.c1-first, .c1-second, .c1-third{
+    height: 100%;
+}
+
+.c1-first{
+    width: 45%;
+    box-sizing: border-box;
+    padding: 15px 45px 15px 45px;
+    background-color: wheat;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    height: 600px;
+}
+.profile-user-image{
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+}
+
+.c1-second, .c1-third{
+    box-sizing: border-box;
+}
+
+.c1-second{
+    padding: 30px;
+    width: 30%;
+    height: 600px;
+    background-color: rgb(38, 111, 180);
+}
+.about_me_text{
+    line-height: 30px;
+    font-size: 1.1em;
+    margin-top: 25px;
+    background-color: white;
+    box-sizing: border-box;
+    padding: 8px;
+    max-height: 85%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.c1-third{
+    width: 25%;
+    padding: 20px;
+    padding-top: 30px;
+    background-color: rgb(158, 120, 50);
+    height: 600px;
+}
+.c1-third-first, .c1-third-second{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+.c1-third-first{
+    height: 65%;
+    background-color: greenyellow;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-bottom: 2px solid rgb(66, 66, 66);
+}
+
+.phone-contact{
+    background-color: white;
+    position: absolute;
+    bottom: 20px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 70px;
+}
+
+.attribute{
+    background-color: gray;
+    width: 80%;
+    margin: 8px 0 8px 0;
+}
+
+.c2{
+    grid-area: c2;
+    width: 1300px;
+    max-width: 1290px;
+    height: 375px;
+    background-color: rgb(6, 52, 24);
+    display: flex;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 35px;
+}
+
+.c3{
+    grid-area: c3;
+    width: 100%;
+    max-width: 1140px;
+    background-color: rgb(37, 62, 62);
+    box-sizing: border-box;
+    padding: 10px 15px 10px 15px;
+    display: flex;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.mais-produtos-container{
+    width: 100%;
+    height: fit-content;
+    background-color: yellow;
+    max-height: 840px;
+    overflow-y: scroll;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 450px;
+    row-gap: 20px;
+}
+
+.card-container{
+    margin: auto;
+    position: relative;
+    width: 260px;
+    height: 450px;
+    background-color: brown;
+}
+
+.card-container:hover{
+    opacity: 95%;
+    cursor: pointer;
+}
+.card-title{
+    position: absolute;
+    color: white;
+    background-color: rgba(39, 39, 39, 0.291);
+    top: 0;
+    left: 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 1.9em;
+    width: 255px;
+}
+.card-first{
+    background-color: white;
+    width: 100%;
+    height: 70%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.card-image{
+    
+}
+
+.card-second{
+    background-color: rgb(11, 166, 140);
+    width: 100%;
+    height: 30%;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    word-break: break-all;
+    text-align: start;
+    padding: 8px 10px 10px 10px;
+}
+
+p, h1, h2{
+    padding: 0;
+    margin: 0;
+}
+
+::-webkit-scrollbar{
+    background-color: green;
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: rgb(156, 28, 28);
+}
+
+
+
+/* EMPTY CONTAINER */
+.empty-container{
+    background-color: rgb(13, 173, 13);
+    width: 100%;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+}
+
+.empty-box-img{
+    width: 240px;
+    /* height: 220px; */
+}
+
+.empty-message{
+    color: black;
+    background-color: blue;
+    width: 320px;
+    text-align: center;
+    font-weight: 600;
+}
+
+
+
+
+@media (max-width: 1000px) {
+    body{
+        background-color: yellow;    
+    }
 }

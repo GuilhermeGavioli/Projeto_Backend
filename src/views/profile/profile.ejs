@@ -10,6 +10,7 @@
 </head>
 <body>
     <span id="userid" userid="<%= userFound.userid %>" style="visibility: hidden"> </span>
+    <span id="userimage" userimage="<%= userFound.user_image %>" style="visibility: hidden"> </span>
 
     <header class="header" onclickclose="true">
         home bla bla bla
@@ -22,16 +23,55 @@
             </div>
         </img>
     </header>
+
+    <main class="container">
+        <div class="c1">
+            <div class="c1-first">
+                <img src="" class="profile-user-image" alt="">
+                <h1 style="font-weight: 600; font-size: 2.5em; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%;"><%= userFound.full_name.toUpperCase() %></h1>
+                <p style="font-size: 1.2em;"><%= userFound.bio %></p>
+            </div>
+
+
+            <div class="c1-second">
+                <h1 class="about_me_title">Sobre Mim</h1>
+                <p class="about_me_text"><%= userFound.about_me %></p>
+
+            </div>
+            <div class="c1-third">
+                <div class="c1-third-first">
+                    <p class="attribute" style="margin-top: 0;">nome:  <span><%= userFound.full_name %></span></p>
+                    <p class="attribute">endereco: <span><%= userFound.addr_state %></span></p>
+                    <p class="attribute">genero:  <span id="genero"><%= userFound.user_gender.toString() %></span></p>
+                    <p class="attribute">idade:  <span id="idade"><%= userFound.birth_date.toString(); %></span></p>
+
+                    <div class="phone-contact"> (11) 96498-2548 </div>
+                   
+                </div>
+                <div class="c1-third-second">
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="c2"></div>
+        <div class="c3">
+           <div class="mais-produtos-container"></div>
+        </div>
+
+
+    </main>
    
 
 
-    <img src="http://localhost:3000/file_system/<%= userFound.user_image %>" style="width: 300px; margin-top: 70px" alt="">
+    <!-- <img src="http://localhost:3000/file_system/user/<%= userFound.user_image %>" style="width: 300px; margin-top: 70px" alt="">
     <h1><%= userFound.full_name %></h1>
     <p><%= userFound.user_gender %></p>
     <p><%= userFound.addr_state %></p>
     <p><%= userFound.birth_date.toString(); %></p>
     <p><%= userFound.about_me %></p>
-    <p><%= userFound.bio %></p>
+    <p><%= userFound.bio %></p> -->
 
 
 

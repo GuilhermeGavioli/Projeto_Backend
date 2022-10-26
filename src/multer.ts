@@ -5,7 +5,7 @@ export const uploadUser = (multer({
     storage: multer.diskStorage({
         destination: (req, file, cb) => {
             console.log('iam running')
-            cb(null, path.join(__dirname, 'file_system/'))
+            cb(null, path.join(__dirname, 'file_system/user'))
         },
         filename: (req, file, cb) => {
             console.log('ypeg')
@@ -31,10 +31,12 @@ export const uploadUser = (multer({
 export const uploadProduct = (multer({
     storage: multer.diskStorage({
         destination: (req, file, cb) => {
+            console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' + file)
             console.log('iam running')
             cb(null, path.join(__dirname, 'file_system/product'))
         },
         filename: (req, file, cb) => {
+            console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
             console.log('ypeg')
             cb(null, Date.now().toString() + "_" + file.originalname)  
         }
@@ -43,6 +45,7 @@ export const uploadProduct = (multer({
         fileSize: 1024 * 230
     },
     fileFilter: (req, file, cb) => {
+        console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
         const extensaoImg = ['image/png', 'image/jpg', 'image/jpeg'].find(formatoAceito => formatoAceito == file.mimetype);
         if(extensaoImg){
             return cb(null, true);
