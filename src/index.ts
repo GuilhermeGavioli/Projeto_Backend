@@ -29,7 +29,9 @@ app.use(express.static(path.join(__dirname + '/views' + '/procurarUsuario')));
 app.use(express.static(path.join(__dirname + '/views' + '/login')));
 app.use(express.static(path.join(__dirname + '/views' + '/cadastrar')));
 app.use(express.static(path.join(__dirname + '/views' + '/criarProduto')));
-app.use(express.static(path.join(__dirname + '/views' + '/profile')));
+app.use(express.static(path.join(__dirname + '/views' + '/profile2')));
+app.use(express.static(path.join(__dirname + '/views' + '/test2')));
+app.use(express.static(path.join(__dirname + '/views' + '/assets')));
 
 
 app.use(express.static(path.join(__dirname + '/file_system')));
@@ -54,7 +56,7 @@ app.get('/file_system/user/:filename',(req, res) => {
 
 app.get('/file_system/app/:filename',(req, res) => { 
     res.sendFile(path.join(__dirname, 'file_system', 'app', req.params.filename))
-})
+}) 
 
 app.get('/file_system/product/:filename',(req, res) => { 
     res.sendFile(path.join(__dirname, 'file_system', 'product', req.params.filename))
@@ -63,6 +65,11 @@ app.get('/file_system/product/:filename',(req, res) => {
 
 app.get('/pagelogin',(req, res) => { 
     res.render(path.join("login", "login"));
+})
+
+// app.get('/test2/:idprodutor', controllers.acharUsuarioPorId)
+app.get('/test2/:idprodutor', (req, res) => { 
+    res.render(path.join("test2", "test2"));
 })
 
 // app.get('/get/:idprodutor', controllers.acharUsuarioPorId) // achar por id //

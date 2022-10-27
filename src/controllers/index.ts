@@ -18,6 +18,7 @@ import Validation, { UserValidation } from "../Services/Validation";
 import path from 'path'
 
 
+
 // Same instance of conection
 import { mySqlDatabase } from "..";
 import OutputCadastrarDTO from "../DTO/output/cadastrar";
@@ -152,7 +153,11 @@ export const controllers = {
         const idprodutor = req.params.idprodutor.toString().toLowerCase();
         if (!idprodutor) return res.render(path.join("profile", "profile"), { userFound: null });
         const userFound = await mySqlDatabase.findUserById(idprodutor) || null;
-        res.render(path.join("profile", "profile"), { userFound });
+        if (!userFound) return res.json("Usuario nao existe.");
+        userFound.email = ""
+        userFound.user_password = ""
+        console.log('found', userFound)
+        res.render(path.join("test2", "test2"), { userFound });
     },
 
     criarProduto: async (req: Request, res: Response) => {

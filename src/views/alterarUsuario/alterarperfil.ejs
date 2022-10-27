@@ -4,34 +4,66 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    
     <link rel="stylesheet" href="./alterarperfil.css" type="text/css">
-    <script src="https://kit.fontawesome.com/69266619cf.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../assets/header.css">
+    <link rel="stylesheet" href="../assets/sidebar.css">
+    
+    <script src="../assets/auth.js" defer></script>
+    <script src="../assets/toggeSidebar.js" defer></script>
     <script src="./alterarperfil.js" defer></script>
+    
+    <title>Alterar Perifl</title>
+
+    <script src="https://kit.fontawesome.com/69266619cf.js" crossorigin="anonymous"></script>
 </head>
 <body onclickclose="true">
 
-    <header class="header" onclickclose="true">
-        home bla bla bla
-        <img class="header-circle" src="">
+
+    <div id="spinning"></div>
+    <div class="success-message-container"></div>
+    <div class="fail-message-container"></div>
+
+    <header class="header">
+        <div style="height: fit-content; display: flex; align-items: center;">
+            <img src="../assets/logo.png" style="width: 70px; height: 70px; margin-left: 8px;" alt="">
+            <nav class="company-name" style="margin-right: 45px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Girassol</nav>
+        </div>
+        <div class="header-main">
+            <p class="nav-item">Home</p>
+            <p class="nav-item">Sobre Nós</p>
+            <p class="nav-item">Produtos</p>
+            <div class="nav-item" id="procurar">Procurar 
+                <span id="procurar-painel" isOpen="false">
+                    <li><a href="/pageprocurarusuario">Produtores</a></li>
+                    <li><a href="/pageprocurarusuario">Produtos</a></li>
+                </span>
+            </div>
+            <p class="hamburger-icon"><i class="fa-solid fa-bars"></i></p>
+        </div>
+        <img class="header-user-icon" src="">
             <div class="header-painel" style="visibility: hidden;">
-                <li style="margin-top: 0;"><a href="http://localhost:3000/pagealterarusuario">Meu Perfil</a></li>
-                <li><a href="/criar">Criar</a></li>
-                <li><a href="/criar">Meus produtos</a></li>
+                <li class="user-painel-item" style="margin-top: 0;"><a href="http://localhost:3000/pagealterarusuario">Meu Perfil</a></li>
+                <li class="user-painel-item"><a href="/criar">Criar</a></li>
+                <li class="user-painel-item"><a href="/criar">Meus produtos</a></li>
                 <button class="logout-btn">Logout</button>
             </div>
         </img>
     </header>
 
-    <div id="spinning"></div>
-    <div class="success-message-container">
-        <!-- Perfil atualizado com sucesso -->
+
+    <div class="sidebar" isOpen="false">
+        <div class="sidebar-items">
+            <p class="sidebar-item">Home</p>
+            <p class="sidebar-item">Sobre Nós</p>
+            <p class="sidebar-item">Produtos</p>
+            <p class="sidebar-item">Procurar Produto</p>
+            <p class="sidebar-item">Procurar Produtor</p>
+            <h2 id="click-to-close">CLICK PRA FECHAR</h2>
+        </div>
     </div>
 
-    <div class="fail-message-container">
-        <!-- Algo deu errado. Tente novamente -->
-    </div>
-
+   
     <div class="janela-confirmacao">
         <button id="close-btn" style="float:right;" onclick="closePainel()">x</button>
         <h1>Confirmar</h1>
@@ -44,12 +76,14 @@
     
     <form class="container" onclickclose="true" id="form">
         <div class="c1" onclickclose="true">
-            <div class="c1-first-container"><h1 class="main-title">Editar Perfil</h1></div>
+            <div class="c1-first-container"><h1 class="main-title" style="margin-bottom: 10px;">Editar Perfil</h1>
+                <h2 class="main-title"  id="ola-message" style="margin: 0; margin-bottom: 42px; font-size: 1.9em;">Olá, </h2>
+            </div>
             <div class="c1-second-container" onclickclose="true">
                 <div class="circle" >
                     <input type="file" name="file" id="files" accept="image/png, image/jpeg, image/jpg">
-                    <img id="circle-change-image-cover" src=""
-                    style="background-size: contain; width: 100%; height: 100%;"
+                    <img id="circle-change-image-cover" src="" alt="user-profile-pic"
+                    style="width: 100%; height: 100%; background-color: red;"
                     ></img>
                 </div>
                 <div class="profile-email" id="profile-email-input"></div>

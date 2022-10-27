@@ -70,7 +70,7 @@ function createCard(item) {
         cardCircle.setAttribute('src', `http://localhost:3000/file_system/user/${item.user_image}`)
     } else {        
         cardCircle.setAttribute('src', 'http://localhost:3000/file_system/app/default_user_image.png')
-    }
+}
     
     
 
@@ -117,4 +117,16 @@ function createCard(item) {
 
     const containerComInfo = document.querySelector('.resultados-container-com-info');
     containerComInfo.append(cardContainer)
+}
+
+
+
+
+
+
+
+
+
+function toggleHeaderPainel(PainelElement) {
+    PainelElement.style.visibility = PainelElement.style.visibility == "hidden" ? "visible" : "hidden";
 }

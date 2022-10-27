@@ -4,13 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./criarproduto.js" defer></script>
-    <title>Criar Produto</title>
-    <style>
-        .main-container{
-            visibility: hidden;
-        }
 
+    <script src="../assets/auth.js" defer></script>
+    <script src="../assets/toggeSidebar.js" defer></script>
+    <script src="./criarproduto.js" defer></script>
+
+    <link rel="stylesheet" href="../assets/header.css">
+    <link rel="stylesheet" href="../assets/sidebar.css">
+    <link rel="stylesheet" href="./criarproduto.css">
+
+
+    <title>Criar Produto</title>
+    <script src="https://kit.fontawesome.com/69266619cf.js" crossorigin="anonymous"></script>
+    <style>
+       
         #spinning{
             border-radius: 50%;
             border: 3px solid black;
@@ -33,18 +40,139 @@
 <body>
     <div id="spinning"></div>
     
-    <div class="main-container">
+    <!-- <div class="main-container">
 
         <h1>Criar produto</h1>
         <input type="text" placeholder="nome-produto" id="product-name">
         <textarea type="text" placeholder="meu produto" id="product-description"></textarea>
         <input type="file" name="file" id="product-file" accept="image/png, image/jpeg, image/jpg">
         <button type="button" id="criar-btn">Criar</button>
-        
+    </div> -->
+
+    <!-- ------------------------------ -->
+
+    <header class="header">
+        <div style="height: fit-content; display: flex; align-items: center;">
+            <img src="../assets/logo.png" style="width: 70px; height: 70px; margin-left: 8px;" alt="">
+            <nav class="company-name" style="margin-right: 45px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Girassol</nav>
+        </div>
+        <div class="header-main">
+            <p class="nav-item">Home</p>
+            <p class="nav-item">Sobre Nós</p>
+            <p class="nav-item">Produtos</p>
+            <div class="nav-item" id="procurar">Procurar 
+                <span id="procurar-painel" isOpen="false">
+                    <li><a href="/pageprocurarusuario">Produtores</a></li>
+                    <li><a href="/pageprocurarusuario">Produtos</a></li>
+                </span>
+            </div>
+            <p class="hamburger-icon"><i class="fa-solid fa-bars"></i></p>
+        </div>
+        <img class="header-user-icon" src="">
+            <div class="header-painel" style="visibility: hidden;">
+                <li class="user-painel-item" style="margin-top: 0;"><a href="http://localhost:3000/pagealterarusuario">Meu Perfil</a></li>
+                <li class="user-painel-item"><a href="/criar">Criar</a></li>
+                <li class="user-painel-item"><a href="/criar">Meus produtos</a></li>
+                <button class="logout-btn">Logout</button>
+            </div>
+        </img>
+    </header>
+
+    <div class="sidebar" isOpen="false">
+        <div class="sidebar-items">
+            <p class="sidebar-item">Home</p>
+            <p class="sidebar-item">Sobre Nós</p>
+            <p class="sidebar-item">Produtos</p>
+            <p class="sidebar-item">Procurar Produto</p>
+            <p class="sidebar-item">Procurar Produtor</p>
+            <h2 id="click-to-close">CLICK PRA FECHAR</h2>
+        </div>
+    </div>
+
     
-        <a href="./alterar.html">alterar</a>
-        <a href="./cadastrar.html">cadastrar</a>
-        <a href="./login.html">login</a>
+    <div class="container">
+        <div class="c0">
+            <h1 style="color:red;">CRIAR</h1>
+            <h2>Compartilhe seus Produtos em alguns Cliques</h2>
+        </div>
+        <div class="c1">
+            <div id="c1-div-one" class="c1-div"></div>
+            <div id="c1-div-two" class="c1-div"></div>
+            <div id="c1-div-three" class="c1-div"></div>
+            <div id="c1-div-four" class="c1-div"></div>
+            <div id="c1-div-five" class="c1-div"></div>
+            <div id="c1-div-six" class="c1-div"></div>
+            <div id="c1-div-seven" class="c1-div"></div>
+            <div class="c-step-number">1</div>
+            <!-- <img src="./arrow.png" class="red-arrow" id="first-arrow" alt=""> -->
+        </div>
+        <div class="c2">
+            <button class="green-btn" id="image-btn">CRIAR
+                <!-- <img src="./585e470ecb11b227491c337d.png" id="mouse-arrow" alt=""> -->
+            </button>
+            <div class="c-step-number">2</div>
+            <!-- <img src="./arrow.png" class="red-arrow" id="second-arrow" alt=""> -->
+        </div>
+        <div class="c3">
+            <img src="./assets/bag.png" id="bag" alt="">
+            <h2 id="post-criado-msg">Post Criado</h2>
+            <div class="c-step-number">3</div>
+        </div>
+
+        <div class="propaganda"></div>
+
+        <div class="c4">
+            <h2 class="precisaremos-title">Precisaremos de algumas informaçoes sobre seu produto...</h2>
+
+            <div class="label-and-input-container">
+                <label for="Nome do Produto">Nome do Produto</label>
+                <input type="text" id="product-name">
+            </div>
+            <div class="label-and-input-container">
+                <label for="Descricao do Produto">Descricao</label>
+                <textarea name="" cols="30" rows="10" id="product-description"></textarea>
+            </div>
+            <div class="label-and-checkbox-container">
+                <input type="checkbox" style="width: 18px; height: 18px; margin-right: 10px;">
+                <p for="Descricao do Produto">Produto orgânico</p>
+            </div>
+
+        </div>
+
+        <div class="c5">
+
+            <div style="margin-top: 45px; margin-left: 18px; margin-bottom: 30px;">
+                <input type="file" name="uploadfile" name="file" id="product-file" accept="image/png, image/jpeg, image/jpg" style="display:none; position: absolute;"/>
+                <label for="product-file" class="add-img-btn">Adicionar Imagem</label>
+            </div>
+            <ul style="margin-bottom: 35px;">
+                <li>é obrigatório o uso de uma imagem</li>
+                <li>Deve conter no máximo 200KB's</li>
+                <li>É aconselhavel um tamanho de XxX</li>
+            </ul>
+                <div class="add-img-container">
+                    <div class="img-block"></div>
+                    <div class="img-block"></div>
+                    <div class="img-block"></div>
+                    <div class="img-block"></div>
+                    <div class="img-block"></div>
+                    <div class="img-block"></div>
+                    <div class="img-block"></div>
+                    <div class="img-block"></div>
+                    <div class="img-block"></div>
+                    <div class="img-block"></div>
+                
+
+                </div>
+                <button class="green-btn" id="main-criar-btn">CRIAR
+             
+                </button>
+        </div>
+
+
+        <div class="c6"></div>
+
+
     </div>
     
     

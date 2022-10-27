@@ -1,0 +1,937 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap');
+
+body{
+    background-color: gray;
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    user-select: none;
+}
+
+.header{
+    width: 100vw;
+    height: 75px;
+    position: fixed;
+    top: 0;
+    z-index: 5;
+    background-color: yellow;
+    display: flex;
+    align-items: center;
+    visibility: hidden;
+}
+
+.header-main{
+    flex-grow: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.nav-item{
+    margin: 0 18px 0 18px;
+    cursor: pointer;
+}
+
+.hamburger-icon{
+    position: absolute;
+    display: none;
+}
+
+.header-user-icon{
+    position: relative;
+    background-image: url('../assets/user.jpg');
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 25px;
+    cursor: pointer;
+}
+
+.header-painel{
+    visibility: hidden;
+    font-weight: 200;
+    width: 180px;
+    height: 200px;
+    background-color: gray;
+    z-index: 2;
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    margin: auto;
+    box-sizing: border-box;
+    padding: 20px 23px 20px 23px;
+    
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+
+.user-painel-item{
+    margin: 8px 0 8px 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+.logout-btn{
+    border: none;
+    background-color: #4F770A;
+    color: white;
+    border-radius: 3px;
+    padding: 9px 20px 9px 20px;
+    position: absolute;
+    width: 80%;
+    font-weight: 600;
+    inset: auto 0 15px 0;
+    margin: auto;
+
+} */
+
+/* aqui */
+
+.green-btn{
+    background: linear-gradient(to bottom, #7CA923, #51750A);
+    border: none;
+    border-radius: 7px;
+    padding: 10px 55px 10px 55px;
+    font-size: 1.3em;
+    font-weight: 700;
+    color: white;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "c0 c0 c0"
+                        "c1 c2 c3"
+                        "c4 c4 propaganda"
+                        "c5 c5 propaganda"
+                        "c6 c6 c6";
+    grid-template-rows: auto 275px auto auto 200px;
+    padding-top: 100px;
+    max-width: 1000px;
+    gap: 35px 10px;
+    margin: auto;
+    /* background-color: blue; */
+}
+
+.c1, .c2, .c3{
+    position: relative;
+}
+
+.c-step-number{
+    width: 30px;
+    height: 30px;
+    background-color: rgb(31, 31, 31);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 15px;
+    right: 18px;
+    color: white;
+    text-align: center;
+    font-size: .9em;
+    line-height: 30px;
+}
+
+.c0, .c1, .c2, .c3, .c4, .c5, .c6, .propaganda{
+    background-color: aqua;
+    border: 1px solid black;
+}
+
+.c0{
+    grid-area: c0;
+    padding-left: 25px;
+}
+
+.c1{
+    grid-area: c1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 15px 9px 15px 9px;
+}
+.c2{
+    grid-area: c2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.c3{
+    grid-area: c3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.c4{
+    grid-area: c4;
+}
+.c5{
+    grid-area: c5;
+}
+.c6{
+    grid-area: c6;
+}
+.propaganda{
+    grid-area: propaganda;
+}
+
+#bag{
+    width: 250px;
+}
+#post-criado-msg{
+    display: none;
+}
+
+.propaganda{
+    background-image: url('https://images.pexels.com/photos/5231232/pexels-photo-5231232.jpeg?auto=compress&cs=tinysrgb&w=600');
+    grid-area: propaganda;
+    background-position: bottom left;
+    background-repeat: no-repeat;
+    opacity: 95%;
+    background-size: cover;
+}
+
+input{
+    height: 48px;
+}
+label{
+    font-weight: lighter;
+}
+textarea{
+    resize: unset;
+    height: 225px;
+}
+
+.label-and-input-container, .label-and-checkbox-container{
+    display: flex;
+}
+
+.label-and-checkbox-container{
+    background-color: red;
+    display: flex;
+    align-items: center;
+    width: 85%;
+    margin: auto;
+    margin-bottom: 35px;
+}
+.precisaremos-title{
+    width: 85%;
+    margin: auto;
+    margin-bottom: 45px;
+    margin-top: 25px;
+}
+
+
+.label-and-input-container{
+    flex-direction: column;    
+    margin: auto;
+    width: 85%;
+    margin-bottom: 15px;
+}
+
+.add-img-container{
+    background-color: gray;
+    height: 320px;
+    width: 95%;
+    display: grid;
+    margin: auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 100px;
+    overflow-y: scroll;
+    row-gap: 10px;
+    padding: 10px 5px 10px 5px;
+}
+
+.add-img-btn{
+    background: linear-gradient(to bottom, #5C850C, #4F770A);
+    padding: 15px 28px 15px 28px;
+    font-size: 1.1em;
+    color: white;
+    font-weight: lighter;
+    border-radius: 6px;
+}
+
+#main-criar-btn{
+    float: right;
+    margin-top: 45px;
+    margin-right: 20px;
+    margin-bottom: 25px;
+}
+
+
+.img-block{
+    height: 100px;
+    width: 85%;
+    background-color: white;
+    margin: auto;
+}
+
+#c1-div-one{
+    background-color: rgb(150, 150, 150);
+    width: 95%;
+    height: 35px;
+}
+#c1-div-two{
+    background-color: rgb(198, 198, 198);
+    width: 70%;
+    height: 17px;
+}
+#c1-div-three{
+    background-color: gray;
+    width: 75%;
+    height: 20px;
+}
+#c1-div-four{
+    background-color: rgb(238, 238, 238);
+    width: 60%;
+    height: 65px;
+}
+#c1-div-five{
+    background-color: rgb(96, 96, 96);
+    width: 65%;
+    height: 28px;
+}
+#c1-div-six{
+    background-color: rgb(129, 129, 129);
+    width: 60%;
+    height: 25px;
+}
+#c1-div-seven{
+    background-color: rgb(203, 203, 203);
+    width: 60%;
+    height: 14px;
+}
+.c1-div{
+    border-radius: 4px;
+    height: 35px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 800px){
+    
+    .container{
+        display: grid;
+        grid-template-columns: 1fr .8fr;
+        grid-template-areas:"c0 c0"
+                             "c1 c2"
+                            "c3 c3"
+                            "propaganda propaganda"
+                            "c4 c4"
+                            "c5 c5"
+                            "c6 c6";
+        grid-template-rows: auto 300px 325px 485px auto auto 250px;
+        max-width: 1000px;
+        gap: 35px 4px;
+        margin: auto;
+        padding-top: 100px;
+    }
+
+    .c1, .c2, .c3{
+        position: relative;
+    }
+
+    .c1-div{
+        border-radius: 5px;
+        height: 35px;
+    }
+
+    .c2{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .c3{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #bag{
+        width: 285px;
+    }
+    #post-criado-msg{
+        position: absolute;
+        transform: rotate(-30deg);
+        font-size: 2.3em;
+        top: 30px;
+        text-decoration: underline;
+        color: rgb(244, 2, 2);
+        left: 25px;
+    }
+
+    #mouse-arrow{
+
+    }
+
+    .c-step-number{
+        width: 20px;
+        height: 20px;
+        background-color: rgb(31, 31, 31);
+        border-radius: 50%;
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        color: white;
+        text-align: center;
+        font-size: .9em;
+        line-height: 20px;
+    }
+
+    .label-and-input-container, .label-and-checkbox-container{
+        display: flex;
+    }
+
+    .label-and-checkbox-container{
+        background-color: red;
+        display: flex;
+        align-items: center;
+        width: 85%;
+        margin: auto;
+        margin-bottom: 45px;
+    }
+    .precisaremos-title{
+        width: 85%;
+        margin: auto;
+        margin-bottom: 45px;
+        margin-top: 32px;
+        font-size: 1.9em;
+    }
+
+    
+    .label-and-input-container{
+        flex-direction: column;    
+        margin: auto;
+        width: 85%;
+        margin-bottom: 18px;
+    }
+
+    input{
+        height: 48px;
+    }
+
+    textarea{
+        resize: unset;
+        height: 200px;
+    }
+
+    #image-btn{
+        position: relative;
+    }
+
+    #mouse-arrow{
+        width: 22px;
+        position: absolute;
+        right: 5px;
+        bottom: -12px;
+    }
+
+    .c1{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 15px 9px 15px 9px;
+    }
+    #c1-div-one{
+        background-color: rgb(150, 150, 150);
+        width: 95%;
+        height: 35px;
+    }
+    #c1-div-two{
+        background-color: rgb(198, 198, 198);
+        width: 70%;
+        height: 17px;
+    }
+    #c1-div-three{
+        background-color: gray;
+        width: 75%;
+        height: 20px;
+    }
+    #c1-div-four{
+        background-color: rgb(238, 238, 238);
+        width: 60%;
+        height: 65px;
+    }
+    #c1-div-five{
+        background-color: rgb(96, 96, 96);
+        width: 65%;
+        height: 28px;
+    }
+    #c1-div-six{
+        background-color: rgb(129, 129, 129);
+        width: 60%;
+        height: 25px;
+    }
+    #c1-div-seven{
+        background-color: rgb(203, 203, 203);
+        width: 60%;
+        height: 14px;
+    }
+    .c1-div{
+        border-radius: 4px;
+        height: 35px;
+    }
+
+    .propaganda{
+        background-image: url('https://images.pexels.com/photos/767240/pexels-photo-767240.jpeg?auto=compress&cs=tinysrgb&w=600');
+        grid-area: propaganda;
+        background-position: center right;
+        background-repeat: no-repeat;
+        opacity: 95%;
+        background-size: cover;
+    }
+
+    .add-img-container{
+        background-color: gray;
+        height: 320px;
+        width: 95%;
+        display: grid;
+        margin: auto;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 85px;
+        overflow-y: scroll;
+        row-gap: 10px;
+        padding: 10px 5px 10px 5px;
+    }
+
+    .add-img-btn{
+        background: linear-gradient(to bottom, #5C850C, #4F770A);
+        padding: 15px 28px 15px 28px;
+        font-size: 1.1em;
+        color: white;
+        font-weight: lighter;
+        border-radius: 6px;
+    }
+
+    #main-criar-btn{
+        float: right;
+        margin-top: 45px;
+        margin-right: 20px;
+        margin-bottom: 35px;
+    }
+
+
+    .img-block{
+        height: 85px;
+        width: 85%;
+        background-color: white;
+        margin: auto;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 450px){
+    label{
+        font-weight: lighter;
+    }
+    textarea{
+        resize: unset;
+    }
+
+    .label-and-input-container, .label-and-checkbox-container{
+        display: flex;
+    }
+
+    .label-and-checkbox-container{
+        background-color: red;
+        display: flex;
+        align-items: center;
+        width: 85%;
+        margin: auto;
+        margin-bottom: 35px;
+    }
+    .precisaremos-title{
+        width: 85%;
+        margin: auto;
+        margin-bottom: 45px;
+        margin-top: 25px;
+    }
+
+    
+    .label-and-input-container{
+        flex-direction: column;    
+        margin: auto;
+        width: 85%;
+        margin-bottom: 15px;
+    }
+    
+    .container{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas: "c0"
+                            "c1"
+                            "c2"
+                            "c3"
+                            "propaganda"
+                            "c4"
+                            "c5" 
+                            "c6";
+        grid-template-rows: auto 275px 275px 275px 400px auto auto 250px;
+        max-width: 1000px;
+        padding-top: 100px;
+        gap: 35px unset;
+        margin: auto;
+    }
+
+    .propaganda{
+        background-image: url('https://images.pexels.com/photos/767240/pexels-photo-767240.jpeg?auto=compress&cs=tinysrgb&w=600');
+        grid-area: propaganda;
+        background-position: center right;
+        background-repeat: no-repeat;
+        opacity: 95%;
+        background-size: cover;
+    }
+
+    #image-btn{
+        position: relative;
+    }
+    #mouse-arrow{
+        width: 18px;
+        position: absolute;
+        right: 5px;
+        bottom: -12px;
+    }
+
+        .red-arrow{
+            width: 95px;
+            position: absolute;
+            bottom: -60px;
+            z-index: 2;
+        }
+        #first-arrow{
+            left: -10px;
+            transform: rotate(-35deg);
+        }
+
+        #second-arrow{
+            right: 25px;
+            /* transform: rotate(45deg); */
+            transform: scaleX(-1) rotate(-65deg);
+        }
+
+
+    .c1, .c2, .c3{
+        position: relative;
+    }
+
+
+    .c0{
+        padding-left: 8px;
+    }
+
+    .c-step-number{
+        width: 20px;
+        height: 20px;
+        background-color: rgb(31, 31, 31);
+        border-radius: 50%;
+        position: absolute;
+        bottom: 15px;
+        right: 28px;
+        color: white;
+        text-align: center;
+        font-size: .9em;
+        line-height: 20px;
+    }
+
+
+    .c1{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 25px;
+    }
+    #c1-div-one{
+        background-color: rgb(150, 150, 150);
+        width: 95%;
+        height: 25px;
+    }
+    #c1-div-two{
+        background-color: rgb(198, 198, 198);
+        width: 70%;
+        height: 10px;
+    }
+    #c1-div-three{
+        background-color: gray;
+        width: 75%;
+        height: 20px;
+    }
+    #c1-div-four{
+        background-color: rgb(238, 238, 238);
+        width: 60%;
+        height: 60px;
+    }
+    #c1-div-five{
+        background-color: rgb(96, 96, 96);
+        width: 65%;
+        height: 25px;
+    }
+    #c1-div-six{
+        background-color: rgb(129, 129, 129);
+        width: 60%;
+        height: 18px;
+    }
+    #c1-div-seven{
+        background-color: rgb(203, 203, 203);
+        width: 60%;
+        height: 10px;
+    }
+    .c1-div{
+        border-radius: 5px;
+        height: 35px;
+    }
+
+    .c2{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .c3{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #bag{
+        width: 250px;
+    }
+    #post-criado-msg{
+        display: none;
+    }
+
+    .c4{
+    }
+    
+    .c5{
+        
+    }
+    
+    .add-img-container{
+        background-color: gray;
+        height: 320px;
+        width: 95%;
+        display: grid;
+        margin: auto;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 85px;
+        overflow-y: scroll;
+        row-gap: 10px;
+        padding: 10px 5px 10px 5px;
+    }
+
+    .add-img-btn{
+        background: linear-gradient(to bottom, #5C850C, #4F770A);
+        padding: 15px 28px 15px 28px;
+        font-size: 1.1em;
+        color: white;
+        font-weight: lighter;
+        border-radius: 6px;
+    }
+
+    #main-criar-btn{
+        float: right;
+        margin-top: 45px;
+        margin-right: 10px;
+        margin-bottom: 25px;
+    }
+
+
+    .img-block{
+        height: 85px;
+        width: 85%;
+        background-color: white;
+        margin: auto;
+    }
+
+    input{
+        height: 35px;
+    }
+
+   
+}
+
+::-webkit-scrollbar{
+    width: 5px;
+}

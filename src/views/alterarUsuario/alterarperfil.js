@@ -2,7 +2,12 @@ const BASE_URL_PATH =  'http://localhost:3000/'
 const MAXSIZEPERMITED = 230000;
 
 
-// ATUALIZA A IMAGEM DO PERFIL OU NEGA O INPUT DE IMAGEM
+window.onload = async () => {
+  const userData = await handleUserFetchTokenData();
+  fitInformationOnInputs(userData);
+}
+
+// ATUALIZA A IMAGEM DO PERFIL OU NEGA O INPUT DE IMAGEM QUANDO INSERIDA NO FRONTEND *BACKEND TBM VALIDA*
 const files = document.getElementById("files");
 files.onchange = ((e) => { 
   if (e.target.files[0].size > MAXSIZEPERMITED) {
@@ -28,12 +33,6 @@ salvarButton.addEventListener("click", async (e) => {
   
   if (!getStoredToken()) return window.location.href = `${BASE_URL_PATH}pagehome`
  
-
-  // if (files.files) { 
-  //   for(let i =0; i < files.files.length; i++) {
-  //     formData.append("files", files.files[i]);
-  //   }
-  // }
  
  
   try {
@@ -56,12 +55,11 @@ salvarButton.addEventListener("click", async (e) => {
 
 
 async function fireUpdateUserRequest(formData) {
-  const res = await fetch("http://localhost:3000/testimage", {
+  const res = await fetch(`${BASE_URL_PATH}testimage`, {
       method: "POST",
       body: formData,
       headers: {},
   });
-  
   return await res.json();
 }
 
@@ -99,9 +97,7 @@ function closePainel() {
   janelConfirmacao.style.opacity = "0%";
 }
 
-// document.querySelector(".container").addEventListener("click", () => {
-//     closePainel();
-// })
+
 
 
 // DELETE ACCOUNT
@@ -135,75 +131,26 @@ async function fireDeleteAccountRequest() {
   })
   const data = await res.json();
   return data;
-  
 }
 
-
-
-
-
-window.onload = async () => {
-  const headerCircle = document.querySelector('.header-circle')
-  const headerPainel = document.querySelector('.header-painel');
-  const headerLogoutButton = document.querySelector('.logout-btn');
-
-  headerCircle.addEventListener('click', (e) => toggleHeaderPainel(headerPainel))
-  headerLogoutButton.addEventListener('click', () => logout())
-
-  hideContent();
-
-  if (!getStoredToken()) return window.location.href = `${BASE_URL_PATH}pagelogin`;
-  
-  const data = await fireAuthVerificationRequest();
-
-  if (!data || !data.auth) return window.location.href = `${BASE_URL_PATH}pagelogin`;
-
-  if (data.auth) {
-    fitInformationOnInputs(data.fullUser);
-    showContent();
-  }
-};
-
-function showContent() {
-  document.querySelector('header').style.visibility = 'visible';          // header
-  document.querySelector(".container").style.visibility = "visible";      // main content
-  document.getElementById("spinning").style.visibility = "hidden";        // spinning
-}
-
-function hideContent() {
-  document.querySelector('header').style.visibility = 'hidden';
-  document.querySelector(".container").style.visibility = "hidden";  
-  document.getElementById("spinning").style.visibility = "visible";
-}
-
-async function fireAuthVerificationRequest() {
-  const res = await fetch(`${BASE_URL_PATH}auth`, {
-    method: "GET",
-    headers: {
-      "Content-type": "application/json",
-      authorization: getStoredToken(),
-      required_info: "*",
-    }
-  })
-  return await res.json();
-}
 
 
 
 function fitInformationOnInputs(data) {
-  const imageInput = document.getElementById("circle-change-image-cover");
-  const headerCircle = document.querySelector('.header-circle')
- 
-  if (data.user_image) {
-    const src = `${BASE_URL_PATH}file_system/user/${data.user_image}`
-    imageInput.setAttribute('src', src);
-    headerCircle.setAttribute('src', src)
-  } else { 
-    const alternativeSrc = `${BASE_URL_PATH}file_system/app/default_user_image.png`
-    imageInput.setAttribute('src', alternativeSrc);
-    headerCircle.setAttribute('src', alternativeSrc)
+  console.log('running', data)
+  
+  document.getElementById('ola-message').innerText += data.full_name.split(' ')[0];
+
+  const profileCircleImage = document.getElementById("circle-change-image-cover");
+  
+  let src = `${BASE_URL_PATH}file_system/app/user_default.jpg`
+
+  if (data.user_image) { 
+    src = `${BASE_URL_PATH}file_system/user/${data.user_image}`
   }
-    
+
+  profileCircleImage.setAttribute('src', src);
+
   document.getElementById("profile-email-input").innerHTML = data.email;
   document.getElementById("profile-name-input").value = data.full_name;
   document.getElementById("profile-cidade-input").value = data?.addr_state;

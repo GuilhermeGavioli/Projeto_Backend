@@ -1,35 +1,104 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');/*label INTER*/ 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap');
 
-body{
-    /* background-color: gray; */
-    margin: 0;
+
+#circle-change-image-cover{
+    background-color: rgb(23, 62, 23);
+}
+/* body{
+    background-color: rgb(211, 69, 69);
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
     padding: 0;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
     user-select: none;
 }
 
 .header{
     width: 100vw;
-    background-color: royalblue;
-    height: 85px;
-    display: flex;
-    justify-content: end;
+    height: 75px;
     position: fixed;
-    visibility: hidden;
+    top: 0;
+    z-index: 5;
+    background-color: yellow;
+    display: flex;
     align-items: center;
-    z-index: 2;
+    visibility: hidden;
 }
 
-.header-circle{
-    margin-right: 55px;
-    border-radius: 50%;
-    height: 60px;
-    width: 60px;
-    background-color: white;
-    cursor: pointer;
-    z-index: 2;
-    position: relative;
+.header-main{
+    flex-grow: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
 }
+
+.nav-item{
+    margin: 0 18px 0 18px;
+    cursor: pointer;
+}
+
+.hamburger-icon{
+    position: absolute;
+    display: none;
+}
+
+.header-user-icon{
+    position: relative;
+    background-image: url('../assets/user.jpg');
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 25px;
+    cursor: pointer;
+}
+
+.header-painel{
+    visibility: hidden;
+    font-weight: 200;
+    width: 180px;
+    height: 200px;
+    background-color: gray;
+    z-index: 2;
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    margin: auto;
+    box-sizing: border-box;
+    padding: 20px 23px 20px 23px;
+    
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+
+.user-painel-item{
+    margin: 8px 0 8px 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+.logout-btn{
+    border: none;
+    background-color: #4F770A;
+    color: white;
+    border-radius: 3px;
+    padding: 9px 20px 9px 20px;
+    position: absolute;
+    width: 80%;
+    font-weight: 600;
+    inset: auto 0 15px 0;
+    margin: auto;
+
+} */
 
 li{
     list-style: none;
@@ -37,32 +106,6 @@ li{
     font-family: 'Inter', sans-serif;
     font-size: .9em;
 }
-.header-painel{
-    font-weight: 200;
-    width: 140px;
-    height: 180px;
-    background-color: gray;
-    z-index: 3;
-    position: absolute;
-    top: 50px;
-    right: 90px;
-    margin: auto;
-    box-sizing: border-box;
-    padding: 20px 15px 20px 15px;
-}
-.logout-btn{
-    margin-top: 27px;
-    margin-left: 25px;
-    border-radius: 3px;
-    border: none;
-    padding: 2px 23px 2px 23px;
-}
-
-/* margin-top: 50px;
-    margin-left: 15px;
-    border-radius: 3px;
-    border: none;
-    padding: 5px 35px 5px 35px; */
 
 #spinning{
     border-radius: 50%;
@@ -253,9 +296,13 @@ textarea{
                         visibility: hidden;
 }
 
+.c1, .c2, .c3, .c4, .c5{
+    border: 1px solid black;
+    background-color: cyan;
+}
+
 .c1{
     grid-area: c1;
-    background-color: red;
     padding: 10px 15px 10px 15px;
     position: relative;
 }
@@ -278,21 +325,21 @@ textarea{
     width: 220px;
     height: 220px;
     border-radius: 50%;
-    background-color: green;
+    /* background-color: rgba(255, 255, 255, 0.163); */
+    /* background-color: rgb(18, 18, 83); */
     overflow: hidden;
     position: relative;
     z-index: 0;
 }
 
 #files{
-    background-color: rgb(255, 255, 255);
-    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.114);
+    z-index: 3;
     position: absolute;
-    margin: auti;
-    inset: 0 0 0 0;
-    width: 100%;
-    height: 120%;
-    opacity: 0%;
+    top: -50px;
+    left: -50px;
+    width: 125%;
+    height: 125%;
     cursor: pointer;
 }
 #files:hover{
@@ -305,14 +352,9 @@ textarea{
 
 #circle-change-image-cover{
     position: absolute;
-    height: 55px;
-    width: 50px;
     margin: auto;
-    background-color: rgba(44, 150, 30, 0.841);
-    right: 0;
-    left: 0;
-    z-index: 1;
-    bottom: 0;
+    inset: 0 0 0 0;
+    z-index: 2;
 }
 
 .profile-email{
@@ -339,7 +381,6 @@ textarea{
 
 .c2{
     grid-area: c2;
-    background-color: green;
     display: flex;
     justify-content: space-between;
     padding: 15px 20px 15px 20px;
@@ -378,8 +419,6 @@ textarea{
 .c3{
     font-family: 'Inter', sans-serif;
     grid-area: c3;
-    background-color: blue;
-    /* padding: 15px 0 15px 0; */
     display: flex;
     justify-content: center;
 }
@@ -431,11 +470,11 @@ textarea{
     .circle{
         width: 330px;
         height: 330px;
+        /* background-color: yellow; */
         border-radius: 50%;
-        background-color: green;
+        /* background-color: green; */
     }
     #circle-change-image-cover{
-        height: 75px;  
     }
 
     
@@ -455,7 +494,6 @@ textarea{
    
     
     .c1{
-        background-color: rgb(255, 27, 2);
         padding: 10px 0 10px 0;
     }
 
@@ -480,7 +518,6 @@ textarea{
         align-items: center;
         justify-content: center;
         padding: 0;
-        background-color: rgba(255, 255, 255, 0.131);
     }
     .c2-first-container{
      
@@ -501,9 +538,6 @@ textarea{
     }
 
     .c3{
-
-        background-color: blue;
-        /* padding: 15px 0 15px 0; */
         display: flex;
         justify-content: center;
         width: 100%;
@@ -602,7 +636,7 @@ textarea{
 
 
 
-.header{
+/* .header{
     min-width: 400px;
     width: 100%;
     background-color: royalblue;
@@ -652,6 +686,6 @@ li{
     border-radius: 3px;
     border: none;
     padding: 5px 35px 5px 35px;
-}
+} */
 
 }

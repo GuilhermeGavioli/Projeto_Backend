@@ -4,7 +4,7 @@ CREATE TABLE gender(
     PRIMARY KEY(g_id)
 );
 
-INSERT INTO gender VALUES (1, "masculino"), (2, "feminino");
+INSERT INTO gender VALUES (1, "masculino"), (2, "feminino"), (3, "outro"); /*new*/
 
 -- CREATE TABLE addressState(
 --     id INT NOT NULL UNIQUE AUTO_INCREMENT,
@@ -32,7 +32,7 @@ CREATE TABLE user(
     about_me VARCHAR(255),
     bio VARCHAR(255),
     user_image VARCHAR(255),
-
+    phone_number VARCHAR(25), /*new*/
     created_at DATE NOT NULL,
     updated_at DATE,
     PRIMARY KEY(userid),
@@ -46,6 +46,7 @@ CREATE TABLE product(
     product_name VARCHAR(255) NOT NULL,
     product_image VARCHAR(255) NOT NULL,
     product_description VARCHAR(255) NOT NULL,
+    is_organic BOOLEAN NOT NULL, /*new*/
     owner_id VARCHAR(255) NOT NULL,
     created_at DATE NOT NULL,
     updated_at DATE,
