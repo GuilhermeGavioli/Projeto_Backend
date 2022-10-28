@@ -4,27 +4,208 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./home.js" defer></script>
+    <title>Home</title>
+
     <link rel="stylesheet" href="./home.css">
-    <title>home</title>
+    <link rel="stylesheet" href="./homeheader.css">
+
+    
+    <script src="../assets/auth.js" defer></script>
+    <script defer src="./toggeSidebar.js" defer></script>
+    <script src="./home.js" defer></script>
+
+    <script src="https://kit.fontawesome.com/69266619cf.js" crossorigin="anonymous" defer></script>
+
+    <!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
 </head>
 <body>
+
+
     <div id="spinning"></div>
-    <header class="header" onclickclose="true">
-        <div class="profile-icon-circle">
-            <div class="profile-icon-painel">
-    
-                
-                <li style="margin-top: 0;">editar perfil</li>
-                <li>criar</li>
-                <li>meus produtos</li>
+
+
+    <header class="header">
+        <div style="height: fit-content; display: flex; align-items: center;">
+            <img src="../assets/gg.png" style="width: 70px; height: 70px; margin-left: 8px;" alt="">
+            <!-- <nav class="company-name" style="margin-right: 45px;">Girassol</nav> -->
+        </div>
+        <div class="header-main">
+            <p class="nav-item">Home</p>
+            <p class="nav-item">Sobre</p>
+            <p class="nav-item">Produtos</p>
+            <div class="nav-item" id="procurar">Procurar 
+                <span id="procurar-painel" isOpen="false">
+                    <li><a href="/pageprocurarusuario">Produtores</a></li>
+                    <li><a href="/pageprocurarusuario">Produtos</a></li>
+                </span>
+            </div>
+            <p class="hamburger-icon"><i class="fa-solid fa-bars"></i></p>
+        </div>
+        <div id="register-and-login">registerLOgin</div>
+        <img class="header-user-icon" src="">
+            <div class="header-painel" style="visibility: hidden;">
+                <li class="user-painel-item" style="margin-top: 0;"><a href="http://localhost:3000/pagealterarusuario">Meu Perfil</a></li>
+                <li class="user-painel-item"><a href="/criar">Criar</a></li>
+                <li class="user-painel-item"><a href="/criar">Meus produtos</a></li>
                 <button class="logout-btn">Logout</button>
             </div>
-        </div>
+        </img>
     </header>
 
+    <div class="sidebar" isOpen="false">
+        <div class="sidebar-items">
+            <p class="sidebar-item">Home</p>
+            <p class="sidebar-item">Sobre Nós</p>
+            <p class="sidebar-item">Produtos</p>
+            <p class="sidebar-item">Procurar Produto</p>
+            <p class="sidebar-item">Procurar Produtor</p>
+            <h2 id="click-to-close">CLICK PRA FECHAR</h2>
+        </div>
+    </div>
 
-    <main class="container"></main>
-    <h1>HOME</h1>
-</body>
-</html>
+
+
+
+    <div class="banner-container">
+        <form class="banner-title-container">
+            <!-- <h1 class="banner-title">COMPARTILHE</h1>
+            <h1 class="banner-title">PRODUTOS</h1>
+            <h1 class="banner-title">AGORA</h1> -->
+            <h1 class="banner-title">Aqui voce encontrará informaçoes sobre produtos organicos que tem interesse livre de comissoes e compartilhados por outros criadores na Plataforma.</h1> 
+            <div class="input-and-btn-container">
+                <input type="text" placeholder="Buscar um produto" class="main-input"> 
+                <button class="search-btn">  <i class="fa-solid fa-magnifying-glass"></i>  </button>
+            </div>
+        </form>
+        <div class="text-and-btn-container">
+            
+            <div class="banner-text-container">
+            </div>
+            <!-- <button class="quero-comecar-btn">Comecar</button> -->
+        </div>
+        <div class="banner">
+        </div>
+    </div>
+    
+    
+    
+    <div class="container">
+        <!-- <div class="c0"></div> -->
+        <div class="c1">
+            <h2>Plataforma</h2>
+            <p style="margin: 0;">Compartilhe seus produtos com outros usuarios agora mesmo em alguns cliques e torne-se um produtor em nosso site de forma gratuita. Somos uma empresa ficticia que tem o objetivo de auxiliar diversos tipos de produtores que desejam compartilhar sua mercadoria com mais pessoas. Uma plataforma para trazer produtores e pessoas que querem viver de forma mais saudavel em um unico lugar</p>
+
+        </div>
+        <div class="c2">
+            <h2><i class="fa-solid fa-utensils"></i> Dicas Saudáveis</h2>
+                <li class="dicas-text"><i class="fa-solid fa-carrot"></i> Se alimente de forma saudavel a cada 3 horas</li>
+                <li class="dicas-text"><i class="fa-solid fa-dumbbell"></i> Pratique exercicios físicos diariamente</li>
+                <li class="dicas-text"><i class="fa-solid fa-glass-water"></i> Beba no minimo dois litros de água por dia</li>
+                <li class="dicas-text"><i class="fa-solid fa-gun"></i> Nao se mate</li>                
+                <li class="dicas-text"><i class="fa-solid fa-industry"></i> Evite produtos industrializados</li>                
+        </div>
+        <div class="c3" >
+            <!-- <iframe width="85%" height="320" src="https://www.youtube.com/embed/8LAFIDR56Sw" title="YouTube video player" frameborder="15" allow="accelerometer; clipboard-write; encrypted-media; gyroscope;" allowfullscreen></iframe> -->
+            <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/GNo9LTwgGYo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <p class="video-text">A importancia de se alimentar de forma saudavel está cada vez mais sendo parte da rotina das pessoas no mundo, com isso, é relevante que informaçoes corretas sejam compartilhadas entre todos.</p> -->
+
+            <!-- <video width="85%" height="320" controls>
+                <source src="https://www.youtube.com/embed/8LAFIDR56Sw" type="video/mp4">
+                <source src="https://www.youtube.com/embed/8LAFIDR56Sw" type="video/ogg">
+                Your browser does not support the video tag.
+              </video> -->
+              <h2 style="width: fit-content; margin:auto; margin-bottom: 45px; font-size: 2.5em; width: 100%;
+                padding: 10px;
+              ">Produtos em Destaque</h2>
+              <div class="cards">
+    
+                  <div class="card-container">
+                      <div class="card-first">
+                      <h2 class="card-title">Alface abc</h2>
+                  </div>
+                  <div class="card-second">
+                      Essa é a descricao do meu produto super legal plantando naturalmente aos campos e aos vales mais limpos deste pais chamad o Brasil naturalmente aos campos e aos vales mais limpos deste pais chamad o Brasil.
+                  </div>
+              </div>
+              <div class="card-container">
+                  <div class="card-first">
+                      <h2 class="card-title">Meu produto abcd</h2>
+                  </div>
+                  <div class="card-second">
+                      Essa é a descricao do meu produto super legal plantando naturalmente aos campos e aos vales mais limpos deste pais chamad o Brasil naturalmente aos campos e aos vales mais limpos deste pais chamad o Brasil.
+                  </div>
+              </div>
+              <div class="card-container">
+                  <div class="card-first">
+                      <h2 class="card-title">Meu produto abcd</h2>
+                  </div>
+                  <div class="card-second">
+                      Essa é a descricao do meu produto super legal plantando naturalmente aos campos e aos vales mais limpos deste pais chamad o Brasil naturalmente aos campos e aos vales mais limpos deste pais chamad o Brasil.
+                  </div>
+              </div>
+              <div class="card-container">
+                  <div class="card-first">
+                      <h2 class="card-title">Meu produto abcd</h2>
+                  </div>
+                  <div class="card-second">
+                      Essa é a descricao do meu produto super legal plantando naturalmente aos campos e aos vales mais limpos deste pais chamad o Brasil naturalmente aos campos e aos vales mais limpos deste pais chamad o Brasil.
+                  </div>
+              </div>
+              <div class="card-container">
+                  <div class="card-first">
+                      <h2 class="card-title">Meu produto abcd</h2>
+                  </div>
+                  <div class="card-second">
+                      Essa é a descricao do meu produto super legal plantando naturalmente aos campos e aos vales mais limpos deste pais chamad o Brasil naturalmente aos campos e aos vales mais limpos deste pais chamad o Brasil.
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div class="c4">
+            <h1 style="margin-top: 25px; font-size: 2.7em;">COMEÇAR</h1>
+            <h1 style="margin-top: 10px; margin-bottom: 85px; font-size: 2.7em;">AGORA</h1>
+            <!-- <h1 style="font-size: 2.7em;">QUERO</h1>
+            <h1 style="font-size: 2.6em;">ME</h1> -->
+            <h1 style="font-size: 2.7em;">REGISTRAR</h1>
+            <!-- <h1 style="font-size: 2.6em;">DE</h1> -->
+            <h1 style="font-size: 2.6em; margin-top: 25px; margin-bottom: 25px;">DE FORMA</h1>
+            <h1 style="font-size: 3.1em;">GRATUITA</h1>
+            <button class="ir-btn"><h1>ir</h1></button>
+    
+
+                <p style="font-size: 1.3em; font-weight: 700; margin-top: 150px; cursor: pointer;">Criar uma conta</p>
+                <p style="font-size: 1.3em; font-weight: 700; cursor: pointer;">Cadastre-se</p>
+   
+        
+        </div>
+        
+        <div class="c5">
+            
+            </body>
+            
+            </html>
+
+           <!-- <video width="85%" height="320" controls poster="https://images.pexels.com/photos/3876417/pexels-photo-3876417.jpeg?auto=compress&cs=tinysrgb&w=600">
+                <source src="https://www.youtube.com/embed/8LAFIDR56Sw" type="video/mp4">
+    
+                Your browser does not support the video tag.
+              </video>
+            <iframe id="iframe" width="600" height="320" src="https://www.youtube.com/embed/8LAFIDR56Sw" title="YouTube video player" frameborder="15" allow="accelerometer; clipboard-write; encrypted-media; gyroscope;" allowfullscreen></iframe> --> -->
+                <!-- <p class="video-text">A importancia de se alimentar de forma saudavel está cada vez mais sendo parte da rotina das pessoas no mundo, com isso, é relevante que informaçoes corretas sejam compartilhadas entre todos.</p>
+        </div>
+    </div>
+
+
+    <script defer>
+        if(document.getElementById('iframe')) {
+  var images = document.getElementsByTagName('img');
+  for (i = 0; i < images.length;i++ ) {
+    images[i].style.display = "none";
+  }
+}
+    </script>
+
+    
