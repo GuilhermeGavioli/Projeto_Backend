@@ -9,7 +9,7 @@ window.onload = async () => {
   // const headerPainel = document.querySelector('.header-painel');
   // const headerLogoutButton = document.querySelector('.logout-btn');
 
-  const data = await handleUserFetchTokenData('home');
+  const data = await handleUserFetchTokenData('stayOnThePageStillNotLoggedIn');
   console.log('aaaaa' + data)
   // if (!data.auth) return window.location.href = `${BASE_URL_PATH_AUTH}pagelogin`;
         

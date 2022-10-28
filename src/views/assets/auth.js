@@ -2,48 +2,50 @@ const BASE_URL_PATH_AUTH = 'http://localhost:3000/'
 
 authing();
 
-async function handleUserFetchTokenData(page) {
+async function handleUserFetchTokenData(action) {  //action to be done in case of not auth
     const header = document.querySelector(".header");
+    const headerCircle = document.querySelector('.header-user-icon')
     const main = document.querySelector(".container");
     const spinner = document.getElementById("spinning");
-
-    hideContent(header, main, spinner);
-    
-  const registerAndLoginContainer = document.getElementById('register-and-login');
+    const registerAndLoginContainer = document.getElementById('register-and-login');
   
-    const headerCircle = document.querySelector('.header-user-icon')
+  const items = {
+    header,
+    headerCircle,
+    main,
+    spinner
+  }
+
+
+    hideContent(header,headerCircle, main, spinner, registerAndLoginContainer);
+    
+  
     const headerPainel = document.querySelector('.header-painel');
     const headerLogoutButton = document.querySelector('.logout-btn');
   
     // function protectAgainstNonAuthorizedUsers();
     // function protectAgainstAuthorizedUsers();
   
-  if (!getStoredToken() && page !== 'home') return window.location.href = `${BASE_URL_PATH_AUTH}pagelogin`;
-  
+  if (!getStoredToken() ) handleActionForNonAuthorizedUsers(action, items);
+  console.log('bbbbbbbbbbbbbb')
   const data = await fireAuthVerificationRequest();
   
   if (!data.auth) { 
-    if (page == 'home') { 
-      showContent(header, main, spinner);
-      return handleHomeStyle(headerCircle, registerAndLoginContainer);
-
-    }
-    return window.location.href = `${BASE_URL_PATH_AUTH}pagelogin`;
-  }
-
-            
-    if (data.auth) {
+    handleActionForNonAuthorizedUsers(action, items);
+  } else if (data.auth) {
         headerCircle.addEventListener('click', (e) => toggleHeaderPainel(headerPainel))
         headerLogoutButton.addEventListener('click', () => logout())
         fitUserInfoInHeader(data.fullUser.user_image);
-      showContent(header, main, spinner);
+      showContent(header, headerCircle, main, spinner);
       
-      //dirty code
+
       registerAndLoginContainer.style.visibility = 'hidden'
       registerAndLoginContainer.style.position = 'absolute'
         return data.fullUser;
-    }
+  } else {
     window.location.href = `${BASE_URL_PATH_AUTH}pagelogin`;
+    
+    }
 }
 
 
@@ -60,26 +62,33 @@ async function fireAuthVerificationRequest() {
 }
   
 
-function handleHomeStyle(headerCircle, registerAndLoginContainer) {
-  headerCircle.style.position = 'absolute'
-  headerCircle.style.visibility = 'hidden'
-  registerAndLoginContainer .style.visibility = 'visible'
-  registerAndLoginContainer.style.position = 'unset'
+function handleActionForNonAuthorizedUsers(action, items) {
+  if (action == 'stay') return;
+  if (action == 'redirect') return window.location.href = `${BASE_URL_PATH_AUTH}pagelogin`;
+      
+  if (action == 'stayOnThePageStillNotLoggedIn') {
+    showContent(items.header, items.header, items.main, items.spinner)
+  }
   return;
 }
 
   
-  function showContent(header, main, spinner) {
+  function showContent(header,headerCircle, main, spinner) {
     main.style.visibility = "visible";
     header.style.visibility = 'visible';
+    headerCircle.style.visibility = "visible";
+    headerCircle.style.position = "unset";
     spinner.style.visibility = "hidden";
+
   }
   
-function hideContent(header, main, spinner) {
-    console.log('hiding')
-    main.style.visibility = "hidden";
+function hideContent(header,headerCircle, main, spinner, registerAndLoginContainer) {
+  main.style.visibility = "hidden";
+  headerCircle.style.visibility = 'hidden';
+  headerCircle.style.position = 'absolute';
     header.style.visibility = 'hidden';
-    spinner.style.visibility = "visible";
+  spinner.style.visibility = "visible";
+
 }
   
 function fitUserInfoInHeader(imageSource) {
@@ -126,6 +135,10 @@ function authing() {
     console.log('authing...')
 }
 
+function logout() {
+  window.localStorage.removeItem('token');
+  window.location.reload();
+}
   
 
 

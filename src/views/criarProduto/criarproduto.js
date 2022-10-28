@@ -5,7 +5,7 @@ const MAXSIZEPERMITED = 230000;
 
 
 window.onload = async () => {
-  const userData = await handleUserFetchTokenData();
+  const userData = await handleUserFetchTokenData('redirect');
 }
 
 
