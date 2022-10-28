@@ -6,8 +6,10 @@ async function handleUserFetchTokenData(page) {
     const header = document.querySelector(".header");
     const main = document.querySelector(".container");
     const spinner = document.getElementById("spinning");
-  
+
     hideContent(header, main, spinner);
+    
+  const registerAndLoginContainer = document.getElementById('register-and-login');
   
     const headerCircle = document.querySelector('.header-user-icon')
     const headerPainel = document.querySelector('.header-painel');
@@ -16,11 +18,16 @@ async function handleUserFetchTokenData(page) {
     // function protectAgainstNonAuthorizedUsers();
     // function protectAgainstAuthorizedUsers();
   
-    if (!getStoredToken() && page !== 'home') return window.location.href = `${BASE_URL_PATH_AUTH}pagelogin`;
+  if (!getStoredToken() && page !== 'home') return window.location.href = `${BASE_URL_PATH_AUTH}pagelogin`;
+  
   const data = await fireAuthVerificationRequest();
   
   if (!data.auth) { 
-    if (page == 'home') return handleHomeStyle(headerCircle, data);
+    if (page == 'home') { 
+      showContent(header, main, spinner);
+      return handleHomeStyle(headerCircle, registerAndLoginContainer);
+
+    }
     return window.location.href = `${BASE_URL_PATH_AUTH}pagelogin`;
   }
 
@@ -29,7 +36,11 @@ async function handleUserFetchTokenData(page) {
         headerCircle.addEventListener('click', (e) => toggleHeaderPainel(headerPainel))
         headerLogoutButton.addEventListener('click', () => logout())
         fitUserInfoInHeader(data.fullUser.user_image);
-        showContent(header, main, spinner);
+      showContent(header, main, spinner);
+      
+      //dirty code
+      registerAndLoginContainer.style.visibility = 'hidden'
+      registerAndLoginContainer.style.position = 'absolute'
         return data.fullUser;
     }
     window.location.href = `${BASE_URL_PATH_AUTH}pagelogin`;
@@ -49,14 +60,12 @@ async function fireAuthVerificationRequest() {
 }
   
 
-function handleHomeStyle(headerCircle, registerIconsContainer, data) {
-  document.getElementById('register-and-login').style.visibility = 'visible'
-  document.getElementById('register-and-login').style.position = 'unset'
-    // headerCircle.style.position = 'absolute'
-    headerCircle.style.visibility = 'hidden'
-    registerIconsContainer.style.visibility = 'visible'
-    return;
-  
+function handleHomeStyle(headerCircle, registerAndLoginContainer) {
+  headerCircle.style.position = 'absolute'
+  headerCircle.style.visibility = 'hidden'
+  registerAndLoginContainer .style.visibility = 'visible'
+  registerAndLoginContainer.style.position = 'unset'
+  return;
 }
 
   
@@ -66,7 +75,8 @@ function handleHomeStyle(headerCircle, registerIconsContainer, data) {
     spinner.style.visibility = "hidden";
   }
   
-  function hideContent(header, main, spinner) {
+function hideContent(header, main, spinner) {
+    console.log('hiding')
     main.style.visibility = "hidden";
     header.style.visibility = 'hidden';
     spinner.style.visibility = "visible";
