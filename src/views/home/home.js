@@ -1,5 +1,6 @@
 window.onload = async () => {
   // const header = document.querySelector(".header");
+  const headerPainel = document.querySelector('.header-painel');
   // const main = document.querySelector(".container");
   // const spinner = document.getElementById("spinning");
 
@@ -27,7 +28,9 @@ window.onload = async () => {
   
  
 
-
+  document.querySelector('.banner-container').addEventListener('click', () => { 
+    closeSidebar()
+    closePainel(headerPainel)
+    
+  })
 }
-
-document.querySelector('.banner-container').addEventListener('click', () => closeSidebar())

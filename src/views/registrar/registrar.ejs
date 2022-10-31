@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar</title>
+    
+
+    <!-- PAGE -->
+    <script src="./regsitrar.js" defer></script>
+    <link rel="stylesheet" href="./regsitrar.css" type="text/css">
+
+
+
+     <!-- ICONS -->
+     <script src="https://kit.fontawesome.com/69266619cf.js" crossorigin="anonymous"></script>
+     <!-- BOOTSTRAP CONFIG -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+ 
+</head>
+
+    <style>
+
+        .main-container{
+            visibility: hidden;
+        }
+
+        #spinning{
+            border-radius: 50%;
+            border: 3px solid black;
+            border-bottom: 3px solid white;
+            margin: auto;
+            position: absolute;
+            inset: 0 0 175px 0;
+            width: 50px;
+            height: 50px;
+            animation: infinite 1s rotate linear;
+            visibility: hidden;
+        }
+
+        @keyframes rotate{
+            from{transform: rotate(0deg);}
+            to{transform: rotate(359deg);}
+        }
+    </style>
+<body>
+    <div id="spinning"></div>
+
+    <div class="fail-message-container"></div>
+
+
+    <div class="container" style="visibility: hidden; position: absolute;"></div>
+
+    <form class="container2">
+
+        <h1 class="login-title"><i class="fa-solid fa-user" style="font-size: 1em; color: #b9e371;"></i>
+        
+        </h1>
+        <div class="form-container">
+
+            <div style="display: flex;">
+                <div style="width: 60%;">
+                    <label for="">Email</label>
+                    <input type="text" id="field-email" style="margin-bottom: 15px;">
+                </div>
+
+                <div style="width: 40%;">
+                    <label for="">Nome</label>
+                    <input type="text" id="field-name" style="margin-bottom: 15px;">
+                </div>
+            </div>
+
+            <div style="display: flex;">
+                <div>
+                    <label for="">Senha</label>
+                    <input type="password" id="field-password" style="margin-bottom: 15px;">
+
+                </div>
+                <div>
+                    <label for="">Confirmar Senha</label>
+                    <input type="password" id="field-confirmar-senha" style="margin-bottom: 15px;">
+
+                </div>
+            </div>
+
+
+            <div style="display: flex; width: 100%;">
+                <div style="width: 65%;">
+                    <label for="">Data de Nascimento</label>
+                    <input type="date" name="date" id="field-data-nascimento">
+
+                </div>
+                <div style="width: 35%;">
+               
+                        <label for="">Genero</label>
+                        <select name="genero" id="field-gender" >
+                            <option value="1">Masculino</option>
+                            <option value="2">Feminino</option>
+                            <option value="3">Outro</option>
+                        </select>
+             
+                </div>
+            </div>
+            
+            <div style="width: 100%;">
+                <label for="">Cidade</label>
+                <input type="text" id="field-city">
+            </div>
+            
+   
+    
+            
+            <button type="submit" id="btn-cadastrar">
+                <div id="inside-cadastrar-btn-circle" style="pointer-events: none;"></div>
+                <span id="cadastrar-btn-text" style="pointer-events: none;">Registrar</span>
+            </button>
+            
+            <div class="home"><i class="fa-solid fa-house" onclick="window.location.href = '/'"></i></div>
+            
+            <p style="margin-top: 15px; width: 95%; text-align: right; margin-bottom: 5px; font-size: .7em; color: rgb(190,190,190);;">
+                Já possui uma conta? 
+                <a href="/login" style="text-decoration: none; color:#7db023;">Login</a>
+                
+            </p>
+        </div>
+    </form>
+
+
+  
+
+
+
+
+
+
+
+
+
+        
+
+</body>
+</html>

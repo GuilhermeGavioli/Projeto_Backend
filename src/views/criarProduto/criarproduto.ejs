@@ -9,13 +9,16 @@
     <script src="../assets/toggeSidebar.js" defer></script>
     <script src="./criarproduto.js" defer></script>
 
-    <link rel="stylesheet" href="../assets/header.css">
-    <link rel="stylesheet" href="../assets/sidebar.css">
+    <!-- <link rel="stylesheet" href="../assets/sidebar.css"> -->
     <link rel="stylesheet" href="./criarproduto.css">
+    <link rel="stylesheet" href="../home/homeheader.css">
 
 
     <title>Criar Produto</title>
     <script src="https://kit.fontawesome.com/69266619cf.js" crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <style>
        
         #spinning{
@@ -39,43 +42,50 @@
 </head>
 <body>
     <div id="spinning"></div>
-    
-    <!-- <div class="main-container">
 
-        <h1>Criar produto</h1>
-        <input type="text" placeholder="nome-produto" id="product-name">
-        <textarea type="text" placeholder="meu produto" id="product-description"></textarea>
-        <input type="file" name="file" id="product-file" accept="image/png, image/jpeg, image/jpg">
-        <button type="button" id="criar-btn">Criar</button>
-    </div> -->
-
-    <!-- ------------------------------ -->
 
     <header class="header">
-        <div style="height: fit-content; display: flex; align-items: center;">
-            <img src="../assets/logo.png" style="width: 70px; height: 70px; margin-left: 8px;" alt="">
-            <nav class="company-name" style="margin-right: 45px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Girassol</nav>
+        <div style="height: 100%; display: flex; align-items: center;">
+            <img src="../assets/gg.png" style="width: 100%; height: 100%; margin-left: 8px; min-width: 75px; max-width: 85px;" alt="">
+            <!-- <nav class="company-name" style="margin-right: 45px;">Girassol</nav> -->
         </div>
         <div class="header-main">
             <p class="nav-item">Home</p>
-            <p class="nav-item">Sobre Nós</p>
+            <p class="nav-item">Sobre</p>
             <p class="nav-item">Produtos</p>
             <div class="nav-item" id="procurar">Procurar 
                 <span id="procurar-painel" isOpen="false">
                     <li><a href="/pageprocurarusuario">Produtores</a></li>
-                    <li><a href="/pageprocurarusuario">Produtos</a></li>
+                    <li><a href="/pageprocurarproduto">Produtos</a></li>
                 </span>
             </div>
             <p class="hamburger-icon"><i class="fa-solid fa-bars"></i></p>
         </div>
-        <img class="header-user-icon" src="">
+        <div id="register-and-login" style="display: flex;">
+            <p style="margin:0; margin-right: 9px;" ><a href="/pagecadastrar" style="text-decoration: none;">Cadastrar</a></p>
+        
+            <p style="margin:0;"><a href="/pagelogin" style="text-decoration: none;">Login</a></p>
+        </div>
+
+        <div class="header-user-icon-container">
+            <img class="header-user-icon" src="" style="position:relative;">
             <div class="header-painel" style="visibility: hidden;">
-                <li class="user-painel-item" style="margin-top: 0;"><a href="/pagealterarusuario">Meu Perfil</a></li>
-                <li class="user-painel-item"><a href="/criar">Criar</a></li>
-                <li class="user-painel-item"><a href="/criar">Meus produtos</a></li>
+                <li class="user-painel-item" style="margin-top: 0;">
+                    <a href="/pagehome"
+                    style="text-decoration: none; color: rgb(177, 177, 177);"
+                    >Home</a></li>
+                <li class="user-painel-item" style="margin-top: 0;">
+                    <a href="/pagealterarusuario"
+                    style="text-decoration: none; color: rgb(177, 177, 177);"
+                    >Meu Perfil</a></li>
+                <li class="user-painel-item"><a href="/criar"
+                    style="text-decoration: none; color: rgb(177, 177, 177);">Criar</a></li>
+                <li class="user-painel-item"><a href="/criar"
+                    style="text-decoration: none; color: rgb(177, 177, 177); margin-bottom:25px;"
+                    >Meus produtos</a></li>
                 <button class="logout-btn">Logout</button>
             </div>
-        </img>
+        </div>
     </header>
 
     <div class="sidebar" isOpen="false">
@@ -88,12 +98,11 @@
             <h2 id="click-to-close">CLICK PRA FECHAR</h2>
         </div>
     </div>
-
     
     <div class="container">
         <div class="c0">
-            <h1 style="color:red;">CRIAR</h1>
-            <h2>Compartilhe seus Produtos em alguns Cliques</h2>
+            <h1 style="color:rgb(80, 80, 80); font-weight: 700;">CRIAR</h1>
+            <h2 style="color: rgb(164, 164, 164);">Compartilhe seus Produtos em alguns Cliques</h2>
         </div>
         <div class="c1">
             <div id="c1-div-one" class="c1-div"></div>
@@ -107,7 +116,7 @@
             <!-- <img src="./arrow.png" class="red-arrow" id="first-arrow" alt=""> -->
         </div>
         <div class="c2">
-            <button class="green-btn" id="image-btn">CRIAR
+            <button class="green-btn" id="image-btn" style="cursor: default;">CRIAR
                 <!-- <img src="./585e470ecb11b227491c337d.png" id="mouse-arrow" alt=""> -->
             </button>
             <div class="c-step-number">2</div>
@@ -130,7 +139,7 @@
             </div>
             <div class="label-and-input-container">
                 <label for="Descricao do Produto">Descricao</label>
-                <textarea name="" cols="30" rows="10" id="product-description"></textarea>
+                <textarea name="" cols="30" rows="10" id="product-description" style="resize: none;"></textarea>
             </div>
             <div class="label-and-checkbox-container">
                 <input type="checkbox" style="width: 18px; height: 18px; margin-right: 10px;">

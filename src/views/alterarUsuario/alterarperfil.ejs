@@ -4,34 +4,64 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="stylesheet" href="./alterarperfil.css" type="text/css">
-    <link rel="stylesheet" href="../assets/header.css">
+    <!-- <link rel="stylesheet" href="./index.css"> -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+
+    <!-- <link rel="stylesheet" href="../assets/header.css"> -->
+    <link rel="stylesheet" href="../home/homeheader.css">
     <link rel="stylesheet" href="../assets/sidebar.css">
+    <link rel="stylesheet" href="./alterarperfil.css" type="text/css">
     
     <script src="../assets/auth.js" defer></script>
     <script src="../assets/toggeSidebar.js" defer></script>
     <script src="./alterarperfil.js" defer></script>
-    
-    <title>Alterar Perifl</title>
 
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+    
     <script src="https://kit.fontawesome.com/69266619cf.js" crossorigin="anonymous"></script>
 </head>
-<body onclickclose="true">
-
+<style>
+    body{
+    /* font-family: 'Inter', sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: 0;
+    height: fit-content;
+    width: 100vw;
+    height: 100vh; */
+    /* user-select: none; */
+    /* background-size: cover; */
+    
+    /* background-image: url('https://images.pexels.com/photos/1179229/pexels-photo-1179229.jpeg?auto=compress&cs=tinysrgb&w=600'); */
+    /* backdrop-filter: blur(8px); */
+    position: relative;
+    background-color: rgb(47, 47, 47);
+    height: 100vh;
+    width: 100vw;
+  /* background-color: red; */
+   
+}
+</style>
+<body>
 
     <div id="spinning"></div>
     <div class="success-message-container"></div>
     <div class="fail-message-container"></div>
 
+    
     <header class="header">
-        <div style="height: fit-content; display: flex; align-items: center;">
-            <img src="../assets/logo.png" style="width: 70px; height: 70px; margin-left: 8px;" alt="">
-            <nav class="company-name" style="margin-right: 45px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Girassol</nav>
+        <div style="height: 100%; display: flex; align-items: center;">
+            <img src="../assets/gg.png" style="width: 100%; height: 100%; margin-left: 8px; min-width: 75px; max-width: 85px;" alt="">
+            <!-- <nav class="company-name" style="margin-right: 45px;">Girassol</nav> -->
         </div>
         <div class="header-main">
             <p class="nav-item">Home</p>
-            <p class="nav-item">Sobre Nós</p>
+            <p class="nav-item">Sobre</p>
             <p class="nav-item">Produtos</p>
             <div class="nav-item" id="procurar">Procurar 
                 <span id="procurar-painel" isOpen="false">
@@ -41,14 +71,28 @@
             </div>
             <p class="hamburger-icon"><i class="fa-solid fa-bars"></i></p>
         </div>
-        <img class="header-user-icon" src="">
+        <div id="register-and-login" style="display: flex;">
+            <p style="margin:0; margin-right: 9px;" ><a href="/pagecadastrar" style="text-decoration: none;">Cadastrar</a></p>
+        
+            <p style="margin:0;"><a href="/pagelogin" style="text-decoration: none;">Login</a></p>
+        </div>
+
+        <div class="header-user-icon-container">
+            <img class="header-user-icon" src="" style="position:relative;">
             <div class="header-painel" style="visibility: hidden;">
-                <li class="user-painel-item" style="margin-top: 0;"><a href="http://localhost:3000/pagealterarusuario">Meu Perfil</a></li>
-                <li class="user-painel-item"><a href="/criar">Criar</a></li>
-                <li class="user-painel-item"><a href="/criar">Meus produtos</a></li>
+                <li class="user-painel-item" style="margin-top: 0;">
+                    <a href="/pagealterarusuario"
+                    style="text-decoration: none; color: rgb(177, 177, 177);"
+                    >Meu Perfil</a></li>
+                <li class="user-painel-item">
+                    <a href="/pagecriarproduto"
+                    style="text-decoration: none; color: rgb(177, 177, 177);">Criar</a></li>
+                <li class="user-painel-item">
+                    <a href="/criar"
+                    style="text-decoration: none; color: rgb(177, 177, 177);">Meus produtos</a></li>
                 <button class="logout-btn">Logout</button>
             </div>
-        </img>
+        </div>
     </header>
 
 
@@ -63,7 +107,7 @@
         </div>
     </div>
 
-   
+<!--    
     <div class="janela-confirmacao">
         <button id="close-btn" style="float:right;" onclick="closePainel()">x</button>
         <h1>Confirmar</h1>
@@ -72,101 +116,215 @@
             <div id="inside-confirmar-btn-circle" style="pointer-events: none;"></div>
             <span id="confirmar-btn-text" style="pointer-events: none;">Confirmar</span>
         </button>
-    </div>
+    </div> -->
+
+
+
+
+
+
+
+
+
+
     
-    <form class="container" onclickclose="true" id="form">
-        <div class="c1" onclickclose="true">
-            <div class="c1-first-container"><h1 class="main-title" style="margin-bottom: 10px;">Editar Perfil</h1>
-                <h2 class="main-title"  id="ola-message" style="margin: 0; margin-bottom: 42px; font-size: 1.9em;">Olá, </h2>
-            </div>
-            <div class="c1-second-container" onclickclose="true">
-                <div class="circle" >
-                    <input type="file" name="file" id="files" accept="image/png, image/jpeg, image/jpg">
+
+
+
+
+
+
+
+
+
+
+    
+
+    <div class="container">
+        <div class="c1">
+              
+            <h2 id="c1-main-name" style="
+            text-align: center;
+                text-overflow: ellipsis; overflow: hidden; width: 95%;max-height: 150px;"></h2>
+            
+            <div class=circle>
+                <div class="edit-circle-icon-container">
+                    <i class="fa-solid fa-pencil"></i>
+                </div>
+                <input type="file" name="file" id="files" accept="image/png, image/jpeg, image/jpg">
                     <img id="circle-change-image-cover" src="" alt="user-profile-pic"
-                    style="width: 100%; height: 100%; background-color: red;"
+                    style="width: 100%; height: 100%; border-radius: 50%;"
                     ></img>
-                </div>
-                <div class="profile-email" id="profile-email-input"></div>
-                
-                    <input type="text" value="" id="profile-name-input" style="height: 50px; font-size: 1.2em; color: #b9b9b9">
-                
-            </div>
-            <div class="c1-third-container">
-                <h2>Imagens de Perfil: </h2>
-                <li>O tamanho máximo para imagens é de 230KB</li>
             </div>
 
-        </div>    
+            <div class="warning-about-file-size-container">
+                <p class="warning-about-file-size-text">Faça updload de um novo avatar. Imagens maiores que 
+                    <span style="font-weight: 700;">200Kbs</span> não serão aceitas. É recomendavel que sua imagem tenha lados proporcionais</p>
+            </div>
+            <p id="membro-desde" style="margin-top: 45px; font-size: .8em; color: rgb(160, 160, 160);">Membro desde
+                
+                <span id="mes"></span>
+                de
+                <span id="ano"></span>
+            </p>
+     
+                    <!-- <div style="width: 85%; display: flex; align-items: center; justify-content: center; background-color: white; color:rgb(198, 198, 198);">
+                        <p>koasokcakos</p>
+                        <i class="fa-regular fa-copy"
+                            style="cursor: pointer; font-size: 1.1em; color: rgb(106,106,106); margin-left: 5px;"
+                        ></i>
+                    </div>
+       -->
+        </div>
 
 
-
-
-        <div class="c2" onclickclose="true">
+        <div class="c2">
             <div class="c2-first-container" >
-                <div style="flex-grow: 1; border-bottom: 1px solid rgba(201, 201, 201, 0.819); border-radius: 2px;">
+   
+                <h2 class="main-title"  id="ola-message" style="
+                    text-overflow: ellipsis; white-space: nowrap; overflow: hidden;
+                    margin: 0; font-size: 2.3em; color:rgb(24, 24, 24); font-weight: 700;">Olá, </h2>
 
-                    <div class="label-plus-input-container">
-                        <label>Cidade</label>
-                        <input type="text" class="form-field-input" id="profile-cidade-input" value="">
+                <div class="user-info-and-advanced-container">
+                    <div class="category-text-container" id="category-user-info" style="border-bottom: 2px solid blue; color: rgb(18,18,18);">
+                        <h3 class="category-text" id="user-info-text">User info</h3>
                     </div>
-                    <div class="label-plus-input-container">
-                        <label>Sobre</label>
-                        <textarea name=""  cols="30" rows="13" id="profile-sobre-input"></textarea>
+                    <div class="category-text-container" id="category-advanced"  style="margin-left:30px;">
+                        <h3 class="category-text" id="avancado-text">Avancado</h3>
                     </div>
-                </div>
-                <div class="label-plus-input-container" >
-                    <label>Bio</label>
-                    <textarea name="" cols="30" rows="09" id="profile-bio-input"></textarea>
                 </div>
             </div>
-            <div class="c2-second-container">
-                <div class="label-plus-input-container">
-                    <label>Data de Nascimento - yyyy-mm-dd</label>
-                    <input type="text" class="form-field-input" id="profile-data-nascimento-input" value="">
+
+
+            <div class="c2-second-container" >
+                <div class="c2-advanced-info">
+                    <div class="label-and-input-from-c1">
+                        <label for="name">email</label>
+                        <input type="text" disabled value="xiiguilhermeiix@gmail.com" id="profile-email-input">
+                    </div>
+                    
+          
+                    <div class="label-and-input-from-c1">
+                        <label >Alterar Senha</label>
+                        <input type="text" value="" id="profile-password-input">
+                    </div>
+                    <div class="label-and-input-from-c1">
+                        <label >Confirmar Senha</label>
+                        <input type="text" value="" id="profile-confirmar-password-input">
+                    </div>
+                    <!-- <button id="deletar-btn">
+                        <div id="inside-salvar-btn-circle" style="pointer-events: none;"></div>
+                        <div id="deletar-btn" style="pointer-events: none;">Excluir conta</div>
+                    </button> -->
+
+                    <button id="deletar-btn" style="background-color: red;">
+                        <div id="inside-confirmar-btn-circle" style="pointer-events: none;"></div>
+                        <span id="confirmar-btn-text" style="pointer-events: none;">Excluir conta</span>
+                    </button>
                 </div>
-                <div class="label-plus-input-container">
+
+
+                <div class="c2-user-info">
+                <div class="label-and-input-from-c1" style="margin-top: 15px;">
+                    <label for="name">name</label>
+                    <input type="text" id="profile-name-input">
+                    </div>
+            <div class="label-and-input">
+                <label for="Local/Cidade">Local/Cidade</label>
+                <input type="text" id="profile-cidade-input" >
+            </div>
+            
+            <div class="label-and-input">
+                <label for="Sobre">Sobre (detalhada)</label>
+                <textarea type="text" style="height: 80px; resize: none;" id="profile-sobre-input" ></textarea>
+            </div>
+            
+            <div class="gender-and-born-date">
+                <div class="label-and-input" style="width: 35%;">
                     <label>Genero</label>
                     <select name="select" id="profile-genero-input">
                         <option value="1">Masculino</option>
                         <option value="2">Feminino</option>
                         <option value="3" selected>Outro</option>
-                      </select>
+                    </select>
                 </div>
-                <div class="label-plus-input-container">
-                    <label>Sociais</label>
-                    <input type="text"  class="social-input" value=""  placeholder="Numero para contato" id="profile-social-one-input" style="margin-top: 0;">
-                    <input type="text" class="social-input" value="meuinstagram.com.br" id="profile-social-two-input">
-                    <input type="text" class="social-input" value="(11) 97584-8533" id="profile-social-three-input">
-                </div>
+                
+
+                    <div class="label-and-input" style="width: 60%;">
+                        <label for="Data de Nascimento">Data de Nascimento</label>
+                        <input type="date" id="profile-data-nascimento-input">
+                    </div>
+            </div>
+                
+                <div class="label-and-input">
+                    <label for="Sobre">Telefone para contato</label>
+                <input type="text" placeholder="" id="profile-phone-input">
+            </div>
+
+            <div class="label-and-input">
+                <label for="Bio">Bio (Breve descricão)</label>
+                <textarea type="text" id="profile-bio-input" style="resize: none;"></textarea>
+            </div>
+            <div style="width: 85%; margin-top: 15px;">
                 <button id="salvar-btn">
                     <div id="inside-salvar-btn-circle" style="pointer-events: none;"></div>
-                    <div id="salvar-btn-text" style="pointer-events: none;">Salvar</div>
-                    </button>
+                    <div id="salvar-btn-text" style="pointer-events: none;">Atualizar Perfil</div>
+                </button>
+
+            </div>
+
             </div>
         </div>
+
+
+
+
+
+        
+    </div>
+    <div class="empty"></div>
+    </div>
+
+<!-- 
         <div class="c3">
-            <div class="c3-first-container">
-                <div class="avancado-container">
-                    <div style="background: white; padding: 20px 15px 20px 15px; box-sizing: border-box">
-                        <h1 style="color: #868686;"><i class="fa-solid fa-circle-exclamation" style="font-size: 0.9em; margin-right: 8px; color: #A9A9A9;"></i>Avançado</h1>
-                        <p style="color: #747474;">Todas as suas publicaçoes serão deletadas.</p>
-                        <p style="color: #747474;">Caso o campo Alterar Senha esteja vazio, a senha será mantida.</p>
-                    </div>
-
-                    <div class="label-plus-input-container" style="width: 100%">
-                        <label>Alterar Senha</label>
-                        <input type="password" class="form-field-input" value="" id="profile-password-input">
-                        <label>Confirmar Senha</label>
-                        <input type="password" class="form-field-input" value="" id="profile-confirmar-password-input">
-                    </div>
-
-                    <button id="deletar-btn" type="button">
-                    
-                        Deletar</button>
+       
+            <div class="advanced-container">
+                <div class="label-and-input-advanced" style="margin-top: 85px; margin: 10px 0 10px 0;">
+                    <label for="Bio">Mudar Senha</label>
+                    <input type="text" id="profile-password-input">
+                </div>
+                <div class="label-and-input-advanced" style="margin: 13px 0 13px 0;">
+                    <label for="Bio">Confirmar Senha</label>
+                    <input type="text" id="profile-confirmar-password-input">
                 </div>
 
+                <div style="background: white; padding: 13px  0 13px 0; margin: 10px 0px 10px 0px;">
+                    <li class="avancado-item">- Caso o campo Alterar Senha esteja vazio, a senha será mantida.</li>
+                    <li class="avancado-item" >- As senhas deve conter no minimo 8 caracteres</li>
+                    <li class="avancado-item">- É recomendavel que a senha possua caracteres especiais</li>
+                </div>
+                
+                
+                <div style="background: white; padding: 13px 0 13px 0; margin: 65px 0px 10px 0px; border-top: 1px solid #b9b9b9;">
+                    <h3 style="color: #c06666; margin-top: 0; font-size: 1.2em; margin-bottom: 15px">
+                        <i class="fa-solid fa-circle-exclamation" style="font-size: 0.7em; margin-right: 8px;">
+                        </i>Avançado
+                    </h3>
+                    <li class="avancado-item">- Seus dados serão excluidos para sempre.</li>
+                    <li class="avancado-item" >- Todas as suas publicaçoes serão deletadas.</li>
+          
+                </div>
+
+                
+
+
+                <div style="width: 70%; margin-top: 15px; float: right;">
+                <button id="deletar-btn">Excluir Conta</button>
+                </div>
             </div>
-        </div>
-    </form>
+        </div> -->
+
+
+    <div class="footer">
 </body>
 </html>

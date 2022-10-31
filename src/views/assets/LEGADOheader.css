@@ -28,6 +28,8 @@ input{
     background-color: white;
     display: flex;
     align-items: center;
+    max-width: 1000px;
+
     margin: auto;
     /* visibility: hidden; */
 }

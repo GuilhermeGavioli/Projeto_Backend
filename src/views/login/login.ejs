@@ -4,11 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./login.css" type="text/css">
-    <script src="./login.js" defer></script>
     <title>Login</title>
+    
+
+    <!-- PAGE -->
+    <script src="./login.js" defer></script>
+    <link rel="stylesheet" href="./login.css" type="text/css">
+
+
+
+     <!-- ICONS -->
+     <script src="https://kit.fontawesome.com/69266619cf.js" crossorigin="anonymous"></script>
+     <!-- BOOTSTRAP CONFIG -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+ 
 </head>
+
     <style>
+
         .main-container{
             visibility: hidden;
         }
@@ -34,30 +48,36 @@
 <body>
     <div id="spinning"></div>
 
-    <div class="fail-message-container">
+    <div class="fail-message-container"></div>
+
+
+    <div class="container" style="visibility: hidden; position: absolute;"></div>
+
+    <form class="container2">
+
+        <h1 class="login-title"><i class="fa-solid fa-user" style="font-size: 1.2em; color: #b9e371;"></i>
         
-    </div>
-    
-    <form class="container">
-        <h1>Login</h1>
-        <label for="">Email</label>
-        <input type="text" id="field-email" style="margin-bottom: 15px;">
-        <label for="">Senha</label>
-        <input type="password" id="field-password">
-        
-        <button type="submit" id="btn-logar">
-            <div id="inside-login-btn-circle" style="pointer-events: none;"></div>
-            <span id="login-btn-text" style="pointer-events: none;">Login</span>
-        </button>
+        </h1>
+        <div class="form-container">
 
+            <label for="">Email</label>
+            <input type="text" id="field-email" style="margin-bottom: 15px;">
+            <label for="">Senha</label>
+            <input type="password" id="field-password">
+            
+            <button type="submit" id="btn-logar">
+                <div id="inside-login-btn-circle" style="pointer-events: none;"></div>
+                <span id="login-btn-text" style="pointer-events: none;">Login</span>
+            </button>
+            
+            <div class="home"><i class="fa-solid fa-house" onclick="window.location.href = '/'"></i></div>
 
-        <p style="margin-top: 15px; width: 95%; text-align: right; margin-bottom: 5px; font-size: .7em; color: #555555;">
-            Não possui uma conta?
-            <a href="./pagecadastrar" style="text-decoration: none; color: #58840d;">Registre-se</a>
-
-        </p>
-        <!-- <a href="./pagecadastrar">cadastrar</a>
-        <a href="./pagecriarproduto">criarproduto</a> -->
+            <p style="margin-top: 15px; width: 95%; text-align: right; margin-bottom: 5px; font-size: .7em; color: rgb(190,190,190);;">
+                Não possui uma conta?
+                <a href="/registrar" style="text-decoration: none; color:#7db023;">Registre-se</a>
+                
+            </p>
+        </div>
     </form>
 
 

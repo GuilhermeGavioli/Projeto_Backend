@@ -51,6 +51,7 @@ body{
     /* border-left: 40px solid rgba(0, 0, 0, 0); */
    overflow: hidden;
    position: relative;
+   max-height: 700px;
    background-color: #415a77;
 }
 
@@ -95,6 +96,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+
 }
 .banner-title{
     font-size: 2.1em;
@@ -104,12 +106,13 @@ body{
     margin: 0;
     padding: 3px 25px 3px 25px;
     font-weight: 500;
+
 }
 .input-and-btn-container{
     width: 95%;
     display: flex;
     height: fit-content;
-    background-color: yellow;
+
     margin-top: 35px;
 }
 .main-input, .search-btn{
@@ -180,18 +183,20 @@ body{
     grid-template-columns: 1fr 1fr 1fr 1.5fr 1fr .5fr;
     grid-template-areas: 
     "c1 c1 c1 c2 c2 c2"
-    "c3 c3 c3 c3 c4 c4"
-    "c5 c5 c5 c5 c5 c5";
-    grid-template-rows: 400px auto auto;
+    "c3 c3 c3 c3 c4 c4";
+
+    grid-template-rows: 400px auto;
     gap: 25px;
     padding-top: 10px;
     margin: auto;
     /* background-color: red; */
+    width: 95vw;
     max-width: 1300px;
     margin-top: 0;
     z-index: inherit;
     margin-bottom: 100px;
     /* min-width: 97%; */
+    /* background-color: green; */
 }
 
 .c0, .c1, .c2, .c3, .c4, .c5{
@@ -244,7 +249,8 @@ body{
     /* justify-content: start; */
     /* background-color: yellow; */
     /* background-color: red; */
-    padding: 0  15px 0;
+    padding: 0  7px 20px 7px;
+    background-color: rgb(245,245,245);
 }
 .video-text{
     width: 30%;
@@ -256,11 +262,13 @@ body{
 .c4{
     grid-area: c4;
     background-image: url('https://images.pexels.com/photos/87841/ivy-plants-leaves-wall-87841.jpeg?auto=compress&cs=tinysrgb&w=600');
+    background-image: url('https://images.pexels.com/photos/1179229/pexels-photo-1179229.jpeg?auto=compress&cs=tinysrgb&w=600');
     background-size: cover;
     background-repeat: no-repeat;
-    filter: brightness(85%) saturate(2);
+    filter: brightness(85%);
     color: white;
     text-align: center;
+    /* background-color: black; */
     
     /* background-color: rgb(104, 180, 50); */
 
@@ -268,34 +276,42 @@ body{
 
 .ir-btn{
     border: none;
-    background-color: white;
-    padding: 2px 75px 2px 75px;
+    background-color: rgba(255, 255, 255, 0.896);
+    padding: 7px 15px 7px 15px;
+    width: 75%;
     border-radius: 5px;
+    font-size: 2em;
+    font-weight: 600;
     margin-top: 65px;
-    color: #026800;
+    color: rgba(162, 157, 61, 0.852);
 }
 
 
-.c5{
-    grid-area: c5;
-    display: flex;
-    justify-content: start;
-    background-color: rgb(42, 42, 42);
-    background: linear-gradient(rgb(42, 42, 42), rgba(42, 42, 42, 0.697));
-    background-image: url('https://images.pexels.com/photos/1748985/pexels-photo-1748985.jpeg?auto=compress&cs=tinysrgb&w=600');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    padding: 120px 15px 120px 15px;
-
+.propaganda-text-controller{
+    /* background-color: red; */
+    font-weight: 700;
+    font-size: 2.4em;
 }
+
+#side-banner-txt-1{
+    margin-top: 25px;
+}
+
+#side-banner-txt-2{
+    margin-top: 10px; margin-bottom: 85px;
+}
+#side-banner-txt-3{
+    margin-top: 25px; margin-bottom: 25px;
+}
+
+
 
 .cards{
     /* background-color: blue; */
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     flex-direction: column;
-    gap: 28px;
+    gap: 28px 15px;
     /* background-color: blue; */
     /* margin-left: 45px; */
     /* background-color: red; */
@@ -306,8 +322,10 @@ body{
     margin: auto;
     position: relative;
     margin-bottom: 10px;
-    width: 205px;
-    height: 400px;
+    width: 95%;
+    height: 100%;
+    max-width: 260px;
+    min-height: 400px;
     background-color: rgb(246, 246, 246);
 }
 
@@ -328,7 +346,7 @@ body{
     white-space: nowrap;
     overflow: hidden;
     font-size: 1.6em;
-    width: 180px;
+    width: 95%;
 }
 .card-first{
     background-color: white;
@@ -373,4 +391,631 @@ body{
 
 ::-webkit-scrollbar-thumb{
     background-color: rgba(2, 36, 2, 0.68);
+}
+
+.footer{
+    height: 250px;
+    background-color: rgb(230, 230, 230);
+    width: 100vw;
+    max-width: 2000px;
+    min-width: 290px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 1000px){
+    .propaganda-text-controller{
+        /* background-color: red; */
+        font-size: 1.8em;
+        /* color: blue; */
+    }
+}
+
+
+
+
+
+@media (max-width: 815px){
+    .banner-title-container{
+        width: 500px;
+    }
+    .container{
+        display: grid;
+        min-width: 98%;
+        grid-template-columns: 1fr 1fr 1fr 1.5fr 1fr .5fr;
+        grid-template-areas: 
+        "c1 c1 c1 c1 c1 c1"
+        "c4 c4 c4 c4 c4 c4"
+        "c2 c2 c2 c2 c2 c2"
+        "c3 c3 c3 c3 c3 c3";
+     
+        /* background-color: black; */
+        grid-template-rows: auto auto 300px auto;
+        gap: 25px;
+        padding-top: 10px;
+        margin: auto;
+        /* background-color: red; */
+        /* max-width: 1300px; */
+        margin-top: 0;
+        z-index: inherit;
+        margin-bottom: 100px;
+        /* min-width: 97%; */
+    }
+
+    .c1{
+    
+        max-width: 85%;
+        margin: auto;
+    }
+
+    .c4{
+        display: flex;
+        padding: 25px 5px 25px 65px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .propaganda-text-controller{
+        /* background-color: rgba(255, 255, 0, 0.402); */
+        font-size: 2.4em;
+        width: 35%;
+        /* background-color: blue; */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    #side-banner-txt-1{
+        width: fit-content;
+        margin-top: 5px;
+        
+    }
+    
+    #side-banner-txt-2{
+        width: fit-content;
+        margin-top: 5px; margin-bottom: 15px;
+    }
+    #side-banner-txt-3{
+        width: fit-content;
+        margin-top: 8px; margin-bottom: 8px;
+    }
+
+    .ir-btn{
+        border: none;
+        background-color: rgba(255, 255, 255, 0.896);
+        padding: 3px 55px 5px 55px;
+        border-radius: 10px;
+        font-weight: 600;
+        /* position: absolute; */
+      
+        bottom: 50px;
+        margin: auto;
+        font-size: 1.9em;
+
+        margin-bottom: 160px;
+        /* color: #026800; */
+        width: 50%;
+        max-width: 270px;
+    }
+
+
+    .c1, .c2{
+        padding: 45px 0 45px 0;
+    }
+
+    .c2{
+        padding: 0 105px 0 105px;
+
+    }
+
+    .c3{
+
+        padding: 0;
+    }
+
+    .cards{
+        /* background-color: blue; */
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        /* grid-template-rows: 400px 400px 400px; */
+        gap: 0;
+            /* background-color: blue; */
+        /* margin-left: 45px; */
+        /* background-color: red; */
+        /* margin-bottom: 20px; */
+        /* margin-top: 15px; */
+    }
+    .card-container{
+        margin: auto;
+        position: relative;
+        margin-bottom: 10px;
+        width: 185px;
+        height: 375px;
+        background-color: rgb(246, 246, 246);
+
+    }
+    
+    .card-title{
+        position: absolute;
+        color: white;
+        background-color: rgba(39, 39, 39, 0.09);
+        margin-top: 0;
+        padding: 5px 5px 10px 5px;
+        top: 0;
+        left: 5px;
+        filter: brightness(100%);
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        font-size: 1.6em;
+        width: 180px;
+    }
+    .card-first{
+        background-color: white;
+        width: 100%;
+        height: 70%;
+        background-image: url('https://images.pexels.com/photos/1391505/pexels-photo-1391505.jpeg?auto=compress&cs=tinysrgb&w=600');
+        /* filter: contrast(50%); */
+        filter: brightness(65%);
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .card-first:hover{
+        filter: none;
+        transition: 0.3s ease-in-out;
+    }
+    
+    .card-second{
+        width: 100%;
+        height: 30%;
+        box-sizing: border-box;
+        overflow-y: scroll;
+        word-break: break-all;
+        text-align: start;
+        padding: 8px 10px 10px 10px;
+        color: #5B5B5B;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 640px){
+
+  .banner-title-container{
+            width: 420px;
+        }
+        .container{
+            display: grid;
+            min-width: 98%;
+            grid-template-columns: 1fr 1fr 1fr 1.5fr 1fr .5fr;
+            grid-template-areas: 
+            "c1 c1 c1 c1 c1 c1"
+            "c4 c4 c4 c4 c4 c4"
+            "c2 c2 c2 c2 c2 c2"
+            "c3 c3 c3 c3 c3 c3";
+
+            /* background-color: black; */
+            grid-template-rows: auto 300px 300px auto;
+            gap: 25px;
+            padding-top: 10px;
+            margin: auto;
+            /* background-color: red; */
+            /* max-width: 1300px; */
+            margin-top: 0;
+            z-index: inherit;
+            margin-bottom: 100px;
+            /* min-width: 97%; */
+        }
+    
+        .c1{
+        
+            max-width: 85%;
+            margin: auto;
+        }
+    
+        .c4{
+            position: relative;
+        }
+        
+        .propaganda-text-controller{
+            visibility: hidden;
+            position: absolute;
+        }
+    
+        .ir-btn{
+            padding: 4px 10px 4px 10px;
+            border-radius: 5px;
+            position: absolute;
+            right: 0;
+            bottom: 45px;
+            left: 0;
+            margin: auto;
+            width: 65%;
+        }
+    
+    
+        .c1, .c2{
+            padding: 45px 0 45px 0;
+        }
+    
+        .c2{
+            padding: 0 105px 0 105px;
+    
+        }
+    
+        .c3{
+
+            padding: 0;
+        }
+    
+        .cards{
+            /* background-color: blue; */
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            /* grid-template-rows: 400px 400px 400px; */
+            gap: 0;
+
+            /* background-color: blue; */
+            /* margin-left: 45px; */
+            /* background-color: red; */
+            /* margin-bottom: 20px; */
+            /* margin-top: 15px; */
+        }
+        .card-container{
+            margin: auto;
+            position: relative;
+            margin-bottom: 10px;
+            width: 205px;
+            height: 375px;
+            background-color: rgb(246, 246, 246);
+
+        }
+        
+        .card-title{
+            position: absolute;
+            color: white;
+            background-color: rgba(39, 39, 39, 0.09);
+            margin-top: 0;
+            padding: 5px 5px 10px 5px;
+            top: 0;
+            left: 5px;
+            filter: brightness(100%);
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            font-size: 1.6em;
+            width: 180px;
+        }
+        .card-first{
+            background-color: white;
+            width: 100%;
+            height: 70%;
+            background-image: url('https://images.pexels.com/photos/1391505/pexels-photo-1391505.jpeg?auto=compress&cs=tinysrgb&w=600');
+            /* filter: contrast(50%); */
+            filter: brightness(65%);
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .card-first:hover{
+            filter: none;
+            transition: 0.3s ease-in-out;
+        }
+        
+        .card-second{
+            width: 100%;
+            height: 30%;
+            box-sizing: border-box;
+            overflow-y: scroll;
+            word-break: break-all;
+            text-align: start;
+            padding: 8px 10px 10px 10px;
+            color: #5B5B5B;
+        }
+
+        .c4{
+            margin-top: 85px;
+        }
+
+        .c3{
+            margin-top: 45px;
+        }
+
+        .c2{
+            grid-area: c2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            background-color: rgb(245, 235, 245);
+            /* background-color: rgb(59, 147, 60); */
+    
+            /* background-color: whitesmoke; */
+        }
+
+        .dicas-text{
+            margin-top: 8px;
+            /* background-color: red; */
+            /* background-color: red; */
+           
+            font-size: .8em;
+            text-align: start;
+            font-weight: lighter;
+            /* background-color: red; */
+            width: 100%;
+            margin-left: 2px;
+            min-width: 230px;
+        }
+    
+        .dicas-li-saudaveis-container{
+            /* background-color: blue; */
+            width: 100%;
+            max-width: 220px;
+            min-width: 230px;
+        }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 440px){
+    .banner{
+        /* max-width: 1300px; */
+        /* position: absolute; */
+        height: 115vh;
+        max-height: 700px;
+        /* /* background-image: url('https://images.pexels.com/photos/691166/pexels-photo-691166.jpeg?auto=compress&cs=tinysrgb&w=600'); */
+        /* background-image: url('https://images.pexels.com/photos/699422/pexels-photo-699422.jpeg?auto=compress&cs=tinysrgb&w=600'); */
+        background-image: url('https://images.pexels.com/photos/70862/pexels-photo-70862.jpeg?auto=compress&cs=tinysrgb&w=600');
+        background-image: url('https://images.pexels.com/photos/35196/water-plant-green-fine-layers.jpg?auto=compress&cs=tinysrgb&w=600');
+        background-color: rgb(5, 17, 2);
+        background-attachment: fixed;
+        filter: blur(12px) contrast(0.7);
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100vw;
+        min-width: 100vw;
+        background-position: center;
+    
+        /* background-color: orange; */
+    }
+
+    .banner-title-container{
+        position: absolute;
+        inset: 0 0 0 0;
+        margin: auto;
+        z-index: 5;
+        width: fit-content;
+        height: fit-content;
+        /* background-color: red; */
+        width: 98%;
+        min-width: 290px;
+        /* background-color: red; */
+        display: flex;
+        flex-direction: column;
+        background-color: #02680000;
+        align-items: center;
+        /* background-color: blue; */
+    }
+    .banner-title{
+        font-size: 2em;
+        /* color: white; */
+        color: white;
+        text-align: start;
+        margin: 0;
+        padding: 45px 25px 3px 25px;
+        font-weight: 500;
+        /* background-color: green; */
+        background-color: #02680000;
+    }
+    .container{
+        display: grid;
+        min-width: 98%;
+        grid-template-columns: 1fr 1fr 1fr 1.5fr 1fr .5fr;
+        grid-template-areas: 
+        "c1 c1 c1 c1 c1 c1"
+        "c4 c4 c4 c4 c4 c4"
+        "c2 c2 c2 c2 c2 c2"
+        "c3 c3 c3 c3 c3 c3";
+   
+        /* background-color: rgb(78, 40, 40); */
+        
+        /* background-color: black; */
+        grid-template-rows: auto 300px 300px auto;
+        gap: 25px;
+        padding-top: 10px;
+        margin: auto;
+        /* background-color: red; */
+        /* max-width: 1300px; */
+        margin-top: 0;
+        z-index: inherit;
+        min-width: 230px;
+        margin-bottom: 100px;
+        /* min-width: 97%; */
+    }
+
+
+    .c2{
+        grid-area: c2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+
+        /* background-color: whitesmoke; */
+    }
+    
+    .dicas-text{
+        margin-top: 8px;
+        /* background-color: red; */
+        /* background-color: red; */
+        font-size: .8em;
+        text-align: start;
+        font-weight: lighter;
+        /* background-color: red; */
+        width: 100%;
+        margin-left: 2px;
+        min-width: 230px;
+    }
+
+    .dicas-li-saudaveis-container{
+        /* background-color: blue; */
+        width: 100%;
+        max-width: 220px;
+        min-width: 230px;
+    }
+
+    .cards{
+        /* background-color: blue; */
+        display: grid;
+        grid-template-columns: 1fr;
+        /* grid-template-rows: 400px 400px 400px; */
+        gap: 0;
+       
+
+        /* background-color: blue; */
+        /* margin-left: 45px; */
+        /* background-color: red; */
+        /* margin-bottom: 20px; */
+        /* margin-top: 15px; */
+    }
+
+    .card-container{
+            margin: auto;
+            position: relative;
+            margin-bottom: x;
+            width: 85%;
+            height: 550px;
+            min-width: 230px;
+            margin-top: 15px;
+            background-color: rgb(246, 246, 246);
+   
+        }
 }

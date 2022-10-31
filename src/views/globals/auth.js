@@ -3,6 +3,8 @@ const BASE_URL_PATH_AUTH = 'http://localhost:3000/'
 authing();
 
 async function handleUserFetchTokenData(action) {  //action to be done in case of not auth
+  document.querySelector('.logo-header-container').addEventListener('click', () => window.location.href = '/')
+  document.getElementById('procurar-and-icon-container').addEventListener('click', () => toggleNavItem())
     const header = document.querySelector(".header");
     const headerCircle = document.querySelector('.header-user-icon')
     const main = document.querySelector(".container");
@@ -16,18 +18,15 @@ async function handleUserFetchTokenData(action) {  //action to be done in case o
     spinner
   }
 
-
     hideContent(header,headerCircle, main, spinner, registerAndLoginContainer);
     
   
     const headerPainel = document.querySelector('.header-painel');
     const headerLogoutButton = document.querySelector('.logout-btn');
   
-    // function protectAgainstNonAuthorizedUsers();
-    // function protectAgainstAuthorizedUsers();
+ 
   
   if (!getStoredToken() ) handleActionForNonAuthorizedUsers(action, items);
-  console.log('bbbbbbbbbbbbbb')
   const data = await fireAuthVerificationRequest();
   
   if (!data.auth) { 
@@ -36,14 +35,15 @@ async function handleUserFetchTokenData(action) {  //action to be done in case o
         headerCircle.addEventListener('click', (e) => toggleHeaderPainel(headerPainel))
         headerLogoutButton.addEventListener('click', () => logout())
         fitUserInfoInHeader(data.fullUser.user_image);
-      showContent(header, headerCircle, main, spinner);
+        main.addEventListener('click', () => closePainel(headerPainel))
+    showContent(header, headerCircle, main, spinner);
       
 
       registerAndLoginContainer.style.visibility = 'hidden'
       registerAndLoginContainer.style.position = 'absolute'
-        return data.fullUser;
+      return data.fullUser;
   } else {
-    window.location.href = `${BASE_URL_PATH_AUTH}pagelogin`;
+    window.location.href = `${BASE_URL_PATH_AUTH}/login`;
     
     }
 }
@@ -79,7 +79,7 @@ function handleActionForNonAuthorizedUsers(action, items) {
     headerCircle.style.visibility = "visible";
     headerCircle.style.position = "unset";
     spinner.style.visibility = "hidden";
-
+    spinner.style.position = "absolute";
   }
   
 function hideContent(header,headerCircle, main, spinner, registerAndLoginContainer) {
@@ -92,13 +92,17 @@ function hideContent(header,headerCircle, main, spinner, registerAndLoginContain
 }
   
 function fitUserInfoInHeader(imageSource) {
-    const headerUserIcon = document.querySelector('.header-user-icon');
-    try {
-        if (!imageSource) headerUserIcon.setAttribute('src', `${BASE_URL_PATH_AUTH}file_system/app/user_default.jpg`);
-        if (imageSource) return headerUserIcon.setAttribute('src', `${BASE_URL_PATH_AUTH}file_system/user/${imageSource}`);
-    } catch (err) {
-        headerUserIcon.setAttribute('src', `${BASE_URL_PATH_AUTH}file_system/user/${imageSource}`);
-    }
+  const headerUserIcon = document.querySelector('.header-user-icon');
+  let src = `${BASE_URL_PATH_AUTH}file_system/app/user_default.jpg`
+  
+
+  
+  if (imageSource) { 
+    src = `${BASE_URL_PATH_AUTH}file_system/user/${imageSource}`
+  }
+
+  headerUserIcon.setAttribute('src', src);
+    
 }
   
   function getStoredToken() {
@@ -110,25 +114,44 @@ function toggleHeaderPainel(PainelElement) {
 }
 
 
-//toggle procurar navbar item
-document.getElementById('procurar').addEventListener('click', () => toggleNavItem())
+//toggle procurar navbar item //procurar
+
 function toggleNavItem() {
-  const painel = document.getElementById('procurar-painel')
+  console.log('opening')
+  const painel = document.querySelector('.procurar-painel-container')
+
+  const produtores = document.getElementById('produtores-item')
+  const produtos = document.getElementById('produtos-item')
+  // const painelItems = document.querySelector('.painel-items')
+  const seta = document.getElementById('seta')
+
+
   isPainelOpen = painel.getAttribute('isOpen')
 
-  if (isPainelOpen.toString() == 'false') {
+  if (isPainelOpen.toString() == "false") {
     painel.style.visibility = 'visible';
-    painel.style.opacity = '100%';
+    painel.style.height = '90px';
     painel.setAttribute('isOpen', 'true');
+
+    seta.style.transform = 'rotate(-90deg)'
+    setTimeout(() => {
+      produtores.style.visibility = 'visible'
+      produtos.style.visibility = 'visible'
+    }, 150);
   } else {
+    painel.style.height = '0';
     painel.style.visibility = 'hidden';
-    painel.style.opacity = '0%';
+    seta.style.transform = 'rotate(0deg)'
+    produtores.style.visibility = 'hidden'
+    produtos.style.visibility = 'hidden'
     painel.setAttribute('isOpen', 'false');
   }
 }
 
 //adds paths to header links
-
+function closePainel(headerPainel) {
+  headerPainel.style.visibility = 'hidden';
+}
 
 
 function authing() {
@@ -139,8 +162,16 @@ function logout() {
   window.localStorage.removeItem('token');
   window.location.reload();
 }
-  
 
+function convertGender(genderNumber) {
+  if (genderNumber === 1 ) return 'Masculino'
+  if (genderNumber === 2 ) return 'Feminino'
+  if (genderNumber === 0 ) return 'Outro'
+}
+  
+function calcularIdade(ano) {
+  return Number(new Date().getFullYear() - ano);
+}
 
 
   

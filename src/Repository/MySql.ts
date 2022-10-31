@@ -82,6 +82,7 @@ export default class MySql implements Repository {
             birth_date,
             about_me,
             bio,
+            created_at,
             user_image
             FROM user WHERE full_name LIKE "%${name}%" || about_me LIKE "%${name}%" || bio LIKE "%${name}%";`);
             if (!rows) return null;
@@ -95,6 +96,7 @@ export default class MySql implements Repository {
             birth_date,
             about_me,
             bio,
+            created_at,
             user_image
              FROM user WHERE full_name LIKE "%${name}%";`);
             if (!rows) return null;

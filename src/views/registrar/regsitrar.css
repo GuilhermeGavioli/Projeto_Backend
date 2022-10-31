@@ -11,25 +11,24 @@ body{
 .container2{
     font-family: 'Inter', sans-serif;
     visibility: hidden;
-    width: 450px;
+    width: 600px;
     height: fit-content;
     margin: auto;
-    margin-top: 100px;
+    margin-top: 20px;
 }
 
 .login-title{
     background-color: #72a220;
-    border-radius: 25px 25px 0 0;
+    border-radius: 40px 40px 0 0;
     color: white;
     width: 85%;
     margin: 0;
     margin: auto;
     text-align: center;
-    padding: 22px 15px 22px 15px;
+    padding: 18px 15px 18px 15px;
 }
 
 .form-container{
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -73,7 +72,8 @@ label{
     user-select: none;
 }
 
-input{
+input, #field-gender{
+    
     margin-top: 0;
     background-color: rgb(235,235,235);
     border-radius: 2px;
@@ -81,9 +81,11 @@ input{
     font-size: .9em;
     box-sizing: border-box;
     padding-left: 5px;
+    font-weight: 500;
     color: rgb(135,135,135);
     padding-left: 15px;
     box-sizing: border-box;
+
     outline: none;
     font-family: Arial, Helvetica, sans-serif!important;
 }
@@ -93,13 +95,19 @@ input:focus{
     border: 1px solid rgb(235,235,235);
 }
 
+#field-gender{
+    height: 38px;
+}
+
+
+
 button, input{
     margin: auto;
     height: 38px;
     width: 90%;
 }
 
-#btn-logar{
+#btn-cadastrar{
     user-select: none;
     border-radius: 2px;
     color: rgb(236, 255, 226);
@@ -113,14 +121,14 @@ button, input{
     margin-bottom: 25px;
     position: relative;
 }
-#btn-logar:hover{
+#btn-cadastrar:hover{
     opacity: 90%;
     cursor: unset;
 }
 
 
 
-#inside-login-btn-circle{
+#inside-cadastrar-btn-circle{
     position: absolute;
     margin: auto;
     inset: 0 0 0 0;

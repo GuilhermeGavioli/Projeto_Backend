@@ -241,6 +241,7 @@ input::placeholder{
    
     background: linear-gradient(to right, rgb(167,211,80),  rgb(46, 74, 31));
     background: linear-gradient(to right, rgb(80, 108, 211),  rgb(47, 62, 114));
+    background: linear-gradient(to right, rgb(87, 198, 70),  rgb(41, 100, 32));
     background-attachment: fixed;
     /* filter: blur(12px) contrast(0.7); */
     background-repeat: no-repeat;

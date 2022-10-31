@@ -6,19 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
 
+    <!-- PAGE -->
     <link rel="stylesheet" href="./home.css">
-    <link rel="stylesheet" href="./homeheader.css">
+    <script src="./home.js"></script>
 
-    
-    <script src="../assets/auth.js" defer></script>
-    <script defer src="./toggeSidebar.js" defer></script>
-    <script src="./home.js" defer></script>
-
-    <script src="https://kit.fontawesome.com/69266619cf.js" crossorigin="anonymous" defer></script>
-
-    <!-- Bootstrap -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+     <!-- GLOBALS -->
+     <script src="../globals/auth.js" defer></script>
+     <script src="../globals/sidebar.js" defer></script>
+     <link rel="stylesheet" href="../globals/header.css" type="text/css">
+     
+ 
+     <!-- BOOTSTRAP CONFIG -->
+     <script src="https://kit.fontawesome.com/69266619cf.js" crossorigin="anonymous"></script>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -28,47 +29,120 @@
 
 
     <header class="header">
-        <div style="height: fit-content; display: flex; align-items: center;">
-            <img src="../assets/gg.png" style="width: 70px; height: 70px; margin-left: 8px;" alt="">
-            <!-- <nav class="company-name" style="margin-right: 45px;">Girassol</nav> -->
-        </div>
-        <div class="header-main">
-            <p class="nav-item">Home</p>
-            <p class="nav-item">Sobre</p>
-            <p class="nav-item">Produtos</p>
-            <div class="nav-item" id="procurar">Procurar 
-                <span id="procurar-painel" isOpen="false">
-                    <li><a href="/pageprocurarusuario">Produtores</a></li>
-                    <li><a href="/pageprocurarusuario">Produtos</a></li>
+        <div style="height: 100%; display: flex; align-items: center; background-color: rgb(250,250,250);" class="logo-header-container" onClick="window.location.href = '/'">
+            <img src="../assets/logo.png" style="width: 100%; height: 100%; margin-left: 8px; min-width: 75px; max-width: 85px;" alt="">
+            <div class="company-name" style="height: fit-content; display: flex; padding: 0 35px;">
+                <span style="font-family: monospace; font-size: 1.6em; color:rgb(41, 41, 41); text-decoration: solid;">
+                    Go
                 </span>
+                <span style="font-family: monospace; font-size: 1.6em;color:rgb(122, 192, 16); font-weight: 800;">
+                    Green
+                </span>
+            </div>
+        </div>
+
+        <div class="header-main">
+            <p class="nav-item"><a href="/" style="color: rgb(68,68,68)">Home</a></p>
+            <p class="nav-item"><a href="/sobre" style="color: rgb(68,68,68)">Sobre</a></p>
+            <p class="nav-item"><a href="/produtos" style="color: rgb(68,68,68)">Produtos</a></p>
+
+
+          
+            <div class="nav-item" id="procurar-nav-item">
+            <p id="procurar-and-icon-container">
+                Procurar
+                <i class="fa-solid fa-caret-down" id="seta" style="font-size: .9em; margin-left: 3px; height: fit-content;"></i>
+            </p>
+            
+            <div class="procurar-painel-container" isOpen="false">
+                <p style="margin: 0;" id="produtores-item" onClick="window.location.href = '/procurarUsuario'">Produres</p>
+                <p style="margin: 0; margin-top: 8px;"id="produtos-item" onClick="window.location.href = '/procurarProduto'">Produtos</p>
+            </div>
             </div>
             <p class="hamburger-icon"><i class="fa-solid fa-bars"></i></p>
         </div>
-        <div id="register-and-login" style="display: flex;">
-            <p style="margin:0;" ><a href="/pagecadastrar" style="text-decoration: none;">Cadastrar</a></p>
+
+        <div id="register-and-login" style="margin-left: 25px; display: flex; background-color: rgb(249, 249, 249); justify-content: center;">
+            <p style="margin:0; padding-right: 15px; border-right: 1px solid rgb(92, 92, 92);" ><a href="/registrar" style="text-decoration: none;">
+                <i class="fa-solid fa-user-plus" style="color:rgb(59, 59, 59); font-size: 1.2em;"></i>
+            </a>
+        </p>
         
-            <p style="margin:0;"><a href="/pagelogin" style="text-decoration: none;">Login</a></p>
-          
-        <img class="header-user-icon" src="">
+            <p style="margin:0; padding-left: 15px;">
+                <a href="/login" style="text-decoration: none;">
+                    <i class="fa-solid fa-right-to-bracket" style="color:rgb(59, 59, 59); font-size: 1.2em;"></i>
+                </a>
+            </p>
+        </div>
+
+        <div class="header-user-icon-container">
+            <img class="header-user-icon" src="" style="position:relative;">
             <div class="header-painel" style="visibility: hidden;">
-                <li class="user-painel-item" style="margin-top: 0;"><a href="http://localhost:3000/pagealterarusuario">Meu Perfil</a></li>
-                <li class="user-painel-item"><a href="/criar">Criar</a></li>
-                <li class="user-painel-item"><a href="/criar">Meus produtos</a></li>
+                <li class="user-painel-item" style="margin-top: 0;">
+                    <a href="/"
+                    style="text-decoration: none; color: rgb(177, 177, 177);"
+                    >Home</a></li>
+                <li class="user-painel-item" style="margin-top: 0;">
+                    <a href="/alterarusuario"
+                    style="text-decoration: none; color: rgb(177, 177, 177);"
+                    >Meu Perfil</a></li>
+                <li class="user-painel-item"><a href="/criar"
+                    style="text-decoration: none; color: rgb(177, 177, 177);">Criar</a></li>
+                <li class="user-painel-item"><a href="/criar"
+                    style="text-decoration: none; color: rgb(177, 177, 177); margin-bottom:25px;"
+                    >Meus produtos</a></li>
                 <button class="logout-btn">Logout</button>
             </div>
-        </img>
+        </div>
     </header>
+
 
     <div class="sidebar" isOpen="false">
         <div class="sidebar-items">
-            <p class="sidebar-item">Home</p>
-            <p class="sidebar-item">Sobre Nós</p>
-            <p class="sidebar-item">Produtos</p>
-            <p class="sidebar-item">Procurar Produto</p>
-            <p class="sidebar-item">Procurar Produtor</p>
+            <p class="sidebar-item" onclick="window.location.href = '/'">Home</p>
+            <p class="sidebar-item" onclick="window.location.href = '/sobreNos'">Sobre Nós</p>
+            <p class="sidebar-item" onclick="window.location.href = '/produtos'">Produtos</p>
+            <p class="sidebar-item" onclick="window.location.href = '/procurarProduto'">Procurar Produto</p>
+            <p class="sidebar-item" onclick="window.location.href = '/procurarUsuario'">Procurar Produtor</p>
             <h2 id="click-to-close">CLICK PRA FECHAR</h2>
         </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -105,11 +179,28 @@
         </div>
         <div class="c2">
             <h2><i class="fa-solid fa-utensils"></i> Dicas Saudáveis</h2>
-                <li class="dicas-text"><i class="fa-solid fa-carrot"></i> Se alimente de forma saudavel a cada 3 horas</li>
-                <li class="dicas-text"><i class="fa-solid fa-dumbbell"></i> Pratique exercicios físicos diariamente</li>
-                <li class="dicas-text"><i class="fa-solid fa-glass-water"></i> Beba no minimo dois litros de água por dia</li>
-                <li class="dicas-text"><i class="fa-solid fa-gun"></i> Nao se mate</li>                
-                <li class="dicas-text"><i class="fa-solid fa-industry"></i> Evite produtos industrializados</li>                
+            <div class="dicas-li-saudaveis-container">
+
+                <li class="dicas-text">
+                    <!-- <i class="fa-solid fa-carrot"></i> -->
+                     Se alimente de forma saudavel a cada 3 horas
+                    </li>
+                <li class="dicas-text">
+                    <!-- <i class="fa-solid fa-dumbbell"></i>  -->
+                    Pratique exercicios físicos diariamente
+                </li>
+                <li class="dicas-text">
+                    <!-- <i class="fa-solid fa-glass-water"></i> -->
+                     Beba no minimo dois litros de água por dia
+                    </li>
+                <li class="dicas-text">
+                    <!-- <i class="fa-solid fa-gun"></i>  -->
+                    Nao se mate
+                </li>                
+                <li class="dicas-text">
+                    <!-- <i class="fa-solid fa-industry"></i> -->
+                     Evite produtos industrializados</li>                
+            </div>
         </div>
         <div class="c3" >
             <!-- <iframe width="85%" height="320" src="https://www.youtube.com/embed/8LAFIDR56Sw" title="YouTube video player" frameborder="15" allow="accelerometer; clipboard-write; encrypted-media; gyroscope;" allowfullscreen></iframe> -->
@@ -121,8 +212,8 @@
                 <source src="https://www.youtube.com/embed/8LAFIDR56Sw" type="video/ogg">
                 Your browser does not support the video tag.
               </video> -->
-              <h2 style="width: fit-content; margin:auto; margin-bottom: 45px; font-size: 2.5em; width: 100%;
-                padding: 10px;
+              <h2 style="width: fit-content; margin:auto; margin-bottom: 15px; font-size: 1.8em; width: 100%;
+                padding: 10px; color:rgb(53, 53, 53);
               ">Produtos em Destaque</h2>
               <div class="cards">
     
@@ -169,24 +260,26 @@
           </div>
         </div>
         <div class="c4">
-            <h1 style="margin-top: 25px; font-size: 2.7em;">COMEÇAR</h1>
-            <h1 style="margin-top: 10px; margin-bottom: 85px; font-size: 2.7em;">AGORA</h1>
-            <!-- <h1 style="font-size: 2.7em;">QUERO</h1>
-            <h1 style="font-size: 2.6em;">ME</h1> -->
-            <h1 style="font-size: 2.7em;">REGISTRAR</h1>
-            <!-- <h1 style="font-size: 2.6em;">DE</h1> -->
-            <h1 style="font-size: 2.6em; margin-top: 25px; margin-bottom: 25px;">DE FORMA</h1>
-            <h1 style="font-size: 3.1em;">GRATUITA</h1>
-            <button class="ir-btn"><h1>ir</h1></button>
-    
+            <div class="propaganda-text-controller">
 
-                <p style="font-size: 1.3em; font-weight: 700; margin-top: 150px; cursor: pointer;">Criar uma conta</p>
-                <p style="font-size: 1.3em; font-weight: 700; cursor: pointer;">Cadastre-se</p>
+                <p  id="side-banner-txt-1">COMEÇAR</p>
+                <p  id="side-banner-txt-2">AGORA</p>
+                
+                <p>REGISTRAR</p>
+                
+                <p id="side-banner-txt-3">DE FORMA</p>
+                <p>GRATUITA</p>
+            </div>
+            <button class="ir-btn">Registrar</button>
+
    
         
         </div>
         
-        <div class="c5">
+ 
+        
+    </div>
+    <div class="footer">
             
             </body>
             
@@ -197,7 +290,7 @@
     
                 Your browser does not support the video tag.
               </video>
-            <iframe id="iframe" width="600" height="320" src="https://www.youtube.com/embed/8LAFIDR56Sw" title="YouTube video player" frameborder="15" allow="accelerometer; clipboard-write; encrypted-media; gyroscope;" allowfullscreen></iframe> --> -->
+            <iframe id="iframe" width="600" height="320" src="https://www.youtube.com/embed/8LAFIDR56Sw" title="YouTube video player" frameborder="15" allow="accelerometer; clipboard-write; encrypted-media; gyroscope;" allowfullscreen></iframe> -->
                 <!-- <p class="video-text">A importancia de se alimentar de forma saudavel está cada vez mais sendo parte da rotina das pessoas no mundo, com isso, é relevante que informaçoes corretas sejam compartilhadas entre todos.</p>
         </div>
     </div>

@@ -1,7 +1,8 @@
 window.onload = async () => {
+    
     const spinning = document.getElementById("spinning");
     spinning.style.visibility = 'visible'
-    const main = document.querySelector('.container');
+    const main = document.querySelector('.container2');
     main.style.visibility = 'hidden'
 
     const token = getStoredToken();
