@@ -20,11 +20,14 @@ import path from 'path'
 
 
 // Same instance of conection
-import { mySqlDatabase } from "..";
+// import { mySqlDatabase } from "..";
 import OutputCadastrarDTO from "../DTO/output/cadastrar";
 
+import MySql from "../Repository/MySql";
+// export const mySqlDatabase = new MySql('localhost', 'root', 'test', 'password', 3306);
+// const mySqlDatabase;
 
-// adicionar validation - - - - > Services/validation
+// adicionar Try catch - - - - > Services/validation
 export const controllers = {
 
     
@@ -184,8 +187,8 @@ export const controllers = {
     getProdutos: async (req: Request, res: Response) => {
         const nomeproduto = req.params.nomeproduto.toString().toLowerCase();
         const procurarnadescricao = req.params.procurarnadescricao.toString().toLowerCase();
-        const productFound = await mySqlDatabase.findManyProductsByName(nomeproduto, (procurarnadescricao == "true"));
-        return res.json(productFound);
+        const productsFound = await mySqlDatabase.findManyProductsByName(nomeproduto, (procurarnadescricao == "true"));
+        return res.json(productsFound);
     },
 
     getProdutosFromUser: async (req: Request, res: Response) => {
@@ -194,7 +197,8 @@ export const controllers = {
         console.log(produtorId)
         const productsFound = await mySqlDatabase.findProductsFromUser(produtorId);
         console.log(productsFound)
-        return res.json(productsFound);
+        // return res.json(productsFound);
+        return res.render(path.join("template", "test2"), productsFound );
     },
 
     authValidation: async (req: Request, res: Response) => {

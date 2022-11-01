@@ -1,0 +1,141 @@
+
+.footer{
+    /* background-color: white; */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    color: white;
+    height: 350px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(to top right,white,rgb(255,255,255), rgb(235,235,235));
+}
+
+.f2, .f3{
+    width: 30%;
+    height: 100%;
+    /* border: 1px solid white; */
+}
+
+.f1{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 0 20px 0 20px;
+}
+
+.f1-main{
+    text-align: start;
+    width: fit-content;
+    /* background-color: blue; */
+    width: 300px;
+    height: fit-content;
+    
+    
+}
+.f1-text, .f1-title, .f1-second-title{
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+}
+.f1-title{
+    color: rgb(60,68,55);
+    font-size: 3.4em;
+    font-weight: 600;
+}
+
+.f1-second-title{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.6em;
+    color: white;
+    /* background-color: red; */
+}
+
+.f1-text{
+    padding-top: 20px;
+    max-width: 200px;
+    /* background-color: red; */
+    width: fit-content;
+    font-size: .7em;
+}
+.f2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.f2-circle{
+    background-image: url('../assets/logo_sem_marcadagua.png');
+    background-size: cover;
+    width: 180px;
+    height: 130px;
+}
+
+.footer-circle{
+    width: 600px;
+    background-color: white;
+    /* background-color: rgb(80,117,73); */
+    border-radius: 68%;
+    position: absolute;
+    height: 600px;
+    z-index: 0;
+    left: -80px;
+    bottom: -130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 15px solid rgb(128, 192, 18);
+}
+
+
+.footer-circle-inside{
+    width: 550px;
+    height: 550px;
+    border-radius: 68%;
+    z-index: 1;
+    /* background-color: rgb(119,181,12); */
+    background: linear-gradient(to top right, rgb(66, 96, 16), rgb(119,181,12));
+}
+
+
+.footer-circle-2{
+    width: 415px;
+    background-color: white;
+    /* background-color: rgb(80,117,73); */
+    border-radius: 50%;
+    position: absolute;
+    height: 415px;
+    z-index: 0;
+    right: -70px;
+    bottom: -210px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 10px solid rgb(127, 188, 22);
+}
+
+.footer-circle-inside-2{
+    width: 390px;
+    height: 390px;
+    border-radius: 50%;
+    z-index: 1;
+    background-color: rgb(119,181,12);
+    background: linear-gradient(to top left, rgb(66, 96, 16), rgb(125, 188, 17));
+    text-align: center;
+    position: relative;
+}
+.sobre-nos-text{
+  
+    height: fit-content;
+  
+    position: absolute;
+    font-size: .9em;
+    inset: 0 40px 105px 0;
+    margin: auto;
+}

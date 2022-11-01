@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 
-// export const mySqlDatabase = new MySql('localhost', 'root', 'test', 'password', 3306);
+
 // try{
 // } catch(err) {
 //     throw err;
@@ -52,9 +52,11 @@ app.use(express.static(path.join(__dirname + '/views' + '/procurarUsuario')));
 app.use(express.static(path.join(__dirname + '/views' + '/assets')));
 app.use(express.static(path.join(__dirname + '/views' + '/globals')));
 
-// app.get('/pagetest',(req, res) => {
-//     res.render(path.join("test", "test"));
-// })
+app.use(express.static(path.join(__dirname + '/views' + '/404Error')));
+app.use(express.static(path.join(__dirname + '/views' + '/TEMPLATE')));
+app.get('/pagetest',(req, res) => {
+    res.render(path.join("TEMPLATE", "index"));
+})
 
 //file System routes to access images from users and products//
 app.get('/file_system/user/:filename',(req, res) => { 
