@@ -135,10 +135,10 @@
     grid-template-areas: 
     "c0 c0 c0 c0 c0 c0"
     "c1 c1 c1 c1 c1 c1"
-    /* "c2_1 c2_1 c2_1 c2_1 c2_1 c2_1" */
-    "c3 c3 c3 c3 c3 c3"
-    "c2 c2 c2 c2 c2 c2";
-    grid-template-rows: auto 400px 400px auto;
+    "c2 c2 c2 c2 c2 c2"
+    "c3 c3 c3 c3 c3 c3";
+
+    grid-template-rows: auto 400px auto auto;
     column-gap: 5px;
     /* row-gap: 25px; */
     padding-top: 10px;
@@ -223,11 +223,11 @@
 .c2{
     grid-area: c2;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
- 
     padding: 0 20px 0 20px;
+    background-color: whitesmoke;
     /* background-color: whitesmoke; */
 }
 .dicas-li-saudaveis-container{
@@ -246,15 +246,101 @@
     margin-top: 4px;
 }
 
-.c2_1{
-    grid-area: c2_1;
+.c2{
+    grid-area: c2;
     /* background-color: rgb(58,64,58); */
     display: flex;
     padding: 25px;
     text-align: center;
     justify-content: space-around;
+    /* align-items: center; */
+    /* background-color: #7eb118; */
+    padding-top: 115px;
+    margin-top: 45px;
+}
+.c2-circle{
+    width: 265px;
+    height: 265px;
+    border-radius: 50%;
+    /* background-image: url('https://media.istockphoto.com/photos/in-the-hands-of-trees-growing-seedlings-bokeh-green-background-female-picture-id1181366400?b=1&k=20&m=1181366400&s=612x612&w=0&h=oafwC9H6RkVS8s6rq0gkIxM11AkinWIHVTdWU4WyCFU='); */
+    /* background: radial-gradient(rgb(155, 213, 37),rgb(140, 193, 34), rgb(155, 213, 37)); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10em;
+    position: relative;
+    background-color: white;
+    border: 10px solid rgb(155, 213, 37);
+    color: white;
+    overflow: hidden;
+}
+.c2-inside-circle{
+    background-color: rgb(155, 213, 37);
+    width: 245px;
+    height: 245px;
+    border-radius: 50%;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: -25px;
+    margin: auto;
+}
+
+.como-usar-cards-container{
+    display: flex;
+    flex-direction: column;
+    /* background-color: blue; */
+    width: 575px;
+}
+.como-usar-card{
+    /* background-color: gray; */
+    display: flex;
+    padding: 18px;
+    margin: 5px 0 5px 0;
+    box-shadow: 6px 6px 10px -3px rgba(0, 0, 0, 0.154);
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+.como-usar-card:hover{
+    background-color: whitesmoke;
+}
+.card-number-container{
+    /* background-color: teal; */
+    height: 100%;
+    width: 75px;
+    margin-right: 25px;
+    padding: 0;
+}
+.card-number{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.3em;
+    line-height: 30px;
+    border: 3px solid rgba(216, 216, 216, 0.775);
+    border-top: 3px solid rgb(155, 213, 37);
+    color: rgb(155, 213, 37);
+    font-weight: 700;
+}
+.como-usar-card-title{
+    text-align: start;
+    font-size: 1.7em;
+    /* background-color: #415a77; */
+    color: rgb(126, 176, 28);
+    margin: 0;
+    font-weight: 700;
+}
+.como-usar-card-text{
+    color: rgb(60,68,55);
+    font-weight: 500;
+    padding-top: 10px;
+    text-align: start;
+    /* background-color: #4176b3; */
+    font-size: 1.1em;
+    margin: 0;
 
 }
+
 
 .c3{
     grid-area: c3;
@@ -269,6 +355,9 @@
     /* background-color: yellow; */
     /* background-color: red; */
     padding: 0  7px 20px 7px;
+    position: relative;
+    padding-top: 115px;
+    margin-top: 45px;
     /* background-color: rgb(245,245,245); */
 }
 .video-text{
@@ -387,7 +476,8 @@
     width: 100%;
     height: 45%;
     box-sizing: border-box;
-    overflow-y: scroll;
+    text-overflow: ellipsis;
+    overflow: hidden;
     word-break: break-all;
     text-align: start;
     padding: 15px 25px 10px 25px;
