@@ -24,7 +24,7 @@ import path from 'path'
 import OutputCadastrarDTO from "../DTO/output/cadastrar";
 
 import MySql from "../Repository/MySql";
-// export const mySqlDatabase = new MySql('localhost', 'root', 'test', 'password', 3306);
+export const mySqlDatabase = new MySql('localhost', 'root', 'test', 'password', 3306);
 // const mySqlDatabase;
 
 // adicionar Try catch - - - - > Services/validation
@@ -183,12 +183,18 @@ export const controllers = {
     },
 
     //alterar produtos
-
+//'/getproduto/:procurarnadescricao/:nomeproduto'
     getProdutos: async (req: Request, res: Response) => {
-        const nomeproduto = req.params.nomeproduto.toString().toLowerCase();
-        const procurarnadescricao = req.params.procurarnadescricao.toString().toLowerCase();
-        const productsFound = await mySqlDatabase.findManyProductsByName(nomeproduto, (procurarnadescricao == "true"));
-        return res.json(productsFound);
+        console.log('hellothere')
+        const nomeProduto = req.query.nomeProduto?.toString().toLowerCase();
+        const number = req.query.number?.toString().toLowerCase();
+        const procurarnadescricao = req.query.queryDescriptionAlso?.toString().toLowerCase();
+        console.log(nomeProduto, procurarnadescricao, number)
+        if (!nomeProduto || !number) return res.json('n tem')
+        const productsFound = await mySqlDatabase.findManyProductsByName(nomeProduto, (procurarnadescricao == "true"), Number(number));
+      
+        if (number !== '0') return res.json(productsFound)
+        return res.render(path.join("TEMPLATE", "index.ejs"), { productsFound, nomeProduto });
     },
 
     getProdutosFromUser: async (req: Request, res: Response) => {

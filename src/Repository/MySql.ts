@@ -158,14 +158,16 @@ export default class MySql implements Repository {
     // SOLVE: if db had 100.000 thousands of products
     // how to: limit max number to 20
     // users request +20 then +20 then +20 then +20; 
-    public async findManyProductsByName(name: string, queryDescriptionAlso: boolean): Promise<GetOneOutputDTO[] | null> {
+    public async findManyProductsByName(name: string, queryDescriptionAlso: boolean, number: number): Promise<GetOneOutputDTO[] | null> {
+
         if (queryDescriptionAlso) {
             const [rows] = await this.connection.execute(`SELECT 
             product_id,
             product_name,
             product_image,
             product_description
-            FROM product WHERE product_name LIKE "%${name}%" || product_description LIKE "%${name}%";`);
+            FROM product WHERE product_name LIKE "%${name}%" || product_description LIKE "%${name}%" 
+            LIMIT ${number}, ${number + 8};`);
             if (!rows) return null;
             return rows;
         } else { 

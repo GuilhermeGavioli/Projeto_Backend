@@ -8,7 +8,7 @@
 
     <!-- PAGE -->
     <link rel="stylesheet" href="./home.css">
-    <script src="./home.js"></script>
+    <script src="./home.js" defer></script>
 
      <!-- GLOBALS -->
      <script src="../globals/auth.js" defer></script>
@@ -52,15 +52,11 @@
             <p class="nav-item"><a href="/" style="color: rgb(68,68,68)">Home</a></p>
             <p class="nav-item"><a href="/sobre" style="color: rgb(68,68,68)">Sobre</a></p>
             <p class="nav-item"><a href="/produtos" style="color: rgb(68,68,68)">Produtos</a></p>
-
-
-          
             <div class="nav-item" id="procurar-nav-item">
             <p id="procurar-and-icon-container">
                 Procurar
                 <i class="fa-solid fa-caret-down" id="seta" style="font-size: .9em; margin-left: 3px; height: fit-content;"></i>
             </p>
-            
             <div class="procurar-painel-container" isOpen="false">
                 <p style="margin: 0;" id="produtores-item" onClick="window.location.href = '/procurarUsuario'">Produtores</p>
                 <p style="margin: 0; margin-top: 8px;"id="produtos-item" onClick="window.location.href = '/procurarProduto'">Produtos</p>
@@ -69,12 +65,12 @@
             <p class="hamburger-icon"><i class="fa-solid fa-bars"></i></p>
         </div>
 
+
         <div id="register-and-login" style="margin-left: 25px; display: flex; background-color: rgb(249, 249, 249); justify-content: center;">
             <p style="margin:0; padding-right: 15px; border-right: 1px solid rgb(92, 92, 92);" ><a href="/registrar" style="text-decoration: none;">
                 <i class="fa-solid fa-user-plus" style="color:rgb(59, 59, 59); font-size: 1.2em;"></i>
             </a>
         </p>
-        
             <p style="margin:0; padding-left: 15px;">
                 <a href="/login" style="text-decoration: none;">
                     <i class="fa-solid fa-right-to-bracket" style="color:rgb(59, 59, 59); font-size: 1.2em;"></i>
@@ -82,7 +78,7 @@
             </p>
         </div>
 
-        <div class="header-user-icon-container">
+        <div class="header-user-icon-container" style="background: green;">
             <img class="header-user-icon" src="" style="position:relative;">
             <div class="header-painel" style="visibility: hidden;">
                 <li class="user-painel-item" style="margin-top: 0;">
@@ -90,10 +86,10 @@
                     style="text-decoration: none; color: rgb(177, 177, 177);"
                     >Home</a></li>
                 <li class="user-painel-item" style="margin-top: 0;">
-                    <a href="/alterarusuario"
+                    <a href="/MeuPerfil"
                     style="text-decoration: none; color: rgb(177, 177, 177);"
                     >Meu Perfil</a></li>
-                <li class="user-painel-item"><a href="/criar"
+                <li class="user-painel-item"><a href="/estacaoDeCriacao"
                     style="text-decoration: none; color: rgb(177, 177, 177);">Criar</a></li>
                 <li class="user-painel-item"><a href="/criar"
                     style="text-decoration: none; color: rgb(177, 177, 177); margin-bottom:25px;"
@@ -162,8 +158,9 @@
             <h1 class="banner-title">Aqui voce encontrará informaçoes sobre produtos organicos que tem interesse livre de comissoes e compartilhados por outros criadores na Plataforma.</h1> 
             <div class="input-and-btn-container">
                 <input type="text" placeholder="Buscar um produto" class="main-input"> 
-                <button class="search-btn">  <i class="fa-solid fa-magnifying-glass"></i>  </button>
+                <button type="submit" class="search-btn">  <i class="fa-solid fa-magnifying-glass"></i>  </button>
             </div>
+        
         </form>
         <div class="text-and-btn-container">
             
@@ -183,8 +180,13 @@
         <div class="c0">
             <div class="website-card">
                 <div class="website-card-first-part">
+                    <!-- https://images.pexels.com/photos/270557/pexels-photo-270557.jpeg?auto=compress&cs=tinysrgb&w=600 -->
                     <div class="website-card-circle"
-                    style="background-image: url('https://images.pexels.com/photos/270557/pexels-photo-270557.jpeg?auto=compress&cs=tinysrgb&w=600'); background-size: cover; background-position: center center;"></div>
+                    style="background-color: rgb(60, 68, 55); background-size: cover; background-position: center center;
+                    display: flex; align-items: center; justify-content: center; font-size: 3em; color: white
+                    ">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
                 </div>
                 <div class="website-card-second-part">
                     <h2 style="font-size: 1.8em;">Confiabilidade</h2>
@@ -193,7 +195,8 @@
             </div>
             <div class="website-card">
                 <div class="website-card-first-part">
-                    <div class="website-card-circle" style="background-image: url('https://media.istockphoto.com/photos/accessibility-computer-icon-stock-photo-picture-id1319994839?b=1&k=20&m=1319994839&s=612x612&w=0&h=TQNH6xrvIuryKRAjRRRBHFh_WrV6xe3sw4cmqOIiPLY='); background-size: cover; background-position: center bottom;"></div>
+                    <!-- https://media.istockphoto.com/photos/accessibility-computer-icon-stock-photo-picture-id1319994839?b=1&k=20&m=1319994839&s=612x612&w=0&h=TQNH6xrvIuryKRAjRRRBHFh_WrV6xe3sw4cmqOIiPLY= -->
+                    <div class="website-card-circle" style="background-image: url(''); background-color: rgb(126, 176, 28); background-size: cover; background-position: center bottom;"></div>
                 </div>
                 <div class="website-card-second-part">
                     <h2 style="font-size: 1.8em;">Acessibilidade</h2>

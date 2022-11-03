@@ -6,7 +6,9 @@ async function handleUserFetchTokenData(action) {  //action to be done in case o
   document.querySelector('.logo-header-container').addEventListener('click', () => window.location.href = '/')
   document.getElementById('procurar-and-icon-container').addEventListener('click', () => toggleNavItem())
     const header = document.querySelector(".header");
-    const headerCircle = document.querySelector('.header-user-icon')
+  const headerCircle = document.querySelector('.header-user-icon')
+  const headerUserCircleContainer = document.querySelector('.header-user-icon-container')
+  
     const main = document.querySelector(".container");
     const spinner = document.getElementById("spinning");
     const registerAndLoginContainer = document.getElementById('register-and-login');
@@ -32,6 +34,7 @@ async function handleUserFetchTokenData(action) {  //action to be done in case o
   if (!data.auth) { 
     handleActionForNonAuthorizedUsers(action, items);
   } else if (data.auth) {
+    headerUserCircleContainer.style.position = 'unset';
         headerCircle.addEventListener('click', (e) => toggleHeaderPainel(headerPainel))
         headerLogoutButton.addEventListener('click', () => logout())
         fitUserInfoInHeader(data.fullUser.user_image);

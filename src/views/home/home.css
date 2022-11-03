@@ -76,6 +76,7 @@
     padding-left: 15px;
     font-size: 1.1em;
     font-weight: 500;
+    color: rgb(120, 129, 115);
 }
 .main-input::placeholder{
     color: rgb(192, 192, 192);
@@ -175,11 +176,12 @@
 .website-card{
     height: fit-content;
     background-color: white;
-    border: 1px solid rgb(220,220,220);
+    /* border: 1px solid rgb(220,220,220); */
     width: 230px;
     
     display: flex;
     flex-direction: column;
+    box-shadow: 6px 6px 10px -3px rgba(0, 0, 0, 0.154);
 }
 .website-card-first-part, .website-card-second-part{
     width: 100%;
@@ -200,7 +202,7 @@
     height: 100px;
 }
 .website-card-second-part{
-    background-color: rgb(247, 247, 247);
+   
     padding: 15px;
     margin-top: 8px;
     box-sizing: border-box;
@@ -257,6 +259,7 @@
     /* background-color: #7eb118; */
     padding-top: 115px;
     margin-top: 45px;
+    background-color: white;
 }
 .c2-circle{
     width: 265px;
@@ -270,7 +273,7 @@
     font-size: 10em;
     position: relative;
     background-color: white;
-    border: 10px solid rgb(155, 213, 37);
+    border: 18px solid rgb(155, 213, 37);
     color: white;
     overflow: hidden;
 }
@@ -282,7 +285,7 @@
     position: absolute;
     right: 0;
     left: 0;
-    top: -25px;
+    bottom: -65px;
     margin: auto;
 }
 
@@ -290,14 +293,14 @@
     display: flex;
     flex-direction: column;
     /* background-color: blue; */
-    width: 575px;
+    width: 605px;
 }
 .como-usar-card{
     /* background-color: gray; */
     display: flex;
     padding: 18px;
     margin: 5px 0 5px 0;
-    box-shadow: 6px 6px 10px -3px rgba(0, 0, 0, 0.154);
+    box-shadow: 3px 3px 10px -3px rgba(0, 0, 0, 0.198);
     transition: 0.3s ease-in-out;
     cursor: pointer;
 }
@@ -906,7 +909,7 @@
             justify-content: center;
             align-items: center;
             padding: 0;
-            background-color: rgb(245, 235, 245);
+      
             /* background-color: rgb(59, 147, 60); */
     
             /* background-color: whitesmoke; */

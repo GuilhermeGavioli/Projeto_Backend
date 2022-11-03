@@ -7,22 +7,20 @@
     <!-- <link rel="stylesheet" href="./index.css"> -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Document</title>
-
-    <!-- <link rel="stylesheet" href="../assets/header.css"> -->
-    <link rel="stylesheet" href="../home/homeheader.css">
-    <link rel="stylesheet" href="../assets/sidebar.css">
-    <link rel="stylesheet" href="./alterarperfil.css" type="text/css">
+    <title>Meu Perfil</title>
     
-    <script src="../assets/auth.js" defer></script>
-    <script src="../assets/toggeSidebar.js" defer></script>
+    
+    <link rel="stylesheet" href="./alterarperfil.css" type="text/css">
     <script src="./alterarperfil.js" defer></script>
+    
+    <link rel="stylesheet" href="../globals/footer.css">
+    <link rel="stylesheet" href="../globals/header.css">
+    <script src="../globals/auth.js" defer></script>
+    <script src="../globals/sidebar.js" defer></script>
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-
-    
     <script src="https://kit.fontawesome.com/69266619cf.js" crossorigin="anonymous"></script>
 </head>
 <style>
@@ -53,43 +51,65 @@
     <div class="success-message-container"></div>
     <div class="fail-message-container"></div>
 
-    
     <header class="header">
-        <div style="height: 100%; display: flex; align-items: center;">
-            <img src="../assets/gg.png" style="width: 100%; height: 100%; margin-left: 8px; min-width: 75px; max-width: 85px;" alt="">
-            <!-- <nav class="company-name" style="margin-right: 45px;">Girassol</nav> -->
-        </div>
-        <div class="header-main">
-            <p class="nav-item">Home</p>
-            <p class="nav-item">Sobre</p>
-            <p class="nav-item">Produtos</p>
-            <div class="nav-item" id="procurar">Procurar 
-                <span id="procurar-painel" isOpen="false">
-                    <li><a href="/pageprocurarusuario">Produtores</a></li>
-                    <li><a href="/pageprocurarusuario">Produtos</a></li>
+        <div style="height: 100%; display: flex; align-items: center; background-color: rgb(250,250,250);" class="logo-header-container" onClick="window.location.href = '/'">
+            <img src="../assets/logo.png" style="width: 100%; height: 100%; margin-left: 8px; min-width: 75px; max-width: 85px;" alt="">
+            <div class="company-name" style="height: fit-content; display: flex; padding: 0 35px;">
+                <span style="font-family: monospace; font-size: 1.6em; color:rgb(41, 41, 41); text-decoration: solid;">
+                    Go
                 </span>
+                <span style="font-family: monospace; font-size: 1.6em;color:rgb(122, 192, 16); font-weight: 800;">
+                    Green
+                </span>
+            </div>
+        </div>
+
+        <div class="header-main">
+            <p class="nav-item"><a href="/" style="color: rgb(68,68,68)">Home</a></p>
+            <p class="nav-item"><a href="/sobre" style="color: rgb(68,68,68)">Sobre</a></p>
+            <p class="nav-item"><a href="/produtos" style="color: rgb(68,68,68)">Produtos</a></p>
+            <div class="nav-item" id="procurar-nav-item">
+            <p id="procurar-and-icon-container">
+                Procurar
+                <i class="fa-solid fa-caret-down" id="seta" style="font-size: .9em; margin-left: 3px; height: fit-content;"></i>
+            </p>
+            <div class="procurar-painel-container" isOpen="false">
+                <p style="margin: 0;" id="produtores-item" onClick="window.location.href = '/procurarUsuario'">Produtores</p>
+                <p style="margin: 0; margin-top: 8px;"id="produtos-item" onClick="window.location.href = '/procurarProduto'">Produtos</p>
+            </div>
             </div>
             <p class="hamburger-icon"><i class="fa-solid fa-bars"></i></p>
         </div>
-        <div id="register-and-login" style="display: flex;">
-            <p style="margin:0; margin-right: 9px;" ><a href="/pagecadastrar" style="text-decoration: none;">Cadastrar</a></p>
-        
-            <p style="margin:0;"><a href="/pagelogin" style="text-decoration: none;">Login</a></p>
+
+
+        <div id="register-and-login" style="margin-left: 25px; display: flex; background-color: rgb(249, 249, 249); justify-content: center;">
+            <p style="margin:0; padding-right: 15px; border-right: 1px solid rgb(92, 92, 92);" ><a href="/registrar" style="text-decoration: none;">
+                <i class="fa-solid fa-user-plus" style="color:rgb(59, 59, 59); font-size: 1.2em;"></i>
+            </a>
+        </p>
+            <p style="margin:0; padding-left: 15px;">
+                <a href="/login" style="text-decoration: none;">
+                    <i class="fa-solid fa-right-to-bracket" style="color:rgb(59, 59, 59); font-size: 1.2em;"></i>
+                </a>
+            </p>
         </div>
 
         <div class="header-user-icon-container">
             <img class="header-user-icon" src="" style="position:relative;">
             <div class="header-painel" style="visibility: hidden;">
                 <li class="user-painel-item" style="margin-top: 0;">
-                    <a href="/pagealterarusuario"
+                    <a href="/"
+                    style="text-decoration: none; color: rgb(177, 177, 177);"
+                    >Home</a></li>
+                <li class="user-painel-item" style="margin-top: 0;">
+                    <a href="/MeuPerfil"
                     style="text-decoration: none; color: rgb(177, 177, 177);"
                     >Meu Perfil</a></li>
-                <li class="user-painel-item">
-                    <a href="/pagecriarproduto"
+                <li class="user-painel-item"><a href="/criar"
                     style="text-decoration: none; color: rgb(177, 177, 177);">Criar</a></li>
-                <li class="user-painel-item">
-                    <a href="/criar"
-                    style="text-decoration: none; color: rgb(177, 177, 177);">Meus produtos</a></li>
+                <li class="user-painel-item"><a href="/criar"
+                    style="text-decoration: none; color: rgb(177, 177, 177); margin-bottom:25px;"
+                    >Meus produtos</a></li>
                 <button class="logout-btn">Logout</button>
             </div>
         </div>
@@ -98,25 +118,14 @@
 
     <div class="sidebar" isOpen="false">
         <div class="sidebar-items">
-            <p class="sidebar-item">Home</p>
-            <p class="sidebar-item">Sobre Nós</p>
-            <p class="sidebar-item">Produtos</p>
-            <p class="sidebar-item">Procurar Produto</p>
-            <p class="sidebar-item">Procurar Produtor</p>
+            <p class="sidebar-item" onclick="window.location.href = '/'">Home</p>
+            <p class="sidebar-item" onclick="window.location.href = '/sobreNos'">Sobre Nós</p>
+            <p class="sidebar-item" onclick="window.location.href = '/produtos'">Produtos</p>
+            <p class="sidebar-item" onclick="window.location.href = '/procurarProduto'">Procurar Produto</p>
+            <p class="sidebar-item" onclick="window.location.href = '/procurarUsuario'">Procurar Produtor</p>
             <h2 id="click-to-close">CLICK PRA FECHAR</h2>
         </div>
     </div>
-
-<!--    
-    <div class="janela-confirmacao">
-        <button id="close-btn" style="float:right;" onclick="closePainel()">x</button>
-        <h1>Confirmar</h1>
-        <p style="color: #747474; font-size: 1.2em; font-weight: 600; font-family: 'Inter', sans-serif;">Sua conta e seus posts serão deletados para sempre. Confirmar?</p>
-        <button id="confirmar-btn">
-            <div id="inside-confirmar-btn-circle" style="pointer-events: none;"></div>
-            <span id="confirmar-btn-text" style="pointer-events: none;">Confirmar</span>
-        </button>
-    </div> -->
 
 
 
@@ -198,6 +207,40 @@
 
             <div class="c2-second-container" >
                 <div class="c2-advanced-info">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div style="width: 45%; height: 80px; background: rgba(235, 254, 200, 0.865);
+                            border-radius: 12px;
+                            border: 1px solid rgb(126, 176, 28);
+                            display: flex;
+                            align-items: center;
+                            padding: 10px 15px 10px 15px;
+                   
+                        ">
+                        <div style="margin-right: 15px;">
+                            <input style="accent-color: rgb(126, 176, 28);" type="radio" name="user-type" value="default" checked>  
+                        </div>
+                        <div>
+                            <p style="font-size: 1em; margin: 0; font-weight: 700; color: rgb(126, 176, 28);">Usuario Padrao</p>  
+                            <p style="font-size: .7em; margin: 0; font-weight: 600; color:rgb(126, 176, 28);">Sou um usuario sem conhecimentos de produtos organicos</p>  
+                        </div>
+                    </div>
+                    <div style="width: 45%; height: 80px; background: rgba(235, 254, 200, 0.865);
+                            border-radius: 12px;
+                            border: 1px solid rgb(126, 176, 28);
+                            display: flex;
+                            align-items: center;
+                            padding: 10px 15px 10px 15px;
+                   
+                        ">
+                        <div style="margin-right: 15px;">
+                            <input style="accent-color: rgb(126, 176, 28);" type="radio" name="user-type" value="produtor">  
+                        </div>
+                        <div>
+                            <p style="font-size: 1em; margin: 0; font-weight: 700; color: rgb(126, 176, 28);">Produtor</p>  
+                            <p style="font-size: .7em; margin: 0; font-weight: 600; color:rgb(126, 176, 28);">Planto produtos e gostaria de divulga-los</p>  
+                        </div>
+                    </div>
+                    </div>
                     <div class="label-and-input-from-c1">
                         <label for="name">email</label>
                         <input type="text" disabled value="xiiguilhermeiix@gmail.com" id="profile-email-input">
@@ -285,46 +328,39 @@
     <div class="empty"></div>
     </div>
 
-<!-- 
-        <div class="c3">
-       
-            <div class="advanced-container">
-                <div class="label-and-input-advanced" style="margin-top: 85px; margin: 10px 0 10px 0;">
-                    <label for="Bio">Mudar Senha</label>
-                    <input type="text" id="profile-password-input">
-                </div>
-                <div class="label-and-input-advanced" style="margin: 13px 0 13px 0;">
-                    <label for="Bio">Confirmar Senha</label>
-                    <input type="text" id="profile-confirmar-password-input">
-                </div>
 
-                <div style="background: white; padding: 13px  0 13px 0; margin: 10px 0px 10px 0px;">
-                    <li class="avancado-item">- Caso o campo Alterar Senha esteja vazio, a senha será mantida.</li>
-                    <li class="avancado-item" >- As senhas deve conter no minimo 8 caracteres</li>
-                    <li class="avancado-item">- É recomendavel que a senha possua caracteres especiais</li>
-                </div>
-                
-                
-                <div style="background: white; padding: 13px 0 13px 0; margin: 65px 0px 10px 0px; border-top: 1px solid #b9b9b9;">
-                    <h3 style="color: #c06666; margin-top: 0; font-size: 1.2em; margin-bottom: 15px">
-                        <i class="fa-solid fa-circle-exclamation" style="font-size: 0.7em; margin-right: 8px;">
-                        </i>Avançado
-                    </h3>
-                    <li class="avancado-item">- Seus dados serão excluidos para sempre.</li>
-                    <li class="avancado-item" >- Todas as suas publicaçoes serão deletadas.</li>
-          
-                </div>
-
-                
-
-
-                <div style="width: 70%; margin-top: 15px; float: right;">
-                <button id="deletar-btn">Excluir Conta</button>
-                </div>
-            </div>
-        </div> -->
 
 
     <div class="footer">
+        <div class="footer-circle">
+            <div class="footer-circle-inside"></div>
+        </div>
+        <div class="footer-circle-2">
+            <div class="footer-circle-inside-2">
+            <div class="sobre-nos-text">
+                    <p>
+                        <i class="fa-solid fa-phone"></i>Atendimento: (11) 964988-2424 
+                    </p>
+                    <p>
+                        <i class="fa-solid fa-plus"></i>
+                        Sobre nós        
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="f1">
+            <div class="f1-main">
+                <h1 class="f1-title">GO GREEN</h1>
+                <h2 class="f1-second-title">Produtos Orgânicos</h2>
+                <p class="f1-text">A expressão Lorem ipsum em design gráfico e editoração é um texto padrão em latim utilizado na produção gráfica para preencher os espaços de texto em publicações para te</p>
+            </div>
+        </div>
+        <div class="f2">
+            <div class="f2-circle"></div>
+            <h3 style="color:rgb(60,68,55); margin-bottom: 0;">GoGreen</h3>
+            <h5 style="color: rgb(119,181,12);">Viva Bem</h5>
+        </div>
+        <div class="f3"></div>
+    </div>
 </body>
 </html>

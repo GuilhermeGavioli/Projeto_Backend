@@ -1,3 +1,6 @@
+const BASE_URL_PATH =  'http://localhost:3000/'
+
+
 window.onload = async () => {
   // const header = document.querySelector(".header");
   const headerPainel = document.querySelector('.header-painel');
@@ -33,4 +36,16 @@ window.onload = async () => {
     closePainel(headerPainel)
     
   })
+}
+
+
+document.querySelector('.search-btn').addEventListener('click', (e) => { 
+  e.preventDefault();
+  searchProducts();
+})
+// http://localhost:3000/getprodutos?queryDescriptionAlso=true&number=0&nomeProduto=a
+
+function searchProducts() {
+  const typedValue = document.querySelector('.main-input').value
+  window.location.href = `${BASE_URL_PATH}getprodutos?queryDescriptionAlso=false&number=0&nomeProduto=${typedValue}`
 }

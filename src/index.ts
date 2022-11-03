@@ -54,7 +54,8 @@ app.use(express.static(path.join(__dirname + '/views' + '/globals')));
 
 app.use(express.static(path.join(__dirname + '/views' + '/404Error')));
 app.use(express.static(path.join(__dirname + '/views' + '/TEMPLATE')));
-app.get('/pagetest',(req, res) => {
+
+app.get('/pagetest/:palavra',(req, res) => {
     res.render(path.join("TEMPLATE", "index"));
 })
 
@@ -97,11 +98,11 @@ app.get('/',(req, res) => {
     res.render(path.join("home", "home"));
 })
 
-app.get('/alterarPerfil', (req, res) => {
+app.get('/meuPerfil', (req, res) => {
     res.render(path.join("alterarUsuario", "alterarperfil"));
 })
 
-app.get('/criarProduto',(req, res) => { 
+app.get('/estacaoDeCriacao',(req, res) => { 
     res.render(path.join("criarProduto", "criarProduto"));
 })
 
@@ -137,7 +138,9 @@ app.get('/get/:procurarnadescricao/:nomeprodutor', controllers.acharUsuariosPorN
 //Produto routes
 app.post('/criarProduto', ProtectionAgainstNonAuthenticatedUsers, controllers.criarProduto )
 app.post('deletarProduto', ProtectionAgainstNonAuthenticatedUsers, controllers.deletarProduto)
-app.get('/getproduto/:procurarnadescricao/:nomeproduto', controllers.getProdutos)
+
+//'/getproduto/:procurarnadescricao/:nomeproduto/:number'
+app.get('/getprodutos', controllers.getProdutos)
 
 app.get('/getprodutosfromuser/:produtorId', controllers.getProdutosFromUser)
 
@@ -146,7 +149,10 @@ app.get('/auth', controllers.authValidation)
 // app.get('*', function(req, res){
 //     res.status(404).send('what???');
 //   });
-
+app.get('/testingparams', (req, res) => { 
+    console.log(req.query.number)
+    return res.json('ok')
+})
 
 
 // app.get('/getprodutosfromUser/:idprodutor', async (req, res) => {

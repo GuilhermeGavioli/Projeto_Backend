@@ -1,3 +1,5 @@
+const BASE_URL_PATH =  'http://localhost:3000/'
+
 window.onload = async () => {
     console.log('gh')
 
