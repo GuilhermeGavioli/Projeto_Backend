@@ -50,9 +50,15 @@ export default class MySql implements Repository {
         return rows;
     }
 
-    // used by user
+    // used by user ***
     public async findUserById(id: string): Promise<GetOneOutputDTO | null> {
         const [[rows]] = await this.connection.execute(`SELECT * from user WHERE userid="${id}";`);
+        if (!rows) return null;
+        return rows;
+    }
+
+    public async findProductById(id: string): Promise<GetOneOutputDTO | null> {
+        const [[rows]] = await this.connection.execute(`SELECT * from product WHERE product_id="${id}";`);
         if (!rows) return null;
         return rows;
     }

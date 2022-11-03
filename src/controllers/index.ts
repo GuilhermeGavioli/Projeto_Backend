@@ -26,7 +26,7 @@ import OutputCadastrarDTO from "../DTO/output/cadastrar";
 import MySql from "../Repository/MySql";
 export const mySqlDatabase = new MySql('localhost', 'root', 'test', 'password', 3306);
 // const mySqlDatabase;
-
+// const msysqlDatabase = 'hello';
 // adicionar Try catch - - - - > Services/validation
 export const controllers = {
 
@@ -161,6 +161,17 @@ export const controllers = {
         userFound.user_password = ""
         console.log('found', userFound)
         res.render(path.join("test2", "test2"), { userFound });
+    },
+
+    acharProdutoPorId: async (req: Request, res: Response) => {
+        console.log(req.params)
+        const idProduto = req.params.idProduto?.toString().toLowerCase();
+        if (!idProduto) return res.json('id nao especificado');
+        const productFound = await mySqlDatabase.findProductById(idProduto);
+        console.log('p ' + productFound)
+        if (!productFound) return res.json("Produto nao existe ou foi deletado.");
+        console.log(productFound)
+        res.render(path.join("produto", "produto"), { productFound } );
     },
 
     criarProduto: async (req: Request, res: Response) => {

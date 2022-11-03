@@ -8,8 +8,8 @@
 
     <!-- PAGE -->
     
-    <script src="index.js" defer></script>
-    <link rel="stylesheet" href="index.css" type="text/css">
+    <script src="/produto.js" defer></script>
+    <link rel="stylesheet" href="/produto.css" type="text/css">
   
 
 
@@ -36,8 +36,6 @@
 
     <div id="spinning"></div>
 
-
-    <div class="meucontainer"></div>
 
     <header class="header">
         <div style="height: 100%; display: flex; align-items: center; background-color: rgb(250,250,250);" class="logo-header-container" onClick="window.location.href = '/'">
@@ -115,61 +113,37 @@
         </div>
     </div>
 
-
-     <!-- <h1>Resultados para Pesquisa: Cne</h1>  -->
-    <span style="visibility: hidden;" dataLength="<%=productsFound.length%>" id="data-length"></span>
-
-     <div class="container2" style="margin-top: 85px;">
-        <div class="c1" style="position: relative; padding-top: 115px;">
-            <h1 style="
-            position: absolute; top: 15px; left: 75px;
-            ">Resultados da Pesquisa</h1>
-            <% productsFound.forEach(product => {  %>        
-               <div class="card-container" product_id="<%= product.product_id %>"
-                    onclick="window.location.href = `/produto/${this.getAttribute('product_id')}`"
-                >
-                        <img
-                        class="card-first" 
-                        src="http://localhost:3000/file_system/product/<%=product.product_image%>">
-                        <h2 class="card-title"><%=product.product_name%></h2>
-                    </img>
-                    <p class="card-second">
-                        <%=product.product_description%>
-                    </p>
-                </div>
-            <% }) %>
-
+    <div class="container">
+        <div class="c1">
+           
         </div>
-        </div> 
-        
-        
-                <div class="no-results-container">
-                    <img src="../../assets/product_or_user_not_found.jpg" alt="" style="width: 255px;">
-                    <h1 class="no-results-title" style="font-size: 2.2em;">Desculpe, não conseguimos encontrar nenhum resultado para a sua busca
-                        <!-- <span style="font-weight: 400; font-size: .8em; color: rgb(100, 110, 94);"><%= nomeProduto %></span> -->
-                        !</h1>
-                        <!-- <div style="display: flex; justify-content: space-between; padding: 0 115px 0 115px"> -->
-                            <button class="voltar-btn" onclick="window.location.href = '/procurarproduto'">Procurar Novamente</button>
-                            <!-- <button class="voltar-btn" onclick="window.history.back()">Voltar</button> -->
+        <div class="c2">
+            <p class="nine">Produto / Massive Black Hole</p>
+            <h1>Massive Black Hole</h1>
+            <p class="eight"><i class="fa-solid fa-tag"></i> orgânico - natural - cenouras - plantio - terra</p>
+            <!-- <select name="category" id="">
+                <option value="vegetables">Vegetais</option>
+                <option value="vegetables">Frutas</option>
+                <option value="vegetables">Carne</option>
+                <option value="vegetables">Laticinios</option>
+                <option value="vegetables">Sementes</option>
+                <option value="vegetables">Graos</option>
+                <option value="vegetables" selected>Outro</option>
+            </select> -->
+            <p class="nine">Categoria: Graos</p>
+            <p class="nine"><i class="fa-solid fa-check"></i> Produto Orgânico</p>
+            
+            <p class="nine">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe eius nam ex officiis hic harum delectus facilis nesciunt recusandae necessitatibus, molestiae neque cupiditate, eum cum ipsum minima eos nihil facere ea! Cupiditate libero quaerat adipisci molestias expedita quisquam eligendi nam. Facilis corporis mollitia assumenda quam esse qui adipisci, accusamus sit? Iusto voluptatum tempora aliquam ducimus aspernatur autem impedit velit dolore aperiam suscipit, ipsa eaque perspiciatis debitis maxime magni laudantium. Culpa reiciendis ipsam commodi cumque illo architecto impedit, quaerat voluptas deserunt dolore totam nisi, eos officiis quae ullam dolorem quasi similique asperiores eius voluptatem. Iusto magni quo ratione sed quae beatae?</p>
+            <p class="nine"><i class="fa-solid fa-sack-dollar"></i> Preço: 14,99 / kg</p>
+       
+            <p class="eight"><i class="fa-solid fa-upload" style="margin-top: 20px;"></i> Publicado em 14 de janeiro de 2021</p>
 
-                        <!-- </div> -->
-                    </div>
-
-
-
-
-<div class="container"></div>
-
-
-
-
-
-
-
-
+            <p class="eight"><i class="fa-regular fa-user"></i> criado por <a href="/">Gilberto da Silva</a></p>
+        </div>
+    </div>
 
     
-    <!-- <div class="footer">
+     <div class="footer">
         <div class="footer-circle">
             <div class="footer-circle-inside"></div>
         </div>
@@ -200,10 +174,10 @@
         </div>
         <div class="f3"></div>
     </div>
-             -->
-            </body>
+
+        </body>
             
-            </html>
+    </html>
 
          
     

@@ -37,6 +37,7 @@ app.use(express.static(path.join(__dirname + '/views' + '/criarProduto')));
 app.use(express.static(path.join(__dirname + '/views' + '/profile2')));
 app.use(express.static(path.join(__dirname + '/views' + '/test2')));
 app.use(express.static(path.join(__dirname + '/views' + '/procurarproduto')));
+app.use(express.static(path.join(__dirname + '/views' + '/produto')));
 
 app.use(express.static(path.join(__dirname + '/views' + '/404Error')));
 
@@ -93,6 +94,7 @@ app.get('/login',(req, res) => {
 })
 
 app.get('/profile/:idprodutor', controllers.acharUsuarioPorId);
+app.get('/produto/:idProduto', controllers.acharProdutoPorId)
 
 app.get('/',(req, res) => {
     res.render(path.join("home", "home"));

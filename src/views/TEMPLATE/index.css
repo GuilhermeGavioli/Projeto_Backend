@@ -4,6 +4,7 @@
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     grid-template-areas: c1;
+    background-color: gray;
 }
 
 .c1{
