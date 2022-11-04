@@ -118,20 +118,25 @@ export const controllers = {
     },
 
     criarProdutoWithImageTeste: async (req: Request, res: Response) => {
-   
 
-        console.log('here')
-        const { name, description, token } = req.body
-        if (!name || !description || !req.file || !token) return res.json({ error: true, message: "Empty field" });
+        const { name, isOrganic, description, price, unity, category, tags, productFile, token } = req.body
+        if (!name || !isOrganic ||
+            !description || !price
+            || !unity || category ||
+            !tags
+            || !productFile || !req.file || !token
+        ) return res.json({ error: true, message: "Campo vazio ou sem autorização" });
 
         const isUserValid = new Authentication().validateToken(token);
-        if (!isUserValid) return res.json('token invalid sir');
+        if (!isUserValid) return res.json('token invalid, sir');
       
         const inputData = new InputCriarProdutoDTO(isUserValid.user_id, name, description, req.file.filename);
+        
 
-        const uuid = new UUIDLibrary();
-        const outputData = await new CriarProduto(mySqlDatabase, uuid).execute(inputData);
-        return res.json(outputData);
+        // const uuid = new UUIDLibrary();
+        // const outputData = await new CriarProduto(mySqlDatabase, uuid).execute(inputData);
+        // return res.json(outputData);
+        return res.json('ok')
     },
 
     deletarUser: async (req: Request, res: Response) => {
@@ -174,15 +179,15 @@ export const controllers = {
         res.render(path.join("produto", "produto"), { productFound } );
     },
 
-    criarProduto: async (req: Request, res: Response) => {
-        const { name, description, image} = req.body
-        if (!name || !description || !image) return res.json({error: true, message: "Empty field"});
-        const token = await res.locals.userInfo;
-        const inputData = new InputCriarProdutoDTO(token.user_id, name, description, image);
-        const uuid = new UUIDLibrary();
-        const outputData = await new CriarProduto(mySqlDatabase, uuid).execute(inputData);
-        return res.json(outputData);
-    },
+    // criarProduto: async (req: Request, res: Response) => {
+    //     const { name, description, image} = req.body
+    //     if (!name || !description || !image) return res.json({error: true, message: "Empty field"});
+    //     const token = await res.locals.userInfo;
+    //     const inputData = new InputCriarProdutoDTO(token.user_id, name, description, image);
+    //     const uuid = new UUIDLibrary();
+    //     const outputData = await new CriarProduto(mySqlDatabase, uuid).execute(inputData);
+    //     return res.json(outputData);
+    // },
 
     deletarProduto: async (req: Request, res: Response) => {
         const { product_id } = req.body

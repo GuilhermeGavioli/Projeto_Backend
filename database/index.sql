@@ -47,6 +47,10 @@ CREATE TABLE product(
     product_image VARCHAR(255) NOT NULL,
     product_description TEXT NOT NULL,
     is_organic BOOLEAN NOT NULL, /*new*/
+    is_organic BOOLEAN NOT NULL, /*new*/
+    is_organic BOOLEAN NOT NULL, /*new*/
+    is_organic BOOLEAN NOT NULL, /*new*/
+    is_organic BOOLEAN NOT NULL, /*new*/
     owner_id VARCHAR(255) NOT NULL,
     created_at DATE NOT NULL,
     updated_at DATE,
