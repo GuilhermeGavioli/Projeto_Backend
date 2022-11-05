@@ -138,7 +138,7 @@ app.post('/deleteuser', ProtectionAgainstNonAuthenticatedUsers, controllers.dele
 app.get('/get/:procurarnadescricao/:nomeprodutor', controllers.acharUsuariosPorNome) // achar por nome / descricao / usado pelo usuario
 
 //Produto routes
-app.post('/criarProduto', ProtectionAgainstNonAuthenticatedUsers, controllers.criarProduto )
+// app.post('/criarProduto', ProtectionAgainstNonAuthenticatedUsers, controllers.criarProduto )
 app.post('deletarProduto', ProtectionAgainstNonAuthenticatedUsers, controllers.deletarProduto)
 
 //'/getproduto/:procurarnadescricao/:nomeproduto/:number'

@@ -206,7 +206,11 @@ export class UserValidation implements Validation{
 }
 
 
-
+export class ProductValidation implements Validation {
+    validate(): OutputCadastrarDTO { 
+        return new OutputCadastrarDTO('ok', 200, false);
+    }
+ }
 
 //*touppercase vs tolowercase
 // isemail / email length /

@@ -6,6 +6,7 @@ import GetOneOutputDTO from "../DTO/output/GetOneDTO";
 
 
 import mysql from 'mysql2/promise';
+import InputCriarProdutoDTO from "../DTO/input/CriarProdutoDTO";
 
 export default class MySql implements Repository {
     private connection: mysql.Connection | any;
@@ -57,7 +58,7 @@ export default class MySql implements Repository {
         return rows;
     }
 
-    public async findProductById(id: string): Promise<GetOneOutputDTO | null> {
+    public async findProductById(id: string): Promise<Produto | null> {
         const [[rows]] = await this.connection.execute(`SELECT * from product WHERE product_id="${id}";`);
         if (!rows) return null;
         return rows;
@@ -149,21 +150,40 @@ export default class MySql implements Repository {
         updated_at="${new Date(date).toISOString().split('T')[0]}" WHERE email="${email}";`);
     }
 
+    // product_id  VARCHAR(255) NOT NULL UNIQUE,
+    // product_name VARCHAR(255) NOT NULL,
+    // product_image VARCHAR(255) NOT NULL,
+    // product_description TEXT NOT NULL,
+    // is_organic BOOLEAN NOT NULL, 
+    // price DECIMAL(5,2) NOT NULL,
+    // unity VARCHAR(255) NOT NULL, 
+    // tags VARCHAR(255) NOT NULL, 
+    // category VARCHAR(255) NOT NULL, 
+    // owner_id VARCHAR(255) NOT NULL,
+    // created_at DATE NOT NULL,
 
     public async saveProduct(produto: Produto): Promise<void> {
+        console.log(produto)
         const date = new Date();
-        console.log(produto.owner_id)
-        const [rows] = await this.connection.query(`INSERT INTO product(product_id, product_name, product_image, product_description, owner_id, created_at) VALUES ("${produto.product_id}", "${produto.product_name}", "${produto.image}", "${produto.description}", "${produto.owner_id}","${new Date(date).toISOString().split('T')[0]}");`)
-        console.log(rows);
+        await this.connection.query(`
+        INSERT INTO product(product_id, product_name, product_image, product_description, is_organic, price, unity, tags, category, owner_id, created_at) VALUES ("${produto.p_id}",
+        "${produto.p_name}",
+         "${produto.p_image}",
+          "${produto.p_description}", 
+          "${produto.p_isOrganic}",
+          "${produto.p_price}",
+          "${produto.p_unity}",
+          "${produto.p_tags}",
+          "${produto.p_category}",
+          "${produto.user_id}",
+          "${new Date(date).toISOString().split('T')[0]}");
+        `)
     }
 
     public async deleteOneUser(id: string, email: string): Promise<void> {
         await this.connection.query(`DELETE FROM user WHERE userid="${id}" && email="${email}";`);
     }
 
-    // SOLVE: if db had 100.000 thousands of products
-    // how to: limit max number to 20
-    // users request +20 then +20 then +20 then +20; 
     public async findManyProductsByName(name: string, queryDescriptionAlso: boolean, number: number): Promise<GetOneOutputDTO[] | null> {
 
         if (queryDescriptionAlso) {

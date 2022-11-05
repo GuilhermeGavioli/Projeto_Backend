@@ -262,9 +262,10 @@
     background-color: white;
 }
 .c2-circle{
-    width: 265px;
-    height: 265px;
+    width: 440px;
+    height: 440px;
     border-radius: 50%;
+
     /* background-image: url('https://media.istockphoto.com/photos/in-the-hands-of-trees-growing-seedlings-bokeh-green-background-female-picture-id1181366400?b=1&k=20&m=1181366400&s=612x612&w=0&h=oafwC9H6RkVS8s6rq0gkIxM11AkinWIHVTdWU4WyCFU='); */
     /* background: radial-gradient(rgb(155, 213, 37),rgb(140, 193, 34), rgb(155, 213, 37)); */
     display: flex;
@@ -272,12 +273,15 @@
     justify-content: center;
     font-size: 10em;
     position: relative;
-    background-color: white;
-    border: 18px solid rgb(155, 213, 37);
-    color: white;
+    background-color: rgb(255, 255, 255);
+
+    color: rgb(68, 68, 68);
     overflow: hidden;
+    background-image: url('https://images.pexels.com/photos/96715/pexels-photo-96715.jpeg?auto=compress&cs=tinysrgb&w=600');
+    background-position: center center;
+    background-size: cover;
 }
-.c2-inside-circle{
+/* .c2-inside-circle{
     background-color: rgb(155, 213, 37);
     width: 245px;
     height: 245px;
@@ -287,20 +291,20 @@
     left: 0;
     bottom: -65px;
     margin: auto;
-}
+} */
 
 .como-usar-cards-container{
     display: flex;
     flex-direction: column;
     /* background-color: blue; */
-    width: 605px;
+    width: 555px;
 }
 .como-usar-card{
     /* background-color: gray; */
     display: flex;
     padding: 18px;
     margin: 5px 0 5px 0;
-    box-shadow: 3px 3px 10px -3px rgba(0, 0, 0, 0.198);
+    box-shadow: 3px 3px 10px -3px rgb(92, 92, 92);
     transition: 0.3s ease-in-out;
     cursor: pointer;
 }
@@ -310,7 +314,7 @@
 .card-number-container{
     /* background-color: teal; */
     height: 100%;
-    width: 75px;
+    width: fit-content;
     margin-right: 25px;
     padding: 0;
 }
@@ -320,16 +324,17 @@
     border-radius: 50%;
     font-size: 1.3em;
     line-height: 30px;
-    border: 3px solid rgba(216, 216, 216, 0.775);
-    border-top: 3px solid rgb(155, 213, 37);
-    color: rgb(155, 213, 37);
+    border: 4px solid rgb(248, 248, 248);
+    border-top: 4px solid rgb(155, 213, 37);
+    color: rgb(150, 202, 45);
+    
     font-weight: 700;
 }
 .como-usar-card-title{
     text-align: start;
     font-size: 1.7em;
     /* background-color: #415a77; */
-    color: rgb(126, 176, 28);
+    color: rgb(150, 202, 45);
     margin: 0;
     font-weight: 700;
 }

@@ -1,15 +1,36 @@
 export default class Produto{
-    public owner_id: string;
-    public product_id: string;
-    public product_name: string;
-    public description: string;
-    public image: string;
+    public user_id: string;
+    public p_id: string;
+    public p_image: string;
+    public p_tags: string;
+    public p_name: string;
+    public p_isOrganic: number;
+    public p_description: string;
+    public p_price: number;
+    public p_unity: string;
+    public p_category: string;
 
-    constructor(id: string, product_name: string, image: string, description: string, owner_id: string) {
-        this.product_id = id;
-        this.product_name = product_name;
-        this.image = image;
-        this.description = description;
-        this.owner_id = owner_id;
+    constructor(
+        user_id: string,
+        p_id: string,
+        p_tags: string,
+        p_name: string,
+        p_isOrganic: number,
+        p_description: string,
+        p_price: number,
+        p_unity: string,
+        p_category: string,
+        p_image: string,
+    ) {
+        this.user_id = user_id;
+        this.p_id = p_id;
+        this.p_tags = p_tags;
+        this.p_name = p_name;
+        this.p_isOrganic = p_isOrganic;
+        this.p_description = p_description;
+        this.p_price = p_price;
+        this.p_unity = p_unity;
+        this.p_category = p_category;
+        this.p_image = p_image;
     }
 }

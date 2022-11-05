@@ -25,10 +25,9 @@
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
 </head>
-
 <style>
     body{
-        position: relative;
+        background-color: rgb(68,68,68);
     }
 </style>
 <body>
@@ -113,32 +112,43 @@
         </div>
     </div>
 
+
+    <%= ownerName %>
+    <%= JSON.stringify(productFound) %>
+
     <div class="container">
-        <div class="c1">
+         <div class="c1" style="background-image: url('http://localhost:3000/file_system/product/<%= productFound.product_image %>')">
            
         </div>
-        <div class="c2">
-            <p class="nine">Produto / Massive Black Hole</p>
-            <h1>Massive Black Hole</h1>
-            <p class="eight"><i class="fa-solid fa-tag"></i> orgânico - natural - cenouras - plantio - terra</p>
-            <!-- <select name="category" id="">
-                <option value="vegetables">Vegetais</option>
-                <option value="vegetables">Frutas</option>
-                <option value="vegetables">Carne</option>
-                <option value="vegetables">Laticinios</option>
-                <option value="vegetables">Sementes</option>
-                <option value="vegetables">Graos</option>
-                <option value="vegetables" selected>Outro</option>
-            </select> -->
-            <p class="nine">Categoria: Graos</p>
-            <p class="nine"><i class="fa-solid fa-check"></i> Produto Orgânico</p>
+        <div class="c2" style="min-height: 600px;">
+            <p class="nine">Produto / <%= productFound.product_name %></p>
+            <h1> <%= productFound.product_name %> </h1>
+            <p class="eight"><i class="fa-solid fa-tag"></i> 
+                <%= productFound.tags %>
+            </p>
+         
+            <p class="nine">Categoria: <%= productFound.category %></p>
+            <p class="nine">
+                <% if (productFound.is_organic == 1){ %>
+                    <i class="fa-solid fa-check"></i> 
+                    <% } else { %>
+                        <i class="fa-solid fa-xmark"></i>
+                <% } %>
+            Produto Orgânico</p>
             
-            <p class="nine">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe eius nam ex officiis hic harum delectus facilis nesciunt recusandae necessitatibus, molestiae neque cupiditate, eum cum ipsum minima eos nihil facere ea! Cupiditate libero quaerat adipisci molestias expedita quisquam eligendi nam. Facilis corporis mollitia assumenda quam esse qui adipisci, accusamus sit? Iusto voluptatum tempora aliquam ducimus aspernatur autem impedit velit dolore aperiam suscipit, ipsa eaque perspiciatis debitis maxime magni laudantium. Culpa reiciendis ipsam commodi cumque illo architecto impedit, quaerat voluptas deserunt dolore totam nisi, eos officiis quae ullam dolorem quasi similique asperiores eius voluptatem. Iusto magni quo ratione sed quae beatae?</p>
-            <p class="nine"><i class="fa-solid fa-sack-dollar"></i> Preço: 14,99 / kg</p>
+            <p class="nine" >
+                <%= productFound.product_description %>
+            </p>
+            <p class="nine"><i class="fa-solid fa-sack-dollar"></i> 
+                Preço: <%= productFound.price %> /
+                <%= productFound.unity %>
+            </p>
        
             <p class="eight"><i class="fa-solid fa-upload" style="margin-top: 20px;"></i> Publicado em 14 de janeiro de 2021</p>
 
-            <p class="eight"><i class="fa-regular fa-user"></i> criado por <a href="/">Gilberto da Silva</a></p>
+            <p class="eight"><i class="fa-regular fa-user"></i> criado por <a href="/profile/<%= productFound.owner_id %>">
+                <%= ownerName %>
+            </a></p>
         </div>
     </div>
 

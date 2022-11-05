@@ -1,6 +1,7 @@
 import Produtor from "../Entity/Produtor";
 import Produto from "../Entity/Produto";
 import GetOneOutputDTO from "../DTO/output/GetOneDTO";
+import InputCriarProdutoDTO from "../DTO/input/CriarProdutoDTO";
 
 export default interface Repository{
     saveUser(produtor: Produtor): Promise<void>;

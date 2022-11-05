@@ -13,7 +13,7 @@ import DeletarProduto from "../UseCases/DeletarProduto";
 import DeletarUsuario from "../UseCases/DeletarUsuario";
 import Logar from "../UseCases/Logar";
 
-import Validation, { UserValidation } from "../Services/Validation";
+import Validation, { UserValidation, ProductValidation } from "../Services/Validation";
 
 import path from 'path'
 
@@ -28,6 +28,8 @@ export const mySqlDatabase = new MySql('localhost', 'root', 'test', 'password', 
 // const mySqlDatabase;
 // const msysqlDatabase = 'hello';
 // adicionar Try catch - - - - > Services/validation
+
+
 export const controllers = {
 
     
@@ -118,25 +120,17 @@ export const controllers = {
     },
 
     criarProdutoWithImageTeste: async (req: Request, res: Response) => {
-
-        const { name, isOrganic, description, price, unity, category, tags, productFile, token } = req.body
-        if (!name || !isOrganic ||
-            !description || !price
-            || !unity || category ||
-            !tags
-            || !productFile || !req.file || !token
-        ) return res.json({ error: true, message: "Campo vazio ou sem autorização" });
-
+        const { name, isOrganic, description, price, unity, category, tags, token } = req.body
+        if (!name || !isOrganic || !description || !price || !unity || !category || JSON.parse(tags).length == 0 || !req.file ) return res.json({ error: true, message: "Campo vazio!" });
+        if (!token) return res.json({ error: true, message: "Não autorizado, sua sessao pode ter sido expirada!" });
         const isUserValid = new Authentication().validateToken(token);
         if (!isUserValid) return res.json('token invalid, sir');
-      
-        const inputData = new InputCriarProdutoDTO(isUserValid.user_id, name, description, req.file.filename);
-        
-
-        // const uuid = new UUIDLibrary();
-        // const outputData = await new CriarProduto(mySqlDatabase, uuid).execute(inputData);
-        // return res.json(outputData);
-        return res.json('ok')
+        const inputData = new InputCriarProdutoDTO(isUserValid.user_id, tags, name, isOrganic, description, price, unity, category, req.file.filename);
+        const uuid = new UUIDLibrary();
+        const productValidation = new ProductValidation();
+        const criarProduto = new CriarProduto(mySqlDatabase, uuid, productValidation);
+        const outputData = await criarProduto.execute(inputData);
+        return res.json(outputData);
     },
 
     deletarUser: async (req: Request, res: Response) => {
@@ -170,13 +164,18 @@ export const controllers = {
 
     acharProdutoPorId: async (req: Request, res: Response) => {
         console.log(req.params)
+        console.log('test')
         const idProduto = req.params.idProduto?.toString().toLowerCase();
         if (!idProduto) return res.json('id nao especificado');
         const productFound = await mySqlDatabase.findProductById(idProduto);
         console.log('p ' + productFound)
         if (!productFound) return res.json("Produto nao existe ou foi deletado.");
-        console.log(productFound)
-        res.render(path.join("produto", "produto"), { productFound } );
+      
+        const productFoundObj = JSON.parse(JSON.stringify(productFound))
+        console.log(productFoundObj)
+        const productOwner = await mySqlDatabase.findUserById(productFoundObj.owner_id);
+        console.log(productOwner)
+        res.render(path.join("produto", "produto"), { productFound, ownerName: productOwner?.full_name } );
     },
 
     // criarProduto: async (req: Request, res: Response) => {
