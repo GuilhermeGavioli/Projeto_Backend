@@ -113,14 +113,17 @@
     </div>
 
 
-    <%= ownerName %>
-    <%= JSON.stringify(productFound) %>
 
     <div class="container">
-         <div class="c1" style="background-image: url('http://localhost:3000/file_system/product/<%= productFound.product_image %>')">
-           
+         <div class="c1" style="position: relative; background-image: url('http://localhost:3000/file_system/product/<%= productFound.product_image %>')">
+            <% if (productFound.is_organic == 1){ %>
+                <img src="../assets/organic_symbol.png" style="width: 100px; position: absolute; top: 10px; left: 10px;" alt="">
+                <% } %>
         </div>
-        <div class="c2" style="min-height: 600px;">
+        <div class="c2" style="min-height: 600px; position: relative;">
+            <div style="position: absolute; top: 25px; right: 30px; font-size: 2em; cursor: pointer;" onclick="window.history.back()">
+                <i class="fa-solid fa-angle-left"></i>
+            </div>
             <p class="nine">Produto / <%= productFound.product_name %></p>
             <h1> <%= productFound.product_name %> </h1>
             <p class="eight"><i class="fa-solid fa-tag"></i> 

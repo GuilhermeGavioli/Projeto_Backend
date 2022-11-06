@@ -71,7 +71,7 @@ salvarButton.addEventListener("click", async (e) => {
 
 
 async function fireUpdateUserRequest(formData) {
-  const res = await fetch(`${BASE_URL_PATH}testimage`, {
+  const res = await fetch(`${BASE_URL_PATH}alterarUsuario`, {
       method: "POST",
       body: formData,
       headers: {},

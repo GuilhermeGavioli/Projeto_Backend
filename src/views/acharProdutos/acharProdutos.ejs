@@ -8,8 +8,8 @@
 
     <!-- PAGE -->
     
-    <script src="index.js" defer></script>
-    <link rel="stylesheet" href="index.css" type="text/css">
+    <script src="acharProdutos.js" defer></script>
+    <link rel="stylesheet" href="acharProdutos.css" type="text/css">
   
 
 
@@ -120,11 +120,11 @@
      <!-- <h1>Resultados para Pesquisa: Cne</h1>  -->
     <span style="visibility: hidden;" dataLength="<%=productsFound.length%>" id="data-length"></span>
 
+            <h2 style="
+            position: absolute; top: 0px; left: 75px;
+            ">Resultados da Pesquisa</h2>
      <div class="container2" style="margin-top: 85px;">
         <div class="c1" style="position: relative; padding-top: 115px;">
-            <h1 style="
-            position: absolute; top: 15px; left: 75px;
-            ">Resultados da Pesquisa</h1>
             <% productsFound.forEach(product => {  %>        
                <div class="card-container" product_id="<%= product.product_id %>"
                     onclick="window.location.href = `/produto/${this.getAttribute('product_id')}`"
@@ -143,9 +143,9 @@
         </div>
         
         
-                <div class="no-results-container">
+                <div class="no-results-container" style="box-shadow: 6px 6px 10px -3px rgba(0, 0, 0, 0.154); padding: 10px 25px 25px 25px;">
                     <img src="../../assets/product_or_user_not_found.jpg" alt="" style="width: 255px;">
-                    <h1 class="no-results-title" style="font-size: 2.2em;">Desculpe, não conseguimos encontrar nenhum resultado para a sua busca
+                    <h1 class="no-results-title" style="font-size: 1.2em; width: 350px; margin: auto;">Desculpe, não conseguimos encontrar nenhum resultado para a sua busca
                         <!-- <span style="font-weight: 400; font-size: .8em; color: rgb(100, 110, 94);"><%= nomeProduto %></span> -->
                         !</h1>
                         <!-- <div style="display: flex; justify-content: space-between; padding: 0 115px 0 115px"> -->

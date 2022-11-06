@@ -12,39 +12,28 @@ import CriarProduto from "../UseCases/CriarProduto";
 import DeletarProduto from "../UseCases/DeletarProduto";
 import DeletarUsuario from "../UseCases/DeletarUsuario";
 import Logar from "../UseCases/Logar";
-
-import Validation, { UserValidation, ProductValidation } from "../Services/Validation";
-
+import { UserValidation, ProductValidation } from "../Services/Validation";
 import path from 'path'
-
-
-
-// Same instance of conection
-// import { mySqlDatabase } from "..";
 import OutputCadastrarDTO from "../DTO/output/cadastrar";
-
 import MySql from "../Repository/MySql";
+
 export const mySqlDatabase = new MySql('localhost', 'root', 'test', 'password', 3306);
-// const mySqlDatabase;
-// const msysqlDatabase = 'hello';
+
+
+
 // adicionar Try catch - - - - > Services/validation
-
-
 export const controllers = {
 
     
     registerUser: async (req: Request, res: Response) => {
         const { name, email, password, confirmPassword, gender, city, bornDate } = req.body
         if (!name || !city || !email || !password || !confirmPassword || !gender || !bornDate) return res.json({ error: true, message: "Campo vazio" });
-
-        try {   
+        try {
             const isValid = new UserValidation(name, email, password, confirmPassword, gender, city, bornDate, null, null, null).validate();
             if (isValid.error) return res.json(new OutputCadastrarDTO(isValid.message, isValid.status, isValid.error));
         } catch (err: any) {
             return res.json(new OutputCadastrarDTO("Algo deu errado, formato do campo é inválido. Tente novamente", 401, true))
         }
-        
-
         const inputData = new InputCadastrarDTO(name,email, password, gender,city, bornDate);
         const uuid = new UUIDLibrary();
         const cryptography = new Cryptography(inputData.password);
@@ -63,7 +52,6 @@ export const controllers = {
         } catch (err: any) {
             return res.json(new OutputCadastrarDTO("Algo deu errado, formato do campo é inválido. Tente novamente", 401, true))
         }
-
         const inputData = new InputLogarDTO(email, password);
         const authentication = new Authentication();
         const cryptography = new Cryptography(inputData.password);
@@ -72,54 +60,28 @@ export const controllers = {
         return res.json(outputData);
     },
 
-    alterarUser: async (req: Request, res: Response) => {
-        const { name, city, password, gender, birthDate, aboutMe, bio, image } = req.body
-        if (!name || !city || !gender || !birthDate) return res.json({ error: true, message: "Empty field" });
-        
-        
-
-        const inputData = new InputAlterarPerfilDTO(name, password, gender, city, birthDate, aboutMe, bio, image );
-        const token = await res.locals.userInfo;
-        const cryptography = new Cryptography(inputData.password);
-        const alterarPerfil = new AlterarPerfil(mySqlDatabase, cryptography);
-        const outputData = await alterarPerfil.execute(token, inputData);
-        return res.json(outputData);
-    },
-
-    alterarUserWithImageTest: async (req: Request, res: Response) => {
+    
+    updateUser: async (req: Request, res: Response) => {
         const { name, city, password, confirmPassword, gender, birthDate, aboutMe, bio, token } = req.body
-
         if (!name || !city || !gender || !birthDate) return res.json({ error: true, message: "Empty field" });
-       
-        console.log(req.file)
-
         try {   
             const isValid = new UserValidation(name, null, password, confirmPassword, Number(gender), city, birthDate, aboutMe, bio, req?.file?.filename).validate();
             if (isValid.error) return res.json(new OutputCadastrarDTO(isValid.message, isValid.status, isValid.error));
         } catch (err: any) {
             return res.json(new OutputCadastrarDTO("Algo deu errado, formato do campo é inválido. Tente novamente", 401, true))
         }
-
         let inputData;
-
         const isUserValid = new Authentication().validateToken(token);
         if (!isUserValid) return res.json('token invalid sir');
-      
-
-       
         if (req.file) inputData = new InputAlterarPerfilDTO(name, password, gender, city, birthDate, aboutMe, bio, req?.file?.filename);
         else inputData = new InputAlterarPerfilDTO(name, password, gender, city, birthDate, aboutMe, bio);
-
         const cryptography = new Cryptography(inputData.password);
         const alterarPerfil = new AlterarPerfil(mySqlDatabase, cryptography);
-          
-
         const outputData = await alterarPerfil.execute(isUserValid, inputData);
         return res.json(outputData);
-
     },
 
-    criarProdutoWithImageTeste: async (req: Request, res: Response) => {
+    createProduct: async (req: Request, res: Response) => {
         const { name, isOrganic, description, price, unity, category, tags, token } = req.body
         if (!name || !isOrganic || !description || !price || !unity || !category || JSON.parse(tags).length == 0 || !req.file ) return res.json({ error: true, message: "Campo vazio!" });
         if (!token) return res.json({ error: true, message: "Não autorizado, sua sessao pode ter sido expirada!" });
@@ -142,7 +104,6 @@ export const controllers = {
 
     acharUsuariosPorNome: async (req: Request, res: Response) => {
         const nomeprodutor = req.params.nomeprodutor.toString().toLowerCase();
-        console.log(nomeprodutor)
         if (!nomeprodutor) return res.json({error: true, message: "Empty field"}); 
         const procurarnadescricao = req.params.procurarnadescricao.toString().toLowerCase();
         const usersFound = await mySqlDatabase.findManyUsersByName(nomeprodutor, (procurarnadescricao == "true"));
@@ -150,7 +111,6 @@ export const controllers = {
     },
 
     // only public info is returned 
-    
     acharUsuarioPorId: async (req: Request, res: Response) => {
         const idprodutor = req.params.idprodutor.toString().toLowerCase();
         if (!idprodutor) return res.render(path.join("profile", "profile"), { userFound: null });
@@ -158,35 +118,18 @@ export const controllers = {
         if (!userFound) return res.json("Usuario nao existe.");
         userFound.email = ""
         userFound.user_password = ""
-        console.log('found', userFound)
-        res.render(path.join("test2", "test2"), { userFound });
+        res.render(path.join("profile2", "profile2"), { userFound });
     },
 
     acharProdutoPorId: async (req: Request, res: Response) => {
-        console.log(req.params)
-        console.log('test')
         const idProduto = req.params.idProduto?.toString().toLowerCase();
         if (!idProduto) return res.json('id nao especificado');
         const productFound = await mySqlDatabase.findProductById(idProduto);
-        console.log('p ' + productFound)
         if (!productFound) return res.json("Produto nao existe ou foi deletado.");
-      
         const productFoundObj = JSON.parse(JSON.stringify(productFound))
-        console.log(productFoundObj)
         const productOwner = await mySqlDatabase.findUserById(productFoundObj.owner_id);
-        console.log(productOwner)
         res.render(path.join("produto", "produto"), { productFound, ownerName: productOwner?.full_name } );
     },
-
-    // criarProduto: async (req: Request, res: Response) => {
-    //     const { name, description, image} = req.body
-    //     if (!name || !description || !image) return res.json({error: true, message: "Empty field"});
-    //     const token = await res.locals.userInfo;
-    //     const inputData = new InputCriarProdutoDTO(token.user_id, name, description, image);
-    //     const uuid = new UUIDLibrary();
-    //     const outputData = await new CriarProduto(mySqlDatabase, uuid).execute(inputData);
-    //     return res.json(outputData);
-    // },
 
     deletarProduto: async (req: Request, res: Response) => {
         const { product_id } = req.body
@@ -197,37 +140,25 @@ export const controllers = {
         return res.json(outputData);
     },
 
-    //alterar produtos
-//'/getproduto/:procurarnadescricao/:nomeproduto'
     getProdutos: async (req: Request, res: Response) => {
-        console.log('hellothere')
         const nomeProduto = req.query.nomeProduto?.toString().toLowerCase();
         const number = req.query.number?.toString().toLowerCase();
         const procurarnadescricao = req.query.queryDescriptionAlso?.toString().toLowerCase();
-        console.log(nomeProduto, procurarnadescricao, number)
-        if (!nomeProduto || !number) return res.json('n tem')
+        if (!nomeProduto || !number) return res.json('Produto nao existe')
         const productsFound = await mySqlDatabase.findManyProductsByName(nomeProduto, (procurarnadescricao == "true"), Number(number));
-      
         if (number !== '0') return res.json(productsFound)
-        return res.render(path.join("TEMPLATE", "index.ejs"), { productsFound, nomeProduto });
+        return res.render(path.join("acharProdutos", "acharProdutos.ejs"), { productsFound, nomeProduto });
     },
 
     getProdutosFromUser: async (req: Request, res: Response) => {
-        console.log('aqui')
         const produtorId = req.params.produtorId.toString().toLowerCase();
-        console.log(produtorId)
         const productsFound = await mySqlDatabase.findProductsFromUser(produtorId);
-        console.log(productsFound)
-        // return res.json(productsFound);
         return res.render(path.join("template", "test2"), productsFound );
     },
 
     authValidation: async (req: Request, res: Response) => {
         const tokenSent = req.headers['authorization'];
         const infoRequired = req.headers['required_info'];
-
-       
-
         if (!tokenSent) return res.json({ auth: false });
         const authentication = new Authentication();
         const userTokenFormated = authentication.validateToken(tokenSent);

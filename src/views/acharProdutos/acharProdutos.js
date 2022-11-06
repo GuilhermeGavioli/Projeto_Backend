@@ -66,6 +66,9 @@ function createProductCard(item) {
   const cardContainer = document.createElement('div');
   cardContainer.className = 'card-container'
   cardContainer.setAttribute('product-id', item.product_id)
+  cardContainer.addEventListener('click', (e) => { 
+    window.location.href = `/produto/${e.target.getAttribute('product-id')}`
+  })
   
   const cardImage = document.createElement('img');
   cardImage.setAttribute('src', `${BASE_URL_PATH}file_system/product/${item.product_image}`);

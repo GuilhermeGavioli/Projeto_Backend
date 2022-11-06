@@ -5,8 +5,6 @@ import cors from 'cors'
 import { controllers } from './controllers/index'
 import { ProtectionAgainstAuthenticatedUsers, ProtectionAgainstNonAuthenticatedUsers } from './middlewares/AuthMiddleware';
 
-import MySql from './Repository/MySql'
-
 
 const app = express();
 
@@ -16,18 +14,14 @@ app.use(cors());
 
 
 
-// try{
-// } catch(err) {
-//     throw err;
-// }
-// app.use(app.router);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs')
 
 
 import path from 'path'
-app.use(express.static(path.join(__dirname + '/views')));
 
+
+app.use(express.static(path.join(__dirname + '/views')));
 app.use(express.static(path.join(__dirname + '/views' + '/test')));
 app.use(express.static(path.join(__dirname + '/views' + '/home')));
 app.use(express.static(path.join(__dirname + '/views' + '/alterarUsuario')));
@@ -54,10 +48,10 @@ app.use(express.static(path.join(__dirname + '/views' + '/assets')));
 app.use(express.static(path.join(__dirname + '/views' + '/globals')));
 
 app.use(express.static(path.join(__dirname + '/views' + '/404Error')));
-app.use(express.static(path.join(__dirname + '/views' + '/TEMPLATE')));
+app.use(express.static(path.join(__dirname + '/views' + '/acharProdutos')));
 
 app.get('/pagetest/:palavra',(req, res) => {
-    res.render(path.join("TEMPLATE", "index"));
+    res.render(path.join("acharProdutos", "acharProdutos"));
 })
 
 //file System routes to access images from users and products//
@@ -81,9 +75,6 @@ app.get('/procurarproduto', (req, res) => {
 })
 
 
-
-// import pages from './routes/pages'
-// app.use('/pages', pages)
 
 app.get('/registrar',(req, res) => { 
     res.render(path.join("registrar", "registrar"));
@@ -118,9 +109,8 @@ app.get('/procurarUsuario',(req, res) => {
 import { uploadUser, uploadProduct } from './multer'
 
 
-
-app.post('/testimage', uploadUser.single("files"), controllers.alterarUserWithImageTest)
-app.post('/testimagecriarproduto', uploadProduct.single("productFile"), controllers.criarProdutoWithImageTeste)
+app.post('/alterarUsuario', uploadUser.single("files"), controllers.updateUser)
+app.post('/criarProduto', uploadProduct.single("productFile"), controllers.createProduct)
 
 
 
@@ -133,7 +123,6 @@ app.post('/testimagecriarproduto', uploadProduct.single("productFile"), controll
 // User routes
 app.post('/loginuser', ProtectionAgainstAuthenticatedUsers, controllers.logarUser)
 app.post('/registeruser', ProtectionAgainstAuthenticatedUsers, controllers.registerUser)
-app.post('/alteraruser', ProtectionAgainstNonAuthenticatedUsers,controllers.alterarUser )
 app.post('/deleteuser', ProtectionAgainstNonAuthenticatedUsers, controllers.deletarUser)
 app.get('/get/:procurarnadescricao/:nomeprodutor', controllers.acharUsuariosPorNome) // achar por nome / descricao / usado pelo usuario
 
@@ -143,18 +132,13 @@ app.post('deletarProduto', ProtectionAgainstNonAuthenticatedUsers, controllers.d
 
 //'/getproduto/:procurarnadescricao/:nomeproduto/:number'
 app.get('/getprodutos', controllers.getProdutos)
-
 app.get('/getprodutosfromuser/:produtorId', controllers.getProdutosFromUser)
-
 app.get('/auth', controllers.authValidation)
 
 // app.get('*', function(req, res){
 //     res.status(404).send('what???');
 //   });
-app.get('/testingparams', (req, res) => { 
-    console.log(req.query.number)
-    return res.json('ok')
-})
+
 
 
 // app.get('/getprodutosfromUser/:idprodutor', async (req, res) => {

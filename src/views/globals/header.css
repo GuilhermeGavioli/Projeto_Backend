@@ -108,9 +108,9 @@ a:hover{
 
 .header-painel{
     /* visibility: hidden; */
-    font-weight: 200;
+    font-weight: lighter;
     width: 150px;
-    height: 200px;
+    height: 220px;
     background-color: rgb(255, 255, 255);
     z-index: 50;
     position: absolute;
@@ -129,11 +129,12 @@ a:hover{
 
 .user-painel-item{
     /* background-color: yellow; */
-    background-color: rgb(252, 252, 252);
     width: fit-content;
     font-size: .9em;
     margin: 4px 0 4px 0;
     padding: 0 5px 0 5px;
+    font-weight: lighter;
+    font-family: monospace;
 }
 
 li{
@@ -155,6 +156,7 @@ li{
     font-size: .9em;
     inset: auto 0 15px 0;
     margin: auto;
+    
 }
 .sidebar-items{
     position: absolute;
