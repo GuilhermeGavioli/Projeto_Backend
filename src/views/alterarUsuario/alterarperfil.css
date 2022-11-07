@@ -31,10 +31,10 @@ body{
     display: grid;
     grid-template-columns: .6fr .5fr 1fr 1fr;
     grid-template-areas: "c1 c1 c2 c2"
-                        "empty empty c2 c2";
+                        "c1 c1 c2 c2";
     grid-template-rows: auto auto;
     margin-top: 15px;
-    gap: 40px;
+    gap: 10px;
     
         /* background-color: rgb(79, 131, 19); */
 }

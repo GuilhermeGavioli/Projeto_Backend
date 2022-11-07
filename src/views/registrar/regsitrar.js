@@ -21,7 +21,7 @@ window.onload = async () => {
             spinning.style.visibility = 'hidden'
             return;
         }
-        if (data.auth) window.location.href = 'http://localhost:3000/pagehome'
+        if (data.auth) window.location.href = '/'
     } else {
         main.style.visibility = 'visible'
         spinning.style.visibility = 'hidden'
@@ -87,7 +87,7 @@ async function cadastrar(userData){
     const data = await res.json();
     if (data.error) return showMessage(data.message);
     alert('Usuario cadastrado')
-    window.location.href = 'http://localhost:3000/pagelogin'
+    window.location.href = '/login'
 }
 
 

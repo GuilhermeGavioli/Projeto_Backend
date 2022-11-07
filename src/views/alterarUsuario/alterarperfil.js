@@ -44,7 +44,7 @@ salvarButton.addEventListener("click", async (e) => {
   const updatedUserObject = getAllInputedInfo();
   const formData = convertDataToForm(updatedUserObject);
   
-  if (!getStoredToken()) return window.location.href = `${BASE_URL_PATH}pagehome`
+  if (!getStoredToken()) return window.location.href = `/`
  
  
  console.log('running')
@@ -278,12 +278,12 @@ function toggleUserInfoAndAdvanced(type) {
 }
 
 function lightAdvanced(advanced) {
-  advanced.style.borderBottom = '2px solid blue';
-  advanced.style.color = 'rgb(18,18,18)';
+  advanced.style.borderBottom = '3px solid rgb(126, 176, 28)';
+  advanced.style.color = 'rgb(120,120,120)';
 }
 function lightInfo(userInfo) {
-  userInfo.style.borderBottom = '2px solid blue';
-  userInfo.style.color = 'rgb(18,18,18)';
+  userInfo.style.borderBottom = '3px solid rgb(126, 176, 28)';
+  userInfo.style.color = 'rgb(120,120,120)';
 }
 
 function resetCategory(advanced, userInfo) {

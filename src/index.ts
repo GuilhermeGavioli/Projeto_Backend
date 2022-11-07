@@ -22,19 +22,18 @@ import path from 'path'
 
 
 app.use(express.static(path.join(__dirname + '/views')));
-app.use(express.static(path.join(__dirname + '/views' + '/test')));
+
 app.use(express.static(path.join(__dirname + '/views' + '/home')));
 app.use(express.static(path.join(__dirname + '/views' + '/alterarUsuario')));
 app.use(express.static(path.join(__dirname + '/views' + '/login')));
 app.use(express.static(path.join(__dirname + '/views' + '/registrar')));
 app.use(express.static(path.join(__dirname + '/views' + '/criarProduto')));
-app.use(express.static(path.join(__dirname + '/views' + '/profile2')));
-app.use(express.static(path.join(__dirname + '/views' + '/test2')));
+app.use(express.static(path.join(__dirname + '/views' + '/meusProdutos')));
+app.use(express.static(path.join(__dirname + '/views' + '/profile')));
 app.use(express.static(path.join(__dirname + '/views' + '/procurarproduto')));
 app.use(express.static(path.join(__dirname + '/views' + '/produto')));
-
+app.use(express.static(path.join(__dirname + '/views' + '/sobre')));
 app.use(express.static(path.join(__dirname + '/views' + '/404Error')));
-
 
 app.use(express.static(path.join(__dirname + '/file_system')));
 app.use(express.static(path.join(__dirname + '/file_system/app')));
@@ -50,9 +49,7 @@ app.use(express.static(path.join(__dirname + '/views' + '/globals')));
 app.use(express.static(path.join(__dirname + '/views' + '/404Error')));
 app.use(express.static(path.join(__dirname + '/views' + '/acharProdutos')));
 
-app.get('/pagetest/:palavra',(req, res) => {
-    res.render(path.join("acharProdutos", "acharProdutos"));
-})
+
 
 //file System routes to access images from users and products//
 app.get('/file_system/user/:filename',(req, res) => { 
@@ -65,16 +62,10 @@ app.get('/file_system/product/:filename',(req, res) => {
     res.sendFile(path.join(__dirname, 'file_system', 'product', req.params.filename))
 })
 
-// app.get('/test2/:idprodutor', controllers.acharUsuarioPorId)
-app.get('/test2/:idprodutor', (req, res) => { 
-    res.render(path.join("test2", "test2"));
-})
 
 app.get('/procurarproduto', (req, res) => { 
     res.render(path.join("procurarproduto", "procurarproduto"));
 })
-
-
 
 app.get('/registrar',(req, res) => { 
     res.render(path.join("registrar", "registrar"));
@@ -99,10 +90,17 @@ app.get('/estacaoDeCriacao',(req, res) => {
     res.render(path.join("criarProduto", "criarProduto"));
 })
 
+app.get('/meusProdutos',(req, res) => { 
+    res.render(path.join("meusprodutos", "meusprodutos"));
+})
+
 app.get('/procurarUsuario',(req, res) => { 
     res.render(path.join("procurarUsuario", "procurarUsuario"));
 })
 
+app.get('/sobre', (req, res) => { 
+    res.render(path.join("sobre", "sobre"));
+})
 
 
 
@@ -128,11 +126,12 @@ app.get('/get/:procurarnadescricao/:nomeprodutor', controllers.acharUsuariosPorN
 
 //Produto routes
 // app.post('/criarProduto', ProtectionAgainstNonAuthenticatedUsers, controllers.criarProduto )
-app.post('deletarProduto', ProtectionAgainstNonAuthenticatedUsers, controllers.deletarProduto)
+app.post('/deletarProduto/:produtoid', ProtectionAgainstNonAuthenticatedUsers, controllers.deletarProduto)
+
 
 //'/getproduto/:procurarnadescricao/:nomeproduto/:number'
-app.get('/getprodutos', controllers.getProdutos)
-app.get('/getprodutosfromuser', controllers.getProdutosFromUser)
+app.get('/getprodutos/:produtorid', controllers.getProdutos)
+app.get('/getprodutosfromuser',ProtectionAgainstNonAuthenticatedUsers, controllers.getProdutosFromUser)
 app.get('/auth', controllers.authValidation)
 
 // app.get('*', function(req, res){

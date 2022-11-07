@@ -1,168 +1,117 @@
-const BASE_URL_PATH = 'http://localhost:3000/'
-
-window.onload = async () => {
-    fixGenderAndBirthDateFormat()
-    
-    
-    const productsData = await getUserProducts();
-    console.log(productsData)
-    if (productsData.length == 0) displayEmpty();
-    else {
-        displayProducts(productsData);
-    }
+const BASE_URL_PATH =  'http://localhost:3000/'
 
 
 
-    //Referente a Se o usuario esta logado ou nao --------------------------------------------
-    const headerCircle = document.querySelector('.header-circle');
-    const headerPainel = document.querySelector('.header-painel');
-    const headerLogoutButton = document.querySelector('.logout-btn');
 
-    if (getStoredToken()) {
-      const res = await fetch(`${BASE_URL_PATH}auth`, {
-        method: "GET",
-        headers: {
-          "Content-type": "application/json",
-          authorization: getStoredToken(),
-          required_info: "*",
-        },
-    });
-        const data = await res.json();
-        console.log(data)
-        if (data.auth) {
-            console.log('tem')
-            fitUserTokenImageInHeader(headerCircle, data.fullUser);
-            headerCircle.addEventListener('click', () => toggleHeaderPainel(headerPainel))
-            headerLogoutButton.addEventListener('click', logout);
-            headerCircle.style.visibility = "visible";
-        } else {
-            console.log('n tem')
-        }
-    }
+
+
+function convertNumberToMonth(month_number) {
+    const months = new Array("Janeiro", "Fevereiro", "Marco", "Abril", "Maio", "Junho", "Julho", "Agosto", "Septembro", "Outubro", "Novembro", "Dezembro");
+    return months[month_number - 1]
 }
   
-function getStoredToken() {
-    return window.localStorage.getItem("token") || null; //tokenInfo
-}
-
-function fitUserTokenImageInHeader(headerElement, userData) {
-    console.log('image ' + userData.user_image)
-    if (userData.user_image) {
-        console.log('running')
-        const src = `${BASE_URL_PATH}file_system/user/${userData.user_image}`
-        headerElement.setAttribute('src', src);
-    } else {
-        const alternativeSrc = `${BASE_URL_PATH}file_system/app/default_user_image.png`
-        console.log(alternativeSrc)
-        headerElement.setAttribute('src', alternativeSrc);
-    }
-}
+function calcularIdade(ano) {
+    console.log(ano)
+    console.log(new Date().getFullYear())
+    return Number(new Date().getFullYear() - ano);
+  }
 
 
-function toggleHeaderPainel(PainelElement) {
-    PainelElement.style.visibility = PainelElement.style.visibility == "hidden" ? "visible" : "hidden";
-}
+const createdAtField = document.getElementById('createdAt')
+createdAtValue = createdAtField.getAttribute('createdAt');
 
-function logout() {
-    window.localStorage.removeItem('token')
-    window.location.reload();
-}
+const month = createdAtValue.toString().substring(4, 7);
+const year = createdAtValue.toString().substring(11, 15);
+
+document.querySelectorAll('.createdAtField')[0].innerText += ` ${month} de ${year}`
+document.querySelectorAll('.createdAtField')[1].innerText += ` ${month} de ${year}`
+
+
+const idade = calcularIdade(Number(year));
+// document.getElementById('ageField').innerText = `Idade: ${idade} anos`
 
 
 
-window.onscroll = async () => { 
+const userid = document.getElementById('userid-html').innerText
+
+
+
+
+let isOver = false;
+
+window.onload = async () => {
+
+    const data = await handleUserFetchTokenData('stayOnThePageStillNotLoggedIn');
+    console.log(data);
+  
+    window.onscroll = async () => {
+      handlePermanentFetchingOnScroll();
     
-   
+  }
+
 }
 
-async function getUserProducts() {
-    const userid = document.getElementById('userid').getAttribute('userid');
-    
-    //fituserimage
-    const userimage = document.getElementById('userimage').getAttribute('userimage')
-    const profileImage = document.querySelector('.profile-user-image')
-
-    if (userimage) profileImage.setAttribute('src', `${BASE_URL_PATH}file_system/user/${userimage}`)
-    else profileImage.setAttribute('src', `${BASE_URL_PATH}file_system/app/default_user_image.png`);
-
-    const res = await fetch(`${BASE_URL_PATH}getprodutosfromuser/${userid}`)
-    const data = await res.json();
-    return data;
+let fetchCont = 0;
+async function handlePermanentFetchingOnScroll() {
+  const isInTheEnd = verifyScroll();
+      if (isInTheEnd && !isOver) {
+        const newProducts = await fetchMore(fetchCont);
+        console.log(newProducts)
+        if (newProducts.length == 0) {
+          console.log('no products');
+          isOver = true;
+          return;
+        }
+        appendOnPage(newProducts);
+        fetchCont = fetchCont + 8;
+      }
 }
 
-function displayProducts(productsData) {
-    const productsContainer = document.querySelector('.mais-produtos-container');
-    productsData?.map(product => { 
-        const card = createProductCard(product);
-        productsContainer.append(card)
-    })
+  
+
+
+function verifyScroll() {
+  var scrollMaxY = window.scrollMaxY || (document.documentElement.scrollHeight - document.documentElement.clientHeight)
+  return window.scrollY === scrollMaxY;
 }
 
-function createProductCard(product) {
-    console.log(product)
-    const card = document.createElement('div')
-    card.className = 'card-container';
-    // card.addEventListener('click', () => /* */ redirecionar())
+async function fetchMore(cont) {
+  const res = await fetch(`${BASE_URL_PATH}getprodutosfromuser/?produtorId=${userid}&number=${cont}`);
+  return await res.json();
+}
 
-    const card_first = document.createElement('div')
-    card_first.className = 'card-first'
-    card_first.style.backgroundImage = `url(${BASE_URL_PATH}file_system/product/${product.product_image})`
-
-    const card_title = document.createElement('h2');
-    card_title.className = 'card-title'
-    card_title.innerHTML = product.product_name
-
-    const card_second = document.createElement('div')
-    card_second.className = 'card-second'
-
-    const card_text = document.createElement('p')
-    card_text.innerHTML = product.product_description
-
-    card_first.append(card_title)
-    card_second.append(card_text)
-   
-    card.append(card_first);
-    card.append(card_second);
-    return card;
+function appendOnPage(data) {
+  const container = document.querySelector('.mais-produtos-container')
+  data.map(item => {
+    const cardContainer = createProductCard(item);
+    container.append(cardContainer);
+  })
 }
 
 
-function fixGenderAndBirthDateFormat() {
-    const gender = document.getElementById('genero')
-    const genderNumber = Number(gender.innerText)
-    if (genderNumber == 0) gender.innerText = "Outro"
-    if (genderNumber == 1) gender.innerText = "Masculino"
-    if (genderNumber == 2) gender.innerText = "Feminino"
+function createProductCard(item) {
+  if (!item) return;
 
-    // calcula nao precisamente a idade...
-    const age = document.getElementById('idade')
-    const year = Number(age.innerText.substring(11, 15))
-    const currentYear = Number(new Date().getFullYear());
-    age.innerText = currentYear - year;
-}
+  const cardContainer = document.createElement('div');
+  cardContainer.className = 'card-container'
+  cardContainer.setAttribute('product-id', item.product_id)
+  cardContainer.addEventListener('click', (e) => { 
+    window.location.href = `/produto/${e.target.getAttribute('product-id')}`
+  })
+  
+  const cardImage = document.createElement('img');
+  cardImage.setAttribute('src', `${BASE_URL_PATH}file_system/product/${item.product_image}`);
+  cardImage.className = 'card-first'
 
-function displayEmpty() {
-    const productsContainer = document.querySelector('.mais-produtos-container');
-    const emptyContainer = createEmptyItem();
-    console.log('empty ', emptyContainer)
-    productsContainer.append(emptyContainer);
+  const cardTitle = document.createElement('h2');
+  cardTitle.innerText = item.product_name;
 
-    document.querySelector('.mais-produtos-container').style.display = 'flex';
-}
+  const cardSecond = document.createElement('div');
+  cardSecond.className = 'card-second';
+  cardSecond.innerText = item.product_description;
 
-function createEmptyItem() {
-    const div = document.createElement('div');
-    div.className = 'empty-container'
-
-    const emptyBoxImage = document.createElement('img');
-    emptyBoxImage.setAttribute('src', `${BASE_URL_PATH}file_system/app/empty_box.png`)
-    emptyBoxImage.className = 'empty-box-img'
-    
-    const message = document.createElement('h2');
-    message.innerText = 'Este Produtor não possui mais produtos...';
-    message.className = 'empty-message'
-
-    div.append(emptyBoxImage)
-    div.append(message)
-    return div;
+  cardImage.append(cardTitle);
+  cardContainer.append(cardImage);
+  cardContainer.append(cardSecond);
+  return cardContainer;
 }

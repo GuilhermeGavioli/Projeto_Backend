@@ -26,14 +26,14 @@ export default class MySql implements Repository {
         console.log("Succesfully connected to database");
     }
 
-    public async findProductsFromUser(userid: string, number: number): Promise<any | null> { 
+    public async findProductsFromUser(userid: string, number?: number): Promise<any | null> { 
         const [rows] = await this.connection.execute(`SELECT 
         product_id,
         product_name,
         product_image,
         product_description
         FROM product WHERE owner_id="${userid}"
-        LIMIT ${number}, ${number + 8};`);
+        LIMIT ${50};`);
         if (!rows) return null;
         return rows;
     }
@@ -181,9 +181,11 @@ export default class MySql implements Repository {
             product_name,
             product_image,
             product_description
-            FROM product WHERE product_name LIKE "%${name}%" || product_description LIKE "%${name}%" 
-            LIMIT ${number}, ${number + 8};`);
+            FROM product
+            WHERE product_name LIKE "%${name}%" || product_description LIKE "%${name}%"
+            LIMIT  ${number}, ${number + 8};`);
             if (!rows) return null;
+            console.log(rows)
             return rows;
         } else { 
             const [rows] = await this.connection.execute(`SELECT 

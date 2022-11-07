@@ -118,7 +118,7 @@ export const controllers = {
         if (!userFound) return res.json("Usuario nao existe.");
         userFound.email = ""
         userFound.user_password = ""
-        res.render(path.join("profile2", "profile2"), { userFound });
+        res.render(path.join("profile", "profile"), { userFound });
     },
 
     acharProdutoPorId: async (req: Request, res: Response) => {
@@ -132,11 +132,11 @@ export const controllers = {
     },
 
     deletarProduto: async (req: Request, res: Response) => {
-        const { product_id } = req.body
-        if (!product_id) return res.send('error')
+        const productid = req.params.produtoid;
+        if (!productid) return res.send('Produto nao especificado');
         const token = await res.locals.userInfo;
         const deletarProduto = new DeletarProduto(mySqlDatabase);
-        const outputData = await deletarProduto.execute(product_id, token.user_id);
+        const outputData = await deletarProduto.execute(productid.toString(), token.user_id);
         return res.json(outputData);
     },
 
@@ -151,14 +151,10 @@ export const controllers = {
     },
 
     getProdutosFromUser: async (req: Request, res: Response) => {
-        const produtorId = req.query.produtorId?.toString().toLowerCase();
-        const number = req.query.number?.toString().toLowerCase();
-        console.log(produtorId)
-        console.log(number)
-        if (!produtorId || !number) return res.json('erro, item nao especificado')
-        const productsFound = await mySqlDatabase.findProductsFromUser(produtorId, Number(number));
-        console.log(productsFound)
-        return res.json(productsFound)
+        const token_id = res.locals.userInfo.user_id;
+        if (!token_id) return res.json('Nao autorizado - Requisiçao negada, sua sessao pode ter expirado.')
+        const productsFound = await mySqlDatabase.findProductsFromUser(token_id);
+        return res.json(productsFound);
     },
 
     authValidation: async (req: Request, res: Response) => {

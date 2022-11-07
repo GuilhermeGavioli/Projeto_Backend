@@ -20,7 +20,7 @@ window.onload = async () => {
             spinning.style.visibility = 'hidden'
             return;
         }
-        if (data.auth) window.location.href = 'http://localhost:3000/pagehome'
+        if (data.auth) window.location.href = '/'
     } else {
         main.style.visibility = 'visible'
         spinning.style.visibility = 'hidden'
@@ -56,7 +56,7 @@ async function logar(userData){
     const data = await res.json();
     if (data.token && !data.error) {
         storeToken(data.token);
-        window.location.href = 'http://localhost:3000/pagealterarusuario'
+        window.location.href = 'http://localhost:3000/'
         return
     }
 

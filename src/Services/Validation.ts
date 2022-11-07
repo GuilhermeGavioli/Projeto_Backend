@@ -207,7 +207,8 @@ export class UserValidation implements Validation{
 
 
 export class ProductValidation implements Validation {
-    validate(): OutputCadastrarDTO { 
+    validate(): OutputCadastrarDTO {
+        
         return new OutputCadastrarDTO('ok', 200, false);
     }
  }

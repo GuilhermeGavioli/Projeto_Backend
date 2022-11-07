@@ -23,9 +23,8 @@ async function handlePermanentFetchingOnScroll() {
   const isInTheEnd = verifyScroll();
       if (isInTheEnd && !isOver) {
         const newProducts = await fetchMore(fetchCont);
-        console.log(newProducts)
         if (newProducts.length == 0) {
-          console.log('no products');
+          console.log('No more products');
           isOver = true;
           return;
         }
@@ -48,7 +47,10 @@ async function fetchMore(cont) {
 }
 
 function appendOnPage(data) {
+  console.log(data)
   const container = document.querySelector('.c1')
+  console.log(data.length)
+  console.log('fetchcont ' + fetchCont)
   data.map(item => {
     const cardContainer = createProductCard(item);
     container.append(cardContainer);
@@ -78,8 +80,8 @@ function createProductCard(item) {
   cardSecond.className = 'card-second';
   cardSecond.innerText = item.product_description;
 
-  cardImage.append(cardTitle);
   cardContainer.append(cardImage);
+  cardContainer.append(cardTitle);
   cardContainer.append(cardSecond);
   return cardContainer;
 }

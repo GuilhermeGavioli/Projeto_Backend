@@ -67,7 +67,7 @@ async function fireAuthVerificationRequest() {
 
 function handleActionForNonAuthorizedUsers(action, items) {
   if (action == 'stay') return;
-  if (action == 'redirect') return window.location.href = `${BASE_URL_PATH_AUTH}pagelogin`;
+  if (action == 'redirect') return window.location.href = `${BASE_URL_PATH_AUTH}login`;
       
   if (action == 'stayOnThePageStillNotLoggedIn') {
     showContent(items.header, items.header, items.main, items.spinner)

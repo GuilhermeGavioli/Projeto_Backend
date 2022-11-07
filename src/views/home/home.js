@@ -15,19 +15,10 @@ window.onload = async () => {
 
   const data = await handleUserFetchTokenData('stayOnThePageStillNotLoggedIn');
   console.log('aaaaa' + data)
-  // if (!data.auth) return window.location.href = `${BASE_URL_PATH_AUTH}pagelogin`;
-        
-  // if (data.auth) {
-  //       headerCircle.addEventListener('click', (e) => toggleHeaderPainel(headerPainel))
-  //       headerLogoutButton.addEventListener('click', () => logout())
-  //       fitUserInfoInHeader(data.fullUser.user_image);
-  //       showContent(header, main, spinner);
-  //       return data.fullUser;
-  //   }
-  // headerCircle.style.position = 'absolute'
-  // headerCircle.style.visibility = 'hidden'
-  // headerPainel.style.visibility = 'hidden'
-  // headerLogoutButton.style.visibility = 'hidden'
+
+  const productData = await handleCardsDisplayOnLoad();
+  await fitProductsDataInHome(productData);
+
   
  
 
@@ -38,7 +29,6 @@ window.onload = async () => {
   })
 }
 
-
 document.querySelector('.search-btn').addEventListener('click', (e) => { 
   e.preventDefault();
   searchProducts();
@@ -48,4 +38,52 @@ document.querySelector('.search-btn').addEventListener('click', (e) => {
 function searchProducts() {
   const typedValue = document.querySelector('.main-input').value
   window.location.href = `${BASE_URL_PATH}getprodutos?queryDescriptionAlso=true&number=0&nomeProduto=${typedValue}`
+}
+
+
+async function handleCardsDisplayOnLoad(){
+  const res = await fetch(`${BASE_URL_PATH}getprodutos/?nomeProduto=as&queryDescriptionAlso=true&number=${1}`);
+  return await res.json();
+}
+
+async function fitProductsDataInHome(data){
+  appendOnPage(data)  
+}
+
+
+function appendOnPage(data) {
+  const container = document.querySelector('.c3')
+  data.map(item => {
+    const cardContainer = createProductCard(item);
+    container.append(cardContainer);
+  })
+}
+
+
+function createProductCard(item) {
+  if (!item) return;
+
+  const cardContainer = document.createElement('div');
+  cardContainer.className = 'card-container'
+  cardContainer.setAttribute('product-id', item.product_id)
+  cardContainer.addEventListener('click', (e) => { 
+    window.location.href = `/produto/${e.target.getAttribute('product-id')}`
+  })
+  
+  const cardImage = document.createElement('img');
+  cardImage.setAttribute('src', `${BASE_URL_PATH}file_system/product/${item.product_image}`);
+  cardImage.className = 'card-first'
+
+  const cardTitle = document.createElement('h2');
+  cardTitle.className = 'card-title'
+  cardTitle.innerText = item.product_name;
+
+  const cardSecond = document.createElement('div');
+  cardSecond.className = 'card-second';
+  cardSecond.innerText = item.product_description;
+
+  cardContainer.append(cardImage);
+  cardContainer.append(cardTitle);
+  cardContainer.append(cardSecond);
+  return cardContainer;
 }

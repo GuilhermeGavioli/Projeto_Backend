@@ -1,0 +1,23 @@
+body{
+    background-color: red;
+}
+
+.container2{
+    height: fit-content;
+    width: 500px;
+    background-color: rgba(255, 255, 255, 0.922);
+    position: absolute;
+    top: 150px;
+    bottom: 0;
+    margin: auto;
+    right: 0;
+    left: 200px;
+    padding: 28px;
+}
+
+
+
+
+.footer{
+    margin-top: 100vh;
+}

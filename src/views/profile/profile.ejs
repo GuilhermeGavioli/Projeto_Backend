@@ -128,7 +128,9 @@
 
 
 
-    <span id="userid-html"><%= userFound.userid%></span>
+    <span>
+        <%= userFound.user_image %>
+    </span>
 
 
 
@@ -138,10 +140,12 @@
     
 
     <div class="c1">
-        <img class="circle" 
-        src='/file_system/user/<%=userFound.user_image%>'
-        
-        ></img>
+
+        <% if (!userFound.user_image || userFound.user_image.toString().trim() == '') { %>
+            <img class="circle" src='/file_system/app/user_default.jpg'></img>
+            <% } else {%>
+                <img class="circle" src='/file_system/user/' <% + userFound.user_image %>></img>
+        <% }%>
         <!-- <h2 class="c1-title" style="text-align: center;">Guilherme Miranda da Silva Pereira Santos de Souza
             Almeida Barros</h2> -->
         <!-- <h2 class="c1-text" style="text-align: justify;">Minha bio não é nada interessante e eu nao ligo pra isso de qualquer forma, sue me...</h2> -->

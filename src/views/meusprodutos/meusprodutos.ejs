@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="./criarproduto.js" defer></script>
-    <link rel="stylesheet" href="./criarproduto.css">
+    <script src="./meusprodutos.js" defer></script>
+    <link rel="stylesheet" href="./meusprodutos.css">
     
     <!-- <link rel="stylesheet" href="../assets/sidebar.css"> -->
     
@@ -15,14 +15,15 @@
     <link rel="stylesheet" href="../globals/header.css">
     <link rel="stylesheet" href="../globals/footer.css">
 
-    <title>Criar Produto</title>
+    <title>Meus Produto</title>
 
 
     <script src="https://kit.fontawesome.com/69266619cf.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <style>
-        body{background-color: rgb(47, 47, 47);}
+        /* body{background-color: rgb(68, 68, 68);} */
+       
        
         #spinning{
             border-radius: 50%;
@@ -46,10 +47,14 @@
 <body>
     <div id="spinning"></div>
 
+    <!-- <div class="concluido-container">
+        <div class="v-first"></div>
+        <div class="v-second"></div>
+    </div> -->
 
     <header class="header">
         <div style="height: 100%; display: flex; align-items: center; background-color: rgb(250,250,250);" class="logo-header-container" onClick="window.location.href = '/'">
-            <img src="../assets/logo.png" style="width: 100%; height: 100%; margin-left: 8px; min-width: 75px; max-width: 85px;" alt="">
+            <img src="../assets/logo_sem_marcadagua.png" style="width: 100%; height: 100%; margin-left: 8px; min-width: 75px; max-width: 85px;" alt="">
             <div class="company-name" style="height: fit-content; display: flex; padding: 0 35px;">
                 <span style="font-family: monospace; font-size: 1.6em; color:rgb(41, 41, 41); text-decoration: solid;">
                     Go
@@ -78,7 +83,7 @@
         </div>
 
 
-        <div id="register-and-login" style="margin-left: 25px; display: flex; background-color: rgb(249, 249, 249); justify-content: center; background-color: red;">
+        <div id="register-and-login" style="margin-left: 25px; display: flex; background-color: rgb(249, 249, 249); justify-content: center;">
             <p style="margin:0; padding-right: 15px; border-right: 1px solid rgb(92, 92, 92);" ><a href="/registrar" style="text-decoration: none;">
                 <i class="fa-solid fa-user-plus" style="color:rgb(59, 59, 59); font-size: 1.2em;"></i>
             </a>
@@ -127,107 +132,35 @@
 
 
 
+ 
+    <div class="container" style="margin-top: 85px;">
+       <div class="c1" style="position: relative;">
+
+
+
+
+
+       </div>
+       </div>
+       
+       
+               <div class="no-results-container" style="padding: 10px 25px 25px 25px;">
+                   <img src="../../assets/nao_encontrado.jpg" alt="" style="width: 255px;">
+                   <h1 class="no-results-title" style="font-size: 1.2em; width: 350px; margin: auto;">Desculpe, não conseguimos encontrar nenhum resultado para a sua busca
+      
+                       !</h1>
+                       <!-- <div style="display: flex; justify-content: space-between; padding: 0 115px 0 115px"> -->
+                           <button class="voltar-btn" onclick="window.location.href = '/procurarproduto'">Procurar Novamente</button>
+                           <!-- <button class="voltar-btn" onclick="window.history.back()">Voltar</button> -->
+
+                       <!-- </div> -->
+                   </div>
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-    
-    <div class="container">
-        <div class="c0">
-            <h1 style="color:rgb(126, 176, 28); font-weight: 700;">Criar Produto</h1>
-            <h2 style="color: rgb(60,68,55);">Compartilhe seus Produtos em alguns Cliques</h2>
-        </div>
-        <div class="c1">
-            <div id="c1-div-one" class="c1-div"></div>
-            <div id="c1-div-two" class="c1-div"></div>
-            <div id="c1-div-three" class="c1-div"></div>
-            <div id="c1-div-four" class="c1-div"></div>
-            <div id="c1-div-five" class="c1-div"></div>
-            <div id="c1-div-six" class="c1-div"></div>
-            <div id="c1-div-seven" class="c1-div"></div>
-            <div class="c-step-number">1</div>
-            <!-- <img src="./assets/red-arrow.png" class="red-arrow" id="first-arrow" alt=""> -->
-        </div>
-        <div class="c2">
-            <button class="green-btn" id="image-btn" style="cursor: default;">CRIAR
-                <!-- <img src="./assets/red-arrow.png" id="mouse-arrow" alt=""> -->
-            </button>
-            <div class="c-step-number">2</div>
-            <img src="./arrow.png" class="red-arrow" id="second-arrow" alt="">
-        </div>
-        <div class="c3">
-            <img src="./assets/bag.png" id="bag" alt="">
-            <h2 id="post-criado-msg">Post Criado</h2>
-            <div class="c-step-number">3</div>
-        </div>
-
-        <!-- <div class="propaganda"></div> -->
-
-        <div class="c4">
-            <h2 class="precisaremos-title">Precisaremos de algumas informaçoes sobre seu produto...</h2>
-
-            <div class="label-and-input-container">
-                <label for="Nome do Produto">Nome do Produto</label>
-                <input type="text" id="product-name">
-            </div>
-            <div class="label-and-input-container">
-                <label for="Descricao do Produto">Descricao</label>
-                <textarea name="" cols="30" rows="10" id="product-description" style="resize: none;"></textarea>
-            </div>
-            <div class="label-and-checkbox-container">
-                <input type="checkbox" style="width: 18px; height: 18px; margin-right: 10px;">
-                <p for="Descricao do Produto">Produto orgânico</p>
-            </div>
-
-        </div>
-
-        <div class="c5">
-
-            <div style="margin-top: 45px; margin-left: 18px; margin-bottom: 30px;">
-                <input type="file" name="uploadfile" name="file" id="product-file" accept="image/png, image/jpeg, image/jpg" style="display:none; position: absolute;"/>
-                <label for="product-file" class="add-img-btn">Adicionar Imagem</label>
-            </div>
-            <ul style="margin-bottom: 35px;">
-                <li>é obrigatório o uso de uma imagem</li>
-                <li>Deve conter no máximo 200KB's</li>
-                <li>É aconselhavel um tamanho de XxX</li>
-            </ul>
-                <div class="add-img-container">
-                    <div class="img-block"></div>
-                    <div class="img-block"></div>
-                    <div class="img-block"></div>
-                    <div class="img-block"></div>
-                    <div class="img-block"></div>
-                    <div class="img-block"></div>
-                    <div class="img-block"></div>
-                    <div class="img-block"></div>
-                    <div class="img-block"></div>
-                    <div class="img-block"></div>
-                
-
-                </div>
-                <button class="green-btn" id="main-criar-btn">CRIAR
-             
-                </button>
-        </div>
-
-
-        <div class="c6"></div>
-
-
-    </div>
-    
-    
     
 </body>
 </html>
