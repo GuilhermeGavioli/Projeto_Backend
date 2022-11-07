@@ -151,9 +151,14 @@ export const controllers = {
     },
 
     getProdutosFromUser: async (req: Request, res: Response) => {
-        const produtorId = req.params.produtorId.toString().toLowerCase();
-        const productsFound = await mySqlDatabase.findProductsFromUser(produtorId);
-        return res.render(path.join("template", "test2"), productsFound );
+        const produtorId = req.query.produtorId?.toString().toLowerCase();
+        const number = req.query.number?.toString().toLowerCase();
+        console.log(produtorId)
+        console.log(number)
+        if (!produtorId || !number) return res.json('erro, item nao especificado')
+        const productsFound = await mySqlDatabase.findProductsFromUser(produtorId, Number(number));
+        console.log(productsFound)
+        return res.json(productsFound)
     },
 
     authValidation: async (req: Request, res: Response) => {

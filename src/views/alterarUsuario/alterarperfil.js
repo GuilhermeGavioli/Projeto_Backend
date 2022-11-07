@@ -181,10 +181,10 @@ function fitInformationOnInputs(data) {
 
 }
 
-function convertNumberToMonth(month_number) {
-  const months = new Array("Janeiro", "Fevereiro", "Marco", "Abril", "Maio", "Junho", "Julho", "Agosto", "Septembro", "Outubro", "Novembro", "Dezembro");
-  return months[month_number - 1]
-}
+// function convertNumberToMonth(month_number) {
+//   const months = new Array("Janeiro", "Fevereiro", "Marco", "Abril", "Maio", "Junho", "Julho", "Agosto", "Septembro", "Outubro", "Novembro", "Dezembro");
+//   return months[month_number - 1]
+// }
 
 
 

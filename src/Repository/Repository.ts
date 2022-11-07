@@ -14,7 +14,7 @@ export default interface Repository{
     saveProduct(produto: Produto): Promise<void>;
     deleteOneUser(id: string, email: string): Promise<void>;
 
-    findProductsFromUser(userid: string): Promise<any | null>
+    findProductsFromUser(userid: string, number: number): Promise<any | null>
     findProduct(id: string, owner_id: string): Promise<any | null>
     deleteOneProduct(product_id: string, token_user_id: string): Promise<void>
 }

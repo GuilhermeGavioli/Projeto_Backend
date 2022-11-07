@@ -17,10 +17,6 @@ window.onload = async () => {
     }
   }
 
-
-  
-
-
 }
 
 async function handlePermanentFetchingOnScroll() {
@@ -75,6 +71,7 @@ function createProductCard(item) {
   cardImage.className = 'card-first'
 
   const cardTitle = document.createElement('h2');
+  cardTitle.className = 'card-title'
   cardTitle.innerText = item.product_name;
 
   const cardSecond = document.createElement('div');

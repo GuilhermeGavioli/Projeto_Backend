@@ -134,7 +134,8 @@ a:hover{
     margin: 4px 0 4px 0;
     padding: 0 5px 0 5px;
     font-weight: lighter;
-    font-family: monospace;
+    /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 600; */
 }
 
 li{

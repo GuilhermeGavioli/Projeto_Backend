@@ -26,13 +26,14 @@ export default class MySql implements Repository {
         console.log("Succesfully connected to database");
     }
 
-    public async findProductsFromUser(userid: string): Promise<any | null> { 
+    public async findProductsFromUser(userid: string, number: number): Promise<any | null> { 
         const [rows] = await this.connection.execute(`SELECT 
         product_id,
         product_name,
         product_image,
         product_description
-        FROM product WHERE owner_id="${userid}";`);
+        FROM product WHERE owner_id="${userid}"
+        LIMIT ${number}, ${number + 8};`);
         if (!rows) return null;
         return rows;
     }
@@ -150,18 +151,6 @@ export default class MySql implements Repository {
         updated_at="${new Date(date).toISOString().split('T')[0]}" WHERE email="${email}";`);
     }
 
-    // product_id  VARCHAR(255) NOT NULL UNIQUE,
-    // product_name VARCHAR(255) NOT NULL,
-    // product_image VARCHAR(255) NOT NULL,
-    // product_description TEXT NOT NULL,
-    // is_organic BOOLEAN NOT NULL, 
-    // price DECIMAL(5,2) NOT NULL,
-    // unity VARCHAR(255) NOT NULL, 
-    // tags VARCHAR(255) NOT NULL, 
-    // category VARCHAR(255) NOT NULL, 
-    // owner_id VARCHAR(255) NOT NULL,
-    // created_at DATE NOT NULL,
-
     public async saveProduct(produto: Produto): Promise<void> {
         console.log(produto)
         const date = new Date();
@@ -202,7 +191,8 @@ export default class MySql implements Repository {
             product_name,
             product_image,
             product_description
-            FROM product WHERE product_name LIKE "%${name}%";`);
+            FROM product WHERE product_name LIKE "%${name}%"
+            LIMIT ${number}, ${number + 8};`); 
             if (!rows) return null;
             return rows;
         }

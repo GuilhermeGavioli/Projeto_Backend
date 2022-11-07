@@ -132,7 +132,7 @@ app.post('deletarProduto', ProtectionAgainstNonAuthenticatedUsers, controllers.d
 
 //'/getproduto/:procurarnadescricao/:nomeproduto/:number'
 app.get('/getprodutos', controllers.getProdutos)
-app.get('/getprodutosfromuser/:produtorId', controllers.getProdutosFromUser)
+app.get('/getprodutosfromuser', controllers.getProdutosFromUser)
 app.get('/auth', controllers.authValidation)
 
 // app.get('*', function(req, res){

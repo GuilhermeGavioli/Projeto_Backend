@@ -108,7 +108,7 @@ function fitUserInfoInHeader(imageSource) {
     
 }
   
-  function getStoredToken() {
+function getStoredToken() {
     return window.localStorage.getItem("token") || null;
 }
   
@@ -118,7 +118,6 @@ function toggleHeaderPainel(PainelElement) {
 
 
 //toggle procurar navbar item //procurar
-
 function toggleNavItem() {
   console.log('opening')
   const painel = document.querySelector('.procurar-painel-container')
@@ -176,5 +175,7 @@ function calcularIdade(ano) {
   return Number(new Date().getFullYear() - ano);
 }
 
-
-  
+function convertNumberToMonth(month_number) {
+  const months = new Array("Janeiro", "Fevereiro", "Marco", "Abril", "Maio", "Junho", "Julho", "Agosto", "Septembro", "Outubro", "Novembro", "Dezembro");
+  return months[month_number - 1]
+}
