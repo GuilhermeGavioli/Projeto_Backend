@@ -141,6 +141,7 @@ export const controllers = {
     },
 
     getProdutos: async (req: Request, res: Response) => {
+        console.log('hi')
         const nomeProduto = req.query.nomeProduto?.toString().toLowerCase();
         const number = req.query.number?.toString().toLowerCase();
         const procurarnadescricao = req.query.queryDescriptionAlso?.toString().toLowerCase();

@@ -51,9 +51,14 @@ function appendOnPage(data) {
   const container = document.querySelector('.c1')
   console.log(data.length)
   console.log('fetchcont ' + fetchCont)
+  let cont = 0;
+  console.log(data.length)
   data.map(item => {
-    const cardContainer = createProductCard(item);
-    container.append(cardContainer);
+    if (cont > (data.length - 8)) { 
+      const cardContainer = createProductCard(item);
+      container.append(cardContainer);
+    }
+    cont++
   })
 }
 

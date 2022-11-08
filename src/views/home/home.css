@@ -263,6 +263,7 @@
     background-color: white;
     box-shadow: 3px 3px 10px -3px rgba(0, 0, 0, 0.68);
     padding-left: 0;
+    padding-right: 0;
     
 }
 .c2-circle{
@@ -303,11 +304,12 @@
     padding: 45px 35px 45px 35px;
     width: 60%;
     height: 100%;
-    background-color: rgb(254,255,255);
+    background-color: white;
 }
 .como-usar-card{
     /* background-color: gray; */
     box-shadow: 2px 0px 6px -3px rgba(0, 0, 0, 0.300);
+    background-color: whitesmoke;
     /* background-color: whitesmoke; */
     display: flex;
     padding: 18px;

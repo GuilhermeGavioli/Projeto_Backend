@@ -130,7 +130,7 @@ app.post('/deletarProduto/:produtoid', ProtectionAgainstNonAuthenticatedUsers, c
 
 
 //'/getproduto/:procurarnadescricao/:nomeproduto/:number'
-app.get('/getprodutos/:produtorid', controllers.getProdutos)
+app.get('/getprodutos', controllers.getProdutos)
 app.get('/getprodutosfromuser',ProtectionAgainstNonAuthenticatedUsers, controllers.getProdutosFromUser)
 app.get('/auth', controllers.authValidation)
 
