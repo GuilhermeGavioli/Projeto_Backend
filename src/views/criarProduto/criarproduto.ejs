@@ -234,7 +234,9 @@
         <div class="c3">
             <div class="label-and-input">
                 <label for="Sobre">Sobre (detalhada)</label>
-                <textarea type="text" style="height: 200px; resize: none;" id="product-description-input" ></textarea>
+                <textarea type="text" style="height: 200px; resize: none;" id="product-description-input" 
+                    maxlength="600" minlength="50"
+                ></textarea>
             </div>
             
             <div class="label-and-input" style="display: flex; align-items: center; flex-direction: row;">
@@ -244,11 +246,13 @@
             <div class="label-and-input">
                 <label>Preço</label>
                 <div style="display: flex; align-items: center; flex-direction: row; justify-content: space-between;">
-                    <input type="number" min="1" max="99999" placeholder="" step=".50" id="product-price-input" style="width: 38%;">
+                    <input type="number" min="1" max="10000" placeholder="" step=".50" id="product-price-input" style="width: 38%;">
                     <p style="margin: 0; font-size: 1.5em; color: rgb(169, 169, 169);"> / </p>
                     <select style="width: 58%;" name="product-price-input" id="product-unity-input">
                         <option value="unidade">unidade</option>
                         <option value="kg">kg</option>
+                        <option value="litro">litros</option>
+                        <option value="gramas">gramas</option>
                     </select>
                 </div>
             </div>

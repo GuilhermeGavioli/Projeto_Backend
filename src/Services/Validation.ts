@@ -1,16 +1,15 @@
 import OutputCadastrarDTO from '../DTO/output/cadastrar'
 
-export default interface Validation{
+// export default interface Validation{
 
-    validate(): OutputCadastrarDTO; // false = invalid;
+    // validate(): OutputCadastrarDTO; // false = invalid;
     
+    
+    
+// }
 
-    
-}
 
-export class UserValidation implements Validation{
-   
-    
+abstract class Validation{
     private static invalidNameCharacters: string[] = [
         "/", "$", "&", "<", ">", "#", "%", "*", "+", "-", "!", "[", "]", "(", ")"
     ];
@@ -19,10 +18,17 @@ export class UserValidation implements Validation{
         "'", '"', "="
     ]
 
-    private static invalidCharactersJoin = UserValidation.invalidPasswordCharacters.concat(UserValidation.invalidNameCharacters);
+    private static invalidCharactersJoin = this.invalidPasswordCharacters.concat(this.invalidNameCharacters);
 
 
-    
+    validate(): void { 
+
+    } // false = invalid;
+
+} 
+
+export class UserValidation extends Validation{
+   
     
 
     private name?: string;
@@ -48,7 +54,8 @@ export class UserValidation implements Validation{
         bio?: string | null,
         user_image?: string | null,
     ) {
-        for (let i = 0; i < UserValidation.invalidCharactersJoin.length; i++){
+        super();
+        for (let i = 0; i < Validation.invalidCharactersJoin.length; i++){
             if (name?.includes(UserValidation.invalidCharactersJoin[i])) throw new Error(`Nome contem caracter invalido: ${UserValidation.invalidCharactersJoin[i]}`);
             if (email?.includes(UserValidation.invalidCharactersJoin[i])) throw new Error(`Nome contem caracter invalido: ${UserValidation.invalidCharactersJoin[i]}`);
             if (password?.includes(UserValidation.invalidPasswordCharacters[i])) throw new Error(`Senha contem caracter invalido: ${UserValidation.invalidPasswordCharacters[i]}`);
@@ -206,36 +213,80 @@ export class UserValidation implements Validation{
 }
 
 
-export class ProductValidation implements Validation {
+
+
+
+ export class ProductValidation implements Validation {
+    private p_tags: string;
+    private p_name: string;
+    private p_isOrganic: number;
+    private p_description: string;
+    private p_price: number;
+    private p_unity: string;
+    private p_category: string;
+    private p_image: string;
+
+    constructor (
+        p_tags: string,
+        p_name: string,
+        p_isOrganic: number,
+        p_description: string,
+        p_price: number,
+        p_unity: string,
+        p_category: string,
+        p_image: string,
+    ) {
+       this.p_tags = p_tags.toUpperCase();
+       this.p_name = p_name.toUpperCase();
+       this.p_isOrganic = p_isOrganic;
+       this.p_description = p_description.toUpperCase();
+       this.p_price = p_price;
+       this.p_unity = p_unity.toUpperCase();
+       this.p_category = p_category.toUpperCase();
+       this.p_image = p_image.toUpperCase();
+    }
+
+
+
     validate(): OutputCadastrarDTO {
+        const areTagsValid = this.validateTags();
+        const isNameValid = this.validaName();
+        const isDescriptionValid = this.validateDescription();
+        const isPriceValid = this.validatePrice();
+        const isUnityValid = this.validateUnity();
+        
         
         return new OutputCadastrarDTO('ok', 200, false);
     }
+
+    private validateTags(): boolean{
+        return true;
+    }
+    private validaName(): boolean{
+        return true;
+    }
+    
+    private validateDescription(): boolean{
+        if (this.p_description.length > 800 || this.p_description.length < 10) return false;
+        return true;
+    }
+
+    private validatePrice(): boolean{
+        if (this.p_price > 10000 || this.p_price < 0) {
+            return false;
+        }
+        return true;
+    }
+
+    private validateUnity(): boolean{
+        if (
+            this.p_unity !== "UNIDADE" &&
+            this.p_unity !== "KG" &&
+            this.p_unity !== "LITRO" &&
+            this.p_unity !== "GRAMAS" 
+            ){
+                return false;
+            }
+        return true;
+    }
  }
-
-//*touppercase vs tolowercase
-// isemail / email length /
-// passwords match // passwords length // password contains letters and numbers (and special characters)
-// name length (>4)
-// gender == male || gender == female
-//
-
-// data de nascimento
-
-// passwords match
-
-
-//gender == 1 || 2
-//validate if date is in correct format
-
-// yyyy-mm-dd
-// 2020-10-10
-// if (date.length > 9) //error
-// if (date.toString().substring(0,3))
-
-
-//nome //email //password, //genero
-
-console.log(
-    new UserValidation("guilherme", null, "151515", "2").validate()
-);

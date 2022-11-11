@@ -66,7 +66,6 @@ body{
     grid-area: main-title;
     color: rgb(60,68,55);
     margin-bottom: 80px;
-    background-color: yellow;
 }
 .c-button{
     grid-area: c-button;
@@ -86,7 +85,7 @@ body{
                         /* "c2 c2 c2 c2"; */
     grid-template-rows: auto auto auto auto;
     margin-top: 15px;
-    background-color: red;
+
     /* gap: 40px; */
     /* background-color: gray; */
     padding: 0 300px 0 300px;
