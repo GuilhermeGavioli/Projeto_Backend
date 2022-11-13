@@ -7,6 +7,7 @@ import GetOneOutputDTO from "../DTO/output/GetOneDTO";
 
 import mysql from 'mysql2/promise';
 import InputCriarProdutoDTO from "../DTO/input/CriarProdutoDTO";
+import { UUIDLibrary } from "../Services/IdGenerator";
 
 export default class MySql implements Repository {
     private connection: mysql.Connection | any;
@@ -198,6 +199,20 @@ export default class MySql implements Repository {
             if (!rows) return null;
             return rows;
         }
-     }
+    }
+    
+    public async saveMessage(sender: string, message_text: string, receiver: string): Promise<void> {
+        const date = new Date();
+        await this.connection.query(
+        `INSERT INTO message VALUES ("${new UUIDLibrary().generate()}", false, "${message_text}", "${sender}", "${receiver}", "${new Date(date).toISOString().split('T')[0]}");`);
+    }
+
+    public async getMessages(userId: string): Promise<void> {
+        const [rows] = await this.connection.query(
+            // `SELECT * FROM message WHERE sender="${userId}" OR receiver="${userId}";`);
+            `SELECT message_id, message_text, user_image, userid, full_name, sender, receiver, has_been_read FROM message INNER JOIN user ON message.receiver = user.userid WHERE message.sender="${userId}" OR message.receiver="${userId}" ORDER BY message.created_at ASC;`);
+        console.log(rows)
+        return rows;
+    }
 }
 

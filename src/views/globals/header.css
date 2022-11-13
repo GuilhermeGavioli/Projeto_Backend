@@ -33,6 +33,7 @@ input{
     padding: 0 10px 0 10px;
     max-width: 2000px;
     /* visibility: hidden; */
+    background-color: red;
 }
 
 .logo-header-container{
@@ -262,7 +263,6 @@ li{
         /* position: fixed; */
         /* top: 0; */
         z-index: 20;
-        background-color: rgb(255, 255, 255);
         display: flex;
         align-items: center;
         margin: auto;
@@ -419,7 +419,7 @@ li{
         height: 75px;
         display: flex;
         align-items: center;
-        min-width: 230px;
+        min-width: 290px;
     }
     .company-name{
         position: absolute;
@@ -447,4 +447,107 @@ li{
     #register-and-login{
   
     }
+}
+
+
+
+
+
+
+
+
+
+
+/* BELL */
+.bell-container{
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 70px;
+    height: 70px;
+    z-index: 25;
+    box-shadow: 3px 3px 15px 3px rgba(0, 0, 0, 0.147);
+    color: #c5cfb3;
+    visibility: hidden;
+    animation: alternate-reverse 1.7s ease-in-out infinite bellJump;
+}
+
+@keyframes bellJump{
+    from{bottom: 40px;}
+    to {bottom: 50px;}
+}
+
+.bell-inside-container{
+    background-color: #a5c963;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.bell-number{
+    background-color: red;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    padding: 8px;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    font-weight: 700;
+    align-items: center;
+    border-radius: 50%;
+}
+.bell-painel{
+    position: absolute;
+    right: 75px;
+    bottom: 30px;
+    width: 0;
+    height: 0;
+    background-color: rgb(246, 246, 246);
+    box-shadow: 3px 3px 15px 3px rgba(0, 0, 0, 0.147);
+    padding: 0;
+    overflow-y: scroll;
+}
+.bell-painel-inside{
+    height: 100%;
+    width: 100%;
+    visibility: hidden;
+    color: rgb(68,68,68);
+    background-color: rgb(0, 255, 76);
+    font-size: .8em;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    text-align: center;
+    flex-direction: column;
+}
+
+.image-and-name-container{
+    display: flex; 
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.message-container{
+    background-color: rgb(56, 114, 66);
+    padding: 5px 8px 5px 8px;
+    height: fit-content;
+    margin: 5px 0 5px 0;
+    width: 100%;
+}
+
+.message-image{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+.message-text{
+    text-align: start;
+    margin: 5px 0 5px 0;
 }

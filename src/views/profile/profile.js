@@ -1,7 +1,87 @@
 const BASE_URL_PATH =  'http://localhost:3000/'
 
 
+window.onload = async () => {
+  // const header = document.querySelector(".header");
+  // const main = document.querySelector(".container");
+  // const spinner = document.getElementById("spinning");
 
+  // hideContent(header, main, spinner);
+
+  // const headerCircle = document.querySelector('.header-user-icon')
+  // const headerPainel = document.querySelector('.header-painel');
+  // const headerLogoutButton = document.querySelector('.logout-btn');
+
+  const userData = await handleUserFetchTokenData('stayOnThePageStillNotLoggedIn');
+
+  if (userData) { 
+    const threeDots = document.querySelector('.three-dots-container')
+    threeDots.style.visibility = 'visible';
+    threeDots.addEventListener('click', () => toggleMessageMenu())
+    document.getElementById('send-message-text').addEventListener('click', () => displayMessageInput())
+
+    document.querySelector('.send-message-btn').addEventListener('click', () => sendMessage());
+  }
+
+  // const productData = await handleCardsDisplayOnLoad();
+  // await fitProductsDataInHome(productData);
+
+
+  window.onscroll = async () => {
+      handlePermanentFetchingOnScroll();
+  }
+ 
+
+  // document.querySelector('.banner-container').addEventListener('click', () => { 
+  //   closeSidebar()
+  //   closePainel(headerPainel)
+    
+  // })
+}
+async function sendMessage() {
+  const messageData = getMessageData()
+  const isValid = fireFrontEndSendMessageValidation(messageData);
+  if (!isValid) return;
+  console.log('mytoken '+ getStoredToken())
+  const data = await fireSendMessageRequest(messageData);
+  console.log(data)
+}
+
+async function fireSendMessageRequest(messageData) {
+  const res = await fetch(`${BASE_URL_PATH}message`, { 
+    method: 'POST',
+    body: JSON.stringify(messageData),
+    headers: {
+      "Content-type": "application/json",
+      authorization: getStoredToken(),
+    }
+  })
+  return await res.json();
+}
+
+function getMessageData(){
+  const message = document.querySelector('.send-message-input').value
+  const receiver = document.getElementById('userid-html').getAttribute('userid')
+  console.log('receiver ' + receiver)
+  return {
+    message,
+    receiver
+  }
+}
+
+function fireFrontEndSendMessageValidation() {
+  return true;
+}
+
+function displayMessageInput() { 
+  document.querySelector('.message-container').style.visibility = 'visible';
+  document.querySelector('.message-container').style.height = '325px';
+}
+
+function toggleMessageMenu() {
+  const messagePainel = document.querySelector('.message-painel')
+  messagePainel.style.visibility = messagePainel.style.visibility == 'visible' ? 'hidden' : 'visible'
+}
 
 
 
@@ -32,24 +112,14 @@ const idade = calcularIdade(Number(year));
 
 
 
-const userid = document.getElementById('userid-html').innerText
+const userid = document.getElementById('userid-html').getAttribute('userid')
 
 
 
 
 let isOver = false;
 
-window.onload = async () => {
 
-    const data = await handleUserFetchTokenData('stayOnThePageStillNotLoggedIn');
-    console.log(data);
-  
-    window.onscroll = async () => {
-      handlePermanentFetchingOnScroll();
-    
-  }
-
-}
 
 let fetchCont = 0;
 async function handlePermanentFetchingOnScroll() {

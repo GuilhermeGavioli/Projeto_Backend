@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
+
+
+
 .banner-container{
     height: fit-content;
     max-width: 1400px;
@@ -13,6 +16,7 @@
    max-height: 700px;
    background-color: #415a77;
 }
+
 
 
 .banner{

@@ -42,6 +42,19 @@ CREATE TABLE product(
     FOREIGN KEY (owner_id) REFERENCES user(userid) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+CREATE TABLE message(
+    message_id VARCHAR(255) NOT NULL UNIQUE,
+    has_been_read BOOLEAN NOT NULL,
+    message_text VARCHAR(255) NOT NULL,
+    sender VARCHAR(255) NOT NULL,
+    receiver VARCHAR(255) NOT NULL,
+    created_at DATE NOT NULL,
+    PRIMARY KEY(message_id),
+    FOREIGN KEY (sender) REFERENCES user(userid) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (receiver) REFERENCES user(userid) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+
 
 
  INSERT INTO user (

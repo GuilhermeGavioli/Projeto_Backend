@@ -13,6 +13,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 
+const rateLimit = require('express-rate-limit');
+
+const loginRateLimiter = rateLimit({
+  windowMs: 0.30 * 60 * 1000, // 15 min in milliseconds
+  max: 500,
+  message: "IP error, voce atingiu o numero maximo de requisiçoes durante o tempo permitido, aguarde 20 segundos", 
+  statusCode: 429,
+  headers: true,
+});
+
+app.use(loginRateLimiter)
+
+
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs')
@@ -117,6 +130,20 @@ app.post('/criarProduto', uploadProduct.single("productFile"), controllers.creat
 
 
 
+import { mySqlDatabase } from './controllers/index';
+app.post('/message', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => { 
+    const tokenUser = res.locals.userInfo
+    const sender = tokenUser.user_id
+    const { message, receiver } = req.body
+    await mySqlDatabase.saveMessage(sender, message, receiver);
+    return res.json({ok : true})
+})
+
+app.get('/mymessages', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => { 
+    const userTokenId = res.locals.userInfo.user_id
+    const messages = await mySqlDatabase.getMessages(userTokenId);
+    return res.json(messages);
+})
 
 // User routes
 app.post('/loginuser', ProtectionAgainstAuthenticatedUsers, controllers.logarUser)

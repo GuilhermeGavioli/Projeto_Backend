@@ -79,7 +79,32 @@ body{
     height: auto;
     overflow: unset;
     box-shadow: -1px 6px 12px 3px rgba(0, 0, 0, 0.154);
+    position: relative;
 }
+.three-dots-container{
+    visibility: hidden;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.4em;
+}
+
+.message-painel{
+    visibility: hidden;
+    position: absolute;
+    background-color: #ECF87F;
+    color: rgb(71, 71, 71);
+    top: 20px;
+    right: 55px;
+    padding: 15px;
+}
+.message-container{
+    height: 0;
+    background-color: red;
+    visibility: hidden;
+    transition: 0.3s ease-out;
+}
+
 .name-title{
     text-align: center;
     text-overflow: ellipsis;

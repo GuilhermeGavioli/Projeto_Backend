@@ -87,3 +87,6 @@ function createProductCard(item) {
   cardContainer.append(cardSecond);
   return cardContainer;
 }
+
+
+

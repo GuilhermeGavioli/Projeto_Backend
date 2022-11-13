@@ -116,6 +116,20 @@
 
 
 
+    <div class="bell-container">
+        <div class="bell-inside-container">
+
+            <i class="fa-regular fa-bell" style="font-size: 2.5em;"></i>
+
+            <div class="bell-painel">
+                <div class="bell-painel-inside">
+                        <p style="font-size: 1.2em;">Oops..</p>
+                        <p >Voce não possui nenhuma mensagem...</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 
 
@@ -128,8 +142,13 @@
 
 
 
-    <span>
-        <%= userFound.user_image %>
+
+    <span >
+        <%= JSON.stringify(userFound.userid) %>
+    </span>
+
+    <span id="userid-html" userid="<%=userFound.userid%>">
+     
     </span>
 
 
@@ -156,9 +175,25 @@
 
         <div class="c2">
             <div class="c2-container">
+                <div class="three-dots-container">
+                    <i class="fa-solid fa-ellipsis"></i>
+                </div>
+
+                <div class="message-painel">
+                    <p id="send-message-text">Send Message</p>
+                </div>
+
+
+
+
                 <h2 class="name-title" style="color: rgb(60,68,55);">
                     <%= userFound.full_name %>
                 </h2>
+
+                <div class="message-container">
+                    <textarea name="" id="" cols="30" rows="10" class="send-message-input"></textarea>
+                    <button class="send-message-btn"></button>>Send Message <i class="fa-solid fa-paper-plane"></i></button>
+                </div>
                 
                 <% if (!userFound.bio || userFound.bio.toString().trim() == '') { %>
                     <p>Este usuário nao possui uma bio.</p>
