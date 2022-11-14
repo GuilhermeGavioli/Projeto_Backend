@@ -32,8 +32,6 @@ input{
     margin: auto;
     padding: 0 10px 0 10px;
     max-width: 2000px;
-    /* visibility: hidden; */
-    background-color: red;
 }
 
 .logo-header-container{
@@ -486,15 +484,16 @@ li{
     justify-content: center;
     align-items: center;
     position: relative;
+    cursor: pointer;
 }
 .bell-number{
     background-color: red;
     position: absolute;
-    top: -5px;
-    right: -5px;
+    top: 0px;
+    right: 0px;
     padding: 8px;
-    width: 35px;
-    height: 35px;
+    width: 22px;
+    height: 22px;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -503,6 +502,7 @@ li{
     border-radius: 50%;
 }
 .bell-painel{
+    cursor: default;
     position: absolute;
     right: 75px;
     bottom: 30px;
@@ -512,6 +512,7 @@ li{
     box-shadow: 3px 3px 15px 3px rgba(0, 0, 0, 0.147);
     padding: 0;
     overflow-y: scroll;
+ 
 }
 .bell-painel-inside{
     height: 100%;
@@ -527,27 +528,86 @@ li{
     flex-direction: column;
 }
 
+.all-messages-container{
+    padding: 0 10px 0 10px;
+    width: 100%;
+    background-color: white;
+}
+
 .image-and-name-container{
     display: flex; 
     justify-content: flex-start;
     align-items: center;
+    font-size: 1.2em;
 }
 
-.message-container{
-    background-color: rgb(56, 114, 66);
-    padding: 5px 8px 5px 8px;
+.message-container, .message-selected{
+    background-color: rgb(230,230,230);
+    padding: 7px 12px 7px 12px;
     height: fit-content;
     margin: 5px 0 5px 0;
     width: 100%;
+    position: relative;
+}
+
+.message-selected{
+    background-color: rgb(208, 232, 194);
+    border: 1px solid rgb(150, 192, 126);
 }
 
 .message-image{
+    pointer-events: none;
     width: 35px;
     height: 35px;
     border-radius: 50%;
-    margin-right: 5px;
+    margin-right: 9px;
+    margin-bottom: 7px;
 }
 .message-text{
+    pointer-events: none;
+    pointer-events: none;
     text-align: start;
-    margin: 5px 0 5px 0;
+    margin: 5px 0 10px 0;
+    font-size: 1.1em;
+    word-break: break-all;
 }
+.message-time{
+    pointer-events: none;
+    text-align: start;
+    font-size: .9em;
+    color: rgb(190,190,190);
+}
+
+.select-all-messages-container{
+    display: flex; justify-content: start; align-items: center;
+    padding: 10px;
+    width: 100%;
+    /* visibility: hidden;
+    position: absolute; */
+    background-color: white;
+}
+
+.delete-messages-button{
+    border: none;
+    color: white;
+    background-color: rgb(126, 176, 28);
+    border-radius: 3px;
+    padding: 5px 13px 5px 13px;
+    width: 85%;
+    font-weight: 600;
+    margin: auto;
+}
+
+.message-checkbox, .select-all-messages-checkboxs{
+    height: 15px;
+    width: 15px;
+    border: none;
+}
+
+.message-checkbox{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+
+

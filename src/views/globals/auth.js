@@ -50,7 +50,8 @@ async function handleUserFetchTokenData(action) {  //action to be done in case o
     registerAndLoginContainer.style.position = 'absolute'
     
     const messagesData = await getUserMessages();
-    appendMessagesOnPainel(messagesData)
+    console.log('mdata '+ JSON.stringify(messagesData))
+    appendMessagesOnPainel(messagesData, data.fullUser.userid)
 
       return data.fullUser;
   } else {
@@ -201,7 +202,6 @@ async function toggleBellPainel() {
   // if (firstTimeOpening) { 
   //   const messagesData = await getUserMessages();
   //   appendMessagesOnPainel(messagesData)
-
   // }
   const bellPainel = document.querySelector('.bell-painel');
   const bellInsidePainel = document.querySelector('.bell-painel-inside');
@@ -213,19 +213,22 @@ async function toggleBellPainel() {
   firstTimeOpening = false;
 }
 
-function appendMessagesOnPainel(messages) {
+function appendMessagesOnPainel(messages, userid) {
   let notReadMessagesCont = 0;
-  const messagesPainel = document.querySelector('.bell-painel-inside')
+  const allMessagesContainer = document.querySelector('.all-messages-container')
+  console.log('messages ' + JSON.stringify(messages))
   messages.map(message => {
     console.log(JSON.stringify(message))
+    console.log('test')
     if (message.has_been_read == 0) notReadMessagesCont++;
-    const messageElement = createMessageElement(message);
-    messagesPainel.append(messageElement);
+
+    const messageElement = createMessageElement(message, userid);
+    allMessagesContainer.append(messageElement);
   })
-  appendMessagesContOnBell(notReadMessagesCont); //for not read messages only
+  if (notReadMessagesCont !== 0) appendMessagesContOnBell(notReadMessagesCont); //for not read messages only
 }
 
-function appendMessagesContOnBell(numberOfMessages) { 
+function appendMessagesContOnBell(numberOfMessages) {
   const bellInsideContainer = document.querySelector('.bell-inside-container')
   const number = document.createElement('p')
   number.style.margin = '0'
@@ -236,31 +239,123 @@ function appendMessagesContOnBell(numberOfMessages) {
   bellInsideContainer.append(bellNumber)
 }
 
-function createMessageElement(message) {
+function createMessageElement(message, userid) {
   const messageContainer = document.createElement('div');
   messageContainer.className = 'message-container'
+  messageContainer.setAttribute('message_id', message.message_id)
+  messageContainer.addEventListener('click', (e) => { 
+    e.target.className = 'message-selected'
+  })
+
   const imageAndNameContainer = document.createElement('div');
   imageAndNameContainer.className = 'image-and-name-container'
   const messageImage = document.createElement('img');
-  messageImage.setAttribute('src', message.user_image)
+  if (message.user_image) messageImage.setAttribute('src', message.user_image)
+  else messageImage.setAttribute('src', '/file_system/app/user_default.jpg')
+
   messageImage.className = 'message-image'
+
   const messageName = document.createElement('p');
-  messageName.style.margin = '0'
-  messageName.innerHTML = `<b>Para: </b>${message.full_name}`
+  console.log(message.sender)
+  console.log(userid)
+  // messageContainer.style.background = 'red'
+  messageName.innerHTML = `${message.full_name}`
   
+  messageName.style.margin = '0'
+  
+const messageTime = document.createElement('div');
+  messageTime.className = 'message-time'
+const month = convertNumberToMonth(message.created_at.toString().substring(5,7))
+const day = message.created_at.toString().substring(8,10)
+  const year = message.created_at.toString().substring(0, 4)
+  
+  const messageOwnerPara = document.createElement('p');
+  const messageOwnerLink = document.createElement('a');
+  messageOwner.style.textAlign = 'start'
+  messageOwner.style.margin = '0'
+  
+  if (message.sender == userid) {
+    messageOwner.setAttribute('href', `/profile/${message.receiver}`);
+    messageOwner.innerHTML = `<b>Para:</b> <a  href="/profile/${message.receiver}"> ${message.full_name}</a>,`
+    messageOwner.onclick = () => window.location.href=`/profile/${message.receiver}`
+  } else {
+    messageOwner.setAttribute('href', `/profile/${message.sender}`);
+    messageOwner.innerHTML = `<b>Para:</b> <a href="/profile/${message.sender}"> ${message.full_name}</a>,`
+    messageOwner.onclick = () => window.location.href=`/profile/${message.sender}`
+  }
+  messageTime.innerHTML = `em: </br> em ${day} de ${month} de ${year}`
+  
+  
+  const checkbox = document.createElement('input');
+  checkbox.setAttribute('type', 'checkbox')
+  checkbox.className = 'message-checkbox'
+  // checkbox.setAttribute('checked', 'false')
+  checkbox.addEventListener('change', () => toggleOnList(messageContainer.getAttribute('message_id')));
 
   const messageText = document.createElement('p');
   messageText.className = 'message-text'
   messageText.innerText = message.message_text
 
+
   imageAndNameContainer.append(messageImage)
   imageAndNameContainer.append(messageName)
 
-  messageContainer.append(imageAndNameContainer)
+  // messageContainer.append(imageAndNameContainer)
   messageContainer.append(messageText)
+  messageContainer.append(messageOwner)
+  messageContainer.append(messageTime)
+
+ 
 
   return messageContainer
 }
+
+const deleteMessagesButton = document.querySelector('.delete-messages-button')
+deleteMessagesButton.addEventListener('click', () => deleteMessages())
+
+let selectedMessages = [];
+
+function toggleOnList(message_id) {
+  const found = selectedMessages.find(id => id == message_id)
+  if (!found) selectedMessages.push(message_id);
+  else selectedMessages = selectedMessages.filter(id => id !== message_id)
+
+  if (selectedMessages.length > 0) { 
+    showDeleteMessagesButton()
+  }
+  else {
+    console.log('hiding')
+    hideDeleteMessagesButton()
+  }
+  console.log(selectedMessages)
+}
+
+function showDeleteMessagesButton() {
+  deleteMessagesButton.style.visibility = 'visible'
+}
+
+function hideDeleteMessagesButton() {
+  deleteMessagesButton.style.visibility = 'hidden'
+  
+}
+
+
+async function deleteMessages() {
+  if (selectedMessages.length == 0) return;
+  const data = await fireDeleteMessagesRequest();
+  console.log(data)
+}
+async function fireDeleteMessagesRequest() {
+  const res = await fetch(`${BASE_URL_PATH_AUTH}deletemessages`, {
+    method: 'POST',
+    body: JSON.stringify(selectedMessages),
+    headers: {
+      "Content-type": "application/json",
+      authorization: getStoredToken(),
+    }
+  })
+  return await res.json();
+ }
 
  function openBellPainel(bellPainel, bellInsidePainel) {
   isPainelClickable = false;
@@ -291,7 +386,6 @@ function createMessageElement(message) {
 
 
 async function getUserMessages() {
-  console.log('running')
   const res = await fetch(`${BASE_URL_PATH_AUTH}mymessages`, {
     method: 'GET',
     headers: {
@@ -301,3 +395,4 @@ async function getUserMessages() {
   })
   return await res.json();
 }
+

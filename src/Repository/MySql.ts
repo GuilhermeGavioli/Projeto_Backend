@@ -5,9 +5,12 @@ import Produto from "../Entity/Produto";
 import GetOneOutputDTO from "../DTO/output/GetOneDTO";
 
 
+
 import mysql from 'mysql2/promise';
 import InputCriarProdutoDTO from "../DTO/input/CriarProdutoDTO";
-import { UUIDLibrary } from "../Services/IdGenerator";
+import { IdGenerator, UUIDLibrary } from "../Services/IdGenerator";
+
+import { notifyUser } from "..";
 
 export default class MySql implements Repository {
     private connection: mysql.Connection | any;
@@ -44,6 +47,7 @@ export default class MySql implements Repository {
         const date = new Date();
         await this.connection.query(
         `INSERT INTO user (userid, full_name, email, user_password, user_gender, addr_state, birth_date, created_at) VALUES ("${produtor.id}", "${produtor.getName()}", "${produtor.getEmail()}", "${produtor.getPassword()}", "${produtor.gender}", "${produtor.city}", "${produtor.birthDate}", "${new Date(date).toISOString().split('T')[0]}")`);
+        await notifyUser(produtor.id, 'Bem-Vindo, sua conta foi criada com sucesso.');
     }
 
     //used by the application
@@ -168,6 +172,7 @@ export default class MySql implements Repository {
           "${produto.user_id}",
           "${new Date(date).toISOString().split('T')[0]}");
         `)
+        await notifyUser(produto.p_id, `Seu Produto ${produto.p_name} foi publicado com sucesso`);
     }
 
     public async deleteOneUser(id: string, email: string): Promise<void> {
@@ -200,19 +205,97 @@ export default class MySql implements Repository {
             return rows;
         }
     }
+
+
+    public async sendRobotMessage(id: string, receiver: string, message_text: string): Promise<void> {
+        await this.connection.query(
+            `INSERT INTO robot_message VALUES (${id}, false, false, "${message_text}", "${receiver}", true)`
+        );
+    }
     
     public async saveMessage(sender: string, message_text: string, receiver: string): Promise<void> {
-        const date = new Date();
+        var date = new Date();
+        date.setHours(date.getHours() - 3)
+        const dateFormated = date.toISOString().slice(0, 19).replace('T', ' ');
+        console.log(dateFormated)
         await this.connection.query(
-        `INSERT INTO message VALUES ("${new UUIDLibrary().generate()}", false, "${message_text}", "${sender}", "${receiver}", "${new Date(date).toISOString().split('T')[0]}");`);
+            
+            `INSERT INTO message VALUES (
+            "${new UUIDLibrary().generate()}",
+            false,
+            false,
+            false,
+            false,
+            "${message_text}", "${sender}", "${receiver}", "${dateFormated}");`);
     }
 
-    public async getMessages(userId: string): Promise<void> {
-        const [rows] = await this.connection.query(
-            // `SELECT * FROM message WHERE sender="${userId}" OR receiver="${userId}";`);
-            `SELECT message_id, message_text, user_image, userid, full_name, sender, receiver, has_been_read FROM message INNER JOIN user ON message.receiver = user.userid WHERE message.sender="${userId}" OR message.receiver="${userId}" ORDER BY message.created_at ASC;`);
-        console.log(rows)
-        return rows;
+    public async getMessages(userId: string): Promise<any> {
+        // const [rows] = await this.connection.query(
+        //     `SELECT 
+        //     message_id,
+        //     message_text,
+        //     user_image,
+        //     userid,
+        //     full_name,
+        //     sender,
+        //     receiver,
+        //     message.created_at,
+        //     has_been_read_by_sender,
+        //     has_been_read_by_receiver,
+        //     has_been_deleted_by_sender,
+        //     has_been_deleted_by_receiver
+        //     FROM message INNER JOIN user ON message.receiver = user.userid
+        //     WHERE (message.sender="${userId}" AND has_been_deleted_by_sender=false) OR (message.receiver="${userId}" AND has_been_deleted_by_receiver=false) ORDER BY message.created_at DESC;`);
+        
+            
+        
+        
+            const [rows] = await this.connection.query(
+                `SELECT 
+                message_id,
+                message_text,
+                user_image,
+                userid,
+                full_name,
+                sender,
+                receiver,
+                message.created_at,
+                has_been_read_by_sender,
+                has_been_read_by_receiver,
+                has_been_deleted_by_sender,
+                has_been_deleted_by_receiver
+                FROM
+                message
+                INNER JOIN user ON message.receiver = user.userid
+                WHERE (message.sender="${userId}" AND has_been_deleted_by_sender=false) 
+                OR (message.receiver="${userId}" AND has_been_deleted_by_receiver=false)
+                ORDER BY message.created_at DESC;
+                `);
+        
+                const [rows2] = await this.connection.query(`SELECT * from robot_message WHERE robot_message.receiver="${userId}";`)
+                const all = await Array.from(rows).concat(Array.from(rows2))
+                console.log('hellothere' + Array.from(rows).concat(Array.from(rows2)))
+        return all;
+    }
+
+    
+
+    public async deleteMessages(userId: string, messages_ids: string[]): Promise<void> {        
+        for (let i = 0; i < messages_ids.length; i++) { 
+        await this.connection.query(
+            `UPDATE message 
+            SET has_been_deleted_by_sender=true
+            WHERE message_id="${messages_ids[i]}" AND sender="${userId}";`
+        )
+            
+        await this.connection.query(
+            `UPDATE message 
+            SET has_been_deleted_by_receiver=true
+            WHERE message_id="${messages_ids[i]}" AND receiver="${userId}";`
+            )
+            
+           
+        }
     }
 }
 

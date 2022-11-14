@@ -89,7 +89,7 @@ body{
     font-size: 1.4em;
 }
 
-.message-painel{
+.send-message-painel{
     visibility: hidden;
     position: absolute;
     background-color: #ECF87F;
@@ -98,7 +98,7 @@ body{
     right: 55px;
     padding: 15px;
 }
-.message-container{
+.send-message-container{
     height: 0;
     background-color: red;
     visibility: hidden;
@@ -427,6 +427,7 @@ body{
 .card-second{
     font-size: 1.5em;
 }
+
 
 
 /*  */

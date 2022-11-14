@@ -74,12 +74,13 @@ function fireFrontEndSendMessageValidation() {
 }
 
 function displayMessageInput() { 
-  document.querySelector('.message-container').style.visibility = 'visible';
-  document.querySelector('.message-container').style.height = '325px';
+  console.log('displaying')
+  document.querySelector('.send-message-container').style.visibility = 'visible';
+  document.querySelector('.send-message-container').style.height = '325px';
 }
 
 function toggleMessageMenu() {
-  const messagePainel = document.querySelector('.message-painel')
+  const messagePainel = document.querySelector('.send-message-painel')
   messagePainel.style.visibility = messagePainel.style.visibility == 'visible' ? 'hidden' : 'visible'
 }
 

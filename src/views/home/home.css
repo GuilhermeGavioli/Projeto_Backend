@@ -233,16 +233,7 @@
     grid-area: c1_1;
     padding: 25px 75px 35px 150px;
 }
-.c2{
-    grid-area: c2;
-    display: flex;
-    /* flex-direction: column; */
-    justify-content: center;
-    align-items: center;
-    padding: 0 20px 0 20px;
 
-    /* background-color: whitesmoke; */
-}
 .dicas-li-saudaveis-container{
     /* background-color: green; */
     text-align: end;
@@ -260,6 +251,11 @@
 }
 
 .c2{
+    grid-area: c2;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
     grid-area: c2;
     display: flex;
     text-align: center;

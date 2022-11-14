@@ -17,7 +17,7 @@ const rateLimit = require('express-rate-limit');
 
 const loginRateLimiter = rateLimit({
   windowMs: 0.30 * 60 * 1000, // 15 min in milliseconds
-  max: 500,
+  max: 150,
   message: "IP error, voce atingiu o numero maximo de requisiçoes durante o tempo permitido, aguarde 20 segundos", 
   statusCode: 429,
   headers: true,
@@ -135,6 +135,8 @@ app.post('/message', ProtectionAgainstNonAuthenticatedUsers, async (req, res) =>
     const tokenUser = res.locals.userInfo
     const sender = tokenUser.user_id
     const { message, receiver } = req.body
+    console.log('sender ' + sender)
+    console.log('receiver ' + receiver)
     await mySqlDatabase.saveMessage(sender, message, receiver);
     return res.json({ok : true})
 })
@@ -143,6 +145,22 @@ app.get('/mymessages', ProtectionAgainstNonAuthenticatedUsers, async (req, res) 
     const userTokenId = res.locals.userInfo.user_id
     const messages = await mySqlDatabase.getMessages(userTokenId);
     return res.json(messages);
+})
+
+export async function notifyUser(receiver: string, message: string) {
+    let id = 1
+    await mySqlDatabase.sendRobotMessage(id.toString(), receiver, message);
+    id++;
+}
+
+app.post('/deletemessages', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => { 
+    const userTokenId = res.locals.userInfo.user_id
+    console.log('hello here')
+    const  selectedMessages  = req.body
+    console.log(selectedMessages)
+    if (!selectedMessages) return;
+    await mySqlDatabase.deleteMessages(userTokenId, selectedMessages);
+    return res.json({ok : true});
 })
 
 // User routes

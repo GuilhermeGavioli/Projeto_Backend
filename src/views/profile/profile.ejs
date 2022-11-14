@@ -118,15 +118,18 @@
 
     <div class="bell-container">
         <div class="bell-inside-container">
-
             <i class="fa-regular fa-bell" style="font-size: 2.5em;"></i>
-
-            <div class="bell-painel">
-                <div class="bell-painel-inside">
-                        <p style="font-size: 1.2em;">Oops..</p>
-                        <p >Voce não possui nenhuma mensagem...</p>
+        </div>
+        <div class="bell-painel">
+            <div class="bell-painel-inside">
+                <div class="select-all-messages-container">
+                    <p style="margin: 0 5px 0 5px;">Selecionar todas</p>
+                    <input type="checkbox" name="" id="">
+                    <button class="delete-messages-button">Deletar pra mim</button>
                 </div>
+                <div class="all-messages-container">
 
+                </div>
             </div>
         </div>
     </div>
@@ -163,7 +166,7 @@
         <% if (!userFound.user_image || userFound.user_image.toString().trim() == '') { %>
             <img class="circle" src='/file_system/app/user_default.jpg'></img>
             <% } else {%>
-                <img class="circle" src='/file_system/user/' <% + userFound.user_image %>></img>
+                <img class="circle" src='/file_system/user/<%=userFound.user_image%>'></img>
         <% }%>
         <!-- <h2 class="c1-title" style="text-align: center;">Guilherme Miranda da Silva Pereira Santos de Souza
             Almeida Barros</h2> -->
@@ -179,7 +182,7 @@
                     <i class="fa-solid fa-ellipsis"></i>
                 </div>
 
-                <div class="message-painel">
+                <div class="send-message-painel">
                     <p id="send-message-text">Send Message</p>
                 </div>
 
@@ -190,7 +193,7 @@
                     <%= userFound.full_name %>
                 </h2>
 
-                <div class="message-container">
+                <div class="send-message-container">
                     <textarea name="" id="" cols="30" rows="10" class="send-message-input"></textarea>
                     <button class="send-message-btn"></button>>Send Message <i class="fa-solid fa-paper-plane"></i></button>
                 </div>
