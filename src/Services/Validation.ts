@@ -217,79 +217,79 @@ export class UserValidation extends Validation{
 
 
  export class ProductValidation extends Validation {
-    // private p_tags: string;
-    // private p_name: string;
-    // private p_isOrganic: number;
-    // private p_description: string;
-    // private p_price: number;
-    // private p_unity: string;
-    // private p_category: string;
-    // private p_image: string;
+    private p_tags: string;
+    private p_name: string;
+    private p_isOrganic: number;
+    private p_description: string;
+    private p_price: number;
+    private p_unity: string;
+    private p_category: string;
+    private p_image: string;
 
-    // constructor (
-    //     p_tags: string,
-    //     p_name: string,
-    //     p_isOrganic: number,
-    //     p_description: string,
-    //     p_price: number,
-    //     p_unity: string,
-    //     p_category: string,
-    //     p_image: string,
-    // ) {
-    // super();
-    // this.p_tags = p_tags.toUpperCase();
-    // this.p_name = p_name.toUpperCase();
-    // this.p_isOrganic = p_isOrganic;
-    // this.p_description = p_description.toUpperCase();
-    // this.p_price = p_price;
-    // this.p_unity = p_unity.toUpperCase();
-    // this.p_category = p_category.toUpperCase();
-    // this.p_image = p_image.toUpperCase();
-    // }
+    constructor (
+        p_tags: string,
+        p_name: string,
+        p_isOrganic: number,
+        p_description: string,
+        p_price: number,
+        p_unity: string,
+        p_category: string,
+        p_image: string,
+    ) {
+    super();
+    this.p_tags = p_tags.toUpperCase();
+    this.p_name = p_name.toUpperCase();
+    this.p_isOrganic = p_isOrganic;
+    this.p_description = p_description.toUpperCase();
+    this.p_price = p_price;
+    this.p_unity = p_unity.toUpperCase();
+    this.p_category = p_category.toUpperCase();
+    this.p_image = p_image.toUpperCase();
+    }
 
 
 
-    // validate(): OutputCadastrarDTO {
-    //     const areTagsValid = this.validateTags();
-    //     const isNameValid = this.validaName();
-    //     const isDescriptionValid = this.validateDescription();
-    //     const isPriceValid = this.validatePrice();
-    //     const isUnityValid = this.validateUnity();
+    validate(): OutputCadastrarDTO {
+        const areTagsValid = this.validateTags();
+        const isNameValid = this.validaName();
+        const isDescriptionValid = this.validateDescription();
+        const isPriceValid = this.validatePrice();
+        const isUnityValid = this.validateUnity();
         
         
-    //     return new OutputCadastrarDTO('ok', 200, false);
-    // }
+        return new OutputCadastrarDTO('ok', 200, false);
+    }
 
-    // private validateTags(): boolean{
-    //     return true;
-    // }
-    // private validaName(): boolean{
-    //     // this.p_name.includes(this.invalidNameCharacters[0]) return false;
-    //     return true;
+    private validateTags(): boolean{
+        return true;
+    }
+    private validaName(): boolean{
+        // this.p_name.includes(this.invalidNameCharacters[0]) return false;
+        return true;
 
-    // }
+    }
     
-    // private validateDescription(): boolean{
-    //     if (this.p_description.length > 800 || this.p_description.length < 10) return false;
-    //     return true;
-    // }
+    private validateDescription(): boolean{
+        if (this.p_description.length > 800 || this.p_description.length < 10) return false;
+        return true;
+    }
 
-    // private validatePrice(): boolean{
-    //     if (this.p_price > 10000 || this.p_price < 0) {
-    //         return false;
-    //     }
-    //     return true;
-    // }
+    private validatePrice(): boolean{
+        if (this.p_price > 10000 || this.p_price < 0) {
+            return false;
+        }
+        return true;
+    }
 
-    // private validateUnity(): boolean{
-    //     if (
-    //         this.p_unity !== "UNIDADE" &&
-    //         this.p_unity !== "KG" &&
-    //         this.p_unity !== "LITRO" &&
-    //         this.p_unity !== "GRAMAS" 
-    //         ){
-    //             return false;
-    //         }
-    //     return true;
-    // }
+    private validateUnity(): boolean{
+        if (
+            this.p_unity !== "UNIDADE" &&
+            this.p_unity !== "KG" &&
+            this.p_unity !== "LITRO" &&
+            this.p_unity !== "GRAMAS" 
+            ){
+                return false;
+            }
+        return true;
+    }
  }

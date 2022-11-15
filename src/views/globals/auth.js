@@ -46,12 +46,22 @@ async function handleUserFetchTokenData(action) {  //action to be done in case o
     bellContainer.addEventListener('click', () => toggleBellPainel())
       
 
-      registerAndLoginContainer.style.visibility = 'hidden'
+    registerAndLoginContainer.style.visibility = 'hidden'
     registerAndLoginContainer.style.position = 'absolute'
     
     const messagesData = await getUserMessages();
-    console.log('mdata '+ JSON.stringify(messagesData))
-    appendMessagesOnPainel(messagesData, data.fullUser.userid)
+    if (messagesData.from_users.length == 0 && messagesData.from_system.length == 0) { 
+      const noMessagesDiv = document.createElement('div');
+      noMessagesDiv.setAttribute('style', 'width: 70%;margin: auto;margin-top: 115px;');
+
+      noMessagesDiv.innerHTML = '<i class="fa-solid fa-bell" style="font-size: 1.5em; margin-left: 10px; margin-bottom: 15px;"></i><p>Voce nao possui nehnuma notificação</p>'
+
+      const allMessagesContainer = document.querySelector('.all-messages-container')
+      allMessagesContainer.append(noMessagesDiv)
+
+    }
+
+    else appendMessagesOnPainel(messagesData, data.fullUser.userid)
 
       return data.fullUser;
   } else {
@@ -199,10 +209,10 @@ let isPainelClickable = true;
 let firstTimeOpening = true;
 
 async function toggleBellPainel() {
-  // if (firstTimeOpening) { 
-  //   const messagesData = await getUserMessages();
-  //   appendMessagesOnPainel(messagesData)
-  // }
+  if (firstTimeOpening) { 
+
+  }
+
   const bellPainel = document.querySelector('.bell-painel');
   const bellInsidePainel = document.querySelector('.bell-painel-inside');
   if (!isPainelClickable) return
@@ -215,16 +225,33 @@ async function toggleBellPainel() {
 
 function appendMessagesOnPainel(messages, userid) {
   let notReadMessagesCont = 0;
-  const allMessagesContainer = document.querySelector('.all-messages-container')
-  console.log('messages ' + JSON.stringify(messages))
-  messages.map(message => {
-    console.log(JSON.stringify(message))
-    console.log('test')
-    if (message.has_been_read == 0) notReadMessagesCont++;
 
-    const messageElement = createMessageElement(message, userid);
-    allMessagesContainer.append(messageElement);
-  })
+  const allMessagesContainer = document.querySelector('.all-messages-container')
+
+  if (messages.from_system.length > 0) {
+    messages.from_system.map(message => { 
+      const messageElement = createMessageElement(message, userid, true);
+      allMessagesContainer.append(messageElement);
+      if (message.has_been_read_by_receiver == 0) notReadMessagesCont++;
+    })
+  }
+
+
+  if (messages.from_users.length > 0) { 
+    messages.from_users.map(message => {
+      const messageElement = createMessageElement(message, userid, false);
+      allMessagesContainer.append(messageElement);
+
+      //user que enviou
+      if (message.sender == userid) { 
+        if (message.has_been_read_by_sender == 0) notReadMessagesCont++;
+      } else {
+        if (message.has_been_read_by_receiver == 0) notReadMessagesCont++;
+      }
+        
+    })
+  }
+
   if (notReadMessagesCont !== 0) appendMessagesContOnBell(notReadMessagesCont); //for not read messages only
 }
 
@@ -239,79 +266,77 @@ function appendMessagesContOnBell(numberOfMessages) {
   bellInsideContainer.append(bellNumber)
 }
 
-function createMessageElement(message, userid) {
+function createMessageElement(message, userid, robot) {
   const messageContainer = document.createElement('div');
   messageContainer.className = 'message-container'
   messageContainer.setAttribute('message_id', message.message_id)
-  messageContainer.addEventListener('click', (e) => { 
-    e.target.className = 'message-selected'
-  })
-
-  const imageAndNameContainer = document.createElement('div');
-  imageAndNameContainer.className = 'image-and-name-container'
+  
   const messageImage = document.createElement('img');
-  if (message.user_image) messageImage.setAttribute('src', message.user_image)
-  else messageImage.setAttribute('src', '/file_system/app/user_default.jpg')
-
   messageImage.className = 'message-image'
 
-  const messageName = document.createElement('p');
-  console.log(message.sender)
-  console.log(userid)
-  // messageContainer.style.background = 'red'
-  messageName.innerHTML = `${message.full_name}`
+  if (robot) {
+    messageImage.setAttribute('src', '/file_system/app/system.png')
+  } else {
+    if (message.user_image) messageImage.setAttribute('src', message.user_image)
+    else messageImage.setAttribute('src', '/file_system/app/user_default.jpg')
+  }
   
-  messageName.style.margin = '0'
-  
-const messageTime = document.createElement('div');
-  messageTime.className = 'message-time'
-const month = convertNumberToMonth(message.created_at.toString().substring(5,7))
-const day = message.created_at.toString().substring(8,10)
+
+  const month = convertNumberToMonth(message.created_at.toString().substring(5,7))
+  const day = message.created_at.toString().substring(8,10)
   const year = message.created_at.toString().substring(0, 4)
   
-  const messageOwnerPara = document.createElement('p');
-  const messageOwnerLink = document.createElement('a');
+  const messageOwner = document.createElement('p');
   messageOwner.style.textAlign = 'start'
   messageOwner.style.margin = '0'
   
-  if (message.sender == userid) {
-    messageOwner.setAttribute('href', `/profile/${message.receiver}`);
-    messageOwner.innerHTML = `<b>Para:</b> <a  href="/profile/${message.receiver}"> ${message.full_name}</a>,`
-    messageOwner.onclick = () => window.location.href=`/profile/${message.receiver}`
+  const messageTime = document.createElement('p');
+  messageTime.className = 'message-time'
+  
+
+  if (robot) {
+    messageOwner.innerHTML = `<b>GoGreen</b>`
   } else {
-    messageOwner.setAttribute('href', `/profile/${message.sender}`);
-    messageOwner.innerHTML = `<b>Para:</b> <a href="/profile/${message.sender}"> ${message.full_name}</a>,`
-    messageOwner.onclick = () => window.location.href=`/profile/${message.sender}`
+    if (message.sender == userid) {
+      messageOwner.setAttribute('href', `/profile/${message.receiver}`);
+      messageOwner.innerHTML = `<b>Para:</b> <a  href="/profile/${message.receiver}"> ${message.full_name}</a>`
+      messageOwner.onclick = () => window.location.href=`/profile/${message.receiver}`
+    } else {
+      messageOwner.setAttribute('href', `/profile/${message.sender}`);
+      messageOwner.innerHTML = `<b>Para:</b> <a href="/profile/${message.sender}"> ${message.full_name}</a>`
+      messageOwner.onclick = () => window.location.href=`/profile/${message.sender}`
+    }
   }
-  messageTime.innerHTML = `em: </br> em ${day} de ${month} de ${year}`
+  messageTime.innerHTML = `${day} de ${month} de ${year}`
   
-  
-  const checkbox = document.createElement('input');
-  checkbox.setAttribute('type', 'checkbox')
-  checkbox.className = 'message-checkbox'
-  // checkbox.setAttribute('checked', 'false')
-  checkbox.addEventListener('change', () => toggleOnList(messageContainer.getAttribute('message_id')));
 
   const messageText = document.createElement('p');
   messageText.className = 'message-text'
-  messageText.innerText = message.message_text
+  messageText.innerHTML = message.message_text
+
+  const ImageAndInfoContainer = document.createElement('div');
+  ImageAndInfoContainer.setAttribute('style', 'display: flex; align-items: center;');
+
+  
+  const messageOwnerAndInfoContainer = document.createElement('div')
+  messageOwnerAndInfoContainer.setAttribute('style', 'display: flex; flex-direction: column; justify-content: start;')
+  messageOwnerAndInfoContainer.append(messageOwner)
+  messageOwnerAndInfoContainer.append(messageTime)
+
+  ImageAndInfoContainer.append(messageImage)
+  ImageAndInfoContainer.append(messageOwnerAndInfoContainer)
 
 
-  imageAndNameContainer.append(messageImage)
-  imageAndNameContainer.append(messageName)
-
-  // messageContainer.append(imageAndNameContainer)
+  messageContainer.append(ImageAndInfoContainer)
   messageContainer.append(messageText)
-  messageContainer.append(messageOwner)
-  messageContainer.append(messageTime)
 
  
 
   return messageContainer
 }
 
-const deleteMessagesButton = document.querySelector('.delete-messages-button')
-deleteMessagesButton.addEventListener('click', () => deleteMessages())
+// const deleteMessagesButton = document.querySelector('.delete-messages-button')
+// deleteMessagesButton.addEventListener('click', () => deleteMessages())
 
 let selectedMessages = [];
 
@@ -393,6 +418,8 @@ async function getUserMessages() {
       authorization: getStoredToken(),
     }
   })
-  return await res.json();
+  const data = await res.json();
+  console.log('here ' + JSON.stringify(data))
+  return data;
 }
 

@@ -89,8 +89,10 @@ export const controllers = {
         if (!isUserValid) return res.json('token invalid, sir');
         const inputData = new InputCriarProdutoDTO(isUserValid.user_id, tags, name, isOrganic, description, price, unity, category, req.file.filename);
         const uuid = new UUIDLibrary();
-        const productValidation = new ProductValidation();
-        const criarProduto = new CriarProduto(mySqlDatabase, uuid, productValidation);
+        // const productValidation = new ProductValidation();
+        const criarProduto = new CriarProduto(mySqlDatabase, uuid,
+            // productValidation
+        );
         const outputData = await criarProduto.execute(inputData);
         return res.json(outputData);
     },

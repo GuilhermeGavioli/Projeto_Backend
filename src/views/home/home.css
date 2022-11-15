@@ -2,7 +2,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
 
-
+@import url('https://fonts.googleapis.com/css2?family=Alegreya&display=swap');
 
 .banner-container{
     height: fit-content;
@@ -140,12 +140,12 @@
     grid-template-areas: 
     "c0 c0 c0 c0 c0 c0"
     "c1 c1 c1 c1 c1 c1"
-    "c1_2 c1_2 c1_2 c1_2 c1_2 c1_2"
-    "c1_1 c1_1 c1_1 c1_1 c1_1 c1_1"
+    /* "c1_2 c1_2 c1_2 c1_2 c1_2 c1_2" */
     "c2 c2 c2 c2 c2 c2"
+    "c1_2 c1_2 c1_1 c1_1 c1_1 c1_1"
     "c3 c3 c3 c3 c3 c3";
 
-    grid-template-rows: auto 400px auto auto auto;
+    grid-template-rows: auto 400px auto auto;
     column-gap: 5px;
     /* row-gap: 25px; */
     padding-top: 10px;
@@ -227,11 +227,14 @@
     grid-area: c1_2;
     background-attachment: whitesmoke;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
 }
 
 .c1_1{
     grid-area: c1_1;
-    padding: 25px 75px 35px 150px;
+    padding: 25px 50px 35px 100px;
+    margin-top: 100px;
 }
 
 .dicas-li-saudaveis-container{
@@ -264,6 +267,9 @@
     box-shadow: 3px 3px 10px -3px rgba(0, 0, 0, 0.68);
     padding-left: 0;
     padding-right: 0;
+    border-radius: 65px;
+    overflow: hidden;
+    background-color: aqua;
     
 }
 .c2-circle{
@@ -277,12 +283,13 @@
     background-color: rgb(255, 255, 255);
     color: rgb(68, 68, 68);
     overflow: hidden;
-    background-image: url('https://images.pexels.com/photos/96715/pexels-photo-96715.jpeg?auto=compress&cs=tinysrgb&w=600');
+    /* background-image: url('https://images.pexels.com/photos/96715/pexels-photo-96715.jpeg?auto=compress&cs=tinysrgb&w=600');
     background-image: url('https://images.pexels.com/photos/461428/pexels-photo-461428.jpeg?auto=compress&cs=tinysrgb&w=600');
-    background-image: url('https://images.pexels.com/photos/698489/pexels-photo-698489.jpeg?auto=compress&cs=tinysrgb&w=600');
+    background-image: url('https://images.pexels.com/photos/698489/pexels-photo-698489.jpeg?auto=compress&cs=tinysrgb&w=600');*/
     background-image: url('https://images.pexels.com/photos/606540/pexels-photo-606540.jpeg?auto=compress&cs=tinysrgb&w=600');
     background-position: center center;
     background-size: cover;
+    /* background-color: red; */
 }
 /* .c2-inside-circle{
     background-color: rgb(155, 213, 37);
@@ -308,18 +315,18 @@
 }
 .como-usar-card{
     /* background-color: gray; */
-    box-shadow: 2px 0px 6px -3px rgba(0, 0, 0, 0.300);
-    background-color: whitesmoke;
+   
     /* background-color: whitesmoke; */
     display: flex;
     padding: 18px;
     margin: 5px 0 5px 0;
-    transition: 0.3s ease-in-out;
+    transition: 0.15s ease-in-out;
     cursor: pointer;
     /* background-color: white; */
 }
 .como-usar-card:hover{
-    background-color: whitesmoke;
+    opacity: 85%;
+    filter: brightness(110%);
 }
 .card-number-container{
     /* background-color: teal; */
@@ -332,29 +339,32 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    font-size: 1.3em;
+    font-size: 1.1em;
     line-height: 30px;
-    border: 4px solid rgb(248, 248, 248);
-    border-top: 4px solid #6D983C;
-    color: #6D983C;
+    border: 4px solid rgb(255, 255, 255);
+    border-top: 4px solid rgb(126, 176, 28);
+    color: rgb(126, 176, 28);
     
-    font-weight: 700;
+    font-weight: 600;
 }
+
+
 .como-usar-card-title{
     text-align: start;
     font-size: 1.7em;
     /* background-color: #415a77; */
-    color: #6D983C;
+    color: rgb(126, 176, 28);
     margin: 0;
-    font-weight: 700;
+    font-weight: 600;
 }
+
 .como-usar-card-text{
-    color: rgb(77,68,65);
+    color: rgb(87, 85, 84);
     font-weight: 500;
     padding-top: 10px;
     text-align: start;
     /* background-color: #4176b3; */
-    font-size: 1.1em;
+    font-size: 1em;
     margin: 0;
 
 }
@@ -378,6 +388,7 @@
     padding: 0  7px 20px 7px;
     position: relative;
     padding-top: 125px;
+    background-color: aquamarine;
   
     /* background-color: rgb(245,245,245); */
 }
@@ -533,7 +544,10 @@
 
 
 
-
+.oque-sao-organicos-text{
+    font-family: 'Alegreya', serif;
+ 
+}
 
 
 

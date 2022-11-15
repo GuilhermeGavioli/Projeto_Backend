@@ -47,7 +47,7 @@ export default class MySql implements Repository {
         const date = new Date();
         await this.connection.query(
         `INSERT INTO user (userid, full_name, email, user_password, user_gender, addr_state, birth_date, created_at) VALUES ("${produtor.id}", "${produtor.getName()}", "${produtor.getEmail()}", "${produtor.getPassword()}", "${produtor.gender}", "${produtor.city}", "${produtor.birthDate}", "${new Date(date).toISOString().split('T')[0]}")`);
-        await notifyUser(produtor.id, 'Bem-Vindo, sua conta foi criada com sucesso.');
+        await notifyUser(produtor.id, `Bem-Vindo, ${produtor.getName()}, sua conta na GoGreen foi criada com sucesso. Voce pode alterar suas informaçoes em seu <a href='/MeuPerfil' style='color: rgb(126, 176, 28)'>Perfil</a>`);
     }
 
     //used by the application
@@ -142,6 +142,7 @@ export default class MySql implements Repository {
             bio="${produtor.bio}", 
             user_image="${produtor.image}",
             updated_at="${new Date(date).toISOString().split('T')[0]}" WHERE email="${email}";`);
+            await notifyUser(produtor.id, `Bem-Vindo, ${produtor.getName()}, sua conta na GoGreen foi criada com sucesso. Voce pode alterar suas informaçoes em seu <a href='/MeuPerfil' style='color: rgb(126, 176, 28)'>Perfil</a>`);
             return;
         }
         await this.connection.query(`UPDATE user SET
@@ -154,6 +155,7 @@ export default class MySql implements Repository {
         about_me="${produtor.aboutMe}", 
         bio="${produtor.bio}", 
         updated_at="${new Date(date).toISOString().split('T')[0]}" WHERE email="${email}";`);
+        await notifyUser(produtor.id, `Seus dados foram alterados com sucesso`);
     }
 
     public async saveProduct(produto: Produto): Promise<void> {
@@ -172,7 +174,7 @@ export default class MySql implements Repository {
           "${produto.user_id}",
           "${new Date(date).toISOString().split('T')[0]}");
         `)
-        await notifyUser(produto.p_id, `Seu Produto ${produto.p_name} foi publicado com sucesso`);
+        await notifyUser(produto.user_id, `Seu Produto <a href='/produto/${produto.p_id}'>${produto.p_name}</a> foi publicado com sucesso`);
     }
 
     public async deleteOneUser(id: string, email: string): Promise<void> {
@@ -208,8 +210,11 @@ export default class MySql implements Repository {
 
 
     public async sendRobotMessage(id: string, receiver: string, message_text: string): Promise<void> {
+        var date = new Date();
+        date.setHours(date.getHours() - 3)
+        const dateFormated = date.toISOString().slice(0, 19).replace('T', ' ');
         await this.connection.query(
-            `INSERT INTO robot_message VALUES (${id}, false, false, "${message_text}", "${receiver}", true)`
+            `INSERT INTO robot_message VALUES (${id}, false, false, "${message_text}", "${receiver}", true, "${dateFormated}")`
         );
     }
     
@@ -272,9 +277,13 @@ export default class MySql implements Repository {
                 ORDER BY message.created_at DESC;
                 `);
         
-                const [rows2] = await this.connection.query(`SELECT * from robot_message WHERE robot_message.receiver="${userId}";`)
-                const all = await Array.from(rows).concat(Array.from(rows2))
-                console.log('hellothere' + Array.from(rows).concat(Array.from(rows2)))
+                const [rows2] = await this.connection.query(`SELECT * from robot_message WHERE robot_message.receiver="${userId}" ORDER BY created_at DESC;`)
+    
+        
+        const all = {
+            from_users: rows,
+            from_system: rows2,
+        }
         return all;
     }
 

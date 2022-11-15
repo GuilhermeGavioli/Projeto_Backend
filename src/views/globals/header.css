@@ -109,22 +109,21 @@ a:hover{
     /* visibility: hidden; */
     font-weight: lighter;
     width: fit-content;
-    height: 220px;
+    height: 250px;
     background-color: rgb(255, 255, 255);
     z-index: 50;
     position: absolute;
-    top: 32px;
-    right: 80px;
+    top: 45px;
+    right: 100px;
     box-sizing: border-box;
-    padding: 20px 23px 20px 23px;
+    padding: 20px 15px 20px 15px;
     margin: auto;
     list-style: none;
     display: flex;
     flex-direction: column;
     justify-content: start;
-    color: white;
     align-items: start;
-    background-color: rgb(127, 176, 28);
+    color: rgb(127, 176, 28);
     box-shadow: 6px 6px 10px -3px rgba(0, 0, 0, 0.154);
 }
 
@@ -133,10 +132,16 @@ a:hover{
     width: fit-content;
     font-size: .9em;
     margin: 4px 0 4px 0;
-    padding: 0 5px 0 5px;
+    padding: 0 8px 0 8px;
     font-weight: lighter;
     /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: 600; */
+}
+
+.header-painel-li{
+    color: rgb(115, 123, 111);
+    font-weight: lighter;
+    font-size: .9em;
 }
 
 li{
@@ -149,17 +154,19 @@ li{
 
 .logout-btn{
     border: none;
-    background-color: #41610a;
+    background-color: rgb(126, 176, 28);
     color: white;
     border-radius: 3px;
     padding: 5px 13px 5px 13px;
     position: absolute;
-    width: 80%;
+    width: fit-content;
     font-weight: 600;
-    font-size: .9em;
+    font-size: 1em;
     inset: auto 0 15px 0;
     margin: auto;
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .sidebar-items{
     position: absolute;
@@ -224,6 +231,161 @@ li{
     transition: 0.2s ease-in-out;
 }
 
+
+
+/* BELL */
+/* BELL */
+.bell-container{
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 70px;
+    height: 70px;
+    z-index: 25;
+    box-shadow: 3px 3px 15px 3px rgba(0, 0, 0, 0.147);
+    color: #c5cfb3;
+    visibility: hidden;
+    animation: alternate-reverse 1.7s ease-in-out infinite bellJump;
+}
+
+#bell-icon{
+    font-size: 2.5em;
+}
+
+@keyframes bellJump{
+    from{bottom: 40px;}
+    to {bottom: 50px;}
+}
+
+.bell-inside-container{
+    background-color: rgb(126, 176, 28);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+.bell-number{
+    background-color: red;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 8px;
+    width: 22px;
+    height: 22px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    font-weight: 700;
+    align-items: center;
+    border-radius: 50%;
+}
+.bell-painel{
+    cursor: default;
+    position: absolute;
+    right: 75px;
+    bottom: 30px;
+    box-shadow: 3px 3px 15px 3px rgba(0, 0, 0, 0.147);
+    /* padding: 15px; */
+    width: 0;
+    height: 0;
+    overflow-y: scroll;
+    background-color: whitesmoke;
+}
+
+.bell-painel-inside{
+    height: 100%;
+    width: 100%;
+    visibility: hidden;
+    color: rgb(68,68,68);
+    /* background-color: green; */
+    /* background-color: rgb(0, 255, 76); */
+    font-size: .8em;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    text-align: center;
+    flex-direction: column;
+}
+
+.all-messages-container{
+    width: 100%;
+}
+
+.image-and-name-container{
+    display: flex; 
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 1.2em;
+}
+
+.message-container, .message-selected{
+    background-color: white;
+    padding: 10px 12px 7px 12px;
+    height: fit-content;
+    margin: 0 0 5px 0;
+    width: 100%;
+    position: relative;
+    border-bottom: 1px solid rgb(213, 213, 213);
+
+}
+
+.message-selected{
+    background-color: rgb(208, 232, 194);
+    border: 1px solid rgb(150, 192, 126);
+}
+
+.message-image{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 9px;
+}
+.message-text{
+    text-align: start;
+    margin: 5px 0 10px 0;
+    font-size: 1.1em;
+    word-break: keep-all;
+}
+.message-time{
+    text-align: start;
+    font-size: .9em;
+    margin: 0;
+    color: rgb(152, 152, 152);
+}
+
+.select-all-messages-container{
+    display: flex; justify-content: start; align-items: center;
+    padding: 10px;
+    width: 100%;
+    background-color: white;
+}
+
+.delete-messages-button{
+    border: none;
+    color: white;
+    background-color: rgb(126, 176, 28);
+    border-radius: 3px;
+    padding: 5px 13px 5px 13px;
+    width: 85%;
+    font-weight: 600;
+    margin: auto;
+}
+
+.message-checkbox, .select-all-messages-checkboxs{
+    height: 15px;
+    width: 15px;
+    border: none;
+}
+
+.message-checkbox{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
 
 
 
@@ -445,6 +607,40 @@ li{
     #register-and-login{
   
     }
+
+    .bell-container{
+        position: fixed;
+        background-color: red;
+        right: 15px;
+        bottom: 20px;
+        width: 45px;
+        height: 45px;
+        z-index: 25;
+        box-shadow: 3px 3px 15px 3px rgba(0, 0, 0, 0.147);
+        color: #c5cfb3;
+        visibility: hidden;
+        animation: alternate-reverse 1.7s ease-in-out infinite bellJump;
+        margin-top: 150px;
+        visibility: hidden!important;
+    }
+
+    #bell-icon{
+        font-size: 1.4em;
+    }
+   
+    
+    .bell-painel{
+        cursor: default;
+        position: absolute;
+        right: 0px;
+        bottom: 95px;
+        width: 0;
+        height: 0;
+        background-color: white;
+        box-shadow: 3px 3px 15px 3px rgba(0, 0, 0, 0.147);
+        padding: 0;
+        overflow-y: scroll;
+    }
 }
 
 
@@ -454,160 +650,5 @@ li{
 
 
 
-
-
-/* BELL */
-.bell-container{
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    width: 70px;
-    height: 70px;
-    z-index: 25;
-    box-shadow: 3px 3px 15px 3px rgba(0, 0, 0, 0.147);
-    color: #c5cfb3;
-    visibility: hidden;
-    animation: alternate-reverse 1.7s ease-in-out infinite bellJump;
-}
-
-@keyframes bellJump{
-    from{bottom: 40px;}
-    to {bottom: 50px;}
-}
-
-.bell-inside-container{
-    background-color: #a5c963;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    cursor: pointer;
-}
-.bell-number{
-    background-color: red;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    padding: 8px;
-    width: 22px;
-    height: 22px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    font-weight: 700;
-    align-items: center;
-    border-radius: 50%;
-}
-.bell-painel{
-    cursor: default;
-    position: absolute;
-    right: 75px;
-    bottom: 30px;
-    width: 0;
-    height: 0;
-    background-color: rgb(246, 246, 246);
-    box-shadow: 3px 3px 15px 3px rgba(0, 0, 0, 0.147);
-    padding: 0;
-    overflow-y: scroll;
- 
-}
-.bell-painel-inside{
-    height: 100%;
-    width: 100%;
-    visibility: hidden;
-    color: rgb(68,68,68);
-    background-color: rgb(0, 255, 76);
-    font-size: .8em;
-    display: flex;
-    justify-content: start;
-    align-items: start;
-    text-align: center;
-    flex-direction: column;
-}
-
-.all-messages-container{
-    padding: 0 10px 0 10px;
-    width: 100%;
-    background-color: white;
-}
-
-.image-and-name-container{
-    display: flex; 
-    justify-content: flex-start;
-    align-items: center;
-    font-size: 1.2em;
-}
-
-.message-container, .message-selected{
-    background-color: rgb(230,230,230);
-    padding: 7px 12px 7px 12px;
-    height: fit-content;
-    margin: 5px 0 5px 0;
-    width: 100%;
-    position: relative;
-}
-
-.message-selected{
-    background-color: rgb(208, 232, 194);
-    border: 1px solid rgb(150, 192, 126);
-}
-
-.message-image{
-    pointer-events: none;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    margin-right: 9px;
-    margin-bottom: 7px;
-}
-.message-text{
-    pointer-events: none;
-    pointer-events: none;
-    text-align: start;
-    margin: 5px 0 10px 0;
-    font-size: 1.1em;
-    word-break: break-all;
-}
-.message-time{
-    pointer-events: none;
-    text-align: start;
-    font-size: .9em;
-    color: rgb(190,190,190);
-}
-
-.select-all-messages-container{
-    display: flex; justify-content: start; align-items: center;
-    padding: 10px;
-    width: 100%;
-    /* visibility: hidden;
-    position: absolute; */
-    background-color: white;
-}
-
-.delete-messages-button{
-    border: none;
-    color: white;
-    background-color: rgb(126, 176, 28);
-    border-radius: 3px;
-    padding: 5px 13px 5px 13px;
-    width: 85%;
-    font-weight: 600;
-    margin: auto;
-}
-
-.message-checkbox, .select-all-messages-checkboxs{
-    height: 15px;
-    width: 15px;
-    border: none;
-}
-
-.message-checkbox{
-    position: absolute;
-    right: 5px;
-    top: 5px;
-}
 
 

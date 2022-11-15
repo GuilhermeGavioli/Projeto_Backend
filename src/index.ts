@@ -47,6 +47,7 @@ app.use(express.static(path.join(__dirname + '/views' + '/procurarproduto')));
 app.use(express.static(path.join(__dirname + '/views' + '/produto')));
 app.use(express.static(path.join(__dirname + '/views' + '/sobre')));
 app.use(express.static(path.join(__dirname + '/views' + '/404Error')));
+app.use(express.static(path.join(__dirname + '/views' + '/globalChat')));
 
 app.use(express.static(path.join(__dirname + '/file_system')));
 app.use(express.static(path.join(__dirname + '/file_system/app')));
@@ -75,6 +76,10 @@ app.get('/file_system/product/:filename',(req, res) => {
     res.sendFile(path.join(__dirname, 'file_system', 'product', req.params.filename))
 })
 
+app.get('/globalchat', (req, res) => { 
+    res.render(path.join("globalChat", "globalchat"));
+
+})
 
 app.get('/procurarproduto', (req, res) => { 
     res.render(path.join("procurarproduto", "procurarproduto"));
@@ -144,13 +149,14 @@ app.post('/message', ProtectionAgainstNonAuthenticatedUsers, async (req, res) =>
 app.get('/mymessages', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => { 
     const userTokenId = res.locals.userInfo.user_id
     const messages = await mySqlDatabase.getMessages(userTokenId);
+    console.log(messages)
     return res.json(messages);
 })
 
 export async function notifyUser(receiver: string, message: string) {
-    let id = 1
+    let id = Math.random().toString();
     await mySqlDatabase.sendRobotMessage(id.toString(), receiver, message);
-    id++;
+
 }
 
 app.post('/deletemessages', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => { 
@@ -190,6 +196,61 @@ app.get('/auth', controllers.authValidation)
 //     const productFound = await mySqlDatabase.findProductsFromUser(idprodutor);
 //     return res.json(productFound);
 // })
+
+import { Server } from "socket.io";
+
+const io = new Server(3001, {
+    cors: {
+        origin: 'http://localhost:3000'
+    }
+});
+
+const lastTenGlobalChatMessages: any[] = [
+
+]
+
+let onlineChatUsers: any = []
+
+
+io.on('connection', socket => { 
+    socket.emit('last-ten-messages', lastTenGlobalChatMessages)
+    socket.emit('users-already-online', onlineChatUsers)
+    
+    socket.on('entered', user => { 
+        const found = onlineChatUsers.find((savedUser: { id: any; }) => savedUser.id == user.id)
+        if (!found) {
+            user.s_id = socket.id
+            onlineChatUsers.push(user)
+            console.log(onlineChatUsers)
+            socket.broadcast.emit('someone-joined', user)
+        }
+    })
+
+
+    console.log(socket.id)
+    socket.on('send-message', message => {
+        lastTenGlobalChatMessages.push(message)
+        const date = new Date();
+        date.setHours(date.getHours() - 3)
+        message.date = date
+        socket.broadcast.emit('send-message-server', message)
+    })
+
+
+    socket.on('disconnect', () => {
+        onlineChatUsers.map((user: { id: any, s_id: any }) => {
+            console.log(user.s_id + ' ' + socket.id)
+            
+            
+            if (user.s_id == socket.id) {
+                console.log('emiting disconnection')
+                socket.broadcast.emit('someone-disconnected', user.id)
+            }
+        })
+        onlineChatUsers = onlineChatUsers.filter((user: { s_id: any }) => user.s_id != socket.id)
+        console.log(onlineChatUsers)
+    })
+})
 
 
 

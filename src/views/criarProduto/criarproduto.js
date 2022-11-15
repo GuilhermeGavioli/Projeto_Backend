@@ -229,7 +229,7 @@ function validatePicScreen() {
 function validateInfoScreen() {
   const data = getInputedData();
   if (data.productDescription.trim() == '' || !data.productPrice) return false;
-  if (data.price < 1 || data.price > 10000)
+  if (data.price < 1 || data.price > 10000) return false;
   return true;
 }
 

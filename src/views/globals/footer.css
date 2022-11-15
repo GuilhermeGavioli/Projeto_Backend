@@ -8,9 +8,9 @@
     height: 350px;
     position: relative;
     overflow: hidden;
-    /* background: linear-gradient(to top right,white,rgb(255,255,255), rgb(235,235,235)); */
+    background: linear-gradient(to top, rgb(198, 198, 198), white);
     background-color: white;
-    box-shadow: 3px 3px 10px -3px rgb(0, 0, 0);
+    box-shadow: 3px 3px 15px 5px rgba(0, 0, 0, 0.149);
 
 }
 

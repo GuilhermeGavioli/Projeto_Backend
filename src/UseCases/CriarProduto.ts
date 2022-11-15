@@ -3,23 +3,25 @@ import InputCriarProdutoDTO from '../DTO/input/CriarProdutoDTO'
 import Produto from '../Entity/Produto';
 import { IdGenerator } from '../Services/IdGenerator';
 import OutputCadastrarDTO from '../DTO/output/cadastrar';
-import Validation from '../Services/Validation';
+// import Validation from '../Services/Validation';
 
 export default class CriarProduto{
     private repository: Repository;
     private idGenerator: IdGenerator;
-    private validation: Validation;
+    // private validation: Validation;
 
-    constructor(repository: Repository, idGenerator: IdGenerator, validation: Validation) {
+    constructor(repository: Repository, idGenerator: IdGenerator,
+        // validation: Validation
+    ) {
         this.repository = repository;
         this.idGenerator = idGenerator;
-        this.validation = validation;
+        // this.validation = validation;
     }
 
     public async execute(inputData: InputCriarProdutoDTO): Promise<OutputCadastrarDTO> {
         const product_id = this.idGenerator.generate();
-        const isValid = this.validation.validate()
-        if (isValid.error) return new OutputCadastrarDTO(isValid.message, isValid.status, isValid.error);
+        // const isValid = this.validation.validate()
+        // if (isValid.error) return new OutputCadastrarDTO(isValid.message, isValid.status, isValid.error);
         const isOrganic = inputData.p_isOrganic.toString().toLowerCase() == 'true' ? 1 : 0;
     
         const tags = JSON.parse(inputData.p_tags);

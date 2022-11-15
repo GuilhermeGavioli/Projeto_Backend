@@ -81,20 +81,32 @@
         <div class="header-user-icon-container">
             <img class="header-user-icon" src="" style="position:relative;">
             <div class="header-painel" style="visibility: hidden;">
-                <li class="user-painel-item" style="margin-top: 0;">
+                <li class="user-painel-item">
                     <a href="/"
-                    style="text-decoration: none; color: white;"
+                    style="text-decoration: none;" class="header-painel-li"
                     >Home</a></li>
-                <li class="user-painel-item" style="margin-top: 0;">
+                <li class="user-painel-item" >
                     <a href="/MeuPerfil"
-                    style="text-decoration: none; color: white;"
+                    style="text-decoration: none;"
+                    class="header-painel-li"
                     >Meu Perfil</a></li>
-                <li class="user-painel-item"><a href="/estacaoDeCriacao"
-                    style="text-decoration: none; color: white;">Criar</a></li>
+                <li class="user-painel-item">
+                    <a href="/estacaoDeCriacao"
+                    style="text-decoration: none;"
+                    class="header-painel-li">
+                    Criar</a></li>
+                <li class="user-painel-item">
+                    <a href="/globalchat"
+                    style="text-decoration: none;"
+                    class="header-painel-li">
+                    Global Chat</a></li>
                 <li class="user-painel-item"><a href="/meusProdutos"
-                    style="text-decoration: none; color: white; margin-bottom:25px;"
+                    style="text-decoration: none; margin-bottom:25px;" class="header-painel-li"
                     >Meus produtos</a></li>
-                <button class="logout-btn">Logout</button>
+                <button class="logout-btn">
+                    <p style="margin: 0; margin-left: 15px;">Sair</p>
+                    <i class="fa-solid fa-person-walking-arrow-right" style="margin-left: 8px;"></i>
+                </button>
             </div>
         </div>
     </header>
@@ -117,19 +129,30 @@
 
     <div class="bell-container">
         <div class="bell-inside-container">
-            <i class="fa-regular fa-bell" style="font-size: 2.5em;"></i>
-        </div>
-        <div class="bell-painel">
-            <div class="bell-painel-inside">
-                <div class="select-all-messages-container">
+            <i class="fa-regular fa-bell" id="bell-icon"></i>
+            <div class="bell-painel">
+                <div class="bell-painel-inside">
+                <!-- <div class="select-all-messages-container">
                     <button class="delete-messages-button">Apagar pra mim</button>
-                </div>
+                </div> -->
                 <div class="all-messages-container">
+
 
                 </div>
             </div>
         </div>
     </div>
+    </div>
+
+    <!-- <div class="bell-container">
+        <div class="bell-inside-container">
+            <i class="fa-regular fa-bell" style="font-size: 2.5em;"></i>
+            <div class="bell-painel">
+                <div class="bell-painel-inside">
+                </div>
+            </div>
+        </div>
+    </div> -->
 
 
 
@@ -266,7 +289,7 @@
 
         <div class="c1">
             <h1>Plataforma</h1>
-            <p style="margin: 0; font-size:1.1em;">Compartilhe seus produtos com outros usuarios agora mesmo em alguns cliques e torne-se um produtor em nosso site de forma gratuita. Somos uma empresa ficticia que tem o objetivo de auxiliar diversos tipos de produtores que desejam compartilhar sua mercadoria com mais pessoas. Uma plataforma para trazer produtores e pessoas que querem viver de forma mais saudavel em um unico lugar</p>
+            <p style="margin: 0; font-size:1em;">Compartilhe seus produtos com outros usuarios agora mesmo em alguns cliques e torne-se um produtor em nosso site de forma gratuita. Somos uma empresa ficticia que tem o objetivo de auxiliar diversos tipos de produtores que desejam compartilhar sua mercadoria com mais pessoas. Uma plataforma para trazer produtores e pessoas que querem viver de forma mais saudavel em um unico lugar</p>
         </div>
 
 
@@ -274,11 +297,14 @@
         
         <div class="c1_2" 
         style="
-        background-image: url('https://images.pexels.com/photos/128402/pexels-photo-128402.jpeg?auto=compress&cs=tinysrgb&w=600');
+     
+        background-image: url('https://images.pexels.com/photos/128402/pexels-photo-128402.jpeg?auto=compress&cs=tinysrgb&w=600'); 
         border-radius: 50%;
         width: 350px;
         height: 350px;
-        margin-top: 170px;
+        display: flex;
+        align-items: center;
+        margin-top: 150px;
         ">
 
         </div>
@@ -288,10 +314,10 @@
 
 
         <div class="c1_1" style="text-align: right;">
-            <h1 style="text-align: right; color: rgb(126, 176, 28); width: 100%;
+            <h1 style="text-align: right;text-justify: newspaper;  color: rgb(126, 176, 28);
                 padding: 5px 0 5px 0;
             ">O que são Produtos Orgânicos?</h1>
-            <p style="margin: 0; font-size:1.1em; margin-top: 10px;">
+            <p style="margin: 0; font-size:1em; margin-top: 10px; width: 100%;" class="oque-sao-organicos-text">
                 Produtos Orgânicos são aqueles obtidos dentro de um sistema orgânico
                 de produção agropecuária ou sustentável que beneficie o ecossistema local, proteja os recursos
                 naturais, respeite as características socioeconômicas
@@ -340,36 +366,56 @@
                             <div class=card-number>1</div>
                         </div>
                         <div>
-                            <h1 class="como-usar-card-title">Crie sua conta na GoGreen</h1>
-                            <p class="como-usar-card-text">Cadastre-se gratuitamente agora mesmo. Voce pode usar sua conta para ter acesso à novas funcionalidades na plataforma.</p>
+                            <h1 class="como-usar-card-title">Crie sua conta na GoGreen
+                                <i class="fa-solid fa-user-tie" style="margin-left: 8px; font-size: .8em"></i> </h1>
+                            <p class="como-usar-card-text">Cadastre-se gratuitamente agora mesmo. Voce pode usar sua conta para ter acesso à novas funcionalidades na plataforma, como publicas produtos e enviar mensagens para usuários</p>
                         </div>
                     </div>
 
                   
                     <div class="como-usar-card" onClick="window.location.href = '/meuPerfil'">
                         <div class="card-number-container">
-                            <div class=card-number style="border-right: 4px solid #6D983C;">2</div>
+                            <div class=card-number style="border-right: 4px solid rgb(126, 176, 28);">2</div>
                         </div>
                         <div>
-                            <h1 class="como-usar-card-title">Configure seu Perfil</h1>
+                            <h1 class="como-usar-card-title">Configure seu Perfil
+                                <i class="fa-solid fa-gear" style="margin-left: 8px; font-size: .8em"></i>
+                                
+                            </h1>
                             <p class="como-usar-card-text">Adicione novos dados de cadastro em seu perfil para que outros usuários possam te contatar e conhecerem mais sobre voce e seus Produtos.</p>
                         </div>
-                </div>
-
+                    </div>
+                    
                     <div class="como-usar-card" onClick="window.location.href = '/estacaoDeCriacao'">
                         <div class="card-number-container">
-                            <div class=card-number style="border-right: 4px solid #6D983C; border-bottom: 4px solid #6D983C;">3</div>
+                            <div class=card-number style="border-right: 4px solid rgb(126, 176, 28); border-bottom: 4px solid rgb(126, 176, 28);">3</div>
                         </div>
                         <div>
-                            <h1 class="como-usar-card-title">Divulgue seus Produtos</h1>
-                            <p class="como-usar-card-text">Publique seus produtos para que outros usuários possam conhecê-los e visualizar suas respectivas informaçoes.</p>
+                            <h1 class="como-usar-card-title">Divulgue seus Produtos
+                                <i class="fa-solid fa-upload" style="margin-left: 8px; font-size: .8em"></i>
+
+                            </h1>
+                     
+                            <p class="como-usar-card-text">Publique seus produtos na plataforma, preencha os campos para que assim outros usuários possam conhecê-los, visualizar suas respectivas informaçoes e .</p>
+                        </div>
+                </div>
+                    <div class="como-usar-card" onClick="window.location.href = '/estacaoDeCriacao'">
+                        <div class="card-number-container">
+                            <div class=card-number style="border-right: 4px solid rgb(126, 176, 28); border-bottom: 4px solid rgb(126, 176, 28); border-left: 4px solid rgb(126, 176, 28);">4</div>
+                        </div>
+                        <div>
+                            <h1 class="como-usar-card-title">Contate Usuários
+                                <i class="fa-solid fa-comments" style="margin-left: 8px; font-size: .8em"></i>
+                            </h1>
+                     
+                            <p class="como-usar-card-text">Envie propostas ou ofertas enviando mensangens para outros usuários através de seus perfis.</p>
                         </div>
                 </div>
         </div>
         </div>
 
         
-
+        
     
         <!-- <div class="c2">
             <div class="dicas-li-saudaveis-container">
