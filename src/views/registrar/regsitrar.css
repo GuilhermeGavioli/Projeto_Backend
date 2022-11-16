@@ -170,7 +170,13 @@ button, input{
     user-select: none;
 }
 
-@media (max-width: 460px){
+
+::-webkit-scrollbar{
+    width: 5px;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+@media (max-width: 600px){
 
     .container2{
         font-family: 'Inter', sans-serif;

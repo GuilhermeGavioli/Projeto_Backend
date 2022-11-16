@@ -243,7 +243,7 @@ function handleScreenLeftTransition(e) {
 
 function updateScreen(e) {
   if (screen == 0) { 
-    const container = document.querySelector('.container');
+    const container = document.querySelector('.container2');
     container.style.gridTemplateAreas = '"main-title" "c0" "c1" "c-button"';
     document.getElementById('circle-one').style.backgroundColor = 'rgb(126, 176, 28)';
 
@@ -267,7 +267,7 @@ function updateScreen(e) {
     c1.style.visibility = 'visible';
   }
   if (screen == 1) { 
-    const container = document.querySelector('.container');
+    const container = document.querySelector('.container2');
     container.style.gridTemplateAreas = '"main-title" "c0" "c2" "c-button"';
     document.getElementById('circle-one').innerHTML = '<i class="fa-solid fa-check"></i>'
 
@@ -294,7 +294,7 @@ function updateScreen(e) {
     c2.style.visibility = 'visible';
   }
   if (screen == 2) { 
-    const container = document.querySelector('.container');
+    const container = document.querySelector('.container2');
     container.style.gridTemplateAreas = '"main-title" "c0" "c3" "c-button"';
     document.getElementById('circle-two').style.backgroundColor = 'rgb(126, 176, 28)';
     document.getElementById('circle-two').innerHTML = '<i class="fa-solid fa-check"></i>'
@@ -336,7 +336,7 @@ function updateScreen(e) {
 
   }
   if (screen == 3) { 
-    const container = document.querySelector('.container');
+    const container = document.querySelector('.container2');
     container.style.gridTemplateAreas = '"main-title" "c0" "c4" "c-button"';
     document.getElementById('circle-three').style.backgroundColor = 'rgb(126, 176, 28)';
     document.getElementById('circle-three').innerHTML = '<i class="fa-solid fa-check"></i>'

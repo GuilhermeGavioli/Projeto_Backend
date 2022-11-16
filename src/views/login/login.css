@@ -76,12 +76,12 @@ label{
 input{
     margin-top: 0;
     background-color: rgb(235,235,235);
+    color: rgb(135,135,135);
     border-radius: 2px;
     border: none;
     font-size: .9em;
     box-sizing: border-box;
     padding-left: 5px;
-    color: rgb(135,135,135);
     padding-left: 15px;
     box-sizing: border-box;
     outline: none;

@@ -36,6 +36,13 @@ window.onload = async () => {
     
     
     //teste
+    const appendMeData = {
+        image: user.user_image,
+        id: user.userid,
+        name: "Voce"
+    }
+
+    appendOnFriends(appendMeData)
             
     const messagesContainer = document.querySelector('.chat-messages')
 
@@ -133,26 +140,19 @@ function appendOnFriends(user) {
     const friends = document.querySelector('.friends')
     friends.append(friend)
 }
-    // <div class="friend">
-    //             <div class="friend-image">
-    //                 <div class="green-online-circle"></div>
-    //                 <img src="../assets/user.jpg" alt="" class="friend-image">
-    //             </div>
-    //             <div>
-    //                 <p class="friend-name">Guilherme Gavioli</p>
-    //                 <p class="online-text">Online</p>
-    //             </div>
-    //         </div>
+
 
 function activatedScrollSymbol() {
     console.log('acteved')
     document.querySelector('.scroll-bottom-icon').style.visibility = 'visible'
 }
 
+
 function sendMessage(e, user, socket) {
     e.preventDefault();
     scrollToBottom()
     messageInput = document.querySelector('.chat-message-input');
+    if (messageInput.value.length > 500 || messageInput.value.trim() == '') return;
     appendMyMessage(messageInput.value)
     socket.emit('send-message', {
         id: user.userid,
@@ -190,7 +190,12 @@ function appendOthersMessage(messageTextValue, name, id, pic, date) {
 
     const chatTime = document.createElement('p')
     chatTime.className = 'chat-time'
-    chatTime.innerText = date;
+    const day = date.toString().substring(8, 10)
+    const month = convertNumberToMonth(Number(date.toString().substring(5, 7)))
+    const year = date.toString().substring(0, 4)
+    const time = date.toString().substring(11, 16)
+    const finalDate = `${day} de ${month} de ${year} às ${time}`
+    chatTime.innerText = finalDate;
 
     const emptyDivJustForFlexPurposes = document.createElement('div');
     emptyDivJustForFlexPurposes.append(userName)
@@ -205,13 +210,23 @@ function appendOthersMessage(messageTextValue, name, id, pic, date) {
 
 function appendMyMessage(message) {
     const date = new Date()
+    date.setHours(date.getHours() - 3)
+
     const myMessage = document.createElement('p')
     myMessage.innerText = message
     myMessage.className = 'chat-message-text'
 
     const myTime = document.createElement('p')
-    myTime.innerText = date.setHours(date.getHours() - 3)
-    myTime.innerText = date.toString().substring(0, 10) 
+   
+    console.log(date)
+    const day = date.toString().substring(8, 10)
+    const month = convertNumberToMonth(Number(date.getMonth() + 1))
+   
+    const year = date.toString().substring(0, 4)
+    const time = date.toString().substring(11, 16)
+    const finalDate = `${date.getDate()} de ${month} de ${date.getFullYear()} às ${date.getHours() + 3}:${date.getMinutes()}`
+
+    myTime.innerText = finalDate
     myTime.className = 'chat-time'
     
     const myChatMessage = document.createElement('div')
@@ -236,7 +251,7 @@ function appendSystemMessage(message) {
     const myChatMessage = document.createElement('div')
     myChatMessage.className = 'system-message'
     myChatMessage.append(myMessage)
-    myChatMessage.append(myTime)
+    // myChatMessage.append(myTime)
 
     document.querySelector('.chat-messages').append(myChatMessage);
 }
@@ -252,9 +267,7 @@ function appendLastMessages(userid, message) {
 
 
 
-
-//mesages from mine
-{/* <div class="my-chat-message">
-                <p class="chat-message-text">Olá, todo mundo estou muito feliz hojOlá, todo mundo estou muito feliz hojeOlá, todo mundo estou muito feliz hojeOlá, todo mundo estou muito feliz hojeOlá, todo mundo estou muito feliz hojeOlá, todo mundo estou muito feliz hojeOlá, todo mundo estou muito feliz hojeOlá, todo mundo estou muito feliz hojee</p>
-            <p class="chat-time">11 de dezembro de 2022, 14:30</p>
-        </div> */}
+function convertNumberToMonth(month_number) {
+    const months = new Array("Janeiro", "Fevereiro", "Marco", "Abril", "Maio", "Junho", "Julho", "Agosto", "Septembro", "Outubro", "Novembro", "Dezembro");
+    return months[month_number - 1]
+}

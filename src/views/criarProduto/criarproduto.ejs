@@ -53,10 +53,10 @@
     </div> -->
 
     <header class="header">
-        <div style="height: 100%; display: flex; align-items: center; background-color: rgb(250,250,250);" class="logo-header-container" onClick="window.location.href = '/'">
-            <img src="../assets/logo.png" style="width: 100%; height: 100%; margin-left: 8px; min-width: 75px; max-width: 85px;" alt="">
+        <div style="height: 100%; display: flex; align-items: center; background-color: rgba(247, 247, 247, 0.955);" class="logo-header-container" onClick="window.location.href = '/'">
+            <img src="../assets/logo_transparente.png" style="width: 100%; height: 100%; margin-left: 8px; min-width: 75px; max-width: 85px;" alt="">
             <div class="company-name" style="height: fit-content; display: flex; padding: 0 35px;">
-                <span style="font-family: monospace; font-size: 1.6em; color:rgb(41, 41, 41); text-decoration: solid;">
+                <span style="font-family: monospace; font-size: 1.6em; color:rgb(60,68,55); text-decoration: solid;">
                     Go
                 </span>
                 <span style="font-family: monospace; font-size: 1.6em;color:rgb(122, 192, 16); font-weight: 800;">
@@ -83,7 +83,7 @@
         </div>
 
 
-        <div id="register-and-login" style="margin-left: 25px; display: flex; background-color: rgb(249, 249, 249); justify-content: center; background-color: red;">
+        <div id="register-and-login" style="margin-left: 25px; display: flex; background-color: rgb(249, 249, 249); justify-content: center;">
             <p style="margin:0; padding-right: 15px; border-right: 1px solid rgb(92, 92, 92);" ><a href="/registrar" style="text-decoration: none;">
                 <i class="fa-solid fa-user-plus" style="color:rgb(59, 59, 59); font-size: 1.2em;"></i>
             </a>
@@ -98,20 +98,32 @@
         <div class="header-user-icon-container">
             <img class="header-user-icon" src="" style="position:relative;">
             <div class="header-painel" style="visibility: hidden;">
-                <li class="user-painel-item" style="margin-top: 0;">
+                <li class="user-painel-item">
                     <a href="/"
-                    style="text-decoration: none; color: rgb(177, 177, 177);"
+                    style="text-decoration: none;" class="header-painel-li"
                     >Home</a></li>
-                <li class="user-painel-item" style="margin-top: 0;">
+                <li class="user-painel-item" >
                     <a href="/MeuPerfil"
-                    style="text-decoration: none; color: rgb(177, 177, 177);"
+                    style="text-decoration: none;"
+                    class="header-painel-li"
                     >Meu Perfil</a></li>
-                <li class="user-painel-item"><a href="/estacaoDeCriacao"
-                    style="text-decoration: none; color: rgb(177, 177, 177);">Criar</a></li>
-                <li class="user-painel-item"><a href="/criar"
-                    style="text-decoration: none; color: rgb(177, 177, 177); margin-bottom:25px;"
+                <li class="user-painel-item">
+                    <a href="/estacaoDeCriacao"
+                    style="text-decoration: none;"
+                    class="header-painel-li">
+                    Criar</a></li>
+                <li class="user-painel-item">
+                    <a href="/globalchat"
+                    style="text-decoration: none;"
+                    class="header-painel-li">
+                    Chat Global</a></li>
+                <li class="user-painel-item"><a href="/meusProdutos"
+                    style="text-decoration: none; margin-bottom:25px;" class="header-painel-li"
                     >Meus produtos</a></li>
-                <button class="logout-btn">Logout</button>
+                <button class="logout-btn">
+                    <p style="margin: 0; margin-left: 15px;">Sair</p>
+                    <i class="fa-solid fa-person-walking-arrow-right" style="margin-left: 8px;"></i>
+                </button>
             </div>
         </div>
     </header>
@@ -148,12 +160,12 @@
 
 
 
+    <div class="container"></div>
 
 
 
 
-
-    <div class="container">
+    <div class="container2">
         <div class="main-title">
             <h2>Precisaremos de algumas informaçoes do produto...</h2>
         </div>
@@ -337,6 +349,16 @@
                 </button> -->
         </div>
     </div>
+
+
+    <footer class="footer" style="margin-top: 150px;">
+        <div class="f2">
+            <div class="f2-circle"></div>
+            <h3 style="color:rgb(60,68,55); margin-bottom: 0;">Go<span style="color:rgb(122, 192, 16)">Green</span></h3>
+            <h5 style="color: rgb(84, 84, 84);">Viva Bem</h5>
+        </div>
+        </div>
+    </footer>
 
     
 </body>

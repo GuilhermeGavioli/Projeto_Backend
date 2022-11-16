@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Chat</title>
+    <title>Chat</title>
+    <link rel="shortcut icon" href="../assets/logo_transparente.png" />
 
  
     <!-- PAGE -->
@@ -37,6 +38,13 @@
 <style>
     body{
         height: 200vh;
+        background-image: url('https://images.pexels.com/photos/593158/pexels-photo-593158.jpeg?auto=compress&cs=tinysrgb&w=600');
+        background-image: url('https://images.pexels.com/photos/1487835/pexels-photo-1487835.jpeg?auto=compress&cs=tinysrgb&w=600');
+        background-image: url('https://images.pexels.com/photos/3942924/pexels-photo-3942924.jpeg?auto=compress&cs=tinysrgb&w=600');
+        background: linear-gradient(to bottom right, rgb(208, 208, 208), whitesmoke);
+        background-repeat: no-repeat;
+        background-size: cover;
+        backdrop-filter: blur(2px);
     }
 </style>
 <body>
@@ -144,47 +152,34 @@
     </div>
     </div>
 
+    <div class="container"></div>
   
 
 
-    <div class="container">
+    <div class="container2">
         <div class="facade">
-            <!-- <h1 class="main-chat-title">Chat Global <i class="fa-regular fa-comments"></i></h1> -->
+
+
+            <h1 class="main-chat-title">Chat Global <i class="fa-regular fa-comments"></i></h1>
+
+
+            <div class="home"><i class="fa-solid fa-house" onclick="window.location.href = '/'"></i></div>
+            <!-- <div class="home"><i class="fa-solid fa-person-walking-arrow-right" onclick="window.location.href = '/'"></i></div> -->
+           
         </div>
         
         <div class="chat-messages">
         </div>
         <div class="friends">
-            <!-- <div class="friend">
-                <div class="friend-image-container">
-                    <div class="green-online-circle"></div>
-                    <img src="../assets/user.jpg" alt="" class="friend-image">
-                </div>
-                <div>
-                    <p class="friend-name">Guilherme Gavioli</p>
-                    <p class="online-text">Online</p>
-                </div>
-            </div>
-            <div class="friend">
-                <div class="friend-image-container">
-                    <div class="green-online-circle"></div>
-                    <img src="../assets/user.jpg" alt="" class="friend-image">
-                </div>
-                <div>
-                    <p class="friend-name">Guilherme Gavioli</p>
-                    <p class="online-text">Online</p>
-                </div>
-            </div> -->
+           
         </div>
 
 
         <form class="type-form">
             <div class="input-and-btn-container">
-                <input type="text" placeholder="Digite sua mensagem" class="chat-message-input"> 
+                <input type="text" class="chat-message-input" placeholder="Sua mensagem..."> 
                 <button type="submit" class="chat-send-message-button"> <i class="fa-solid fa-paper-plane"></i>  </button>
             </div>
-            <!-- <input type="text" class="chat-message-input"> -->
-            <!-- <button type="submit" class="chat-send-message-button">enviar</button> -->
         </form>
     </div>
 
@@ -214,7 +209,14 @@
 
 
 
-
+    <footer class="footer" style="margin-top: 150px;">
+        <div class="f2">
+            <div class="f2-circle"></div>
+            <h3 style="color:rgb(60,68,55); margin-bottom: 0;">Go<span style="color:rgb(122, 192, 16)">Green</span></h3>
+            <h5 style="color: rgb(84, 84, 84);">Viva Bem</h5>
+        </div>
+        </div>
+    </footer>
 
 
   

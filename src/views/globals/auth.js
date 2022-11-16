@@ -34,11 +34,14 @@ async function handleUserFetchTokenData(action) {  //action to be done in case o
   if (!data.auth) { 
     handleActionForNonAuthorizedUsers(action, items);
   } else if (data.auth) {
+
+    const lis = document.querySelectorAll('.user-painel-item')
+
     headerUserCircleContainer.style.position = 'unset';
-        headerCircle.addEventListener('click', (e) => toggleHeaderPainel(headerPainel))
+        headerCircle.addEventListener('click', (e) => toggleHeaderPainel(headerPainel, headerLogoutButton, lis))
         headerLogoutButton.addEventListener('click', () => logout())
         fitUserInfoInHeader(data.fullUser.user_image);
-        main.addEventListener('click', () => closePainel(headerPainel))
+        main.addEventListener('click', () => toggleHeaderPainel(headerPainel, headerLogoutButton, lis))
     showContent(header, headerCircle, main, spinner);
 
     const bellContainer = document.querySelector('.bell-inside-container');
@@ -131,8 +134,63 @@ function getStoredToken() {
     return window.localStorage.getItem("token") || null;
 }
   
-function toggleHeaderPainel(PainelElement) {
-    PainelElement.style.visibility = PainelElement.style.visibility == "hidden" ? "visible" : "hidden";
+let closed=true
+let isUserPainelClickable = true
+
+function toggleHeaderPainel(PainelElement, headerLogoutButton, lis) {
+  if (!isUserPainelClickable) return;
+  
+  isUserPainelClickable = false;
+
+  if (closed) {
+    PainelElement.style.visibility = 'visible'
+    PainelElement.style.width = '5px'
+    PainelElement.style.height = '300px'
+    setTimeout(() => { 
+      PainelElement.style.width = '200px'
+      PainelElement.style.padding = '20px 15px 20px 15px'
+    }, 350)
+    setTimeout(() => { 
+      Array.from(lis).map(li => { 
+        li.style.visibility = 'visible'
+        li.style.position = 'unset'
+        li.style.margin = 'auto'
+        li.style.top = 'unset'
+      })
+      headerLogoutButton.style.visibility = 'visible'
+      headerLogoutButton.style.position = 'static'
+ 
+    headerLogoutButton.style.bottom = '8px'
+    headerLogoutButton.style.margin = 'auto'
+ 
+      isUserPainelClickable = true;
+    }, 525)
+    
+    closed = false;
+  } else {
+    PainelElement.style.padding = '0'
+    PainelElement.style.height = '5px'
+    Array.from(lis).map(li => { 
+      // li.style.visibility = 'hidden'
+      li.style.position = 'fixed'
+      li.style.inset = '0 500px 0 0'
+      li.style.margin = 'unset'
+      li.style.visibility = 'hidden'
+    })
+   
+    // headerLogoutButton.style.visibility = 'hidden'
+    headerLogoutButton.style.position = 'fixed'
+    headerLogoutButton.style.inset = '0 500px 0 0'
+    headerLogoutButton.style.margin = 'unset'
+    headerLogoutButton.style.visibility = 'hidden'
+    setTimeout(() => { 
+      PainelElement.style.width = '0'
+      isUserPainelClickable = true
+    }, 350)
+    
+    closed = true;
+  }
+    
 }
 
 

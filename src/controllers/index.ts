@@ -143,14 +143,18 @@ export const controllers = {
     },
 
     getProdutos: async (req: Request, res: Response) => {
-        console.log('hi')
         const nomeProduto = req.query.nomeProduto?.toString().toLowerCase();
         const number = req.query.number?.toString().toLowerCase();
         const procurarnadescricao = req.query.queryDescriptionAlso?.toString().toLowerCase();
         if (!nomeProduto || !number) return res.json('Produto nao existe')
-        const productsFound = await mySqlDatabase.findManyProductsByName(nomeProduto, (procurarnadescricao == "true"), Number(number));
-        if (number !== '0') return res.json(productsFound)
-        return res.render(path.join("acharProdutos", "acharProdutos.ejs"), { productsFound, nomeProduto });
+        try {
+            const productsFound = await mySqlDatabase.findManyProductsByName(nomeProduto, (procurarnadescricao == "true"), Number(number));
+            if (number !== '0') return res.json(productsFound)
+            return res.render(path.join("acharProdutos", "acharProdutos.ejs"), { productsFound, nomeProduto });
+        
+        } catch (err) { 
+            return res.json('Querry invalida')
+        }
     },
 
     getProdutosFromUser: async (req: Request, res: Response) => {

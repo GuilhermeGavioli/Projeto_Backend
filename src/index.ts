@@ -232,6 +232,7 @@ io.on('connection', socket => {
         lastTenGlobalChatMessages.push(message)
         const date = new Date();
         date.setHours(date.getHours() - 3)
+        console.log(date)
         message.date = date
         socket.broadcast.emit('send-message-server', message)
     })

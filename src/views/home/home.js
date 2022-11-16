@@ -14,7 +14,7 @@ window.onload = async () => {
   // const headerLogoutButton = document.querySelector('.logout-btn');
 
   const data = await handleUserFetchTokenData('stayOnThePageStillNotLoggedIn');
-  console.log('aaaaa' + data)
+
 
   const productData = await handleCardsDisplayOnLoad();
   await fitProductsDataInHome(productData);
@@ -24,7 +24,7 @@ window.onload = async () => {
 
   document.querySelector('.banner-container').addEventListener('click', () => { 
     closeSidebar()
-    closePainel(headerPainel)
+   
     
   })
 }
@@ -52,10 +52,14 @@ async function fitProductsDataInHome(data){
 
 
 function appendOnPage(data) {
+  let cont = 0;
   const container = document.querySelector('.c3')
   data.map(item => {
-    const cardContainer = createProductCard(item);
-    container.append(cardContainer);
+    if (cont > 0) { 
+      const cardContainer = createProductCard(item);
+      container.append(cardContainer);
+    }
+    cont++
   })
 }
 

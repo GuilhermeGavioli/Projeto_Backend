@@ -2,7 +2,7 @@ INSERT INTO product (
 product_id, product_name, product_image, product_description, is_organic, price, unity, tags, category, owner_id, created_at
  ) VALUES (
     "y1apd4waescdbbd4c9", 
-    "Cenouras Orgânicas",
+    "Cenouras Organicas",
      "default_azeitona.jpg", 
     "Produto cultivado em terras ferteis sem uso de quimicos ou substancias prejudiciais a saude, etc... Portanto, o produto trata-se de um produto de origem organica, e natural. Foram colhidos recentemente 110kg do mesmo e espera-se vende-los em uma unica negociaçao, conta-te me para mais informaçoes.",
     true, 
@@ -98,7 +98,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
 product_id, product_name, product_image, product_description, is_organic, price, unity, tags, category, owner_id, created_at
  ) VALUES (
     "afpd4wae65scdbabd4cc9", 
-    "Queijo Produzido Orgânicamente",
+    "Queijo Produzido Organicamente",
      "default_cheese.jpeg", 
     "Produto cultivado em terras ferteis sem uso de quimicos ou substancias prejudiciais a saude, etc... Portanto, o produto trata-se de um produto de origem organica, e natural. Foram colhidos recentemente 110kg do mesmo e espera-se vende-los em uma unica negociaçao, conta-te me para mais informaçoes.",
     false, 
@@ -162,7 +162,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
 product_id, product_name, product_image, product_description, is_organic, price, unity, tags, category, owner_id, created_at
  ) VALUES (
     "apcd4waefsdbadc5cabd4c9", 
-    "Café natural vegano",
+    "Cafe natural vegano",
      "default_coffee.jpeg", 
     "Produto cultivado em terras ferteis sem uso de quimicos ou substancias prejudiciais a saude, etc... Portanto, o produto trata-se de um produto de origem organica, e natural. Foram colhidos recentemente 110kg do mesmo e espera-se vende-los em uma unica negociaçao, conta-te me para mais informaçoes.",
     false, 
@@ -178,7 +178,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
 product_id, product_name, product_image, product_description, is_organic, price, unity, tags, category, owner_id, created_at
  ) VALUES (
     "apdf4e7sdbcabcd4c9", 
-    "Café",
+    "Cafe",
      "default_coffee.jpg", 
     "Produto cultivado em terras ferteis sem uso de quimicos ou substancias prejudiciais a saude, etc... Portanto, o produto trata-se de um produto de origem organica, e natural. Foram colhidos recentemente 110kg do mesmo e espera-se vende-los em uma unica negociaçao, conta-te me para mais informaçoes.",
     false, 
@@ -498,7 +498,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
 product_id, product_name, product_image, product_description, is_organic, price, unity, tags, category, owner_id, created_at
  ) VALUES (
     "ap74wae7sdbc25abcd4c9", 
-    "Aveia recém-colhida",
+    "Aveia",
      "default_oats.jpeg", 
     "Produto cultivado em terras ferteis sem uso de quimicos ou substancias prejudiciais a saude, etc... Portanto, o produto trata-se de um produto de origem organica, e natural. Foram colhidos recentemente 110kg do mesmo e espera-se vende-los em uma unica negociaçao, conta-te me para mais informaçoes.",
     false, 

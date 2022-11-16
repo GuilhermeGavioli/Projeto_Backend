@@ -1,18 +1,21 @@
 body{
 }
-.container{
+.container2{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-areas: "c2 c2"
-                        /* "c4 c4" */
-                        "c5 c5"
-                        ;
-    grid-template-rows: auto auto auto;
+    grid-template-areas: "c2 sobre";
+                        /* "sobre sobre"; */
+    grid-template-rows: auto;
     row-gap: 25px;
     max-width: 1200px;
-    width: 100%;
+    width: 1000px;
     margin: auto;
-    padding-bottom: 200px;
+}
+
+.sobre-container{
+    grid-area: sobre;
+    padding: 100px 45px 75px 45px;
+    background-color: whitesmoke;
 }
 
 
@@ -26,8 +29,10 @@ body{
     align-items: center;
     flex-direction: column;
     padding: 45px 45px 10px 45px;
-    background-color: rgb(126, 176, 28);
+    /* background-color: rgb(126, 176, 28);
     background: linear-gradient(to bottom right,  rgb(126, 176, 28),rgb(60,68,55) );
+    background: linear-gradient(to right, #779f30, #98cd3e); */
+    background-color: white;
     height: 35vh;
     min-height: 300px;
     /* background-color: rgb(220, 220, 220); */
@@ -42,7 +47,7 @@ body{
     padding: 8px 0 8px 0;
     color: rgb(60,68,55);
 }
-.fa-regular, .fa-solid{
+#profile-icons{
     height: 100%;
     color: rgb(99, 105, 95);
     font-size: .9em;
@@ -62,6 +67,7 @@ body{
     position: absolute;
     right: 0;
     left: 0;
+    z-index: 3;
     margin: auto;
     bottom: -80px;
     box-shadow: -1px 6px 12px 3px rgba(0, 0, 0, 0.154);
@@ -75,10 +81,10 @@ body{
 }
 .c2-container{
     padding: 100px 45px 50px 45px;
-    width: 600px;
     height: auto;
     overflow: unset;
-    box-shadow: -1px 6px 12px 3px rgba(0, 0, 0, 0.154);
+
+    /* box-shadow: -1px 6px 12px 3px rgba(0, 0, 0, 0.154); */
     position: relative;
 }
 .three-dots-container{
@@ -89,20 +95,26 @@ body{
     font-size: 1.4em;
 }
 
-.send-message-painel{
-    visibility: hidden;
-    position: absolute;
-    background-color: #ECF87F;
-    color: rgb(71, 71, 71);
-    top: 20px;
-    right: 55px;
-    padding: 15px;
+
+.send-profile-message-container{
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+
 }
-.send-message-container{
-    height: 0;
-    background-color: red;
-    visibility: hidden;
-    transition: 0.3s ease-out;
+.send-profile-message-input{
+    resize: none;
+    height: 130px;
+    border: none;
+    outline: none;
+    margin-bottom: 15px;
+    padding: 8px;
+}
+.send-profile-message-btn{
+    border: none;
+    background: linear-gradient(to bottom, #7db023, #72a220);
+    color: white;
+    height: 45px;
 }
 
 .name-title{
@@ -133,7 +145,8 @@ body{
     grid-area: c3;
     display: flex;
     justify-content: center;
-    color: rgb(60,68,55)  ;
+    color: rgb(60,68,55);
+    background-color: rgb(83, 22, 22);
 }
 .c3-container{
     height: fit-content;
@@ -330,7 +343,7 @@ body{
 
 
 
-    .container{
+    .container2{
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-areas: "c2 c2"

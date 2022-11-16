@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link rel="shortcut icon" href="../assets/logo_transparente.png" />
 
     <!-- PAGE -->
     <link rel="stylesheet" href="./home.css">
@@ -28,6 +29,15 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+    <style>
+body{
+    position: relative;
+    width: 100vw;
+  
+}
+
+    </style>
+
 </head>
 <body>
 
@@ -36,10 +46,10 @@
 
 
     <header class="header">
-        <div style="height: 100%; display: flex; align-items: center; background-color: rgb(250,250,250);" class="logo-header-container" onClick="window.location.href = '/'">
-            <img src="../assets/logo_sem_marcadagua.png" style="width: 100%; height: 100%; margin-left: 8px; min-width: 75px; max-width: 85px;" alt="">
+        <div style="height: 100%; display: flex; align-items: center; background-color: rgba(247, 247, 247, 0.955);" class="logo-header-container" onClick="window.location.href = '/'">
+            <img src="../assets/logo_transparente.png" style="width: 100%; height: 100%; margin-left: 8px; min-width: 75px; max-width: 85px;" alt="">
             <div class="company-name" style="height: fit-content; display: flex; padding: 0 35px;">
-                <span style="font-family: monospace; font-size: 1.6em; color:rgb(41, 41, 41); text-decoration: solid;">
+                <span style="font-family: monospace; font-size: 1.6em; color:rgb(60,68,55); text-decoration: solid;">
                     Go
                 </span>
                 <span style="font-family: monospace; font-size: 1.6em;color:rgb(122, 192, 16); font-weight: 800;">
@@ -49,9 +59,9 @@
         </div>
 
         <div class="header-main">
-            <p class="nav-item"><a href="/" style="color: rgb(68,68,68)">Home</a></p>
+            <p class="nav-item"><a href="/" style="color: rgb(68,68,68);">Home</a></p>
             <p class="nav-item"><a href="/sobre" style="color: rgb(68,68,68)">Sobre</a></p>
-            <p class="nav-item"><a href="/produtos" style="color: rgb(68,68,68)">Produtos</a></p>
+            <p class="nav-item"><a href="/getprodutos?queryDescriptionAlso=true&number=0&nomeProduto=a" style="color: rgb(68,68,68)">Produtos</a></p>
             <div class="nav-item" id="procurar-nav-item">
             <p id="procurar-and-icon-container">
                 Procurar
@@ -59,7 +69,11 @@
             </p>
             <div class="procurar-painel-container" isOpen="false">
                 <p style="margin: 0;" id="produtores-item" onClick="window.location.href = '/procurarUsuario'">Produtores</p>
-                <p style="margin: 0; margin-top: 8px;"id="produtos-item" onClick="window.location.href = '/procurarProduto'">Produtos</p>
+
+                <p style="margin: 0; margin-top: 8px;"id="produtos-item" onClick="window.location.href='/getprodutos?queryDescriptionAlso=true&number=0&nomeProduto=a'">
+                    Produtos
+                </p>
+
             </div>
             </div>
             <p class="hamburger-icon"><i class="fa-solid fa-bars"></i></p>
@@ -99,7 +113,7 @@
                     <a href="/globalchat"
                     style="text-decoration: none;"
                     class="header-painel-li">
-                    Global Chat</a></li>
+                    Chat Global</a></li>
                 <li class="user-painel-item"><a href="/meusProdutos"
                     style="text-decoration: none; margin-bottom:25px;" class="header-painel-li"
                     >Meus produtos</a></li>
@@ -132,27 +146,14 @@
             <i class="fa-regular fa-bell" id="bell-icon"></i>
             <div class="bell-painel">
                 <div class="bell-painel-inside">
-                <!-- <div class="select-all-messages-container">
-                    <button class="delete-messages-button">Apagar pra mim</button>
-                </div> -->
                 <div class="all-messages-container">
-
-
                 </div>
             </div>
         </div>
-    </div>
+        </div>
     </div>
 
-    <!-- <div class="bell-container">
-        <div class="bell-inside-container">
-            <i class="fa-regular fa-bell" style="font-size: 2.5em;"></i>
-            <div class="bell-painel">
-                <div class="bell-painel-inside">
-                </div>
-            </div>
-        </div>
-    </div> -->
+
 
 
 
@@ -295,58 +296,7 @@
 
 
         
-        <div class="c1_2" 
-        style="
-     
-        background-image: url('https://images.pexels.com/photos/128402/pexels-photo-128402.jpeg?auto=compress&cs=tinysrgb&w=600'); 
-        border-radius: 50%;
-        width: 350px;
-        height: 350px;
-        display: flex;
-        align-items: center;
-        margin-top: 150px;
-        ">
-
-        </div>
-
-
-
-
-
-        <div class="c1_1" style="text-align: right;">
-            <h1 style="text-align: right;text-justify: newspaper;  color: rgb(126, 176, 28);
-                padding: 5px 0 5px 0;
-            ">O que são Produtos Orgânicos?</h1>
-            <p style="margin: 0; font-size:1em; margin-top: 10px; width: 100%;" class="oque-sao-organicos-text">
-                Produtos Orgânicos são aqueles obtidos dentro de um sistema orgânico
-                de produção agropecuária ou sustentável que beneficie o ecossistema local, proteja os recursos
-                naturais, respeite as características socioeconômicas
-                e culturais da comunidade local, preserve os direitos
-                dos trabalhadores envolvidos e não utilize organismos
-                geneticamente modificados nem químicos sintéticos.</p>
-        </div>
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
 
 
@@ -367,8 +317,8 @@
                         </div>
                         <div>
                             <h1 class="como-usar-card-title">Crie sua conta na GoGreen
-                                <i class="fa-solid fa-user-tie" style="margin-left: 8px; font-size: .8em"></i> </h1>
-                            <p class="como-usar-card-text">Cadastre-se gratuitamente agora mesmo. Voce pode usar sua conta para ter acesso à novas funcionalidades na plataforma, como publicas produtos e enviar mensagens para usuários</p>
+                                 </h1>
+                            <p class="como-usar-card-text">Cadastre-se gratuitamente agora mesmo. Voce pode usar sua conta para ter acesso à novas funcionalidades na plataforma, como publicar produtos e enviar mensagens para usuários</p>
                         </div>
                     </div>
 
@@ -379,7 +329,7 @@
                         </div>
                         <div>
                             <h1 class="como-usar-card-title">Configure seu Perfil
-                                <i class="fa-solid fa-gear" style="margin-left: 8px; font-size: .8em"></i>
+                                
                                 
                             </h1>
                             <p class="como-usar-card-text">Adicione novos dados de cadastro em seu perfil para que outros usuários possam te contatar e conhecerem mais sobre voce e seus Produtos.</p>
@@ -392,28 +342,58 @@
                         </div>
                         <div>
                             <h1 class="como-usar-card-title">Divulgue seus Produtos
-                                <i class="fa-solid fa-upload" style="margin-left: 8px; font-size: .8em"></i>
+                            
 
                             </h1>
                      
                             <p class="como-usar-card-text">Publique seus produtos na plataforma, preencha os campos para que assim outros usuários possam conhecê-los, visualizar suas respectivas informaçoes e .</p>
                         </div>
                 </div>
-                    <div class="como-usar-card" onClick="window.location.href = '/estacaoDeCriacao'">
+                    <div class="como-usar-card" onClick="window.location.href = '/globalChat'">
                         <div class="card-number-container">
                             <div class=card-number style="border-right: 4px solid rgb(126, 176, 28); border-bottom: 4px solid rgb(126, 176, 28); border-left: 4px solid rgb(126, 176, 28);">4</div>
                         </div>
                         <div>
                             <h1 class="como-usar-card-title">Contate Usuários
-                                <i class="fa-solid fa-comments" style="margin-left: 8px; font-size: .8em"></i>
+                               
                             </h1>
                      
-                            <p class="como-usar-card-text">Envie propostas ou ofertas enviando mensangens para outros usuários através de seus perfis.</p>
+                            <p class="como-usar-card-text">Envie propostas ou ofertas enviando mensangens para outros usuários através de seus perfis ou através do chat global dísponivel para todos os usuários da plataforma.</p>
                         </div>
                 </div>
         </div>
         </div>
 
+
+
+        <div class="c1_1" style="text-align: right;">
+
+            
+            <h1 class="oque-sao-organicos-title">O que são Produtos Orgânicos?</h1>
+            
+
+            <p style="margin: 0; font-size:1em; width: 100%;" class="oque-sao-organicos-text">
+                Produtos Orgânicos são aqueles obtidos dentro de um sistema orgânico
+                de produção agropecuária ou sustentável que beneficie o ecossistema local, proteja os recursos
+                naturais, respeite as características socioeconômicas
+                e culturais da comunidade local, preserve os direitos
+                dos trabalhadores envolvidos e não utilize organismos
+                geneticamente modificados nem químicos sintéticos.</p>
+                
+                <div class="c1_2">
+                    <div class="produtos-organicos-rounded-pic" style="
+                        right: 0; left: 0; margin: auto; z-index: 1;
+                        "></div>
+                     <div class="produtos-organicos-rounded-pic" style="
+                     right: 0; left: 325px; margin: auto; z-index: 2;
+                     "></div>
+                    <div class="produtos-organicos-rounded-pic" style="
+                    right: 285px; left: 0; margin: auto; z-index: 0;
+                    "></div>
+                </div>
+                
+
+        </div>
         
         
     
@@ -444,9 +424,9 @@
      
         <div class="c3">
 
-                 <h2 style="
+                 <!-- <h2 style="
                     position: absolute; top: 25px;
-                ">Produtos em Destaque</h2>
+                ">Produtos em Destaque</h2> -->
 
                     
                          
@@ -478,40 +458,14 @@
 
 
 
-        <div class="footer">
-            <!-- <div class="footer-circle">
-                <div class="footer-circle-inside"></div>
-            </div>
-            <div class="footer-circle-2">
-                <div class="footer-circle-inside-2">
-               
-                </div>
-            </div> -->
-            <!-- <div class="f1">
-                <div class="f1-main">
-
-                    <h2 class="f1-second-title">Produtos Orgânicos</h2>
-                    <p class="f1-text">Somos uma empresa jovem procurando por idéias novas e criativas para ajudar a voce com seus produtos em seu trabalho diario ou voce que deseja ter uma vida mais saudavel através de boas práticas alimentares.</p>
-                </div>
-            </div> -->
+        <footer class="footer">
             <div class="f2">
                 <div class="f2-circle"></div>
                 <h3 style="color:rgb(60,68,55); margin-bottom: 0;">Go<span style="color:rgb(122, 192, 16)">Green</span></h3>
                 <h5 style="color: rgb(84, 84, 84);">Viva Bem</h5>
             </div>
-            <!-- <div class="f3">
-                <div class="f1-main">
-                <h2 class="f1-second-title"> Siga-nos em nossas redes</h2>
-                <div class="socials-container">
-
-                    <i class="fa-brands fa-facebook"></i>
-                    <i class="fa-brands fa-instagram" ></i>
-                    <i class="fa-brands fa-twitter" ></i>
-                </div>
-               
-            </div> -->
             </div>
-        </div>
+        </footer>
             
     </body>
             

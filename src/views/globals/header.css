@@ -32,6 +32,7 @@ input{
     margin: auto;
     padding: 0 10px 0 10px;
     max-width: 2000px;
+    box-shadow: 3px 3px 8px 2px rgba(0, 0, 0, 0.117);
 }
 
 .logo-header-container{
@@ -108,23 +109,24 @@ a:hover{
 .header-painel{
     /* visibility: hidden; */
     font-weight: lighter;
-    width: fit-content;
-    height: 250px;
-    background-color: rgb(255, 255, 255);
+    width: 0;
+    height: 0;
+    background-color: rgb(235, 235, 235);
     z-index: 50;
     position: absolute;
     top: 45px;
     right: 100px;
     box-sizing: border-box;
-    padding: 20px 15px 20px 15px;
+    padding: 0;
     margin: auto;
     list-style: none;
     display: flex;
     flex-direction: column;
-    justify-content: start;
-    align-items: start;
     color: rgb(127, 176, 28);
     box-shadow: 6px 6px 10px -3px rgba(0, 0, 0, 0.154);
+    transition: 0.3s ease-in-out;
+    visibility: hidden;
+    
 }
 
 .user-painel-item{
@@ -133,13 +135,25 @@ a:hover{
     font-size: .9em;
     margin: 4px 0 4px 0;
     padding: 0 8px 0 8px;
+    visibility: visible;
     font-weight: lighter;
-    /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-weight: 600; */
+
+    position: fixed;
+    /* inset: 0 500px 0 0; */
+    top: 0;
+    left: 0;
+    margin: unset;
+    /* background-color: blue; */
+    width: 100%;
+    visibility: hidden;
+
+    /* position: unset;
+    top: unset;
+    margin: auto; */
 }
 
 .header-painel-li{
-    color: rgb(115, 123, 111);
+    color: rgb(139, 146, 136);
     font-weight: lighter;
     font-size: .9em;
 }
@@ -154,26 +168,33 @@ li{
 
 .logout-btn{
     border: none;
-    background-color: rgb(126, 176, 28);
+    background: linear-gradient(to right, #7ba82e, #98cd3e);
     color: white;
     border-radius: 3px;
     padding: 5px 13px 5px 13px;
-    position: absolute;
+
     width: fit-content;
     font-weight: 600;
     font-size: 1em;
-    inset: auto 0 15px 0;
-    margin: auto;
+    height: fit-content;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    position: fixed;
+    inset: 0 500px 0 0;
+    margin: unset;
+    visibility: hidden;
 }
 .sidebar-items{
-    position: absolute;
-    visibility: hidden;
     display: none;
     width: 0;
     height: 0;
+    position: static;
+    inset: 0 0 0 0;
+    margin: auto;
+    visibility: visible;
+
     /* background-color: green; */
 }
 
@@ -249,7 +270,10 @@ li{
 }
 
 #bell-icon{
-    font-size: 2.5em;
+    height: unset!important;
+    color: white!important;
+    font-size: 2.6em!important;
+    margin-right: 0!important;
 }
 
 @keyframes bellJump{
@@ -610,30 +634,41 @@ li{
 
     .bell-container{
         position: fixed;
-        background-color: red;
-        right: 15px;
-        bottom: 20px;
+        right: 5px;
+        bottom: 0px;
+        top: unset;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        margin: unset;
         width: 45px;
         height: 45px;
         z-index: 25;
         box-shadow: 3px 3px 15px 3px rgba(0, 0, 0, 0.147);
         color: #c5cfb3;
-        visibility: hidden;
         animation: alternate-reverse 1.7s ease-in-out infinite bellJump;
-        margin-top: 150px;
         visibility: hidden!important;
+       /* visibility: hidden; */
+
+    }
+
+    @keyframes bellJump{
+        from{bottom: 10px;}
+        to {bottom: 20px;}
     }
 
     #bell-icon{
-        font-size: 1.4em;
+        height: unset!important;
+        color: white!important;
+        font-size: 1.6em!important;
+        margin-right: 0!important;
     }
    
     
     .bell-painel{
         cursor: default;
         position: absolute;
-        right: 0px;
-        bottom: 95px;
+        right: 15px;
+        bottom: 55px;
         width: 0;
         height: 0;
         background-color: white;

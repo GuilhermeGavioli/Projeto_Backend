@@ -15,12 +15,12 @@ window.onload = async () => {
   const userData = await handleUserFetchTokenData('stayOnThePageStillNotLoggedIn');
 
   if (userData) { 
-    const threeDots = document.querySelector('.three-dots-container')
-    threeDots.style.visibility = 'visible';
-    threeDots.addEventListener('click', () => toggleMessageMenu())
-    document.getElementById('send-message-text').addEventListener('click', () => displayMessageInput())
+    // const threeDots = document.querySelector('.three-dots-container')
+    // threeDots.style.visibility = 'visible';
+    // threeDots.addEventListener('click', () => toggleMessageMenu())
+    // document.getElementById('send-message-text').addEventListener('click', () => displayMessageInput())
 
-    document.querySelector('.send-message-btn').addEventListener('click', () => sendMessage());
+    // document.querySelector('.send-message-btn').addEventListener('click', () => sendMessage());
   }
 
   // const productData = await handleCardsDisplayOnLoad();
