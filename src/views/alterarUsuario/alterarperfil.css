@@ -27,7 +27,7 @@ body{
     margin-top: 0;
     margin-bottom: 0;
 }
-.container{
+.container2{
     display: grid;
     grid-template-columns: .6fr .5fr 1fr 1fr;
     grid-template-areas: "c1 c1 c2 c2"
@@ -345,6 +345,7 @@ li{
     transition: 0.3s ease-in-out;
     position: fixed;
     max-width: 400px;
+    font-weight: lighter;
 }
 
 .success-message-container {
@@ -392,7 +393,7 @@ li{
 
 @media(max-width: 1020px){
     
-    .container{
+    .container2{
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto auto;
         grid-template-areas: "c1 c2" 
@@ -437,7 +438,7 @@ li{
 body{
     overflow: scroll;
 }
-    .container{
+    .container2{
         display: grid;
         grid-template-columns: 1fr;
 

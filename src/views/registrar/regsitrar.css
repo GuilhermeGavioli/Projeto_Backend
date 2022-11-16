@@ -176,20 +176,109 @@ button, input{
     background-color: rgba(255, 255, 255, 0);
 }
 
+
+.password-one{
+    width: 60%;
+}
+.password-two{
+    width: 40%;
+}
+.email-cont{
+    width: 60%;
+}
+.name-cont{
+    width: 40%;
+}
+.gender-cont{
+    width: 35%;
+}
+#field-gender{
+    width: 100%;
+}
+.date-cont{
+    width: 65%;
+}
+
+.date-and-gender{
+
+    justify-content: space-between;
+}
+
+.date-cont{
+    width: 60%;
+}
+.gender-cont{
+    width: 40%;
+}
+
+.email-and-name{
+    justify-content: space-between;
+}
+
+.email-cont{
+    width: 55%;
+}
+.name-cont{
+    width: 42%;
+}
+#field-email{
+    width: 100%;
+}
+#field-name{
+    width: 100%;
+}
+
+#field-confirmar-senha{
+    width: 100%;
+}
+#field-city{
+    width: 100%;
+}
+
 @media (max-width: 600px){
+
+
 
     .container2{
         font-family: 'Inter', sans-serif;
         visibility: hidden;
-        width: 450px;
+        width: 600px;
         height: fit-content;
         margin: auto;
         margin-top: 50px;
-        max-width: 100vw;
+        max-width: 95vw;
         min-width: 290px;
+      
     }
     .login-title{
         width: 90%;
+    }
+    .email-and-name{
+        justify-content: space-between;
+    }
+
+    .email-cont{
+        width: 55%;
+    }
+    .name-cont{
+        width: 42%;
+
+    }
+
+    .date-and-gender{
+
+        justify-content: space-between;
+    }
+
+    .date-cont{
+        width: 55%;
+    }
+    .gender-cont{
+        width: 40%;
+
+    }
+    #field-gender{
+        width: 100%;
     }
     .form-container{
         display: flex;
@@ -202,6 +291,7 @@ button, input{
         margin: auto;
         background-color: white;
         padding: 30px 20px 5px 20px;
+
     }
 
     button, input{
@@ -211,4 +301,35 @@ button, input{
     }
     
     
+}
+
+
+@media (max-width: 480px){
+    .both-passwords, .email-and-name{
+        flex-direction: column;
+
+        width: 100%;
+    }
+    .email-cont{
+        width: 100%;
+    }
+    .name-cont{
+        width: 100%;
+    }
+    .password-one, .password-two{
+        width: 100%;
+
+    }
+    #field-password{
+        width: 100%;
+    }
+    .date-and-gender{
+        flex-direction: column;
+    }
+    .gender-cont{
+        width: 100%
+    }
+    .date-cont{
+        width: 100%;
+    }
 }

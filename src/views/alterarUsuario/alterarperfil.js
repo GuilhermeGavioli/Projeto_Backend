@@ -98,20 +98,7 @@ function convertDataToForm(data) {
 
 
 
-// const deleteButton = document.getElementById("deletar-btn");
-// deleteButton.addEventListener("click", () => displayPainel())
 
-// function displayPainel() {
-//   const janelConfirmacao = document.querySelector(".janela-confirmacao");
-//   janelConfirmacao.style.visibility = "visible";
-//   janelConfirmacao.style.opacity = "100%";
-// }
-
-// function closePainel() {
-//   const janelConfirmacao = document.querySelector(".janela-confirmacao");
-//   janelConfirmacao.style.visibility = "hidden";
-//   janelConfirmacao.style.opacity = "0%";
-// }
 
 
 
@@ -227,9 +214,7 @@ function stopSpinAnimation(button) {
   button.lastElementChild.style.visibility = "visible";
 }
 
-function toggleHeaderPainel(PainelElement) {
-  PainelElement.style.visibility = PainelElement.style.visibility == "hidden" ? "visible" : "hidden";
-}
+
 
 function logout() {
   window.localStorage.removeItem('token')
