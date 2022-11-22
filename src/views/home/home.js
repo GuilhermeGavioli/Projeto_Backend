@@ -153,8 +153,8 @@ function createProductCard(item) {
 
 const c10main = document.querySelector('.c10-main')
 const walk =  window.innerWidth - 120
-
 let currentSlider = 0
+
 document.querySelector('.c10-right-arrow').addEventListener('click', () => { 
   if (currentSlider <= (-1 * (walk * 3))) return;
   currentSlider = currentSlider - walk;

@@ -17,7 +17,8 @@ import path from 'path'
 import OutputCadastrarDTO from "../DTO/output/cadastrar";
 import MySql from "../Repository/MySql";
 
-export const mySqlDatabase = new MySql('localhost', 'root', 'test', 'password', 3306);
+// export const mySqlDatabase = new MySql('localhost', 'root', 'test', 'password', 3306);
+const mySqlDatabase = 'ola'
 // const mySqlDatabase = {};
 
 
