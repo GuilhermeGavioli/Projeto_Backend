@@ -190,6 +190,23 @@ app.get('/auth', controllers.authValidation)
 //   });
 
 
+app.post('/avaliarproduto', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => {
+    const token_id = res.locals.userInfo.user_id;
+    const p_id = req.body
+     console.log(p_id)
+    const rating = await mySqlDatabase.findRatting(p_id, token_id);
+    if (rating) return res.json(rating)
+    await mySqlDatabase.createRatting(p_id, token_id);
+    return res.json({creted: true});
+})
+
+app.post('/acharavaliacao', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => {
+    const token_id = res.locals.userInfo.user_id;
+    const {p_id} = req.body
+    await mySqlDatabase.findRatting(p_id, token_id);
+    return res.json('ok');
+})
+
 
 // app.get('/getprodutosfromUser/:idprodutor', async (req, res) => {
 //     const idprodutor = req.params.idprodutor.toString().toLowerCase();

@@ -1,0 +1,131 @@
+<div id="spinning"></div>
+
+<header class="header">
+    <div style="height: 100%; display: flex; align-items: center; margin-left: 50px;" class="logo-header-container" onClick="window.location.href = '/'">
+        <img src="../assets/piconly.png" style="width: 65px; height: 65px; margin-left: 8px;" alt="">
+        <div class="company-name" style="height: fit-content; display: flex; padding: 0 35px;">
+            <!-- <span style="font-family: monospace; font-size: 1.6em; color:rgb(60,68,55); text-decoration: solid;">
+                Go
+            </span>
+            <span style="font-family: monospace; font-size: 1.6em;color:rgb(122, 192, 16); font-weight: 800;">
+                Green
+            </span> -->
+        </div>
+    </div>
+
+    <div class="header-main">
+        <p class="nav-item"><a href="/" style="color: rgb(68,68,68);">Home</a></p>
+        <p class="nav-item"><a href="/sobre" style="color: rgb(68,68,68)">Sobre</a></p>
+        <p class="nav-item"><a href="/getprodutos?queryDescriptionAlso=true&number=0&nomeProduto=a" style="color: rgb(68,68,68)">Produtos</a></p>
+        <div class="nav-item" id="procurar-nav-item">
+        <p id="procurar-and-icon-container">
+            Procurar
+            <i class="fa-solid fa-caret-down" id="seta" style="font-size: .9em; margin-left: 3px; height: fit-content;"></i>
+        </p>
+        <div class="procurar-painel-container" isOpen="false">
+            <p style="margin: 0;" id="produtores-item" onClick="window.location.href = '/procurarUsuario'">Produtores</p>
+
+            <p style="margin: 0; margin-top: 8px;"id="produtos-item" onClick="window.location.href='/getprodutos?queryDescriptionAlso=true&number=0&nomeProduto=a'">
+                Produtos
+            </p>
+
+        </div>
+        </div>
+        <p class="hamburger-icon"><i class="fa-solid fa-bars"></i></p>
+    </div>
+
+
+    <div id="register-and-login" style="display: flex; justify-content: space-between; align-items: center;">
+        <button class="login-header-btn">
+
+                <i class="fa-solid fa-right-to-bracket" style="font-size: 1em; margin-right: 5px;"></i>
+                <p style="margin:0">
+                    Login
+                </p>
+               
+        </button>
+        
+        <button class="register-header-btn">
+ 
+          
+                <i class="fa-solid fa-user-plus"  style="font-size: 1em; margin-right: 5px;"></i>
+                <p style="margin:0">
+                    Registrar
+                </p>
+     
+    </button>
+    </div>
+
+    <div class="header-user-icon-container">
+        <img class="header-user-icon" src="" style="position:relative;">
+        <div class="header-painel" style="visibility: hidden;">
+            <li class="user-painel-item">
+                <a href="/"
+                style="text-decoration: none;" class="header-painel-li"
+                >Home</a></li>
+            <li class="user-painel-item" >
+                <a href="/MeuPerfil"
+                style="text-decoration: none;"
+                class="header-painel-li"
+                >Meu Perfil</a></li>
+            <li class="user-painel-item">
+                <a href="/estacaoDeCriacao"
+                style="text-decoration: none;"
+                class="header-painel-li">
+                Criar</a></li>
+            <li class="user-painel-item">
+                <a href="/globalchat"
+                style="text-decoration: none;"
+                class="header-painel-li">
+                Chat Global</a></li>
+            <li class="user-painel-item"><a href="/meusProdutos"
+                style="text-decoration: none; margin-bottom:25px;" class="header-painel-li"
+                >Meus produtos</a></li>
+            <button class="logout-btn">
+                <p style="margin: 0; margin-left: 15px;">Sair</p>
+                <i class="fa-solid fa-person-walking-arrow-right" style="margin-left: 8px;"></i>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+
+<div class="sidebar" isOpen="false">
+    <div class="sidebar-items">
+        <p class="sidebar-item" onclick="window.location.href = '/'">Home</p>
+        <p class="sidebar-item" onclick="window.location.href = '/sobreNos'">Sobre Nós</p>
+        <p class="sidebar-item" onclick="window.location.href = '/produtos'">Produtos</p>
+        <p class="sidebar-item" onclick="window.location.href = '/procurarProduto'">Procurar Produto</p>
+        <p class="sidebar-item" onclick="window.location.href = '/procurarUsuario'">Procurar Produtor</p>
+        <h2 id="click-to-close">CLICK PRA FECHAR</h2>
+    </div>
+</div>
+
+<div class="socials-side">
+    <div class="social-side" style="background: #4267B2;">
+        <i class="fa-brands fa-facebook-f"></i>
+    </div>
+    <div class="social-side" style="background: #1DA1F2;">
+        <i class="fa-brands fa-twitter"></i>
+    </div>
+    <div class="social-side" style="background: #0A66C2;">
+        <i class="fa-brands fa-linkedin-in"></i>
+    </div>
+    <div class="social-side" style="background: #E60023;">
+        <i class="fa-brands fa-pinterest-p"></i>
+    </div>
+</div>
+
+
+<div class="bell-container">
+    <div class="bell-inside-container">
+        <i class="fa-regular fa-bell" id="bell-icon"></i>
+        <div class="bell-painel">
+            <div class="bell-painel-inside">
+            <div class="all-messages-container">
+            </div>
+        </div>
+    </div>
+    </div>
+</div>

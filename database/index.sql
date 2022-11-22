@@ -68,6 +68,19 @@ CREATE TABLE robot_message(
     FOREIGN KEY (receiver) REFERENCES user(userid) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+-- CREATE TABLE ratting(
+--     ratting_id VARCHAR(255) NOT NULL UNIQUE,
+--     product_id  VARCHAR(255) NOT NULL,
+--     user_id VARCHAR(255) NOT NULL,
+--     rating_stars FLOAT NOT NULL,
+--     comment VARCHAR(255),
+--     created_at DATE NOT NULL,
+--     updated_at DATE,
+--     FOREIGN KEY (user_id) REFERENCES user(user_id) ON UPDATE CASCADE ON DELETE CASCADE,
+--     FOREIGN KEY (product_id) REFERENCES product(product_id) ON UPDATE CASCADE ON DELETE CASCADE,
+--     PRIMARY KEY(ratting_id)
+-- );
+
 
 
 

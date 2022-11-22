@@ -50,3 +50,22 @@ function closeSidebar() {
     sidebar.style.minWidth = 'unset';
   sidebar.setAttribute('isOpen', 'false');
 }
+
+
+
+//socials appearence
+let isActivable = true;
+window.onscroll = () => { 
+  if (isActivable) { 
+    isActivable = false;
+    const socialsSide = document.querySelector('.socials-side')
+    socialsSide.style.position = 'fixed';
+    socialsSide.style.right = '0'
+    socialsSide.style.visibility = 'visible'
+    setTimeout(() => {
+      socialsSide.style.right = '-50px'
+      isActivable = true;
+    }, 8000);
+  }
+  
+}

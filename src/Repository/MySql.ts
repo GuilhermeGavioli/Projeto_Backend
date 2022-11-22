@@ -123,7 +123,24 @@ export default class MySql implements Repository {
         if (!rows) return null;
         return rows;
     }
+    
 
+    // ratting_id VARCHAR(255) NOT NULL UNIQUE,
+    // product_id  VARCHAR(255) NOT NULL,
+    // user_id VARCHAR(255) NOT NULL,
+    // rating_stars FLOAT NOT NULL,
+    // comment VARCHAR(255),
+    public async findRatting(p_id: string, user_id: string): Promise<any> { 
+        const [[rows]] = await this.connection.execute(`
+        SELECT * FROM ratting WHERE product_id="${p_id}" AND user_id="${user_id}";`)
+        return rows;
+    }
+
+    public async createRatting(p_id: string, user_id: string): Promise<void> { 
+        const id = Math.random().toString();
+        const rating_stars = 4.5;
+        await this.connection.execute(`INSERT INTO ratting VALUES ("${id}", "${p_id}", "${user_id}", "${rating_stars}");`)
+    }
     //query all products from a USER ****TODO*****
     // query a user profile
 
@@ -185,10 +202,7 @@ export default class MySql implements Repository {
 
         if (queryDescriptionAlso) {
             const [rows] = await this.connection.execute(`SELECT 
-            product_id,
-            product_name,
-            product_image,
-            product_description
+            *
             FROM product
             WHERE product_name LIKE "%${name}%" || product_description LIKE "%${name}%"
             LIMIT  ${number}, ${number + 8};`);
@@ -197,10 +211,7 @@ export default class MySql implements Repository {
             return rows;
         } else { 
             const [rows] = await this.connection.execute(`SELECT 
-            product_id,
-            product_name,
-            product_image,
-            product_description
+            *
             FROM product WHERE product_name LIKE "%${name}%"
             LIMIT ${number}, ${number + 8};`); 
             if (!rows) return null;

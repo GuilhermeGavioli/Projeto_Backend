@@ -39,119 +39,20 @@ body{
     </style>
 
 </head>
+ 
 <body>
 
 
-    <div id="spinning"></div>
+   
 
-
-    <header class="header">
-        <div style="height: 100%; display: flex; align-items: center; background-color: rgba(247, 247, 247, 0.955);" class="logo-header-container" onClick="window.location.href = '/'">
-            <img src="../assets/logo_transparente.png" style="width: 100%; height: 100%; margin-left: 8px; min-width: 75px; max-width: 85px;" alt="">
-            <div class="company-name" style="height: fit-content; display: flex; padding: 0 35px;">
-                <span style="font-family: monospace; font-size: 1.6em; color:rgb(60,68,55); text-decoration: solid;">
-                    Go
-                </span>
-                <span style="font-family: monospace; font-size: 1.6em;color:rgb(122, 192, 16); font-weight: 800;">
-                    Green
-                </span>
-            </div>
-        </div>
-
-        <div class="header-main">
-            <p class="nav-item"><a href="/" style="color: rgb(68,68,68);">Home</a></p>
-            <p class="nav-item"><a href="/sobre" style="color: rgb(68,68,68)">Sobre</a></p>
-            <p class="nav-item"><a href="/getprodutos?queryDescriptionAlso=true&number=0&nomeProduto=a" style="color: rgb(68,68,68)">Produtos</a></p>
-            <div class="nav-item" id="procurar-nav-item">
-            <p id="procurar-and-icon-container">
-                Procurar
-                <i class="fa-solid fa-caret-down" id="seta" style="font-size: .9em; margin-left: 3px; height: fit-content;"></i>
-            </p>
-            <div class="procurar-painel-container" isOpen="false">
-                <p style="margin: 0;" id="produtores-item" onClick="window.location.href = '/procurarUsuario'">Produtores</p>
-
-                <p style="margin: 0; margin-top: 8px;"id="produtos-item" onClick="window.location.href='/getprodutos?queryDescriptionAlso=true&number=0&nomeProduto=a'">
-                    Produtos
-                </p>
-
-            </div>
-            </div>
-            <p class="hamburger-icon"><i class="fa-solid fa-bars"></i></p>
-        </div>
-
-
-        <div id="register-and-login" style="margin-left: 25px; display: flex; background-color: rgb(249, 249, 249); justify-content: center;">
-            <p style="margin:0; padding-right: 15px; border-right: 1px solid rgb(92, 92, 92);" ><a href="/registrar" style="text-decoration: none;">
-                <i class="fa-solid fa-user-plus" style="color:rgb(59, 59, 59); font-size: 1.2em;"></i>
-            </a>
-        </p>
-            <p style="margin:0; padding-left: 15px;">
-                <a href="/login" style="text-decoration: none;">
-                    <i class="fa-solid fa-right-to-bracket" style="color:rgb(59, 59, 59); font-size: 1.2em;"></i>
-                </a>
-            </p>
-        </div>
-
-        <div class="header-user-icon-container">
-            <img class="header-user-icon" src="" style="position:relative;">
-            <div class="header-painel" style="visibility: hidden;">
-                <li class="user-painel-item">
-                    <a href="/"
-                    style="text-decoration: none;" class="header-painel-li"
-                    >Home</a></li>
-                <li class="user-painel-item" >
-                    <a href="/MeuPerfil"
-                    style="text-decoration: none;"
-                    class="header-painel-li"
-                    >Meu Perfil</a></li>
-                <li class="user-painel-item">
-                    <a href="/estacaoDeCriacao"
-                    style="text-decoration: none;"
-                    class="header-painel-li">
-                    Criar</a></li>
-                <li class="user-painel-item">
-                    <a href="/globalchat"
-                    style="text-decoration: none;"
-                    class="header-painel-li">
-                    Chat Global</a></li>
-                <li class="user-painel-item"><a href="/meusProdutos"
-                    style="text-decoration: none; margin-bottom:25px;" class="header-painel-li"
-                    >Meus produtos</a></li>
-                <button class="logout-btn">
-                    <p style="margin: 0; margin-left: 15px;">Sair</p>
-                    <i class="fa-solid fa-person-walking-arrow-right" style="margin-left: 8px;"></i>
-                </button>
-            </div>
-        </div>
-    </header>
-
-
-    <div class="sidebar" isOpen="false">
-        <div class="sidebar-items">
-            <p class="sidebar-item" onclick="window.location.href = '/'">Home</p>
-            <p class="sidebar-item" onclick="window.location.href = '/sobreNos'">Sobre Nós</p>
-            <p class="sidebar-item" onclick="window.location.href = '/produtos'">Produtos</p>
-            <p class="sidebar-item" onclick="window.location.href = '/procurarProduto'">Procurar Produto</p>
-            <p class="sidebar-item" onclick="window.location.href = '/procurarUsuario'">Procurar Produtor</p>
-            <h2 id="click-to-close">CLICK PRA FECHAR</h2>
-        </div>
-    </div>
+    <%- include("../globals/header.ejs") %>
 
 
 
 
 
-    <div class="bell-container">
-        <div class="bell-inside-container">
-            <i class="fa-regular fa-bell" id="bell-icon"></i>
-            <div class="bell-painel">
-                <div class="bell-painel-inside">
-                <div class="all-messages-container">
-                </div>
-            </div>
-        </div>
-        </div>
-    </div>
+
+    
 
 
 
@@ -190,21 +91,28 @@ body{
 
     <div class="banner-container">
         <form class="banner-title-container">
-            <!-- <h1 class="banner-title">COMPARTILHE</h1>
-            <h1 class="banner-title">PRODUTOS</h1>
-            <h1 class="banner-title">AGORA</h1> -->
             <h1 class="banner-title">Aqui voce encontrará informaçoes sobre produtos organicos que tem interesse livre de comissoes e compartilhados por outros criadores na Plataforma.</h1> 
             <div class="input-and-btn-container">
                 <input type="text" placeholder="Buscar um produto" class="main-input"> 
                 <button type="submit" class="search-btn">  <i class="fa-solid fa-magnifying-glass"></i>  </button>
             </div>
-        
+            
         </form>
+
+        <!-- <div style="position:absolute; z-index: 5; color:white; margin: auto; bottom:15px; left:0; right: 0;width: fit-content; display: flex; flex-direction: column;">
+            <div style="display: flex; align-items: center; font-family: 'Space Mono', monospace;">
+                <h1 style="font-size: .8em;">GoGreen</h1>
+                <img src="../assets/whiteone.png" style="width:30px; margin: 0 5px 0 5px;" alt="">
+                <h1 style="font-size: .8em;">Farm</h1>
+            </div>
+            <p id="produto-natural">Produto Natural</p>
+        </div> -->
+
+
         <div class="text-and-btn-container">
             
             <div class="banner-text-container">
             </div>
-            <!-- <button class="quero-comecar-btn">Comecar</button> -->
         </div>
         <div class="banner">
         </div>
@@ -220,7 +128,7 @@ body{
                 <div class="website-card-first-part">
                     <!-- https://images.pexels.com/photos/270557/pexels-photo-270557.jpeg?auto=compress&cs=tinysrgb&w=600 -->
                     <div class="website-card-circle"
-                    style="background-color: rgb(126, 176, 28); background-size: cover; background-position: center center;
+                    style="background-color: #85bb46; background-size: cover; background-position: center center;
                     display: flex; align-items: center; justify-content: center; font-size: 3em; color: white;
                     ">
                    <i class="fa-solid fa-fingerprint" style="margin: auto;"></i>
@@ -237,7 +145,7 @@ body{
                 <div class="website-card-first-part">
                     <!-- https://images.pexels.com/photos/270557/pexels-photo-270557.jpeg?auto=compress&cs=tinysrgb&w=600 -->
                     <div class="website-card-circle"
-                    style="background-color: rgb(77, 50, 50); background-size: cover; background-position: center center;
+                    style="background-color: #BB464A; background-size: cover; background-position: center center;
                     display: flex; align-items: center; justify-content: center; font-size: 3em; color: white;
                     ">
                     <i class="fa-solid fa-check" style="margin:auto;"></i>
@@ -253,7 +161,7 @@ body{
                 <div class="website-card-first-part">
                     <!-- https://images.pexels.com/photos/270557/pexels-photo-270557.jpeg?auto=compress&cs=tinysrgb&w=600 -->
                     <div class="website-card-circle"
-                    style="background-color: rgb(109, 151, 24); background-size: cover; background-position: center center;
+                    style="background-color: #7C46BB; background-size: cover; background-position: center center;
                     display: flex; align-items: center; justify-content: center; font-size: 3em; color: white;
                     ">
                     <i class="fa-solid fa-heart-pulse" style="margin: auto;"></i>
@@ -269,7 +177,7 @@ body{
                 <div class="website-card-first-part">
                     <!-- https://images.pexels.com/photos/270557/pexels-photo-270557.jpeg?auto=compress&cs=tinysrgb&w=600 -->
                     <div class="website-card-circle"
-                    style="background-color: rgb(48, 29, 29); background-size: cover; background-position: center center;
+                    style="background-color: #46BBB6; background-size: cover; background-position: center center;
                     display: flex; align-items: center; justify-content: center; font-size: 3em; color: white;
                     ">
                     <i class="fa-solid fa-couch" style="margin: auto;"></i>
@@ -295,17 +203,192 @@ body{
 
 
 
+        <div class="c9">
+            <div class="c9_1">
+                <div class="c9-pic-1">
+                    <!-- <img src="../assets/1909.i305.022.P.m005.c20.realistic_coffee_set-02-removebg-preview.png" width="175px" height="175px"/> -->
+                </div>
+                <div class="c9-texts">
+                    <p style="margin: 5px 0 0 0; color:rgb(161, 180, 137); font-weight: 500;">Organico, Único</p>
+                    <h2 style="margin: 0 0 0 0; color: white;" class="c9-titles" >mercadorias</h2>
+                    <h2 style="margin: 0 0 0 0; color: white;" class="c9-titles">exclusivas</h2>
+                    <p style="margin: 10px 0 35px 0;" class="c9-text">Encontre produtos unicos e especificos criados por usuarios em nossa plataforma online.</p>
+                    <button class="c9-btn">Saiba Mais</button>
+                </div>
+            </div>
+            <div class="c9_2">
+                <div class="c9-texts">
+                    <p style="margin: 5px 0 0 0; color:rgb(203,218,183); font-weight: 500;">Organico, Novo</p>
+                    <h2 style="margin: 0 0 0 0" class="c9-titles">novos</h2>
+                    <h2 style="margin: 0 0 0 0" class="c9-titles">produtos</h2>
+                    <p style="margin: 10px 0 35px 0;" class="c9-text">Temos uma variedade de novos produtos para nossa plataforma online. Venha conferi-los!</p>
+                    <button class="c9-btn">Saiba Mais</button>
+                </div>
+                <div class="c9-pic-2">
+                    
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="c10">
+            <div class="c10-left-arrow">
+                <i class="fa-solid fa-less-than" style="margin: 0"></i>
+            </div>
+
+            <div class="c10-main">
+                <div class="c10-main-inside">
+               
         
+            </div>
+            </div>
+
+            <div class="c10-right-arrow">
+
+                <i class="fa-solid fa-greater-than" style="margin: 0"></i>
+            </div>
+        </div>
+        
+        <div class="c12">
+            <h1 class="c12-main-title">Como Funciona</h1>
+            <h2 class="c12-sub-title">Torne-se um usuario gratuitamente em apenas alguns Passos para voce que deseja publicar suas mercadorias. Com isso, voce terá acesso à novas funcionalidades dentro da Plataforma.</h2>
+
+        <div class="c12-steps-container">
+            <!-- <h1 style="
+            position: absolute;
+            inset: 0 0 0 0;
+            margin: auto;
+            z-index: 5;
+            width: fit-content;
+            height: fit-content;
+            ">QUANDO QUALIDADE IMPORTA PRA VOCE E SEU CLIENTE</h1> -->
+            <div class="c12-steps" id="c12-step-one">
+               
+
+                <div class="c12-step-first" style="background-color: #BB4685;">
+                    <h1 class="c12-title-number" style="margin: 0; padding: 0; height: fit-content; padding-top: 0;">1</h1>
+                    <i class="fa-regular fa-address-card"></i>
+                </div>
+                
+                <div class="c12-step-second">
+                    <h2 class="c12-second-title">Crie sua conta</h2>
+                   <p class="c12-text">Crie sua Conta na GoGreen Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore quae excepturi, dolore aliquam commodi libero!</p> 
+                </div>
+            </div> 
+
+            <div class="c12-steps" >
+               
+                <div class="c12-step-first">
+                    <h1 class="c12-title-number" style="margin:0;">2</h1>
+                    <i class="fa-solid fa-gear"></i>
+                </div>
+                
+                <div class="c12-step-second">
+                    <h2 class="c12-second-title">Configure seu Perfil</h2>
+                   <p class="c12-text">Atualize seu Perfil com suas informaçoes Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore quae excepturi, dolore aliquam commodi libero!</p> 
+                </div>
+            </div>
+
+            <div class="c12-steps">
+               
+                <div class="c12-step-first">
+                    <h1 class="c12-title-number"  style="margin:0;">3</h1>
+                    <i class="fa-solid fa-earth-americas"></i>
+                </div>
+                
+                <div class="c12-step-second">
+                    <h2 class="c12-second-title">Divulgue seus Produtos</h2>
+                   <p class="c12-text">Publique suas mercadorias Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore quae excepturi, dolore aliquam commodi libero!</p> 
+                </div>
+                
+            </div>
+            <div class="c12-steps">
+                
+                <div class="c12-step-first" style="background-color: #85BB46;">
+                    <h1 class="c12-title-number"  style="margin:0;">4</h1>
+                    <i class="fa-solid fa-comment-dots"></i>
+                </div>
+                
+                <div class="c12-step-second">
+                    <h2 class="c12-second-title">Contate Usuarios</h2>
+                   <p class="c12-text">Converse com outros produtores e usuarios Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore quam commodi libero!</p> 
+                </div>
+                
+            </div>
+
+        </div>
+        <button class="c12-button">Quero Começar</button>
+        </div>
+
+        <div class="c11" style="margin-top: 300px;">
+            <div class="c11-1">
+                <h2 class="c11-title">CONECETE-SE COM A GENTE</h2>
+                <p>Lorem ipsum doloipisicing elit. Sint ex ut molestias neque! Perspiciatis tenetur nulla explicabo placeat dolor nihil aperiam labore! Consequuntur debitis nulla ipsa perspiciatis illo!i!</p>
+                <div class="socials-layed-down" style="display: flex; flex-direction: row; color:white;">
+                    <div class="social-down" style="background: #4267B2;">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </div>
+                    <div class="social-down" style="background: #1DA1F2;">
+                        <i class="fa-brands fa-twitter"></i>
+                    </div>
+                    <div class="social-down" style="background: #0A66C2;">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </div>
+                    <div class="social-down" style="background: #E60023;">
+                        <i class="fa-brands fa-pinterest-p"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="c11-2">
+                <h2 class="c11-title">POSTS RECENTES</h2>
+                <div style="display: flex; flex-direction: column; height: 190px; justify-content: space-between;">
+                    <div style="display: flex;">
+                        <img src="https://images.pexels.com/photos/3772492/pexels-photo-3772492.jpeg?auto=compress&cs=tinysrgb&w=600" width="90px" height="90px" alt="">
+                        <p style="margin-left: 7px;">Meu Produto é Top demais!!</p>
+                    </div>
+                    <div style="display: flex;">
+                        <img src="https://images.pexels.com/photos/257834/pexels-photo-257834.jpeg?auto=compress&cs=tinysrgb&w=600" width="90px"  height="90px" alt="">
+                        <p style="margin-left: 7px;">Meu Produto B</p>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="c11-3">
+                <h2 class="c11-title">TAGS</h2>
+                <div class="c11-tags">
+                    <p class="c11-tag">Comida</p>
+                    <p class="c11-tag">Organico</p>
+                    <p class="c11-tag">Gluten</p>
+                    <p class="c11-tag">Mercado</p>
+                    <p class="c11-tag">Saúde</p>
+                    <p class="c11-tag">Compartilhar</p>
+                    <p class="c11-tag">Natural</p>
+                    <p class="c11-tag">Estilo de Vida</p>
+                    <p class="c11-tag">Viver Bem</p>
+                    <p class="c11-tag">Cultivo</p>
+                    <p class="c11-tag">Plantar</p>
+                    <p class="c11-tag">Saúdavel</p>
+                    <p class="c11-tag">Transgenicos</p>
+                </div>
+                
+            </div>
+            <div class="c11-4">
+                <h2 class="c11-title">NOSSO BLOG</h2>
+
+                <p>Organismos geneticamente modificados (OGM): Voce está certo em saber Guia para comer Saúdavel. Por que cultivar Organicâmente? O que esta no nosso prato? Produtos livre de Glúten em harmonia com a natureza</p>
+
+            </div>
+        </div>
     
 
 
 
-            <div class="c2" style="position: relative;">
-                <!-- <h2 style="
-                    position: absolute; top: -55px; margin: auto; right: 0; left: 0;
-                ">Veja como é fácil usar o GoGreen: </h2> -->
+            <!-- <div class="c2" style="position: relative;">
+            
                 <div class="c2-circle">
-                    <!-- <i class="fa-solid fa-question" style="z-index: 3; margin-bottom: 15px; margin-left: 13px;"></i> -->
+      
                     <div class="c2-inside-circle"></div>
                 </div>
 
@@ -325,7 +408,7 @@ body{
                   
                     <div class="como-usar-card" onClick="window.location.href = '/meuPerfil'">
                         <div class="card-number-container">
-                            <div class=card-number style="border-right: 4px solid rgb(126, 176, 28);">2</div>
+                            <div class=card-number style="border-right: 4px solid #85bb46;">2</div>
                         </div>
                         <div>
                             <h1 class="como-usar-card-title">Configure seu Perfil
@@ -338,7 +421,7 @@ body{
                     
                     <div class="como-usar-card" onClick="window.location.href = '/estacaoDeCriacao'">
                         <div class="card-number-container">
-                            <div class=card-number style="border-right: 4px solid rgb(126, 176, 28); border-bottom: 4px solid rgb(126, 176, 28);">3</div>
+                            <div class=card-number style="border-right: 4px solid #85bb46; border-bottom: 4px solid #85bb46;">3</div>
                         </div>
                         <div>
                             <h1 class="como-usar-card-title">Divulgue seus Produtos
@@ -351,7 +434,7 @@ body{
                 </div>
                     <div class="como-usar-card" onClick="window.location.href = '/globalChat'">
                         <div class="card-number-container">
-                            <div class=card-number style="border-right: 4px solid rgb(126, 176, 28); border-bottom: 4px solid rgb(126, 176, 28); border-left: 4px solid rgb(126, 176, 28);">4</div>
+                            <div class=card-number style="border-right: 4px solid #85bb46; border-bottom: 4px solid #85bb46; border-left: 4px solid #85bb46;">4</div>
                         </div>
                         <div>
                             <h1 class="como-usar-card-title">Contate Usuários
@@ -362,11 +445,11 @@ body{
                         </div>
                 </div>
         </div>
-        </div>
+        </div> -->
 
 
 
-        <div class="c1_1" style="text-align: right;">
+        <!-- <div class="c1_1" style="text-align: right;">
 
             
             <h1 class="oque-sao-organicos-title">O que são Produtos Orgânicos?</h1>
@@ -394,7 +477,7 @@ body{
                 
 
         </div>
-        
+         -->
         
     
         <!-- <div class="c2">
@@ -454,18 +537,12 @@ body{
     </div>
 
 
+    <%- include("../globals/footer.ejs") %>
 
 
 
+        
 
-        <footer class="footer">
-            <div class="f2">
-                <div class="f2-circle"></div>
-                <h3 style="color:rgb(60,68,55); margin-bottom: 0;">Go<span style="color:rgb(122, 192, 16)">Green</span></h3>
-                <h5 style="color: rgb(84, 84, 84);">Viva Bem</h5>
-            </div>
-            </div>
-        </footer>
             
     </body>
             

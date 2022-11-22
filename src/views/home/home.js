@@ -42,27 +42,53 @@ function searchProducts() {
 
 
 async function handleCardsDisplayOnLoad(){
-  const res = await fetch(`${BASE_URL_PATH}getprodutos/?nomeProduto=as&queryDescriptionAlso=true&number=${1}`);
+  const res = await fetch(`${BASE_URL_PATH}getprodutos/?nomeProduto=as&queryDescriptionAlso=true&number=${8}`);
   return await res.json();
 }
 
 async function fitProductsDataInHome(data){
-  appendOnPage(data)  
+  appendOnPage(data)
+  console.log(data)
 }
 
 
 function appendOnPage(data) {
-  let cont = 0;
-  const container = document.querySelector('.c3')
+  const container = document.querySelector('.c10-main-inside')
   data.map(item => {
-    if (cont > 0) { 
       const cardContainer = createProductCard(item);
       container.append(cardContainer);
-    }
-    cont++
   })
 }
 
+
+{/* <div class="card-container" >
+        <img
+        class="card-first" 
+        src="../assets/6871551_29406_-_Copia-removebg-preview-removebg-preview.png">
+    </img>
+    <div class="card-second">
+        <h2 class="card-title" style="margin: 0;">Meu Produto top de mais</h2>
+        <p class="card-tags">
+            Fresco - Organico - Natural - ZeroAcucar - Sem Gordura
+        </p>
+        <div class="card-stars">
+                <i class="fa-solid fa-star" style="margin:0;"></i>
+                <i class="fa-solid fa-star" style="margin:0;"></i>
+                <i class="fa-solid fa-star" style="margin:0;"></i>
+                <i class="fa-solid fa-star" style="margin:0;"></i>
+            <i class="fa-solid fa-star" style="margin:0;"></i>
+        </div>
+
+        <p style="margin:0; font-size:.6em;"><i class="fa-solid fa-check" style="margin:0;"></i> organico</p>
+
+        <p class="card-price">
+            R$10.50
+        </p>
+        <p style="margin:0; font-size:.5em">
+            Criado em setembro de 2022
+        </p>
+    </div>
+</div> */}
 
 function createProductCard(item) {
   if (!item) return;
@@ -74,23 +100,76 @@ function createProductCard(item) {
     window.location.href = `/produto/${e.target.getAttribute('product-id')}`
   })
   
-  const cardImage = document.createElement('img');
-  cardImage.setAttribute('src', `${BASE_URL_PATH}file_system/product/${item.product_image}`);
-  cardImage.className = 'card-first'
+  const cardFirst = document.createElement('img');
+  cardFirst.setAttribute('src', `${BASE_URL_PATH}file_system/product/${item.product_image}`);
+  cardFirst.className = 'card-first'
 
   const cardTitle = document.createElement('h2');
   cardTitle.className = 'card-title'
+  cardTitle.style = 'margin: 0;'
   cardTitle.innerText = item.product_name;
+  
+  const cardTags = document.createElement('p');
+  cardTags.className = 'card-tags'
+  cardTags.innerText = `${item.tags}`
+
+  const cardStars = document.createElement('div');
+  cardStars.className = 'card-stars'
+  cardStars.innerHTML = '<i class="fa-solid fa-star" style="margin:0;"></i><i class="fa-solid fa-star" style="margin:0;"></i><i class="fa-solid fa-star" style="margin:0;"></i><i class="fa-solid fa-star" style="margin:0;"></i><i class="fa-solid fa-star" style="margin:0;"></i>'
+  
+  const cardCategory = document.createElement('p');
+  cardCategory.innerText = item.is_organic
+
+  const cardIsOrganic = document.createElement('p');
+  cardIsOrganic.style = 'margin:0; font-size:.6em;'
+  if (cardIsOrganic == 0) cardIsOrganic.innerHTML = '<i class="fa-solid fa-check" style="margin:0;"></i> organico'
+  else cardIsOrganic.innerHTML = '<i class="fa-solid fa-x" style="margin:0;"></i> organico'
+
+
+  
+  const cardPrice = document.createElement('p');
+  cardPrice.className = 'card-price'
+  cardPrice.innerText = `R$${item.price}/ ${item.unity}`
+  
+  const cardCreatedAt = document.createElement('p');
+  cardCreatedAt.style = 'margin:0; font-size:.5em'
+  cardCreatedAt.innerText = `${item.created_at}`
 
   const cardSecond = document.createElement('div');
   cardSecond.className = 'card-second';
-  cardSecond.innerText = item.product_description;
 
-  cardContainer.append(cardImage);
-  cardContainer.append(cardTitle);
+  cardSecond.append(cardTitle)
+  cardSecond.append(cardTags)
+  cardSecond.append(cardStars)
+  cardSecond.append(cardIsOrganic)
+  cardSecond.append(cardPrice)
+  cardSecond.append(cardCreatedAt)
+
+
+  cardContainer.append(cardFirst);
   cardContainer.append(cardSecond);
   return cardContainer;
 }
 
+const c10main = document.querySelector('.c10-main')
+const walk =  window.innerWidth - 120
+
+let currentSlider = 0
+document.querySelector('.c10-right-arrow').addEventListener('click', () => { 
+  if (currentSlider <= (-1 * (walk * 3))) return;
+  currentSlider = currentSlider - walk;
+  console.log(currentSlider)
+  console.log(walk)
+  const productsBar = document.querySelector('.c10-main-inside');
+  productsBar.style.left = `${currentSlider}px`;
+})
+
+
+document.querySelector('.c10-left-arrow').addEventListener('click', () => {
+  if (currentSlider == 0) return;
+  const productsBar = document.querySelector('.c10-main-inside');
+  currentSlider = currentSlider + walk;
+  productsBar.style.left = `${currentSlider}px`;
+})
 
 
