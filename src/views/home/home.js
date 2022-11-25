@@ -152,23 +152,33 @@ function createProductCard(item) {
 }
 
 const c10main = document.querySelector('.c10-main')
+// const viewableProductScreen = c10main.getBoundingClientRect().width;
+const viewableProductScreen = c10main.clientWidth;
 const walk =  window.innerWidth - 120
 let currentSlider = 0
 
+let total = 0
+let sum = 0
+const productsBar = document.querySelector('.c10-main-inside');
+// Array.from(productsBar.children).map(element => {
+//   total = total + element.getBoundingClientRect().width + 30
+//   sum++
+// })
+// console.log(sum)
+// console.log(total)
+console.log(viewableProductScreen)
 document.querySelector('.c10-right-arrow').addEventListener('click', () => { 
-  if (currentSlider <= (-1 * (walk * 3))) return;
-  currentSlider = currentSlider - walk;
-  console.log(currentSlider)
-  console.log(walk)
-  const productsBar = document.querySelector('.c10-main-inside');
+  // if (currentSlider <= (-1 * (walk * 3))) return;
+  // if (currentSlider >= (total / 4)) return;
+  currentSlider = currentSlider - (viewableProductScreen);
   productsBar.style.left = `${currentSlider}px`;
 })
 
 
 document.querySelector('.c10-left-arrow').addEventListener('click', () => {
   if (currentSlider == 0) return;
-  const productsBar = document.querySelector('.c10-main-inside');
-  currentSlider = currentSlider + walk;
+  currentSlider = currentSlider + viewableProductScreen;
+
   productsBar.style.left = `${currentSlider}px`;
 })
 

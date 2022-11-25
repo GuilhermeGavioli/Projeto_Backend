@@ -1,18 +1,9 @@
 <div id="spinning"></div>
 
-    <div style="
-    width: 100%;
-    height: 40px;
-    background: linear-gradient(to bottom, rgb(57,172,70), rgb(57,172,70));
-    padding: 0 150px 0 150px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    position: relative;
-    ">
-    <div style="position: absolute; left: 15px; top: 0; bottom: 0; margin: auto; height: fit-content; color:rgb(7,67,27); font-size: 1.1em; font-weight: 700;">
+    <div class="first-header">
+    <!-- <div style="position: absolute; left: 15px; top: 0; bottom: 0; margin: auto; height: fit-content; color:rgb(7,67,27); font-size: 1.1em; font-weight: 700;">
         <i class="fa-regular fa-copyright"></i>
-    </div>
+    </div> -->
     <div class="first-header-circles">
         <div class="header-circle">
             <i class="fa-brands fa-twitter" style="margin:0;"></i>
@@ -34,44 +25,39 @@
         </div>
     </div>
 
-    <div style="color: white; display: flex; align-items: center;"> 
+    <div style="color: white; display: flex; align-items: center; background-color: red;"> 
         <i class="fa-solid fa-location-crosshairs" style="margin: 0; margin-right: 5px; margin-top: 4px; font-size: .8em;"></i> 
         <p style="font-size: .7em; font-weight: 500; margin: 0; letter-spacing: 0px;">
             Sede em São Paulo (SP), Avenida 9 de Julho
         </p>
     </div>
-    <div style="color: white; display: flex; align-items: center;"> 
+
+    <div style="color: white; display: flex; align-items: center; background-color: yellow;"> 
         <i class="fa-solid fa-phone" style="margin: 0; margin-right: 5px; margin-top: 4px; font-size: .8em;"></i> 
         <p style="font-size: .7em; font-weight: 500; margin: 0; letter-spacing: 2px;">
             (11) 96588-2444
         </p>
     </div>
-    <div style="color: white; display: flex; align-items: center;"> 
+    <div style="color: white; display: flex; align-items: center; background-color: #1DA1F2;" class="first-header-email"> 
         <!-- <i class="fa-solid fa-phone" style="margin: 0; margin-right: 5px; margin-top: 4px; font-size: .8em;"></i>  -->
         <p style="font-size: .7em; font-weight: 500; margin: 0; letter-spacing: 2px;">
             gogreen.corp@gmail.com
         </p>
     </div>
 
-    <div style="position: absolute; right: 15px; top: 0; bottom: 0; margin: auto; height: fit-content;">
+    <!-- <div style="position: absolute; right: 15px; top: 0; bottom: 0; margin: auto; height: fit-content;">
        <img src="../assets/whiteleaflogo.png" alt="" style="width: 22px; height: 22px;">
-    </div>
+    </div> -->
 
 </div>
 
-<header class="header" style="background: rgb(248,248,248)">
-    <div style="height: 100%; display: flex; align-items: center; margin-left: 50px;" class="logo-header-container" onClick="window.location.href = '/'">
-        <img src="../assets/My project-1 (1).png" style="width: 50px; height: 50px; margin-left: 8px;" alt="">
-        <div class="company-name" style="height: fit-content; display: flex; padding: 0 8px;">
-            <img src="../assets/My project-1 (3).png" alt=""
-            style="width: 100px; margin-top: 5px;">
-            <!-- <span style="font-family: monospace; font-size: 1.6em; color:rgb(60,135,55); text-decoration: solid;">
-                Go
-            </span>
-            <span style="font-family: monospace; font-size: 1.6em;color:rgb(122, 192, 16); font-weight: 800;">
-                Green
-            </span> -->
-        </div>
+<header class="header" style="background: rgb(248,248,248); background-color: gray;">
+    <div class="logo-header-container" onClick="window.location.href = '/'">
+
+        <img src="../assets/My project-1 (1).png" class="company-logo" alt="">
+        
+        <img src="../assets/text-logo.png" class="company-name" alt="">
+        
     </div>
 
     <div class="header-main">
@@ -99,8 +85,8 @@
     <div id="register-and-login" style="display: flex; justify-content: space-between; align-items: center;">
         <button class="login-header-btn">
 
-                <i class="fa-solid fa-right-to-bracket" style="font-size: 1em; margin-right: 5px;"></i>
-                <p style="margin:0">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <p style="margin:0" class="header-btn-text">
                     Login
                 </p>
                
@@ -109,8 +95,8 @@
         <button class="register-header-btn">
  
           
-                <i class="fa-solid fa-user-plus"  style="font-size: 1em; margin-right: 5px;"></i>
-                <p style="margin:0">
+                <i class="fa-solid fa-user-plus" ></i>
+                <p style="margin:0" class="header-btn-text">
                     Registrar
                 </p>
      
@@ -163,7 +149,7 @@
     </div>
 </div>
 
-<div class="socials-side">
+<!-- <div class="socials-side">
     <div class="social-side" style="background: #4267B2;">
         <i class="fa-brands fa-facebook-f"></i>
     </div>
@@ -176,7 +162,7 @@
     <div class="social-side" style="background: #E60023;">
         <i class="fa-brands fa-pinterest-p"></i>
     </div>
-</div>
+</div> -->
 
 
 <div class="bell-container">

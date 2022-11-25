@@ -22,12 +22,28 @@ input{
     outline: none;
 }
 
+.first-header{
+    width: 100%;
+    height: 40px;
+    background: linear-gradient(to bottom, rgb(57,172,70), rgb(57,172,70));
+    /* padding: 0 150px 0 150px; */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    align-items: center;
+    justify-items: center;
+    justify-content: space-around;
+    
+    position: relative;
+}
+
 .first-header-circles{
     width: fit-content;
     height: 100%;
     display: flex;
     justify-content: start;
     align-items: center;
+    background-color: gray;
 }
 .header-circle{
     width: 22px;
@@ -57,14 +73,30 @@ input{
     padding: 0 10px 0 10px;
     max-width: 2000px;
     box-shadow: 3px 3px 8px 2px rgba(0, 0, 0, 0.117);
+    background-color: gray;
 }
 
 .logo-header-container{
     cursor: pointer;
+    height: 100%; 
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+    background-color: rgb(110, 32, 32);
+    position: relative;
+    min-width: 100px;
+}
+
+.company-logo{
+    width: 50px; 
+    height: 50px;
+     margin-left: 8px;
 }
 
 .company-name{
-    font-family: monospace;
+    width: 100px; 
+    margin-top: 5px;
+     background: green;
 }
 
 .header-main{
@@ -77,6 +109,7 @@ input{
     color: rgb(60, 60, 60);
     /* background-color: red; */
     font-family: 'Noto Sans Mono', monospace;
+    background-color: red;
 
     /* background-color: green; */
 }
@@ -123,11 +156,11 @@ a:link, #procurar-and-icon-container{
     cursor: pointer;
     align-items: center;
     height: 100%;
-    margin-left: 50px;
+    
     justify-content: space-between;
-    width: 240px;
+    width: fit-content;
     /* width: 145px; */
-    margin-right: 50px;
+    background-color: yellow;
     /* background-color: red; */
 }
 .login-header-btn, .register-header-btn{
@@ -147,6 +180,10 @@ a:link, #procurar-and-icon-container{
 .register-header-btn{
     color: white;
     background-color: #85bb46;
+}
+
+.fa-right-to-bracket, .fa-user-plus{
+    font-size: 1em; margin-right: 5px;
 }
 
 a{
@@ -498,10 +535,26 @@ li{
 
 
 
-@media (max-width: 930px){
+@media (max-width: 960px){
+    .header{
+        padding: 0 10px 0 0;
+    }
+
+    .company-logo{
+        position: absolute;
+        margin: auto;
+        inset: 0 0 auto 0;
+    }
+
+    .logo-header-container{
+        margin: 0;
+        width: 100px;
+    }
     .company-name{
-        display: none;
-        visibility: hidden;
+        /* display: none; */
+        bottom: 8px;
+        height: 20px;
+        z-index: 10;
         position: absolute;
     }
 }
@@ -569,9 +622,8 @@ li{
 
 
 
-
 /* //criado  para controlar o header*/
-@media (max-width: 660px){
+@media (max-width: 740px){
     .header{
         width: 100vw;
         z-index: 0;
@@ -589,7 +641,7 @@ li{
         cursor: pointer;
         width: 100%;
         height: 100%;
-
+        
     }
 
     .sidebar-items{
@@ -597,9 +649,9 @@ li{
         visibility: hidden;
         width: 0;
         height: 0;
-      
+        
     }
-
+    
     .nav-item{
         position: absolute;
         display: none;
@@ -613,7 +665,7 @@ li{
         margin-left: 35px;
         color: rgb(65, 65, 65);
     }
-
+    
     .sidebar{
         background-color: rgb(33, 98, 55);
         /* width: 60vw; */
@@ -657,6 +709,31 @@ li{
 
 
 
+@media (max-width: 710px){
+    .first-header{
+        width: 100%;
+        height: 80px;
+        background: linear-gradient(to bottom, rgb(57,172,70), rgb(57,172,70));
+        /* padding: 0 150px 0 150px; */
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        align-items: center;
+        justify-items: center;
+        justify-content: space-around;
+        
+        position: relative;
+    }
+
+    .first-header-circles{
+        width: fit-content;
+        height: fit-content;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        background-color: gray;
+    }
+}
 
 
 
@@ -671,17 +748,57 @@ li{
 
 
 @media (max-width: 450px){
+    .first-header{
+        width: 100%;
+        height: 80px;
+        background: linear-gradient(to bottom, rgb(57,172,70), rgb(57,172,70));
+        /* padding: 0 150px 0 150px; */
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        align-items: center;
+        justify-items: start;
+        justify-content: space-around;
+        
+        position: relative;
+        min-width: 290px;
+    }
+    .header-circle{
+        width: 18px;
+        height: 18px;
+        background-color: #288731;
+        color: rgb(245,245,245);
+        border-radius: 50%;
+        margin: 0 2px 0 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: .5em;
+    }
+    .first-header-email{
+        font-size: .8em;
+    }
+
     .header{
         width: 100vw;
         height: 75px;
         display: flex;
         align-items: center;
         min-width: 290px;
+        padding: 0 15px 0 0;
     }
-    .company-name{
-        position: absolute;
-        display: none;
-    }
+
+
+    /* .logo-header-container{
+        cursor: pointer;
+        height: 100%; 
+        minw
+        display: flex;
+        align-items: center;
+        margin-left: 50px;
+        background-color: rgb(110, 32, 32);
+        position: relative;
+    } */
 
     .hamburger-icon{
         margin-left: 15px;
@@ -690,6 +807,19 @@ li{
     .header-main{
         flex-grow: 1;
         height: 100%;
+    }
+
+    .login-header-btn, .register-header-btn{
+        padding: 10px 15px 10px 15px;
+    }
+
+    .fa-right-to-bracket, .fa-user-plus{
+        font-size: 1.7em;
+    }
+
+    .header-btn-text{
+        display: none;
+        position: absolute;
     }
 
     .header-user-icon{
