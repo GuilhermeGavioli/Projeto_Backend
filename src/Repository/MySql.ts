@@ -64,10 +64,34 @@ export default class MySql implements Repository {
         return rows;
     }
 
-    public async findProductById(id: string): Promise<Produto | null> {
+    public async findProductById(id: string): Promise<any | null> {
         const [[rows]] = await this.connection.execute(`SELECT * from product WHERE product_id="${id}";`);
+        const [[rows2]] = await this.connection.execute(`SELECT AVG(rating_stars) from ratting WHERE product_id="${id}";`);
+        console.log('avg ' + JSON.stringify(JSON.stringify(rows2)));
+
+        
+
+        // const [[rows]] = await this.connection.execute(`
+        // SELECT (
+        //     SELECT AVG(rating_stars) 
+        //     FROM rattings
+        //     WHERE WHERE product_id="${id}"
+        // ) AS ratting_avg,
+        // (
+        //     SELECT * 
+        //     FROM product 
+        //     WHERE product_id="${id}"
+        // ) AS product_info;
+        // `);
+        const all = {
+            product: rows,
+            rating: rows2,
+        }
         if (!rows) return null;
-        return rows;
+        return all;
+        // return rows;
+
+        
     }
 
 
@@ -136,10 +160,39 @@ export default class MySql implements Repository {
         return rows;
     }
 
-    public async createRatting(p_id: string, user_id: string): Promise<void> { 
+    public async findRattings(p_id: string): Promise<any> { 
+        const [rows] = await this.connection.execute(`SELECT ratting.ratting_id, ratting.product_id, ratting.user_id, ratting.rating_stars, ratting.comment, ratting.created_at, user.full_name, user.user_image FROM ratting INNER JOIN user ON ratting.user_id = user.userid WHERE ratting.product_id="${p_id}";`)
+        return rows;
+    }
+
+    public async deleteRatting(token_id: string, r_id: string): Promise<void> { 
+        await this.connection.execute(`DELETE FROM ratting WHERE ratting_id="${r_id}" AND user_id="${token_id}";`)
+    }
+
+    // ratting_id VARCHAR(255) NOT NULL UNIQUE,
+    // product_id  VARCHAR(255) NOT NULL,
+    // user_id VARCHAR(255) NOT NULL,
+    // rating_stars FLOAT NOT NULL,
+    // comment VARCHAR(255),
+    // created_at DATE NOT NULL,
+    // updated_at DATE,
+    public async createRatting(p_id: string, user_id: string, critic: string): Promise<void> { 
+        const date = new Date();
         const id = Math.random().toString();
-        const rating_stars = 4.5;
-        await this.connection.execute(`INSERT INTO ratting VALUES ("${id}", "${p_id}", "${user_id}", "${rating_stars}");`)
+        const rating_stars = 1.5;
+        await this.connection.execute(`INSERT INTO ratting (
+            ratting_id,
+            product_id,
+            user_id,
+            rating_stars,
+            comment,
+            created_at
+        ) VALUES
+        ("${id}", "${p_id}", "${user_id}", "${rating_stars}", "${critic}", "${new Date(date).toISOString().split('T')[0]}");`)
+
+        await this.connection.execute(`UPDATE product SET product.average = (
+            SELECT AVG(ratting.rating_stars) FROM ratting WHERE ratting.product_id = product.product_id
+        );`)
     }
     //query all products from a USER ****TODO*****
     // query a user profile
@@ -235,7 +288,6 @@ export default class MySql implements Repository {
         const dateFormated = date.toISOString().slice(0, 19).replace('T', ' ');
         console.log(dateFormated)
         await this.connection.query(
-            
             `INSERT INTO message VALUES (
             "${new UUIDLibrary().generate()}",
             false,

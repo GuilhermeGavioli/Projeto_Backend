@@ -34,124 +34,17 @@
 <body>
 
 
-    <div id="spinning"></div>
 
 
-    <div class="meucontainer"></div>
-
-    <header class="header">
-        <div style="height: 100%; display: flex; align-items: center; background-color: rgb(250,250,250);" class="logo-header-container" onClick="window.location.href = '/'">
-            <img src="../../assets/logo.png" style="width: 100%; height: 100%; margin-left: 8px; min-width: 75px; max-width: 85px;" alt="">
-            <div class="company-name" style="height: fit-content; display: flex; padding: 0 35px;">
-                <span style="font-family: monospace; font-size: 1.6em; color:rgb(41, 41, 41); text-decoration: solid;">
-                    Go
-                </span>
-                <span style="font-family: monospace; font-size: 1.6em;color:rgb(122, 192, 16); font-weight: 800;">
-                    Green
-                </span>
-            </div>
-        </div>
-
-        <div class="header-main">
-            <p class="nav-item"><a href="/" style="color: rgb(68,68,68)">Home</a></p>
-            <p class="nav-item"><a href="/sobre" style="color: rgb(68,68,68)">Sobre</a></p>
-            <p class="nav-item"><a href="/produtos" style="color: rgb(68,68,68)">Produtos</a></p>
-            <div class="nav-item" id="procurar-nav-item">
-            <p id="procurar-and-icon-container">
-                Procurar
-                <i class="fa-solid fa-caret-down" id="seta" style="font-size: .9em; margin-left: 3px; height: fit-content;"></i>
-            </p>
-            <div class="procurar-painel-container" isOpen="false">
-                <p style="margin: 0;" id="produtores-item" onClick="window.location.href = '/procurarUsuario'">Produtores</p>
-                <p style="margin: 0; margin-top: 8px;"id="produtos-item" onClick="window.location.href = '/procurarProduto'">Produtos</p>
-            </div>
-            </div>
-            <p class="hamburger-icon"><i class="fa-solid fa-bars"></i></p>
-        </div>
-
-
-        <div id="register-and-login" style="margin-left: 25px; display: flex; background-color: rgb(249, 249, 249); justify-content: center;">
-            <p style="margin:0; padding-right: 15px; border-right: 1px solid rgb(92, 92, 92);" ><a href="/registrar" style="text-decoration: none;">
-                <i class="fa-solid fa-user-plus" style="color:rgb(59, 59, 59); font-size: 1.2em;"></i>
-            </a>
-        </p>
-            <p style="margin:0; padding-left: 15px;">
-                <a href="/login" style="text-decoration: none;">
-                    <i class="fa-solid fa-right-to-bracket" style="color:rgb(59, 59, 59); font-size: 1.2em;"></i>
-                </a>
-            </p>
-        </div>
-
-        <div class="header-user-icon-container">
-            <img class="header-user-icon" src="" style="position:relative;">
-            <div class="header-painel" style="visibility: hidden;">
-                <li class="user-painel-item" style="margin-top: 0;">
-                    <a href="/"
-                    style="text-decoration: none; color: rgb(177, 177, 177);"
-                    >Home</a></li>
-                <li class="user-painel-item" style="margin-top: 0;">
-                    <a href="/MeuPerfil"
-                    style="text-decoration: none; color: rgb(177, 177, 177);"
-                    >Meu Perfil</a></li>
-                <li class="user-painel-item"><a href="/estacaoDeCriacao"
-                    style="text-decoration: none; color: rgb(177, 177, 177);">Criar</a></li>
-                <li class="user-painel-item"><a href="/criar"
-                    style="text-decoration: none; color: rgb(177, 177, 177); margin-bottom:25px;"
-                    >Meus produtos</a></li>
-                <button class="logout-btn">Logout</button>
-            </div>
-        </div>
-    </header>
-
-
-    <div class="sidebar" isOpen="false">
-        <div class="sidebar-items">
-            <p class="sidebar-item" onclick="window.location.href = '/'">Home</p>
-            <p class="sidebar-item" onclick="window.location.href = '/sobreNos'">Sobre Nós</p>
-            <p class="sidebar-item" onclick="window.location.href = '/produtos'">Produtos</p>
-            <p class="sidebar-item" onclick="window.location.href = '/procurarProduto'">Procurar Produto</p>
-            <p class="sidebar-item" onclick="window.location.href = '/procurarUsuario'">Procurar Produtor</p>
-            <h2 id="click-to-close">CLICK PRA FECHAR</h2>
-        </div>
-    </div>
 
     
-    <div class="bell-container">
-        <div class="bell-inside-container">
-            <i class="fa-regular fa-bell" style="font-size: 2.5em;"></i>
-            <div class="bell-painel">
-                <div class="bell-painel-inside">
-                <!-- <div class="select-all-messages-container">
-                    <button class="delete-messages-button">Apagar pra mim</button>
-                </div> -->
-                <div class="all-messages-container">
+    <%- include("../globals/header.ejs") %>
+    
+    <!-- <div class="meucontainer"></div> -->
+    
+    
 
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-
-
-
-    <div class="banner-container">
-        <form class="banner-title-container">
-            <h1 class="banner-title">Aqui voce encontrará informaçoes sobre produtos organicos que tem interesse livre de comissoes e compartilhados por outros criadores na Plataforma.</h1> 
-            <div class="input-and-btn-container">
-                <input type="text" placeholder="Buscar um produto" class="main-input"> 
-                <button type="submit" class="search-btn">  <i class="fa-solid fa-magnifying-glass"></i>  </button>
-            </div>
-            
-        </form>
-
-        <div class="text-and-btn-container">
-            
-            <div class="banner-text-container">
-            </div>
-        </div>
-        <div class="banner">
-        </div>
-    </div>
+  
 
 
 
@@ -166,7 +59,7 @@
             position: absolute; top: 0px; left: 75px;
             ">Resultados da Pesquisa</h2> -->
      <div class="container2" style="margin-top: 85px;">
-        <div class="c0">
+        <!-- <div class="c0">
         <div class="c0-1">
             <h1 class="c0-title">Fresco & saúdavel</h1>
             <p class="c0-text">Confira Agora</p>
@@ -181,25 +74,223 @@
             <p>Confira Agora</p>
         </div>
 
+        </div> -->
+
+        <div class="sidebar">
+            <div class="tags">
+                <div class="tag" toBeAddedContainer="true">
+                    <p class="tag-text">Terra</p>
+                </div>    
+                <div class="tag" toBeAddedContainer="true">
+                    <p class="tag-text">Fazenda</p>
+                    
+                </div>    
+                <div class="tag" toBeAddedContainer="true">
+                    <p class="tag-text">Natural</p>
+                </div>    
+                <div class="tag" toBeAddedContainer="true">
+                    <p class="tag-text">Sem Lactose</p>
+                </div>    
+                <div class="tag" toBeAddedContainer="true">
+                    <p class="tag-text">Light</p>
+                </div>    
+                <div class="tag" toBeAddedContainer="true">
+                    <p class="tag-text">Vegano</p>
+                </div>    
+                <div class="tag" toBeAddedContainer="true">
+                    <p class="tag-text">Promocao</p>
+                </div>    
+                <div class="tag" toBeAddedContainer="true">
+                    <p class="tag-text">Desconto</p>
+                </div>    
+                <div class="tag" toBeAddedContainer="true">
+                    <p class="tag-text">Unico</p>
+                </div>    
+                <div class="tag" toBeAddedContainer="true">
+                    <p class="tag-text">Acessivel</p>
+                </div>    
+                <div class="tag" toBeAddedContainer="true">
+                    <p class="tag-text">Organico</p>
+                </div>    
+                <div class="tag" toBeAddedContainer="true">
+                    <p class="tag-text">Zero açucar</p>
+                </div>    
+                <div class="tag" toBeAddedContainer="true">
+                    <p class="tag-text">Leve</p>
+                    
+                </div>    
+                <div class="tag" toBeAddedContainer="true">
+                    <p class="tag-text">Saudavel</p>
+                </div>    
+            </div>
+
+            <div class="filter-rating">
+                <i class="fa-regular fa-heart"></i>
+                <i class="fa-regular fa-heart"></i>
+                <i class="fa-regular fa-heart"></i>
+                <i class="fa-regular fa-heart"></i>
+                <i class="fa-regular fa-heart"></i>
+            </div>
+            
+                       
+                        <div class="checkbox-and-text-container">
+                            <input type="checkbox" name="category" id="">
+                            <p style="margin: 0;">Vegetal</p>
+                        </div>
+                        <div class="checkbox-and-text-container">
+                            <input type="checkbox" name="category" id="">
+                            <p style="margin: 0;">Fruta</p>
+                        </div>
+                        <div class="checkbox-and-text-container">
+                            <input type="checkbox" name="category" id="">
+                            <p style="margin: 0;">Carne</p>
+                        </div>
+                        <div class="checkbox-and-text-container">
+                            <input type="checkbox" name="category" id="">
+                            <p style="margin: 0;">Laticinios</p>
+                        </div>
+                        <div class="checkbox-and-text-container">
+                            <input type="checkbox" name="category" id="">
+                            <p style="margin: 0;">Sementes</p>
+                        </div>
+                        <div class="checkbox-and-text-container">
+                            <input type="checkbox" name="category" id="">
+                            <p style="margin: 0;">Graos</p>
+                        </div>
+                        <div class="checkbox-and-text-container">
+                            <input type="checkbox" name="category" id="">
+                            <p style="margin: 0;">Fertilizante</p>
+                        </div>
+                        <div class="checkbox-and-text-container">
+                            <input type="checkbox" name="category" id="">
+                            <p style="margin: 0;">Outro</p>
+                        </div>
+
+
+
+
+
+            
+            <div class="checkbox-and-text-container">
+                <input type="checkbox" name="price" id="">
+                <p style="margin: 0;">Até R$15</p>
+            </div>
+
+            <div class="checkbox-and-text-container">
+                <input type="checkbox" name="price" id="">
+                <p style="margin: 0;">R$15 até R$50</p>
+            </div>
+            <div class="checkbox-and-text-container">
+                <input type="checkbox" name="price" id="">
+                <p style="margin: 0;">R$50 até R$100</p>
+            </div>
+            <div class="checkbox-and-text-container">
+                <input type="checkbox" name="price" id="">
+                <p style="margin: 0;">R$100 até R$200</p>
+            </div>
+         
+            
+            <div class="checkbox-and-text-container">
+                <p style="margin:0;">unidade:</p>
+                <select value="unity">
+                    <option value="todos">Todos</option>
+                    <option value="kg">Kg</option>
+                    <option value="unidade">Unidade</option>
+                    <option value="litros">Litros</option>
+                </select>
+            </div>
+
+            <div class="checkbox-and-text-container">
+                <p style="margin:0;">Criado em:</p>
+                <select value="unity">
+                    <option value="today">Qualquer</option>
+                    <option value="today">Hoje</option>
+                    <option value="week">Semana</option>
+                    <option value="month">Mês</option>
+                    <option value="year">Ano</option>
+                </select>
+            </div>
+            
+
+            <div class="checkbox-and-text-container">
+                <input type="checkbox" name="organic" id="">
+                <p style="margin: 0;">organico</p>
+            </div>
         </div>
 
+        <div class="categories">
+            <h2>7 de 20 resultados para "celular"</h2>
 
-        <div class="c1" style="position: relative; padding-top: 115px;">
-            <% productsFound.forEach(product => {  %>        
-               <div class="card-container" product_id="<%= product.product_id %>"
-                    onclick="window.location.href = `/produto/${this.getAttribute('product_id')}`"
-                >
-                        <img
-                        class="card-first" 
-                        src="http://localhost:3000/file_system/product/<%=product.product_image%>">
-                        <h2 class="card-title"><%=product.product_name%></h2>
-                    </img>
-                    <p class="card-second">
-                        <%=product.product_description%>
-                    </p>
+            <div class="categories-circles">
+                <div class="category-circle">
+                    <i class="fa-solid fa-apple-whole"></i>
                 </div>
-            <% }) %>
+                <div class="category-circle">
+                    <i class="fa-solid fa-carrot"></i>
+                    <!-- <p>vegetables</p> -->
+            </div>
+            <div class="category-circle">
+                <i class="fa-solid fa-poop"></i>
+            </div>
+            <div class="category-circle">
+                <i class="fa-solid fa-poop"></i>
+            </div>
+            <div class="category-circle">
+                <i class="fa-solid fa-poop"></i>
+            </div>
+            <div class="category-circle">
+                <i class="fa-solid fa-poop"></i>
+            </div>
+            <div class="category-circle">
+                <i class="fa-solid fa-poop"></i>
+            </div>
+            <div class="category-circle">
+                <i class="fa-solid fa-poop"></i>
+            </div>
         </div>
+        
+        
+        
+    </div>
+    
+    
+    <div class="c1" style="position: relative; padding-top: 115px;">
+        
+        <% productsFound.forEach(product => {  %>        
+        <div class="card-container" product_id="<%= product.product_id %>"
+        onclick="window.location.href = `/produto/${this.getAttribute('product_id')}`">
+            <img
+            class="card-first" 
+            src="/file_system/product/<%=product.product_image%>">
+        </img>
+        <div class="card-second">
+            <h2 class="card-title" style="margin: 0;"> <%= product.product_name %></h2>
+            <p class="card-tags">
+                <%= product.tags %>
+            </p>
+            <div class="card-stars">
+                    <i class="fa-solid fa-star" style="margin:0;"></i>
+                    <i class="fa-solid fa-star" style="margin:0;"></i>
+                    <i class="fa-solid fa-star" style="margin:0;"></i>
+                    <i class="fa-solid fa-star" style="margin:0;"></i>
+                <i class="fa-solid fa-star" style="margin:0;"></i>
+            </div>
+    
+            <p style="margin:0; font-size:.6em;"><i class="fa-solid fa-check" style="margin:0;"></i> organico</p>
+    
+            <p class="card-price">
+                <%= product.price %>
+            </p>
+            <p style="margin:0; font-size:.5em">
+                Criado em setembro de 2022
+            </p>
+        </div>
+    </div>
+
+    <% }) %>
+              
+        </div>
+
         </div>
         
         
@@ -224,15 +315,6 @@
 
 
 
-
-<footer class="footer" style="margin-top: 100px;">
-    <div class="f2">
-        <div class="f2-circle"></div>
-        <h3 style="color:rgb(60,68,55); margin-bottom: 0;">Go<span style="color:rgb(122, 192, 16)">Green</span></h3>
-        <h5 style="color: rgb(84, 84, 84);">Viva Bem</h5>
-    </div>
-    </div>
-</footer>
 
 
   

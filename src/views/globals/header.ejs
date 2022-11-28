@@ -83,7 +83,7 @@
 
 
     <div id="register-and-login" style="display: flex; justify-content: space-between; align-items: center;">
-        <button class="login-header-btn">
+        <button class="login-header-btn" onclick="window.location.href = '/login'">
 
                 <i class="fa-solid fa-right-to-bracket"></i>
                 <p style="margin:0" class="header-btn-text">
@@ -92,7 +92,7 @@
                
         </button>
         
-        <button class="register-header-btn">
+        <button class="register-header-btn" onclick="window.location.href = '/registrar'">
  
           
                 <i class="fa-solid fa-user-plus" ></i>
@@ -103,7 +103,16 @@
     </button>
     </div>
 
-    <div class="header-user-icon-container">
+    <div class="header-user-icon-container" style="display: flex; align-items: center;">
+        <div  id="header-bell-icon">
+            <i class="fa-regular fa-bell" style="font-size:2.0em;"></i>
+            <div class="bell-painel">
+                <div class="bell-painel-inside">
+                <div class="all-messages-container">
+                </div>
+                </div>
+            </div>
+        </div>
         <img class="header-user-icon" src="" style="position:relative;">
         <div class="header-painel" style="visibility: hidden;">
             <li class="user-painel-item">
@@ -165,14 +174,9 @@
 </div> -->
 
 
-<div class="bell-container">
-    <div class="bell-inside-container">
-        <i class="fa-regular fa-bell" id="bell-icon"></i>
-        <div class="bell-painel">
-            <div class="bell-painel-inside">
-            <div class="all-messages-container">
-            </div>
-        </div>
-    </div>
-    </div>
-</div>
+<!-- <div class="bell-container"> -->
+    <!-- <div class="bell-inside-container"> -->
+        <!-- <i class="fa-regular fa-bell" id="bell-icon"></i> -->
+       
+    <!-- </div> -->
+<!-- </div> -->

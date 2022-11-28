@@ -369,6 +369,15 @@ li{
     to {bottom: 50px;}
 }
 
+
+#header-bell-icon{
+    background: blue; margin: 0 30px 0 0;
+    /* position: absolute; */
+    position: relative;
+    display: none;
+    z-index: 50;
+}
+
 .bell-inside-container{
     background-color: rgb(126, 176, 28);
     width: 100%;
@@ -383,12 +392,13 @@ li{
 .bell-number{
     background-color: red;
     position: absolute;
-    top: 0px;
-    right: 0px;
+    top: -10px;
+    right: -10px;
     padding: 8px;
-    width: 22px;
-    height: 22px;
+    width: 18px;
+    height: 18px;
     text-align: center;
+    font-size: .3em;
     display: flex;
     justify-content: center;
     font-weight: 700;
@@ -398,14 +408,17 @@ li{
 .bell-painel{
     cursor: default;
     position: absolute;
-    right: 75px;
-    bottom: 30px;
+    visibility: visible;
+    right: 30px;
+    top: 25px;
     box-shadow: 3px 3px 15px 3px rgba(0, 0, 0, 0.147);
     /* padding: 15px; */
     width: 0;
     height: 0;
+    font-size: 1em;
     overflow-y: scroll;
     background-color: whitesmoke;
+    background-color: green;
 }
 
 .bell-painel-inside{

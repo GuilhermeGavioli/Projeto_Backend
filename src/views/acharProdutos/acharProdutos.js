@@ -63,6 +63,34 @@ function appendOnPage(data) {
 }
 
 
+// function createProductCard(item) {
+//   if (!item) return;
+
+//   const cardContainer = document.createElement('div');
+//   cardContainer.className = 'card-container'
+//   cardContainer.setAttribute('product-id', item.product_id)
+//   cardContainer.addEventListener('click', (e) => { 
+//     window.location.href = `/produto/${e.target.getAttribute('product-id')}`
+//   })
+  
+//   const cardImage = document.createElement('img');
+//   cardImage.setAttribute('src', `${BASE_URL_PATH}file_system/product/${item.product_image}`);
+//   cardImage.className = 'card-first'
+
+//   const cardTitle = document.createElement('h2');
+//   cardTitle.className = 'card-title'
+//   cardTitle.innerText = item.product_name;
+
+//   const cardSecond = document.createElement('div');
+//   cardSecond.className = 'card-second';
+//   cardSecond.innerText = item.product_description;
+
+//   cardContainer.append(cardImage);
+//   cardContainer.append(cardTitle);
+//   cardContainer.append(cardSecond);
+//   return cardContainer;
+// }
+
 function createProductCard(item) {
   if (!item) return;
 
@@ -73,22 +101,57 @@ function createProductCard(item) {
     window.location.href = `/produto/${e.target.getAttribute('product-id')}`
   })
   
-  const cardImage = document.createElement('img');
-  cardImage.setAttribute('src', `${BASE_URL_PATH}file_system/product/${item.product_image}`);
-  cardImage.className = 'card-first'
+  const cardFirst = document.createElement('img');
+  cardFirst.setAttribute('src', `${BASE_URL_PATH}file_system/product/${item.product_image}`);
+  cardFirst.className = 'card-first'
 
   const cardTitle = document.createElement('h2');
   cardTitle.className = 'card-title'
+  cardTitle.style = 'margin: 0;'
   cardTitle.innerText = item.product_name;
+  
+  const cardTags = document.createElement('p');
+  cardTags.className = 'card-tags'
+  cardTags.innerText = `${item.tags}`
+
+  const cardStars = document.createElement('div');
+  cardStars.className = 'card-stars'
+  cardStars.innerHTML = '<i class="fa-solid fa-star" style="margin:0;"></i><i class="fa-solid fa-star" style="margin:0;"></i><i class="fa-solid fa-star" style="margin:0;"></i><i class="fa-solid fa-star" style="margin:0;"></i><i class="fa-solid fa-star" style="margin:0;"></i>'
+  
+  const cardCategory = document.createElement('p');
+  cardCategory.innerText = item.is_organic
+
+  const cardIsOrganic = document.createElement('p');
+  cardIsOrganic.style = 'margin:0; font-size:.6em;'
+  if (cardIsOrganic == 0) cardIsOrganic.innerHTML = '<i class="fa-solid fa-check" style="margin:0;"></i> organico'
+  else cardIsOrganic.innerHTML = '<i class="fa-solid fa-x" style="margin:0;"></i> organico'
+
+
+  
+  const cardPrice = document.createElement('p');
+  cardPrice.className = 'card-price'
+  cardPrice.innerText = `R$${item.price}/ ${item.unity}`
+  
+  const cardCreatedAt = document.createElement('p');
+  cardCreatedAt.style = 'margin:0; font-size:.5em'
+  cardCreatedAt.innerText = `${item.created_at}`
 
   const cardSecond = document.createElement('div');
   cardSecond.className = 'card-second';
-  cardSecond.innerText = item.product_description;
 
-  cardContainer.append(cardImage);
-  cardContainer.append(cardTitle);
+  cardSecond.append(cardTitle)
+  cardSecond.append(cardTags)
+  cardSecond.append(cardStars)
+  cardSecond.append(cardIsOrganic)
+  cardSecond.append(cardPrice)
+  cardSecond.append(cardCreatedAt)
+
+
+  cardContainer.append(cardFirst);
   cardContainer.append(cardSecond);
   return cardContainer;
 }
+
+
 
 

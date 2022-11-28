@@ -41,13 +41,14 @@ async function handleUserFetchTokenData(action) {  //action to be done in case o
         headerCircle.addEventListener('click', (e) => toggleHeaderPainel(headerPainel, headerLogoutButton, lis))
         headerLogoutButton.addEventListener('click', () => logout())
         fitUserInfoInHeader(data.fullUser.user_image);
-        main.addEventListener('click', () => toggleHeaderPainel(headerPainel, headerLogoutButton, lis))
+        // main.addEventListener('click', () => toggleHeaderPainel(headerPainel, headerLogoutButton, lis))
     showContent(header, headerCircle, main, spinner);
 
-    const bellContainer = document.querySelector('.bell-inside-container');
+    const bellContainer = document.querySelector('#header-bell-icon');
     bellContainer.style.visibility = 'visible';
     bellContainer.addEventListener('click', () => toggleBellPainel())
       
+    document.getElementById('header-bell-icon').style.display = 'unset'
 
     registerAndLoginContainer.style.visibility = 'hidden'
     registerAndLoginContainer.style.position = 'absolute'
@@ -273,6 +274,7 @@ async function toggleBellPainel() {
 
   const bellPainel = document.querySelector('.bell-painel');
   const bellInsidePainel = document.querySelector('.bell-painel-inside');
+  
   if (!isPainelClickable) return
   if (isPainelClickable) {
     if (isPainelClosed) { openBellPainel(bellPainel, bellInsidePainel) }
@@ -314,14 +316,14 @@ function appendMessagesOnPainel(messages, userid) {
 }
 
 function appendMessagesContOnBell(numberOfMessages) {
-  const bellInsideContainer = document.querySelector('.bell-inside-container')
+  const bellInsideContainer = document.querySelector('#header-bell-icon');
   const number = document.createElement('p')
   number.style.margin = '0'
   number.innerText = numberOfMessages;
-  const bellNumber = document.createElement('div')
+  const bellNumber = document.createElement('div');
   bellNumber.className = 'bell-number'
-  bellNumber.append(number)
-  bellInsideContainer.append(bellNumber)
+  bellNumber.append(number);
+  bellInsideContainer.append(bellNumber);
 }
 
 function createMessageElement(message, userid, robot) {

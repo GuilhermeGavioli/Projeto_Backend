@@ -17,8 +17,8 @@ import path from 'path'
 import OutputCadastrarDTO from "../DTO/output/cadastrar";
 import MySql from "../Repository/MySql";
 
-// export const mySqlDatabase = new MySql('localhost', 'root', 'test', 'password', 3306);
-const mySqlDatabase = 'ola'
+export const mySqlDatabase = new MySql('localhost', 'root', 'test', 'password', 3306);
+// const mySqlDatabase = 'ola'
 // const mySqlDatabase = {};
 
 
@@ -128,10 +128,13 @@ export const controllers = {
         const idProduto = req.params.idProduto?.toString().toLowerCase();
         if (!idProduto) return res.json('id nao especificado');
         const productFound = await mySqlDatabase.findProductById(idProduto);
+        console.log('p found', productFound)
+        console.log('p found', productFound.rating)
+        console.log('p found', JSON.stringify(productFound.rating))
         if (!productFound) return res.json("Produto nao existe ou foi deletado.");
-        const productFoundObj = JSON.parse(JSON.stringify(productFound))
+        const productFoundObj = JSON.parse(JSON.stringify(productFound));
         const productOwner = await mySqlDatabase.findUserById(productFoundObj.owner_id);
-        res.render(path.join("produto", "produto"), { productFound, ownerName: productOwner?.full_name } );
+        res.render(path.join("produto", "produto"), { productFound: productFound.product, rating: productFound.rating, ownerName: productOwner?.full_name } );
     },
 
     deletarProduto: async (req: Request, res: Response) => {

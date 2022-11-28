@@ -13,7 +13,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 
-const rateLimit = require('express-rate-limit');
+// const rateLimit = require('express-rate-limit');
+import { rateLimit } from 'express-rate-limit';
 
 const loginRateLimiter = rateLimit({
   windowMs: 0.30 * 60 * 1000, // 15 min in milliseconds
@@ -94,6 +95,7 @@ app.get('/login',(req, res) => {
 })
 
 app.get('/profile/:idprodutor', controllers.acharUsuarioPorId);
+
 app.get('/produto/:idProduto', controllers.acharProdutoPorId)
 
 app.get('/',(req, res) => {
@@ -192,12 +194,12 @@ app.get('/auth', controllers.authValidation)
 
 app.post('/avaliarproduto', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => {
     const token_id = res.locals.userInfo.user_id;
-    const p_id = req.body
+    const {p_id, critic} = req.body
      console.log(p_id)
     const rating = await mySqlDatabase.findRatting(p_id, token_id);
     if (rating) return res.json(rating)
-    await mySqlDatabase.createRatting(p_id, token_id);
-    return res.json({creted: true});
+    await mySqlDatabase.createRatting(p_id, token_id, critic);
+    return res.json({created: true});
 })
 
 app.post('/acharavaliacao', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => {
@@ -205,6 +207,23 @@ app.post('/acharavaliacao', ProtectionAgainstNonAuthenticatedUsers, async (req, 
     const {p_id} = req.body
     await mySqlDatabase.findRatting(p_id, token_id);
     return res.json('ok');
+})
+
+app.get('/acharavaliacoes/:p_id', async (req, res) => {
+    const {p_id} = req.params
+    const ratings = await mySqlDatabase.findRattings(p_id);
+    return res.json(ratings);
+})
+
+app.delete('/deletaravaliacao/:ratting_id', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => {
+    const token_id = res.locals.userInfo.user_id;
+    const { ratting_id } = req.params
+    try {
+        await mySqlDatabase.deleteRatting(token_id, ratting_id);
+        return res.json({deleted: true});
+    } catch (err) {   
+        return res.json({deleted: false, erro: true});
+    }
 })
 
 
