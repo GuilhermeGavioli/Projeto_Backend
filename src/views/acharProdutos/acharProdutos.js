@@ -6,17 +6,57 @@ window.onload = async () => {
   
   const data = await handleUserFetchTokenData('stayOnThePageStillNotLoggedIn');
 
-
-  const dataLength = document.getElementById('data-length').getAttribute('dataLength');
-  if (Number(dataLength) == 0) { 
-    const noResultsContainer = document.querySelector('.no-results-container');
-    noResultsContainer.style.visibility = 'visible';
-  } else {
-    window.onscroll = async () => {
-      handlePermanentFetchingOnScroll();
-    }
+  const productsTotal = document.getElementById('product_total').getAttribute('product_total')
+  console.log('TOTAL ', productsTotal)
+  if (productsTotal > 12) {
+    handlePaginationcreation(productsTotal);
   }
 
+  // const dataLength = document.getElementById('data-length').getAttribute('dataLength');
+  // if (Number(dataLength) == 0) { 
+  //   const noResultsContainer = document.querySelector('.no-results-container');
+  //   noResultsContainer.style.visibility = 'visible';
+  // } else {
+  //   window.onscroll = async () => {
+  //     handlePermanentFetchingOnScroll();
+  //   }
+  // }
+
+}
+
+function handlePaginationcreation(total) {
+  if (total < 12) return
+  const numberOfPages = Math.ceil(total / 12);
+  createPagination(numberOfPages)
+}
+
+function createPagination(numberOfPages) {
+  const paginationContainer = document.querySelector('.pagination-container')
+  paginationContainer.style.visibility = 'visible'
+
+  const beforeBlock = document.createElement('div')
+  beforeBlock.className = 'pagination-block'
+  beforeBlock.id = 'before-block'
+  beforeBlock.innerText = 'Anterior'
+  
+  const afterBlock = document.createElement('div')
+  afterBlock.className = 'pagination-block'
+  afterBlock.id = 'after-block'
+  afterBlock.innerText = 'Próximo'
+
+  paginationContainer.append(beforeBlock)
+  
+  for (let i = 1; i < numberOfPages + 1; i++) {
+    const paginationItem = document.createElement('div');
+   
+    paginationItem.addEventListener('click', () => window.location.href = `${BASE_URL_PATH}getprodutos?queryDescriptionAlso=true&pack=${i}&nomeProduto=${"as"}`)
+    
+    paginationItem.className = 'pagination-block';
+    paginationItem.innerText = i;
+    paginationContainer.append(paginationItem);
+  }
+
+  paginationContainer.append(afterBlock)
 }
 
 async function handlePermanentFetchingOnScroll() {
@@ -41,10 +81,10 @@ function verifyScroll() {
   return window.scrollY === scrollMaxY;
 }
 
-async function fetchMore(cont) {
-  const res = await fetch(`${BASE_URL_PATH}getprodutos/?nomeProduto=a&queryDescriptionAlso=true&number=${cont + 8}`);
-  return await res.json();
-}
+// async function fetchMore(cont) {
+//   const res = await fetch(`${BASE_URL_PATH}getprodutos/?nomeProduto=${"as"}&queryDescriptionAlso=true&number=${cont + 8}`);
+//   return await res.json();
+// }
 
 function appendOnPage(data) {
   console.log(data)
@@ -116,7 +156,7 @@ function createProductCard(item) {
 
   const cardStars = document.createElement('div');
   cardStars.className = 'card-stars'
-  cardStars.innerHTML = '<i class="fa-solid fa-star" style="margin:0;"></i><i class="fa-solid fa-star" style="margin:0;"></i><i class="fa-solid fa-star" style="margin:0;"></i><i class="fa-solid fa-star" style="margin:0;"></i><i class="fa-solid fa-star" style="margin:0;"></i>'
+  handleAverage(cardStars, item.average)
   
   const cardCategory = document.createElement('p');
   cardCategory.innerText = item.is_organic
@@ -153,5 +193,9 @@ function createProductCard(item) {
 }
 
 
-
+function handleAverage(parentElement, number) {
+  if (!number) {
+    parentElement.innerHTML = '<i class="fa-regular fa-star" style="margin:0;"></i><i class="fa-regular fa-star" style="margin:0;"></i><i class="fa-regular fa-star" style="margin:0;"></i><i class="fa-regular fa-star" style="margin:0;"></i><i class="fa-regular fa-star" style="margin:0;"></i>'
+  }
+}
 

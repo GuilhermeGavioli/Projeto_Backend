@@ -73,10 +73,37 @@
                         "sidebar c1 c1 c1 c1 c1"
                         "sidebar c1 c1 c1 c1 c1"
                         "sidebar c1 c1 c1 c1 c1";
-    grid-template-rows: 250px 400px 400px 400px;
+    grid-template-rows: 250px auto auto auto;
     max-width: 2000px;
     margin: auto;
     background-color: yellow;
+}
+.pagination-container{
+    display: flex;
+    position: absolute;
+    margin: auto;
+    right: 0;
+    left: 0;
+    bottom: 25px;
+    width: fit-content;
+    visibility: hidden;
+}
+.pagination-block{
+    width: fit-content;
+    height: 50px;
+    background-color: white;
+    border: 1px solid rgb(220,220,220);
+    color: var(--main-green);
+    display: flex;
+    flex-direction: center;
+    align-items: center;
+    padding: 10px 20px 10px 20px;
+}
+#before-block{
+    border-start-start-radius: 6px; border-bottom-left-radius: 6px;
+}
+#after-block{
+    border-end-end-radius: 6px; border-top-right-radius: 6px;
 }
 .categories{
     grid-area: categories;
@@ -166,6 +193,8 @@
     gap: 50px 0;
     padding: 50px;
     background-color: #79a601;
+    position: relative;
+    background-color: gray;
 }
 
 .card-container{

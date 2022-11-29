@@ -209,10 +209,16 @@ app.post('/acharavaliacao', ProtectionAgainstNonAuthenticatedUsers, async (req, 
     return res.json('ok');
 })
 
-app.get('/acharavaliacoes/:p_id', async (req, res) => {
-    const {p_id} = req.params
-    const ratings = await mySqlDatabase.findRattings(p_id);
-    return res.json(ratings);
+app.get('/acharavaliacoes/:p_id/:pack', async (req, res) => {
+    const { p_id, pack } = req.params
+    console.log('pack ' + pack)
+    try {
+        const ratings = await mySqlDatabase.findRattings(p_id, Number(pack));
+        if (!ratings) return res.json(null)
+        return res.json(ratings);
+    } catch (err) {
+        return res.json({fetched: false, erro: true});
+     }
 })
 
 app.delete('/deletaravaliacao/:ratting_id', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => {
@@ -226,6 +232,21 @@ app.delete('/deletaravaliacao/:ratting_id', ProtectionAgainstNonAuthenticatedUse
     }
 })
 
+app.get('/acharprodutoporcategoria/:amount/:category', async (req, res) => { 
+    console.log('hellou')
+    const { amount, category } = req.params
+    console.log(category)
+    try {
+        if (Number(amount) > 10 || Number(amount) < 1) return res.json({ error: true, message: 'Invalid amount to be fetched' }) 
+        const products: any = await mySqlDatabase.findProductByCategory(category, Number(amount));
+        if (!products) return res.json({ found: null });
+        console.log('prod ' + products)
+        return res.json(products);
+    } catch (err) {
+        console.log(err)
+        return res.json({error: true});
+    }
+})
 
 // app.get('/getprodutosfromUser/:idprodutor', async (req, res) => {
 //     const idprodutor = req.params.idprodutor.toString().toLowerCase();

@@ -94,6 +94,13 @@ export default class MySql implements Repository {
         
     }
 
+    //used by application / pages
+    public async findProductByCategory(category: string, amount: number): Promise<any | null> {
+        const [rows] = await this.connection.execute(`SELECT * from product WHERE category="${category}" ORDER BY RAND() LIMIT ${amount};`);
+        if (!rows) return null;
+        return rows;
+    }
+
 
     //used by the application
     public async findProduct(id: string, owner_id: string): Promise<any | null> {
@@ -159,9 +166,9 @@ export default class MySql implements Repository {
         SELECT * FROM ratting WHERE product_id="${p_id}" AND user_id="${user_id}";`)
         return rows;
     }
-
-    public async findRattings(p_id: string): Promise<any> { 
-        const [rows] = await this.connection.execute(`SELECT ratting.ratting_id, ratting.product_id, ratting.user_id, ratting.rating_stars, ratting.comment, ratting.created_at, user.full_name, user.user_image FROM ratting INNER JOIN user ON ratting.user_id = user.userid WHERE ratting.product_id="${p_id}";`)
+ 
+    public async findRattings(p_id: string, pack: number): Promise<any> { 
+        const [rows] = await this.connection.execute(`SELECT ratting.ratting_id, ratting.product_id, ratting.user_id, ratting.rating_stars, ratting.comment, ratting.created_at, user.full_name, user.user_image FROM ratting INNER JOIN user ON ratting.user_id = user.userid WHERE ratting.product_id="${p_id}" ORDER BY ratting.created_at LIMIT 2 OFFSET ${pack};`)
         return rows;
     }
 
@@ -251,24 +258,29 @@ export default class MySql implements Repository {
         await this.connection.query(`DELETE FROM user WHERE userid="${id}" && email="${email}";`);
     }
 
-    public async findManyProductsByName(name: string, queryDescriptionAlso: boolean, number: number): Promise<GetOneOutputDTO[] | null> {
+    public async findManyProductsByName(name: string, queryDescriptionAlso: boolean, pack: number): Promise<GetOneOutputDTO[] | null> {
 
         if (queryDescriptionAlso) {
-            const [rows] = await this.connection.execute(`SELECT 
-            *
+            const [rows] = await this.connection.execute(`SELECT *, (
+                select COUNT(*)
+                FROM product WHERE product_name LIKE "%${name}%" OR product_description LIKE "%${name}%"
+            ) AS total
             FROM product
-            WHERE product_name LIKE "%${name}%" || product_description LIKE "%${name}%"
-            LIMIT  ${number}, ${number + 8};`);
+            
+            WHERE product_name LIKE "%${name}%" OR product_description LIKE "%${name}%"
+            LIMIT  12 OFFSET ${pack * 12};`);
+            // console.log(rows)
             if (!rows) return null;
-            console.log(rows)
             return rows;
+
         } else { 
-            const [rows] = await this.connection.execute(`SELECT 
-            *
-            FROM product WHERE product_name LIKE "%${name}%"
-            LIMIT ${number}, ${number + 8};`); 
-            if (!rows) return null;
-            return rows;
+            return null;
+            // const [rows] = await this.connection.execute(`SELECT 
+            // *
+            // FROM product WHERE product_name LIKE "%${name}%"
+            // LIMIT ${number}, ${number + 8};`); 
+            // if (!rows) return null;
+            // return rows;
         }
     }
 

@@ -37,7 +37,7 @@ document.querySelector('.search-btn').addEventListener('click', (e) => {
 
 function searchProducts() {
   const typedValue = document.querySelector('.main-input').value
-  window.location.href = `${BASE_URL_PATH}getprodutos?queryDescriptionAlso=true&number=0&nomeProduto=${typedValue}`
+  window.location.href = `${BASE_URL_PATH}getprodutos?queryDescriptionAlso=true&pack=${0}&nomeProduto=${typedValue}`
 }
 
 
@@ -93,6 +93,8 @@ function appendOnPage(data) {
 function createProductCard(item) {
   if (!item) return;
 
+  console.log('item', item)
+
   const cardContainer = document.createElement('div');
   cardContainer.className = 'card-container'
   cardContainer.setAttribute('product-id', item.product_id)
@@ -115,7 +117,8 @@ function createProductCard(item) {
 
   const cardStars = document.createElement('div');
   cardStars.className = 'card-stars'
-  cardStars.innerHTML = '<i class="fa-solid fa-star" style="margin:0;"></i><i class="fa-solid fa-star" style="margin:0;"></i><i class="fa-solid fa-star" style="margin:0;"></i><i class="fa-solid fa-star" style="margin:0;"></i><i class="fa-solid fa-star" style="margin:0;"></i>'
+  handleAverage(cardStars, item.average)
+  
   
   const cardCategory = document.createElement('p');
   cardCategory.innerText = item.is_organic
@@ -149,6 +152,12 @@ function createProductCard(item) {
   cardContainer.append(cardFirst);
   cardContainer.append(cardSecond);
   return cardContainer;
+}
+
+function handleAverage(parentElement, number) {
+  if (!number) {
+    parentElement.innerHTML = '<i class="fa-regular fa-star" style="margin:0;"></i><i class="fa-regular fa-star" style="margin:0;"></i><i class="fa-regular fa-star" style="margin:0;"></i><i class="fa-regular fa-star" style="margin:0;"></i><i class="fa-regular fa-star" style="margin:0;"></i>'
+  }
 }
 
 const c10main = document.querySelector('.c10-main')

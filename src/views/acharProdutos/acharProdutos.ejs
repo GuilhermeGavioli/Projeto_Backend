@@ -253,16 +253,16 @@
         
     </div>
     
+    <span id="product_total" product_total="<%=productsFound[0]?.total%>"></span>
     
     <div class="c1" style="position: relative; padding-top: 115px;">
         
         <% productsFound.forEach(product => {  %>        
+
         <div class="card-container" product_id="<%= product.product_id %>"
         onclick="window.location.href = `/produto/${this.getAttribute('product_id')}`">
-            <img
-            class="card-first" 
-            src="/file_system/product/<%=product.product_image%>">
-        </img>
+    
+        <img class="card-first" src="/file_system/product/<%=product.product_image%>" alt="">
         <div class="card-second">
             <h2 class="card-title" style="margin: 0;"> <%= product.product_name %></h2>
             <p class="card-tags">
@@ -288,23 +288,30 @@
     </div>
 
     <% }) %>
-              
-        </div>
+
+    <div class="pagination-container">
+        <!-- <div class="pagination-block" id="before-block">Anterior</div>
+        <div class="pagination-block">1</div>
+        <div class="pagination-block">2</div>
+        <div class="pagination-block">3</div>
+        <div class="pagination-block" id="after-block">Próximo</div> -->
+    </div>
+    
+</div>
+
 
         </div>
         
         
-                <div class="no-results-container" style="padding: 10px 25px 25px 25px;">
+                <!-- <div class="no-results-container" style="padding: 10px 25px 25px 25px;">
                     <img src="../../assets/nao_encontrado.jpg" alt="" style="width: 255px;">
-                    <h1 class="no-results-title" style="font-size: 1.2em; width: 350px; margin: auto;">Desculpe, não conseguimos encontrar nenhum resultado para a sua busca
+                    <h1 class="no-results-title" style="font-size: 1.2em; width: 350px; margin: auto;">Desculpe, não conseguimos encontrar nenhum resultado para a sua busca!
                        
-                        !</h1>
-                        <!-- <div style="display: flex; justify-content: space-between; padding: 0 115px 0 115px"> -->
+                        </h1>
+             
                             <button class="voltar-btn" onclick="window.location.href = '/procurarproduto'">Procurar Novamente</button>
-                            <!-- <button class="voltar-btn" onclick="window.history.back()">Voltar</button> -->
-
-                        <!-- </div> -->
-                    </div>
+                          
+                    </div> -->
 
 
 

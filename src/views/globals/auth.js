@@ -146,10 +146,10 @@ function toggleHeaderPainel(PainelElement, headerLogoutButton, lis) {
   if (closed) {
     PainelElement.style.visibility = 'visible'
     PainelElement.style.width = '5px'
-    PainelElement.style.height = '300px'
+    PainelElement.style.height = '350px'
     setTimeout(() => { 
       PainelElement.style.width = '200px'
-      PainelElement.style.padding = '20px 15px 20px 15px'
+      // PainelElement.style.padding = '20px 15px 20px 15px'
     }, 350)
     setTimeout(() => { 
       Array.from(lis).map(li => { 
@@ -159,10 +159,10 @@ function toggleHeaderPainel(PainelElement, headerLogoutButton, lis) {
         li.style.top = 'unset'
       })
       headerLogoutButton.style.visibility = 'visible'
-      headerLogoutButton.style.position = 'static'
+      // headerLogoutButton.style.position = 'static'
  
     headerLogoutButton.style.bottom = '8px'
-    headerLogoutButton.style.margin = 'auto'
+    // headerLogoutButton.style.margin = 'auto'
  
       isUserPainelClickable = true;
     }, 525)
@@ -180,9 +180,9 @@ function toggleHeaderPainel(PainelElement, headerLogoutButton, lis) {
     })
    
     // headerLogoutButton.style.visibility = 'hidden'
-    headerLogoutButton.style.position = 'fixed'
+    // headerLogoutButton.style.position = 'fixed'
     headerLogoutButton.style.inset = '0 500px 0 0'
-    headerLogoutButton.style.margin = 'unset'
+    // headerLogoutButton.style.margin = 'unset'
     headerLogoutButton.style.visibility = 'hidden'
     setTimeout(() => { 
       PainelElement.style.width = '0'

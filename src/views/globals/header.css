@@ -4,6 +4,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap');
 
+:root{
+    --main-green: rgb(118, 184, 42);
+}
+
 body{
     box-sizing: border-box;
     width: 100vw;
@@ -211,10 +215,53 @@ a:hover{
     display: flex;
     flex-direction: column;
     color: rgb(127, 176, 28);
+    height: fit-content;
     box-shadow: 6px 6px 10px -3px rgba(0, 0, 0, 0.154);
     transition: 0.3s ease-in-out;
     visibility: hidden;
+    background-color: white;
     
+}
+.header-painel-first-part{
+    height: 80px;
+    background-color: var(--main-green);
+    background-color: rgb(133,187,70);
+    position: relative;
+}
+#header-painel-home-icon{
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    margin: 0;
+    color: rgb(98, 141, 49);
+    font-size: 1.2em;
+}
+#header-painel-home-icon:hover{
+    color: white;
+    cursor: pointer;
+}
+.header-painel-second-part, .header-painel-third-part{
+    width: 85%;
+    margin: auto;
+    margin-top: 35px;
+    border-bottom: 1px solid rgb(225,225,225);
+    padding: 0 0 12px 0;
+}
+.header-painel-third-part{
+    margin-top: 0;
+    padding-bottom: 5px;
+}
+.header-painel-pic{
+    position: absolute;
+    inset: auto 0 -30px 0;
+    margin: auto;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+.header-painel-pic:hover{
+    filter: brightness(120%);
+    cursor: pointer;
 }
 
 .user-painel-item{
@@ -244,11 +291,13 @@ a:hover{
     color: rgb(214, 214, 214);
     font-weight: lighter;
     font-size: .9em;
+    background-color: rgb(122, 61, 61);
+    width: 100%;
 }
 
 li{
     list-style: none;
-    margin-top: 15px;
+    /* margin-top: 15px; */
     font-family: 'Inter', sans-serif;
     font-size: 1em;
     color: white;
@@ -259,7 +308,7 @@ li{
     background: linear-gradient(to right, #7ba82e, #98cd3e);
     color: white;
     border-radius: 3px;
-    padding: 5px 13px 5px 13px;
+    padding: 5px 30px 5px 30px;
 
     width: fit-content;
     font-weight: 600;
@@ -268,11 +317,8 @@ li{
     display: flex;
     justify-content: center;
     align-items: center;
-
-    position: fixed;
-    inset: 0 500px 0 0;
-    margin: unset;
     visibility: hidden;
+    margin: 30px auto 20px auto;
 }
 .sidebar-items{
     display: none;
@@ -540,7 +586,17 @@ li{
 
 
 
+::-webkit-scrollbar{
+    width: 5px;
+}
 
+::-webkit-scrollbar-track{
+    background-color: rgb(221, 221, 221);
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: rgb(220, 220, 220);
+}
 
 
 

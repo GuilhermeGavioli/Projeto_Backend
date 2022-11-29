@@ -35,31 +35,96 @@
 
     <%- include("../globals/header.ejs") %>
     
-
+    <div class="container"></div>
     
   
 
 
         <span id="product_id" product_id="<%=productFound.product_id%>"></span>
+        <span id="product_category" product_category="<%=productFound.category%>"></span>
         
+
+        <!-- <% if (productFound.is_organic == 1){ %>
+            <img src="../assets/organic_symbol.png" style="width: 100px;  position: absolute; top: -13px; left: -12px; background-color: rgba(255, 255, 255, 0.020); border-radius: 50%;" alt="">
+            <% } %> -->
         
+        <div class="container2">
         
-        <div class="container">
-        
-         <div class="c1" style="position: relative; background-image: url('/file_system/product/<%= productFound.product_image %>')">
-            <% if (productFound.is_organic == 1){ %>
-                <img src="../assets/organic_symbol.png" style="width: 100px; position: absolute; top: -13px; left: -12px; background-color: rgba(255, 255, 255, 0.020); border-radius: 50%;" alt="">
-                <% } %>
+         <div class="c1">
+            <p class="eight" style="margin-top: 0; margin-bottom: 8px; font-size: .6em;"> Publicado em 14 de janeiro de 2021</p>
+            <div style=" border: 1px solid rgb(245,245,245);">
+                <img class="product-image" src="/file_system/product/<%=productFound.product_image%>" alt="">
+            </div>
+                <div class="product-buttons-container">
+                    <button class="product-buttons" id="adicionar-carrinho-btn">ADICIONAR AO CARRINHO</button>
+                    <button class="product-buttons" id="avaliar-btn">AVALIAR</button>
+                </div>
+                <div>
+                    <!-- <p style="color: gray; font-weight: 200; margin: 0;">Criado por</p> -->
+                    <div class="comment-image-and-username-container" style="border-top: 1px solid rgb(235,235,235); margin-top: 30px; padding-top: 15px;">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Black_hole_-_Messier_87.jpg/1200px-Black_hole_-_Messier_87.jpg" alt="" class="comment-image">
+                        <div style="display: flex; flex-direction: column;">
+                            <p class="comment-username" style="color: gray; font-weight: 200; margin: 0;">Joao da Silva</p>
+                            <p style="font-size: .7em; color: gray; margin:0;">membro desde novembro de 2022</p>
+                        </div>
+                    </div>
+                </div>
         </div>
-        <div class="c2" style="min-height: 600px; position: relative;">
-            <div style="position: absolute; top: 25px; right: 30px; font-size: 2em; cursor: pointer;" onclick="window.history.back()">
-                <i class="fa-solid fa-angle-left"></i>
+
+
+        <div class="c2" style="position: relative;">
+            <div style="position: absolute; top: 25px; right: 30px; font-size: 2em; cursor: pointer; color: rgb(198, 198, 198)" onclick="window.history.back()">
+                <i class="fa-solid fa-angle-left"></i> <span>Voltar</span>
             </div>
             <p class="nine">Produto / <%= productFound.product_name %></p>
             <h1> <%= productFound.product_name %> </h1>
             <div class="product-stars">
-
+                <% const star_rating = JSON.stringify(rating).substring(21,22) %>
+                <% if (star_rating == 1) { %>
+                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-regular fa-heart"></i>
+                    <i class="fa-regular fa-heart"></i>
+                    <i class="fa-regular fa-heart"></i>
+                    <i class="fa-regular fa-heart"></i>
+                <% } else if (star_rating == 2) { %>
+                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-regular fa-heart"></i>
+                    <i class="fa-regular fa-heart"></i>
+                    <i class="fa-regular fa-heart"></i>
+                <% } else if (star_rating == 3) { %>
+                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-regular fa-heart"></i>
+                    <i class="fa-regular fa-heart"></i>
+                <% } else if (star_rating == 4) { %>
+                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-regular fa-heart"></i>
+                <% } else if (star_rating == 5) { %>
+                <% } else { %>
+                    <i class="fa-regular fa-heart"></i>
+                    <i class="fa-regular fa-heart"></i>
+                    <i class="fa-regular fa-heart"></i>
+                    <i class="fa-regular fa-heart"></i>
+                    <i class="fa-regular fa-heart"></i>
+                    <% } %>
+                    <p class="rating-counts"></p>
             </div>
+
+            <p class="nine">
+                <%= productFound.product_description %>
+            </p>
+            <p class="nine" id="price">
+                R$<%=productFound.price%><span style="font-size: .6em;">/<%=productFound.unity%></span>
+            </p>
+            <!-- <p>
+                <%= productFound.average %>
+            </p> -->
+
             <p class="eight"><i class="fa-solid fa-tag"></i> 
                 <%= productFound.tags %>
             </p>
@@ -73,111 +138,102 @@
                 <% } %>
             Produto Orgânico</p>
             
-            <p class="nine">
-                <%= productFound.product_description %>
-            </p>
-            <p class="nine"><i class="fa-solid fa-sack-dollar"></i> 
-                Preço: <%= productFound.price %> /
-                <%= productFound.unity %>
-            </p>
-            <p>
-                <%= productFound.average %>
-            </p>
+            
             <p class="eight"><i class="fa-solid fa-upload" style="margin-top: 20px;"></i> Publicado em 14 de janeiro de 2021</p>
 
             <p class="eight"><i class="fa-regular fa-user"></i> criado por <a href="/profile/<%= productFound.owner_id %>">
                 <%= ownerName %>
             </a></p>
-         
-
-            <% const star_rating = JSON.stringify(rating).substring(21,22) %>
-      
-            <% if (star_rating == 1) { %>
-                <i class="fa-solid fa-heart"></i>
-                <i class="fa-regular fa-heart"></i>
-                <i class="fa-regular fa-heart"></i>
-                <i class="fa-regular fa-heart"></i>
-                <i class="fa-regular fa-heart"></i>
-            <% } else if (star_rating == 2) { %>
-                <i class="fa-solid fa-heart"></i>
-                <i class="fa-solid fa-heart"></i>
-                <i class="fa-regular fa-heart"></i>
-                <i class="fa-regular fa-heart"></i>
-                <i class="fa-regular fa-heart"></i>
-            <% } else if (star_rating == 3) { %>
-                <i class="fa-solid fa-heart"></i>
-                <i class="fa-solid fa-heart"></i>
-                <i class="fa-solid fa-heart"></i>
-                <i class="fa-regular fa-heart"></i>
-                <i class="fa-regular fa-heart"></i>
-            <% } else if (star_rating == 4) { %>
-                <i class="fa-solid fa-heart"></i>
-                <i class="fa-solid fa-heart"></i>
-                <i class="fa-solid fa-heart"></i>
-                <i class="fa-solid fa-heart"></i>
-                <i class="fa-regular fa-heart"></i>
-            <% } else if (star_rating == 5) { %>
-            <% } else { %>
-                <i class="fa-regular fa-heart"></i>
-                <i class="fa-regular fa-heart"></i>
-                <i class="fa-regular fa-heart"></i>
-                <i class="fa-regular fa-heart"></i>
-                <i class="fa-regular fa-heart"></i>
-            <% } %>
-                <p class="rating-counts"></p>
-       
-                
             </div>
-        <div class="benefits">
-            <h1 class="benefits-title">BENEFICIOS</h1>
 
-            <div class="benefits-cards-container">
-                <div class="benefits-one">
+
+            <div class="benefits">
+                <h1 class="benefits-title">BENEFICIOS</h1>
+    
+                <div class="benefits-cards-container">
+                    <div class="benefits-one">
+                        <div class="benefits-circle">
+                            <i class="fa-solid fa-cubes-stacked"></i>
+                    </div>
+                    <h3>SEM ACUCAR</h3>
+                </div>
+                <div class="benefits-two">
                     <div class="benefits-circle">
-                        <i class="fa-solid fa-cubes-stacked"></i>
+                        <i class="fa-solid fa-tag"></i>
+                    </div>
+                    <h3>PROMOÇAO</h3>
+                    
                 </div>
-                <h3>SEM ACUCAR</h3>
-            </div>
-            <div class="benefits-two">
-                <div class="benefits-circle">
-                    <i class="fa-solid fa-tag"></i>
+                <div class="benefits-three">
+                    <div class="benefits-circle">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <h3>ORGANICO</h3>
+                    
                 </div>
-                <h3>PROMOÇAO</h3>
-                
-            </div>
-            <div class="benefits-three">
-                <div class="benefits-circle">
-                    <i class="fa-solid fa-leaf"></i>
-                </div>
-                <h3>ORGANICO</h3>
-                
             </div>
         </div>
-    </div>
 
 
-    <div class="comments">
-        <div class="comment-container">
-            <div class="comment-image-and-username-container">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Black_hole_-_Messier_87.jpg/1200px-Black_hole_-_Messier_87.jpg" alt="" class="comment-image">
-                <p class="comment-username">Joao da Silva</p>
+
+            <div class="products"></div>
+            
+     
+
+            <div class="comments">
+                <div class="load-more-comments-container">
+                    <button id="carregar-mais-btn">Carregar mais</button>
+                </div>
+
+                
+                <div class="create-comment-container">
+                    
+                    <div class="textarea-and-btn-container">
+                        
+                        <h2 class="create-comment-title">Avalie esse Produto</h2>
+                        <div class="create-comment-stars-container">
+                            <i class="fa-regular fa-heart" id="star1"></i>
+                            <i class="fa-regular fa-heart" id="star2"></i>
+                            <i class="fa-regular fa-heart" id="star3"></i>
+                            <i class="fa-regular fa-heart" id="star4"></i>
+                            <i class="fa-regular fa-heart" id="star5"></i>
+                        </div>
+                        <textarea name="" id="" cols="30" rows="10" class="ratting-input" placeholder="(opcional)"></textarea>
+                        <button class="ratting-btn">Enviar comentário</button>
+                    </div>
+                
+                </div>
+                <div class="comment-container">
+                    <div class="comment-image-and-username-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Black_hole_-_Messier_87.jpg/1200px-Black_hole_-_Messier_87.jpg" alt="" class="comment-image">
+                        <p class="comment-username">Joao da Silva</p>
+                    </div>
+                    <div class="comment-stars-container">
+                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-regular fa-heart"></i>
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
+                    <p class="comment-text">odiei essa merda de produto, nunca mais compro!</p>
+                    <p class="comment-created-at">avaliado em 15 de novembro de 1999</p>
+                </div>
             </div>
-            <div class="comment-stars-container">
-                <i class="fa-solid fa-heart"></i>
-                <i class="fa-solid fa-heart"></i>
-                <i class="fa-solid fa-heart"></i>
-                <i class="fa-regular fa-heart"></i>
-                <i class="fa-regular fa-heart"></i>
-            </div>
-            <p class="comment-text">odiei essa merda de produto, nunca mais compro!</p>
-            <p class="comment-created-at">avaliado em 15 de novembro de 1999</p>
-        </div>
-    </div>
+
+
+            <div class="propaganda">
+                <div class="propaganda-inside"></div> 
+            </div> 
+
+       
+
+
+   
     </div>
 
     
-    <input type="text" class="ratting-input">
-    <button class="ratting-btn">rate</button>
+    <!-- <input type="text" class="ratting-input">
+    <button class="ratting-btn">rate</button> -->
 
     
     <footer class="footer" style="margin-top: 100px;">

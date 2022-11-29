@@ -1,6 +1,7 @@
 const BASE_URL_PATH =  'http://localhost:3000/'
 let fetchCont = 0;
 let isOver = false;
+let commentPack = 0
 
 window.onload = async () => {
   
@@ -8,23 +9,153 @@ window.onload = async () => {
   const productRatings = await loadProductRatings(p_id)
   console.log('ratings ', productRatings)
   
-  document.querySelector('.rating-counts').innerText = `(${productRatings.length} avaliaçoes)`
+  document.querySelector('.rating-counts').innerText = `(${productRatings.length} Avaliaçoes)`
 
   
   const data = await handleUserFetchTokenData('stayOnThePageStillNotLoggedIn');
   console.log('data ' + JSON.stringify(data))
-  
-  appendCommentsOnPage(productRatings, data.userid || null)
+  await appendCommentsOnPage(productRatings, data?.userid)
+  await handleSimilarProductsAppereance()
+
   if (data) { 
     const ratingInput = document.querySelector('.ratting-input')
     const ratingButton = document.querySelector('.ratting-btn')
     ratingInput.style.visibility = 'visible'
     ratingButton.style.visibility = 'visible'
     ratingButton.addEventListener('click', () => ratting(ratingInput))
+
+    //stars
+    for (let i = 1; i < 6; i++) { 
+      document.getElementById(`star${i}`).addEventListener('click', () => handleCreateCommentStarsChange(i))
+    }
   }
+
+
+  document.getElementById('carregar-mais-btn').addEventListener('click', async () => {
+    commentPack = commentPack + 2;
+
+    const productRatings = await loadProductRatings(p_id)
+    await appendCommentsOnPage(productRatings, data?.userid);
+    console.log(commentPack)
+    // await handleSimilarProductsAppereance()
+   })
+
+}
+
+async function handleSimilarProductsAppereance() {
+  const category = document.getElementById('product_category').getAttribute('product_category');
+  const similarProducts = await fetchFourSimilarProducts(category); //by similar category
+  console.log('similar ', similarProducts)
+  appendSimilarProductsOnPage(similarProducts)
+}
+
+async function fetchFourSimilarProducts(category) {
+  const res = await fetch(`${BASE_URL_PATH_AUTH}acharprodutoporcategoria/${4}/${category}`, {
+    method: 'GET',
+    headers: {
+      "Content-type": "application/json",
+    }
+  })
+  return await res.json();
+}
+
+function appendSimilarProductsOnPage(data) {
+  const productsContainer = document.querySelector('.products')
+  data.map(item => {
+      const cardContainer = createProductCard(item);
+      productsContainer.append(cardContainer);
+  })
+}
+
+
+{/* <div class="card-container" >
+        <img
+        class="card-first" 
+        src="../assets/6871551_29406_-_Copia-removebg-preview-removebg-preview.png">
+    </img>
+    <div class="card-second">
+        <h2 class="card-title" style="margin: 0;">Meu Produto top de mais</h2>
+        <p class="card-tags">
+            Fresco - Organico - Natural - ZeroAcucar - Sem Gordura
+        </p>
+        <div class="card-stars">
+                <i class="fa-solid fa-star" style="margin:0;"></i>
+                <i class="fa-solid fa-star" style="margin:0;"></i>
+                <i class="fa-solid fa-star" style="margin:0;"></i>
+                <i class="fa-solid fa-star" style="margin:0;"></i>
+            <i class="fa-solid fa-star" style="margin:0;"></i>
+        </div>
+
+        <p style="margin:0; font-size:.6em;"><i class="fa-solid fa-check" style="margin:0;"></i> organico</p>
+
+        <p class="card-price">
+            R$10.50
+        </p>
+        <p style="margin:0; font-size:.5em">
+            Criado em setembro de 2022
+        </p>
+    </div>
+</div> */}
+
+function createProductCard(item) {
+  if (!item) return;
+  console.log('item', item)
+
+  const cardContainer = document.createElement('div');
+  cardContainer.className = 'card-container'
+  cardContainer.setAttribute('product-id', item.product_id)
+  cardContainer.addEventListener('click', (e) => { 
+    window.location.href = `/produto/${e.target.getAttribute('product-id')}`
+  })
   
+  const cardFirst = document.createElement('img');
+  cardFirst.setAttribute('src', `${BASE_URL_PATH}file_system/product/${item.product_image}`);
+  cardFirst.className = 'card-first'
+
+  const cardTitle = document.createElement('h2');
+  cardTitle.className = 'card-title'
+  cardTitle.style = 'margin: 0;'
+  cardTitle.innerText = item.product_name;
+  
+  const cardTags = document.createElement('p');
+  cardTags.className = 'card-tags'
+  cardTags.innerText = `${item.tags}`
+
+  const cardStars = document.createElement('div');
+  cardStars.className = 'card-stars'
+  handleAverage(cardStars, item.average)
+  
+  const cardCategory = document.createElement('p');
+  cardCategory.innerText = item.is_organic
+
+  const cardIsOrganic = document.createElement('p');
+  cardIsOrganic.style = 'margin:0; font-size:.6em;'
+  if (cardIsOrganic == 0) cardIsOrganic.innerHTML = '<i class="fa-solid fa-check" style="margin:0;"></i> organico'
+  else cardIsOrganic.innerHTML = '<i class="fa-solid fa-x" style="margin:0;"></i> organico'
 
 
+  const cardPrice = document.createElement('p');
+  cardPrice.className = 'card-price'
+  cardPrice.innerText = `R$${item.price}/ ${item.unity}`
+  
+  const cardCreatedAt = document.createElement('p');
+  cardCreatedAt.style = 'margin:0; font-size:.5em'
+  cardCreatedAt.innerText = `${item.created_at}`
+
+  const cardSecond = document.createElement('div');
+  cardSecond.className = 'card-second';
+
+  cardSecond.append(cardTitle)
+  cardSecond.append(cardTags)
+  cardSecond.append(cardStars)
+  cardSecond.append(cardIsOrganic)
+  cardSecond.append(cardPrice)
+  cardSecond.append(cardCreatedAt)
+
+
+  cardContainer.append(cardFirst);
+  cardContainer.append(cardSecond);
+  return cardContainer;
 }
 
 
@@ -113,7 +244,6 @@ async function createCommentElement(comment, userid) {
   return commentContainer
   
 }
-
 function formatDate(date) {
   const month = convertNumberToMonth(date.substring(5, 7))
   return `${date.substring(8,10)} de ${month} de ${date.substring(0,4)}` 
@@ -146,28 +276,27 @@ function appendOnPage(data) {
 }
 
 
-function createProductCard(item) {
-  if (!item) return;
 
-  const cardContainer = document.createElement('div');
-  cardContainer.className = 'card-container'
-  cardContainer.setAttribute('product-id', item.product_id)
-  
-  const cardImage = document.createElement('img');
-  cardImage.setAttribute('src', `${BASE_URL_PATH}file_system/product/${item.product_image}`);
-  cardImage.className = 'card-first'
 
-  const cardTitle = document.createElement('h2');
-  cardTitle.innerText = item.product_name;
-
-  const cardSecond = document.createElement('div');
-  cardSecond.className = 'card-second';
-  cardSecond.innerText = item.product_description;
-
-  cardImage.append(cardTitle);
-  cardContainer.append(cardImage);
-  cardContainer.append(cardSecond);
-  return cardContainer;
+function handleAverage(parentElement, number) {
+  if (!number) {
+    parentElement.innerHTML = '<i class="fa-regular fa-heart" style="margin:0;"></i><i class="fa-regular fa-heart" style="margin:0;"></i><i class="fa-regular fa-heart" style="margin:0;"></i><i class="fa-regular fa-heart" style="margin:0;"></i><i class="fa-regular fa-heart" style="margin:0;"></i>'
+  }
+  if (number == 1) {
+    parentElement.innerHTML = '<i class="fa-solid fa-heart" style="margin:0;"></i><i class="fa-regular fa-heart" style="margin:0;"></i><i class="fa-regular fa-heart" style="margin:0;"></i><i class="fa-regular fa-heart" style="margin:0;"></i><i class="fa-regular fa-heart" style="margin:0;"></i>'
+  }
+  if (number == 2) {
+    parentElement.innerHTML = '<i class="fa-solid fa-heart" style="margin:0;"></i><i class="fa-solid fa-heart" style="margin:0;"></i><i class="fa-regular fa-heart" style="margin:0;"></i><i class="fa-regular fa-heart" style="margin:0;"></i><i class="fa-regular fa-heart" style="margin:0;"></i>'
+  }
+  if (number == 3) {
+    parentElement.innerHTML = '<i class="fa-solid fa-heart" style="margin:0;"></i><i class="fa-solid fa-heart" style="margin:0;"></i><i class="fa-solid fa-heart" style="margin:0;"></i><i class="fa-regular fa-heart" style="margin:0;"></i><i class="fa-regular fa-heart" style="margin:0;"></i>'
+  }
+  if (number == 4) {
+    parentElement.innerHTML = '<i class="fa-solid fa-heart" style="margin:0;"></i><i class="fa-solid fa-heart" style="margin:0;"></i><i class="fa-solid fa-heart" style="margin:0;"></i><i class="fa-solid fa-heart" style="margin:0;"></i><i class="fa-regular fa-heart" style="margin:0;"></i>'
+  }
+  if (number == 5) {
+    parentElement.innerHTML = '<i class="fa-solid fa-heart" style="margin:0;"></i><i class="fa-solid fa-heart" style="margin:0;"></i><i class="fa-solid fa-heart" style="margin:0;"></i><i class="fa-solid fa-heart" style="margin:0;"></i><i class="fa-solid fa-heart" style="margin:0;"></i>'
+  }
 }
 
 
@@ -210,15 +339,45 @@ async function fireRattingRequest(p_id, critic) {
   return await res.json();
 }
 
+function handleCreateCommentStarsChange(starNumber) {
+  const starsContainer = document.querySelector('.create-comment-stars-container');
+  const star1 = document.getElementById('star1')
+  const star2 = document.getElementById('star2')
+  const star3 = document.getElementById('star3')
+  const star4 = document.getElementById('star4')
+  const star5 = document.getElementById('star5')
+  
+  while (starsContainer.hasChildNodes()) {
+    starsContainer.removeChild(starsContainer.lastChild);
+  }
 
+  if (starNumber == 1) {
+    starsContainer.innerHTML = '<i class="fa-solid fa-heart" id="star1"></i><i class="fa-regular fa-heart" id="star2"></i><i class="fa-regular fa-heart" id="star3"></i><i class="fa-regular fa-heart" id="star4"></i><i class="fa-regular fa-heart" id="star5"></i>'
+  } else if (starNumber == 2) {
+    starsContainer.innerHTML = '<i class="fa-solid fa-heart" id="star1"></i><i class="fa-solid fa-heart" id="star2"></i><i class="fa-regular fa-heart" id="star3"></i><i class="fa-regular fa-heart" id="star4"></i><i class="fa-regular fa-heart" id="star5"></i>'
+  } else if (starNumber == 3) {
+    starsContainer.innerHTML = '<i class="fa-solid fa-heart" id="star1"></i><i class="fa-solid fa-heart" id="star2"></i><i class="fa-solid fa-heart" id="star3"></i><i class="fa-regular fa-heart" id="star4"></i><i class="fa-regular fa-heart" id="star5"></i>'
+  } else if (starNumber == 4) {
+    starsContainer.innerHTML = '<i class="fa-solid fa-heart" id="star1"></i><i class="fa-solid fa-heart" id="star2"></i><i class="fa-solid fa-heart" id="star3"></i><i class="fa-solid fa-heart" id="star4"></i><i class="fa-regular fa-heart" id="star5"></i>'
+  } else if (starNumber == 5) {
+    starsContainer.innerHTML = '<i class="fa-solid fa-heart" id="star1"></i><i class="fa-solid fa-heart" id="star2"></i><i class="fa-solid fa-heart" id="star3"></i><i class="fa-solid fa-heart" id="star4"></i><i class="fa-solid fa-heart" id="star5"></i>'
+  }
+
+  for (let i = 1; i < 6; i++) { 
+      document.getElementById(`star${i}`).addEventListener('click', () => handleCreateCommentStarsChange(i))
+    }
+}
 
 
 // function getStoredToken() {
 //   return window.localStorage.getItem("token") || null;
 // }
 
+
+
 async function loadProductRatings(p_id) {
-  const res = await fetch(`${BASE_URL_PATH_AUTH}acharavaliacoes/${p_id}`, {
+  console.log('here ',commentPack)
+  const res = await fetch(`${BASE_URL_PATH_AUTH}acharavaliacoes/${p_id}/${commentPack}`, {
     method: 'GET',
     // body: JSON.stringify({p_id, critic}),
     headers: {
@@ -226,5 +385,6 @@ async function loadProductRatings(p_id) {
       authorization: getStoredToken(),
     }
   })
+  
   return await res.json();
 }
