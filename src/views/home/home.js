@@ -37,7 +37,7 @@ document.querySelector('.search-btn').addEventListener('click', (e) => {
 
 function searchProducts() {
   const typedValue = document.querySelector('.main-input').value
-  window.location.href = `${BASE_URL_PATH}getprodutos?queryDescriptionAlso=true&pack=${0}&nomeProduto=${typedValue}`
+  window.location.href = `${BASE_URL_PATH}getprodutos?queryDescriptionAlso=true&pack=${1}&nomeProduto=${typedValue}`
 }
 
 

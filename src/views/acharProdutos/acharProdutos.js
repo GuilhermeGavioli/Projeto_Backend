@@ -1,3 +1,5 @@
+
+
 const BASE_URL_PATH =  'http://localhost:3000/'
 let fetchCont = 0;
 let isOver = false;
@@ -6,22 +8,70 @@ window.onload = async () => {
   
   const data = await handleUserFetchTokenData('stayOnThePageStillNotLoggedIn');
 
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const packparam = urlParams.get('pack')
+  const categoryParam = urlParams.get('category')
   const productsTotal = document.getElementById('product_total').getAttribute('product_total')
+  const c1 = document.querySelector('.c1')
+  //resultados text
+  const resultadosTextElement = document.querySelector('.resultados-text')
+  const searchedName = getResultadosText();
+  resultadosTextElement.innerText = c1.childElementCount - 1 + " de " + productsTotal + ' resultados para "' + searchedName + '"'
+  
+  //
+  paintCategory(categoryParam);
+
   console.log('TOTAL ', productsTotal)
   if (productsTotal > 12) {
     handlePaginationcreation(productsTotal);
+    paintPaginationButton(packparam);
   }
 
-  // const dataLength = document.getElementById('data-length').getAttribute('dataLength');
-  // if (Number(dataLength) == 0) { 
-  //   const noResultsContainer = document.querySelector('.no-results-container');
-  //   noResultsContainer.style.visibility = 'visible';
-  // } else {
-  //   window.onscroll = async () => {
-  //     handlePermanentFetchingOnScroll();
-  //   }
-  // }
+  // const queryParams = queryParamsString
+  // .split('&')
+  // .reduce((accumulator, singleQueryParam) => {
+  //   const [key, value] = singleQueryParam.split('=');
+  //   accumulator[key] = value;
+  //   return accumulator;
+  // }, {});
+  // console.log(queryParams)
 
+  // const queryParamsString = window.location.search.substring(1);
+
+  // console.log(queryParamsString)
+  
+}
+function paintCategory(category) {
+  const selectedCategory = document.createElement('div');
+  selectedCategory.className = 'selected-category';
+  if (category == "todos") document.getElementById('todos-category').append(selectedCategory);
+  if (category == "vegetais") document.getElementById('vegetais-category').append(selectedCategory);
+  if (category == "frutas") document.getElementById('frutas-category').append(selectedCategory);
+  if (category == "carnes") document.getElementById('carnes-category').append(selectedCategory);
+  if (category == "laticinios") document.getElementById('laticinios-category').append(selectedCategory);
+  if (category == "sementes") document.getElementById('sementes-category').append(selectedCategory);
+  if (category == "graos") document.getElementById('graos-category').append(selectedCategory);
+  if (category == "fertilizantes") document.getElementById('fertilizantes-category').append(selectedCategory);
+  if (category == "outros") document.getElementById('outros-category').append(selectedCategory);
+  
+  
+}
+
+function getResultadosText() {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams.get('nomeProduto')
+}
+
+function paintPaginationButton(packNumber) {
+  const paginationContainer = document.querySelector('.pagination-container')
+  Array.from(paginationContainer.children).map(element => { 
+    if (element.innerText == packNumber.toString()) { 
+      element.className = 'selected-pagination-block';
+    }
+  })
+  
 }
 
 function handlePaginationcreation(total) {
@@ -46,7 +96,7 @@ function createPagination(numberOfPages) {
 
   paginationContainer.append(beforeBlock)
   
-  for (let i = 1; i < numberOfPages + 1; i++) {
+  for (let i = 1; i < numberOfPages + 2; i++) {
     const paginationItem = document.createElement('div');
    
     paginationItem.addEventListener('click', () => window.location.href = `${BASE_URL_PATH}getprodutos?queryDescriptionAlso=true&pack=${i}&nomeProduto=${"as"}`)

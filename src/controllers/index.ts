@@ -149,10 +149,11 @@ export const controllers = {
     getProdutos: async (req: Request, res: Response) => {
         const nomeProduto = req.query.nomeProduto?.toString().toLowerCase();
         const pack = req.query.pack?.toString().toLowerCase();
+        const category = req.query.category?.toString().toLowerCase();
         const procurarnadescricao = req.query.queryDescriptionAlso?.toString().toLowerCase();
-        if (!nomeProduto || !pack) return res.json('Produto nao existe')
+        if (!nomeProduto || !pack || !category) return res.json('Informacao de Produto nao especificada')
         try {
-            const productsFound = await mySqlDatabase.findManyProductsByName(nomeProduto, (procurarnadescricao == "true"), Number(pack));
+            const productsFound = await mySqlDatabase.findManyProductsByName(nomeProduto, category, (procurarnadescricao == "true"), Number(pack));
             return res.render(path.join("acharProdutos", "acharProdutos.ejs"), { productsFound, nomeProduto });
         
         } catch (err) {

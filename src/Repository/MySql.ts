@@ -258,7 +258,19 @@ export default class MySql implements Repository {
         await this.connection.query(`DELETE FROM user WHERE userid="${id}" && email="${email}";`);
     }
 
-    public async findManyProductsByName(name: string, queryDescriptionAlso: boolean, pack: number): Promise<GetOneOutputDTO[] | null> {
+    public async findManyProductsByName(name: string, category: string, queryDescriptionAlso: boolean, pack: number): Promise<GetOneOutputDTO[] | null> {
+
+        if (category !== "todos") {
+            const [rows] = await this.connection.execute(`SELECT *, (
+                select COUNT(*)
+                FROM product WHERE product_name LIKE "%${name}%" OR product_description LIKE "%${name}%" AND category="${category}"
+            ) AS total
+            FROM product
+            WHERE product_name LIKE "%${name}%" OR product_description LIKE "%${name}%" AND category="${category}"
+            LIMIT  12 OFFSET ${(pack - 1) * 11};`);
+            if (!rows) return null;
+            return rows;
+        }
 
         if (queryDescriptionAlso) {
             const [rows] = await this.connection.execute(`SELECT *, (
@@ -268,8 +280,7 @@ export default class MySql implements Repository {
             FROM product
             
             WHERE product_name LIKE "%${name}%" OR product_description LIKE "%${name}%"
-            LIMIT  12 OFFSET ${pack * 12};`);
-            // console.log(rows)
+            LIMIT  12 OFFSET ${(pack - 1) * 11};`);
             if (!rows) return null;
             return rows;
 

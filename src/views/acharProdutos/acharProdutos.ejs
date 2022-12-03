@@ -77,7 +77,7 @@
         </div> -->
 
         <div class="sidebar">
-            <div class="tags">
+            <!-- <div class="tags">
                 <div class="tag" toBeAddedContainer="true">
                     <p class="tag-text">Terra</p>
                 </div>    
@@ -122,18 +122,18 @@
                 <div class="tag" toBeAddedContainer="true">
                     <p class="tag-text">Saudavel</p>
                 </div>    
-            </div>
+            </div> -->
 
-            <div class="filter-rating">
+            <!-- <div class="filter-rating">
                 <i class="fa-regular fa-heart"></i>
                 <i class="fa-regular fa-heart"></i>
                 <i class="fa-regular fa-heart"></i>
                 <i class="fa-regular fa-heart"></i>
                 <i class="fa-regular fa-heart"></i>
-            </div>
+            </div> -->
             
                        
-                        <div class="checkbox-and-text-container">
+                        <!-- <div class="checkbox-and-text-container">
                             <input type="checkbox" name="category" id="">
                             <p style="margin: 0;">Vegetal</p>
                         </div>
@@ -164,11 +164,21 @@
                         <div class="checkbox-and-text-container">
                             <input type="checkbox" name="category" id="">
                             <p style="margin: 0;">Outro</p>
+                        </div> -->
+
+                        <h2>Filtro</h2>
+                        <div class="checkbox-and-text-container">
+                            <input type="checkbox" name="organic" id="">
+                            <p style="margin: 0;">Procurar na descricao</p>
                         </div>
 
 
 
-
+                        <div class="sidebar-item-container">
+                            <div class="sidebar-item-left-line"></div>
+                            <p style="margin: 0 5px 0 5px;">Valor</p>
+                            <div class="sidebar-item-right-line"></div>
+                        </div>
 
             
             <div class="checkbox-and-text-container">
@@ -200,6 +210,51 @@
                 </select>
             </div>
 
+
+            <div class="sidebar-item-container">
+                <div class="sidebar-item-left-line"></div>
+                <p style="margin: 0 5px 0 5px;">Avaliação</p>
+                <div class="sidebar-item-right-line"></div>
+            </div>
+
+            <div class="checkbox-and-text-container">
+                <p style="margin:0;">Avaliado em:</p>
+                <select value="rating">
+                    <option value="">Todas</option>
+                    <option value="1star">1 Estrela</option>
+                    <option value="2star">2 Estrelas</option>
+                    <option value="3star">3 Estrelas</option>
+                    <option value="4star">4 Estrelas</option>
+                    <option value="5star">5 Estrelas</option>
+                </select>
+            </div>
+
+            
+            
+
+            <div class="sidebar-item-container">
+                <div class="sidebar-item-left-line"></div>
+                <p style="margin: 0 5px 0 5px;">Mais</p>
+                <div class="sidebar-item-right-line"></div>
+            </div>
+
+            <div class="checkbox-and-text-container">
+                <input type="checkbox" name="organic" id="">
+                <p style="margin: 0;">Orgânico</p>
+            </div>
+            <div class="checkbox-and-text-container">
+                <input type="checkbox" name="organic" id="">
+                <p style="margin: 0;">Procurar nas 'tags'</p>
+            </div>
+
+
+
+            <div class="sidebar-item-container">
+                <div class="sidebar-item-left-line"></div>
+                <p style="margin: 0 5px 0 5px;">Data</p>
+                <div class="sidebar-item-right-line"></div>
+            </div>
+
             <div class="checkbox-and-text-container">
                 <p style="margin:0;">Criado em:</p>
                 <select value="unity">
@@ -210,42 +265,61 @@
                     <option value="year">Ano</option>
                 </select>
             </div>
-            
 
-            <div class="checkbox-and-text-container">
-                <input type="checkbox" name="organic" id="">
-                <p style="margin: 0;">organico</p>
-            </div>
+            <button>Filtrar</button>
         </div>
 
+
+
+
+
+
+
+
+
+
         <div class="categories">
-            <h2>7 de 20 resultados para "celular"</h2>
+            <h2 class="resultados-text"></h2>
 
             <div class="categories-circles">
-                <div class="category-circle">
-                    <i class="fa-solid fa-apple-whole"></i>
+                <div class="category-circle" id="todos-category">
+                    <i class="fa-solid fa-border-all" style="margin:0;"></i>
+                    <p class="category-text">Todos</p>
                 </div>
-                <div class="category-circle">
-                    <i class="fa-solid fa-carrot"></i>
+                <div class="category-circle" id="vegetais-category">
+                    <i class="fa-solid fa-carrot" style="margin:0;"></i>
+                    <p class="category-text">Vegetais</p>
                     <!-- <p>vegetables</p> -->
+                </div>
+                <div class="category-circle" id="frutas-category">
+                    <i class="fa-solid fa-apple-whole" style="margin:0;"></i>
+                    <p class="category-text">Frutas</p>
+                    
+                </div>
+                <div class="category-circle" id="carnes-category">
+                    <i class="fa-solid fa-drumstick-bite"></i>
+                    <p class="category-text">Carnes</p>
+                </div>
+                <div class="category-circle" id="laticinios-category">
+                    <i class="fa-solid fa-cheese"></i>
+                    <p class="category-text">Laticinios</p>
+                </div>
+                <div class="category-circle" id="sementes-category">
+                    <i class="fa-solid fa-seedling"></i>
+                    <p class="category-text">Sementes</p>
+                
             </div>
-            <div class="category-circle">
-                <i class="fa-solid fa-poop"></i>
+            <div class="category-circle" id="graos-category">
+                <i class="fa-solid fa-wheat-awn"></i>
+                    <p class="category-text">Graos</p>
+                </div>
+                <div class="category-circle" id="fertilizantes-category">
+                    <i class="fa-solid fa-poop"></i>
+                    <p class="category-text">Fertilizantes</p>
             </div>
-            <div class="category-circle">
-                <i class="fa-solid fa-poop"></i>
-            </div>
-            <div class="category-circle">
-                <i class="fa-solid fa-poop"></i>
-            </div>
-            <div class="category-circle">
-                <i class="fa-solid fa-poop"></i>
-            </div>
-            <div class="category-circle">
-                <i class="fa-solid fa-poop"></i>
-            </div>
-            <div class="category-circle">
-                <i class="fa-solid fa-poop"></i>
+                <div class="category-circle" id="outros-category">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                    <p class="category-text">Outros</p>
             </div>
         </div>
         
@@ -255,7 +329,7 @@
     
     <span id="product_total" product_total="<%=productsFound[0]?.total%>"></span>
     
-    <div class="c1" style="position: relative; padding-top: 115px;">
+    <div class="c1" style="position: relative; padding-top: 50px;">
         
         <% productsFound.forEach(product => {  %>        
 
@@ -292,7 +366,7 @@
     <div class="pagination-container">
         <!-- <div class="pagination-block" id="before-block">Anterior</div>
         <div class="pagination-block">1</div>
-        <div class="pagination-block">2</div>
+        <div class="pagination-block">2</div>1
         <div class="pagination-block">3</div>
         <div class="pagination-block" id="after-block">Próximo</div> -->
     </div>
