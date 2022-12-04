@@ -6,11 +6,11 @@
 .container2{
     display: grid;
     grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: auto auto auto auto;
+    grid-template-rows: auto auto;
     grid-template-areas: "c1 c1 c2 c2 c2 c2 c2"
-    "benefits benefits benefits benefits benefits benefits benefits"
-    "products products products products products products products"
-    "comments comments comments comments propaganda propaganda propaganda";
+    /* "benefits benefits benefits benefits benefits benefits benefits" */
+    /* "products products products products products products products" */
+    "comments comments comments comments comments comments comments";
     
     /* padding: 0 300px 0 300px; */
     max-width: 2000px;
@@ -217,7 +217,14 @@
 .comment-image-and-username-container{
     display: flex;
     align-items: center;
+    padding: 12px 8px 12px 8px;
+    border-top: 1px solid rgb(235,235,235); margin-top: 30px; padding-top: 15px;
 }
+.comment-image-and-username-container:hover{
+    cursor: pointer;
+    opacity: 75%;
+}
+
 .comment-image{
     width: 50px;
     height: 50px;
@@ -246,13 +253,135 @@
 }
 
 
+.comment-design-container{
+    height: 155px;
+    position: relative;
+    width: 100%;
+    margin-top: 45px;
+}
+.comment-design{
+    width: 375px;
+    height: 90px;
+    padding: 17px 15px 17px 15px;
+    border-radius: 20px;
+    position: absolute;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    box-shadow: 3px 3px 10px 2px rgba(0, 0, 0, 0.183);
+}
+.comment-design-pic{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: relative;
+    border: 3px solid var(--main-green);
+}
+.comment-design-pic-inside{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    position: absolute;
+    inset: 0 0 0 0;
+    margin: auto;
+    background-color: rgb(225,225,225);
+}
+#my-create-comment-pic{
+    width: 38px;
+    height: 38px;
+}
+
+.comment-design-texts-container{
+    width: 280px;
+    height: 100%;
+    padding: 5px 8px 8px 5px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+#comment-design-pic-diff{
+    position: absolute;
+    bottom: 18px;
+    z-index: 2;
+    right: 18px;
+    width: 85px;
+    height: 85px;
+    border: 4px solid var(--main-green);
+}
+#comment-design-pic-inside-diff{
+    width: 69px;
+    height: 69px;
+}
+#comment-design-diff{
+
+    height: 260px;
+    border-bottom-right-radius: 2px;
+}
+#comment-design-text-diff{
+
+    width: 100%;
+}
+#comment-design-one{
+    top: 0;
+    left: 0;
+    right: 35px;
+}
+#comment-design-two{
+    bottom: 0;
+    left: 60px;
+    right: 0;
+}
+#comment-design-three{
+    bottom: 12px;
+    left: 0;
+}
+#comment-design-four{
+    bottom: -17px;
+    right: 0;
+}
+.comment-design-bar-one, .comment-design-bar-two{
+    width: 95%;
+    height: 18px;
+    border-radius: 6px;
+    background-color: rgb(240,240,240);
+}
+.comment-design-bar-two{
+    width: 55%;
+}
+
 /* COMMENT ELEMENT*/
 
 .create-comment-container{
     display: flex;
     padding: 0 25px 15px 25px;
-    border-bottom: 1px solid rgb(225,225,225);
     margin-bottom: 50px;
+    width: 600px;
+    visibility: hidden;
+
+    margin-top: 25px;
+}
+.pic-and-textarea-container{
+    display: flex;
+    background-color: rgb(245,245,245);
+    width: 100%;
+    align-items: center;
+    justify-content: start;
+    height: fit-content;
+    padding: 8px;
+}
+#my-create-comment-pic{
+    width: 50px;
+    height: 50px;
+    margin-right: 8px;
+}
+#my-create-comment-pic:hover{
+    opacity: 85%;
+}
+#my-create-comment-pic-inside{
+    height: 41px;
+    width: 41px;
 }
 .create-comment-title{
     text-align: center;
@@ -269,22 +398,29 @@
 }
 .create-comment-stars-container{
     display: flex;
-    font-size: 1.7em;
+    font-size: 1.4em;
     margin: auto;
     width: fit-content;
     color: var(--main-green);
-    width: 175px;
+    width: fit-content;
     height: fit-content;
     margin: 0;
     padding: 0;
-    padding-bottom: 8px;
     justify-content: space-evenly;
 }
+#star1, #star2, #star3, #star4, #star5{
+    padding-left: 0; margin: 0 2px 0 2px;
+}
+#star1{
+    padding-left: 0; margin: 0 2px 0 0;
+}
+
 .ratting-input{
-    width: 100%;
-    border: 1px solid rgb(225,225,225);
+    flex-grow: 1;
+    border: none;
+    background-color: rgba(255,255,255,0);
     resize: none;
-    height: 120px;
+    height: 55px;
     padding: 8px;
     outline: none;
 }
@@ -299,12 +435,15 @@
     background-color: var(--main-green);
     color: white;
     padding: 5px 19px 5px 19px;
-    margin: 12px 0 12px 0;
     border-radius: 4px;
-    float: right;
-    align-self: flex-end;
 }
+.comment-design-diff-container{
+    width: 450px;
 
+    height: 300px;
+    margin-top: 45px;
+    position: relative;
+}
 
 
 

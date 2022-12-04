@@ -13,6 +13,93 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
 
 
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.card-slider{
+    grid-area: cardslides;
+    position: relative;
+    margin-top: 75px;
+    height: 450px;
+}
+
+.backward-btn{
+    left: -30px;
+    z-index: 2;
+
+}
+.foward-btn{
+    right: -30px;
+    z-index: 2;
+}
+.foward-btn, .backward-btn{
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 75px;
+    width: 60px;
+    height: 60px;
+    background-color: rgb(245, 245, 245);
+    color: rgb(98, 98, 98);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    border: 1px solid gray;
+    font-weight: 800;
+}
+
+.cards-slide-main-container{
+    height: 450px;
+    width: 800px;
+
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin: auto;
+}
+
+.cards-slide-inside-container{
+    width: 600px;
+    height: 450px;
+
+    position: relative;
+    /* display: inline-block; */
+    overflow: hidden;
+}
+
+.cards-slide-grid-container{
+    display: flex;
+    justify-content: start;
+
+    position: absolute;
+    /* width: fit-content; */
+    width: 2000px;
+    height: 100%;
+    top: 0;
+    /* left: 0; */
+    bottom: 0;
+    /* margin: auto; */
+    transition: 0.3s ease-in-out;
+}
+
+.cards-slide-main-container{
+    width: fit-content;
+}
+.cards-slide-grid-container{
+    width: fit-content;
+}
+
+.cards-slide-block{
+    height: 100%;
+    padding: 0 5px 0 5px;
+    background-color: rgba(255,255,255,0);
+}
+/* ends here */
 
 .banner-container{
     height: fit-content;
@@ -135,14 +222,15 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1.5fr 1fr .5fr;
     grid-template-areas: 
+    "c1 c1 c1 c1 c1 c1"
     "c9 c9 c9 c9 c9 c9"
     "c10 c10 c10 c10 c10 c10"
-    "c1 c1 c1 c1 c1 c1"
+    "cardslides cardslides cardslides cardslides cardslides cardslides"
     "c0 c0 c0 c0 c0 c0"
     "c12 c12 c12 c12 c12 c12"
     "c11 c11 c11 c11 c11 c11"
     "c3 c3 c3 c3 c3 c3";
-    grid-template-rows: auto auto auto 400px 450px auto 600px;
+    grid-template-rows: auto auto auto auto 400px 450px auto 600px;
     column-gap: 5px;
     /* row-gap: 25px; */
     padding-top: 10px;
@@ -390,8 +478,9 @@ colorido */
 .c9_1{
     height: fit-content;
     width: 48%;
-    background-color: #134c78;
-    background-color: #07431B;
+    background-color: rgb(215,215,215);
+    background-color: var(--main-green);
+    background-color: rgb(215,215,215);
     /* background-color: #74a82b; */
     /* background-color: #8005FB; */
     display: flex;
@@ -401,10 +490,12 @@ colorido */
     background-position: right bottom;
     height: 400px;
     
+    
 }
 .c9_2{
     background-color: #F1F5F8;
     background-color: #7c46bb;
+    background-color: rgb(235,235,235);
     background-color: #1F516C;
     width: 48%;
     
@@ -425,6 +516,7 @@ colorido */
 }
 
 .c9-pic-1{
+    background-color: rgb(245,245,245);
 
     width:  45%;
     /* background-image: url('https://images.pexels.com/photos/39015/wheat-field-wheat-cereals-grain-39015.jpeg?auto=compress&cs=tinysrgb&w=600'); */
@@ -472,10 +564,11 @@ colorido */
     /* background-color: rgb(249, 249, 249); */
     /* border: 1px solid black; */
     /* background-color: rgb(126, 36,222); */
-    margin-top: 100px;
+    margin-top: 50px;
 }
 .c0{
     /* background-color: blue; */
+    margin-top: 85px;
     grid-area: c0;
     display: flex;
     justify-content: space-between;
@@ -490,7 +583,7 @@ colorido */
     
     display: flex;
     flex-direction: column;
-    box-shadow: 0px 4px 6px -4px rgba(0, 0, 0, 0.154);
+    box-shadow: 3px 4px 6px -4px rgba(0, 0, 0, 0.154);
     
 }
 .website-card-first-part, .website-card-second-part{
@@ -506,9 +599,11 @@ colorido */
     padding: 10px;
 }
 .website-card-circle{
+    background-color: var(--main-green);
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
+    color: white;
     
 }
 .website-card-second-part{
@@ -519,8 +614,13 @@ colorido */
     font-size: .8em;
     text-align: center;
 }
-.c1, .c1_1{
+
+.c1{
     grid-area: c1;
+    margin: 75px 0 75px 0;
+}
+
+.c1, .c1_1{
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -759,7 +859,7 @@ colorido */
     min-height: 350px;
     height: fit-content;
     /* margin: 0 15px 0 15px; */
-    width: 220px;
+    width: 100%;
 }
 
 .card-container:hover{
@@ -796,15 +896,14 @@ colorido */
 }
 .card-title{
     text-align: start;
-    color: gray;
+    color: rgb(56, 56, 56);
     margin: 0;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    font-size: .9em;
+    font-size: 1.1em;
     width: 100%;
     pointer-events: none;
-    background-color: green;
     margin-bottom: 0;
 }
 .card-tags{
@@ -812,28 +911,33 @@ colorido */
     font-size: .6em;
     word-break: keep-all;
     margin: 0;
+    margin: 5px 0 0 0;
 }
 .card-stars{
     display: flex;
     justify-content: start;
     width: fit-content;
-    background-color: gray;
+    margin: 5px 0 0 0;
+    color: var(--main-green);
 }
 .fa-star{
     margin: 0;
     font-size: .7em;
     padding: 0;
-    background-color: red;
+    color: var(--main-green);;
 }
 .card-price{
     text-align: start;
-    background-color: yellow;
-    color: red;
-    font-size: .8em;
+    color: var(--main-green);
+    font-size: 1.1em;
     margin: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     word-break: keep-all;
+}
+.card-created-at{
+    margin:0; 
+    font-size:.5em;
 }
 
 
@@ -936,7 +1040,12 @@ svg {
 
 
 
-
+  .cards-slide-inside-container{
+    width: 1110px;
+}
+.cards-slide-block{
+    width: 222px;
+}
 
 
 
@@ -949,6 +1058,13 @@ svg {
 
 
 @media (max-width: 1210px){
+    .cards-slide-inside-container{
+        width: 930px;
+    }
+    .cards-slide-block{
+        width: 232.5px;
+    }
+
     .c3{
         grid-area: c3;
         display: grid;
@@ -963,11 +1079,26 @@ svg {
 
 
 
-
+@media (max-width: 1100px){
+    .cards-slide-inside-container{
+        width: 920px;
+    }
+    .cards-slide-block{
+        width: 230px;
+    }
+}
 
 
 
 @media (max-width: 1000px){
+    .cards-slide-inside-container{
+        width: 840px;
+    }
+    .cards-slide-block{
+        width: 210px;
+    }
+    
+
     .propaganda-text-controller{
         /* background-color: red; */
         font-size: 1.8em;
@@ -990,12 +1121,13 @@ svg {
         grid-template-areas: 
         "c9 c9 c9 c9 c9 c9"
         "c10 c10 c10 c10 c10 c10"
+        "cardslides cardslides cardslides cardslides cardslides cardslides"
         "c1 c1 c1 c1 c1 c1"
         "c0 c0 c0 c0 c0 c0"
         "c12 c12 c12 c12 c12 c12"
         "c11 c11 c11 c11 c11 c11"
         "c3 c3 c3 c3 c3 c3";
-        grid-template-rows: auto auto auto 400px 450px auto 600px;
+        grid-template-rows: auto auto auto auto 400px 450px auto 600px;
         column-gap: 5px;
         /* row-gap: 25px; */
         padding-top: 10px;
@@ -1078,13 +1210,40 @@ svg {
     }
    
 }
+@media (max-width: 950px){
+  
+    .cards-slide-inside-container{
+        width: 840px;
+    }
+    .cards-slide-block{
+        width: 210px;
+    }
+
+}
 
 
+@media (max-width: 900px){
+  
+    .cards-slide-inside-container{
+        width: 810px;
+    }
+    .cards-slide-block{
+        width: 270px;
+    }
 
-
+}
 
 
 @media (max-width: 885px){
+  
+        .cards-slide-inside-container{
+            width: 720px;
+        }
+        .cards-slide-block{
+            width: 240px;
+        }
+    
+
     .banner-title-container{
         width: 500px;
     }
@@ -1139,12 +1298,13 @@ svg {
         grid-template-areas: 
         "c9 c9 c9 c9 c9 c9"
         "c10 c10 c10 c10 c10 c10"
+        "cardslides cardslides cardslides cardslides cardslides cardslides"
         "c1 c1 c1 c1 c1 c1"
         "c0 c0 c0 c0 c0 c0"
         "c12 c12 c12 c12 c12 c12"
         "c11 c11 c11 c11 c11 c11"
         "c3 c3 c3 c3 c3 c3";
-        grid-template-rows: auto auto auto 400px 450px auto 600px;
+        grid-template-rows: auto auto auto auto 400px 450px auto 600px;
         column-gap: 0;
         /* row-gap: 25px; */
         padding-top: 10px;
@@ -1321,7 +1481,14 @@ svg {
 }
 
 
-
+@media (max-width: 750px) {
+    .cards-slide-inside-container{
+        width: 620px;
+    }
+    .cards-slide-block{
+        width: 310px;
+    }
+}
 
 @media (max-width: 730px){
     .c9_1{
@@ -1405,7 +1572,15 @@ svg {
 
 
 
+@media (max-width: 645px) {
+    .cards-slide-inside-container{
+        width: 470px;
+    }
+    .cards-slide-block{
+        width: 235px;
+    }
 
+}
 
 
 
@@ -1451,12 +1626,13 @@ svg {
             grid-template-areas: 
             "c9 c9 c9 c9 c9 c9"
             "c10 c10 c10 c10 c10 c10"
+            "cardslides cardslides cardslides cardslides cardslides cardslides"
             "c1 c1 c1 c1 c1 c1"
             "c0 c0 c0 c0 c0 c0"
             "c12 c12 c12 c12 c12 c12"
             "c11 c11 c11 c11 c11 c11"
             "c3 c3 c3 c3 c3 c3";
-            grid-template-rows: auto auto auto 400px 450px auto 600px;
+            grid-template-rows: auto auto auto auto 400px 450px auto 600px;
             column-gap: 0;
             /* row-gap: 25px; */
             padding-top: 10px;
@@ -1600,7 +1776,18 @@ svg {
 
 
 
+@media (max-width: 480px) {
+    body{
+        background-color: rgb(65, 21, 21);
+    }
+    .cards-slide-inside-container{
+        width: 380px;
+    }
+    .cards-slide-block{
+        width: 190px;
+    }
 
+}
 
 
 
@@ -1682,12 +1869,13 @@ svg {
         grid-template-areas: 
         "c9 c9 c9 c9 c9 c9"
         "c10 c10 c10 c10 c10 c10"
+        "cardslides cardslides cardslides cardslides cardslides cardslides"
         "c1 c1 c1 c1 c1 c1"
         "c0 c0 c0 c0 c0 c0"
         "c12 c12 c12 c12 c12 c12"
         "c11 c11 c11 c11 c11 c11"
         "c3 c3 c3 c3 c3 c3";
-        grid-template-rows: auto auto auto 400px 450px auto 600px;
+        grid-template-rows: auto auto auto auto 400px 450px auto 600px;
         column-gap: 5px;
         /* row-gap: 25px; */
         padding-top: 10px;
@@ -1781,4 +1969,21 @@ svg {
 
  
  
+}
+
+
+
+@media (max-width: 380px) {
+    body{
+        background-color: brown;
+    }
+    .cards-slide-inside-container{
+        width: 290px;
+        min-width: 290px;
+    }
+
+    .cards-slide-block{
+        min-width: 290px;
+        width: 290px;
+    }
 }

@@ -65,7 +65,13 @@ export default class MySql implements Repository {
     }
 
     public async findProductById(id: string): Promise<any | null> {
-        const [[rows]] = await this.connection.execute(`SELECT * from product WHERE product_id="${id}";`);
+        // const [[rows]] = await this.connection.execute(`SELECT * from product WHERE product_id="${id}";`);
+        const [[rows]] = await this.connection.execute(`
+        SELECT product.*, user.userid, user.full_name, user.user_image, user.created_at from product
+        INNER JOIN user
+        ON product.owner_id=user.userid WHERE product_id="${id}";`);
+
+
         const [[rows2]] = await this.connection.execute(`SELECT AVG(rating_stars) from ratting WHERE product_id="${id}";`);
         console.log('avg ' + JSON.stringify(JSON.stringify(rows2)));
 
@@ -259,14 +265,15 @@ export default class MySql implements Repository {
     }
 
     public async findManyProductsByName(name: string, category: string, queryDescriptionAlso: boolean, pack: number): Promise<GetOneOutputDTO[] | null> {
-
+        console.log(category)
         if (category !== "todos") {
+            console.log('todos')
             const [rows] = await this.connection.execute(`SELECT *, (
                 select COUNT(*)
-                FROM product WHERE product_name LIKE "%${name}%" OR product_description LIKE "%${name}%" AND category="${category}"
+                FROM product WHERE product_name LIKE "%${name}%" OR product_description LIKE "%${name}%" AND category="Frutas"
             ) AS total
             FROM product
-            WHERE product_name LIKE "%${name}%" OR product_description LIKE "%${name}%" AND category="${category}"
+            WHERE product_name LIKE "%${name}%" OR product_description LIKE "%${name}%" AND category="Frutas"
             LIMIT  12 OFFSET ${(pack - 1) * 11};`);
             if (!rows) return null;
             return rows;
@@ -294,6 +301,17 @@ export default class MySql implements Repository {
             // return rows;
         }
     }
+
+
+    public async findCertainAmountOfRandomProducts(amount: Number): Promise<GetOneOutputDTO[] | null> {
+        const [rows] = await this.connection.execute(`SELECT * FROM product  
+        ORDER BY RAND()
+        LIMIT ${amount}`);
+        if (!rows) return null;
+        return rows;
+    }
+
+
 
 
     public async sendRobotMessage(id: string, receiver: string, message_text: string): Promise<void> {

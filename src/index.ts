@@ -248,6 +248,19 @@ app.get('/acharprodutoporcategoria/:amount/:category', async (req, res) => {
     }
 })
 
+app.get('/getrandomproducts/:amount', async (req, res) => { 
+    const { amount } = req.params
+    if (!amount || Number(amount) > 21) return res.json('error')
+    try {
+        const products: any = await mySqlDatabase.findCertainAmountOfRandomProducts(Number(amount));
+        if (!products) return res.json({ found: null });
+        return res.json(products);
+    } catch (err) {
+        console.log(err)
+        return res.json({error: true});
+    }
+})
+
 // app.get('/getprodutosfromUser/:idprodutor', async (req, res) => {
 //     const idprodutor = req.params.idprodutor.toString().toLowerCase();
 //     const productFound = await mySqlDatabase.findProductsFromUser(idprodutor);

@@ -9,7 +9,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Vegetais",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -25,7 +25,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Outros",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -41,7 +41,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Vegetais",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -57,7 +57,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Vegetais",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -73,7 +73,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Promocao",
-    "Graos",
+    "Vegetais",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -89,7 +89,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Organico",
-    "Graos",
+    "Vegetais",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -105,7 +105,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     94.10,
     "kg",
     "Natural - Zero acucar - Organico - Saboroso",
-    "Graos",
+    "Laticinios",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -121,7 +121,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     89.99,
     "kg",
     "Natural - Organico",
-    "Graos",
+    "Frutas",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -137,7 +137,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Frutas",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -153,7 +153,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Outros",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -185,7 +185,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Frutas",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -197,7 +197,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
      "default_corn_grains.jpeg", 
     "Produto cultivado em terras ferteis sem uso de quimicos ou substancias prejudiciais a saude, etc... Portanto, o produto trata-se de um produto de origem organica, e natural. Foram colhidos recentemente 110kg do mesmo e espera-se vende-los em uma unica negociaçao, conta-te me para mais informaçoes.",
     false, 
-    58.10,
+    12.10,
     "kg",
     "Natural - Zero acucar - Organico",
     "Graos",
@@ -215,7 +215,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Outros",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -245,7 +245,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Outros",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -260,7 +260,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Outros",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -275,7 +275,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Fertilizantes",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -291,7 +291,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "fertilizantes",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -323,7 +323,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Frutas",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -338,7 +338,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Frutas",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -353,7 +353,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Outros",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -368,7 +368,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Vegetais",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -383,7 +383,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Vegetais",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -398,7 +398,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Vegetais",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -413,7 +413,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Vegetais",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -428,7 +428,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Carnes",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -443,7 +443,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Sem Gordura",
-    "Graos",
+    "Laticinios",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -458,7 +458,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Outros",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -505,7 +505,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Outros",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -520,7 +520,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Outros",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -535,7 +535,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Outros",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -580,7 +580,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Vegetais",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -595,7 +595,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Carnes",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -610,7 +610,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Carnes",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -625,7 +625,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Frutas",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -640,7 +640,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Frutas",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -655,7 +655,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Frutas",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -670,7 +670,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Frutas",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -685,7 +685,7 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Vegetais",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
@@ -715,7 +715,128 @@ product_id, product_name, product_image, product_description, is_organic, price,
     58.10,
     "kg",
     "Natural - Zero acucar - Organico",
-    "Graos",
+    "Laticinios",
     "default_user_4chdgbcs94c",
     "2022-11-02"
  );
+
+
+
+INSERT INTO ratting (
+    ratting_id,
+    product_id,
+    user_id,
+    rating_stars,
+    comment,
+    created_at
+)VALUES(
+    "afv8af8vafv",
+    "apdf4gfgwae7sdbcabcd4c9",
+    "default_user_cdc18yujj4",
+    4,
+    "Ótimo Produto mas o fornecedor não é muito ativo, tive que enviar vários emails.",
+    "2022-11-02"
+);
+
+INSERT INTO ratting (
+    ratting_id,
+    product_id,
+    user_id,
+    rating_stars,
+    comment,
+    created_at
+)VALUES(
+    "a84dfvafv",
+    "apdf4gfgwae7sdbcabcd4c9",
+    "default_user_bh478yujj4",
+    1,
+    "Ruim",
+    "2022-11-01"
+);
+
+
+INSERT INTO ratting (
+    ratting_id,
+    product_id,
+    user_id,
+    rating_stars,
+    comment,
+    created_at
+)VALUES(
+    "adv8advav",
+    "apdf4gfgwae7sdbcabcd4c9",
+    "default_user_vf44defd94c",
+    5,
+    "Gostei bastante do produto.",
+    "2022-10-28"
+);
+
+
+INSERT INTO ratting (
+    ratting_id,
+    product_id,
+    user_id,
+    rating_stars,
+    comment,
+    created_at
+)VALUES(
+    "av5ad8v44av",
+    "apdf4gfgwae7sdbcabcd4c9",
+    "default_user_4chdgbcs94c",
+    5,
+    "Adorei o produto, negociei com o vendedor e na mesma semana ja foi entregue.",
+    "2022-10-27"
+);
+
+
+INSERT INTO ratting (
+    ratting_id,
+    product_id,
+    user_id,
+    rating_stars,
+    comment,
+    created_at
+)VALUES(
+    "ava8fd4va8dfv",
+    "apdf4gfgwae7sdbcabcd4c9",
+    "default_user_vf44fdyh94c",
+    4,
+    "Gostei bastante, gostaria que tivesse mais diversificação de sabores.",
+    "2022-10-18"
+);
+
+
+INSERT INTO ratting (
+    ratting_id,
+    product_id,
+    user_id,
+    rating_stars,
+    comment,
+    created_at
+)VALUES(
+    "h8ntgtyntynty",
+    "apdf4gfgwae7sdbcabcd4c9",
+    "default_user_vf44fd94c",
+    4,
+    "Produto bom e barato, custo beneficio",
+    "2022-10-10"
+);
+
+
+INSERT INTO ratting (
+    ratting_id,
+    product_id,
+    user_id,
+    rating_stars,
+    comment,
+    created_at
+)VALUES(
+    "fva4f8v4aogb",
+    "apdf4gfgwae7sdbcabcd4c9",
+    "default_user_c1df4vfd94c",
+    1,
+    "Produto ruim, não gostei.",
+    "2022-10-05"
+);
+
+

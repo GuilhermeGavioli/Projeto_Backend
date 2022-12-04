@@ -34,7 +34,8 @@
    
 
     <%- include("../globals/header.ejs") %>
-    
+
+
     <div class="container"></div>
     
   
@@ -61,10 +62,12 @@
                 </div>
                 <div>
                     <!-- <p style="color: gray; font-weight: 200; margin: 0;">Criado por</p> -->
-                    <div class="comment-image-and-username-container" style="border-top: 1px solid rgb(235,235,235); margin-top: 30px; padding-top: 15px;">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Black_hole_-_Messier_87.jpg/1200px-Black_hole_-_Messier_87.jpg" alt="" class="comment-image">
+                    <div class="comment-image-and-username-container" onclick="window.location.href='/profile/<%= productFound.userid%>'">
+                        <img src="/file_system/user/<%=productFound.user_image%>" alt="" class="comment-image">
                         <div style="display: flex; flex-direction: column;">
-                            <p class="comment-username" style="color: gray; font-weight: 200; margin: 0;">Joao da Silva</p>
+                            <p class="comment-username" style="color: gray; font-weight: 200; margin: 0;">
+                                <%= productFound.full_name %>
+                            </p>
                             <p style="font-size: .7em; color: gray; margin:0;">membro desde novembro de 2022</p>
                         </div>
                     </div>
@@ -73,7 +76,7 @@
 
 
         <div class="c2" style="position: relative;">
-            <div style="position: absolute; top: 25px; right: 30px; font-size: 2em; cursor: pointer; color: rgb(198, 198, 198)" onclick="window.history.back()">
+            <div style="position: absolute; top: 5px; right: 25px; font-size: 2em; cursor: pointer; color: rgb(198, 198, 198)" onclick="window.history.back()">
                 <i class="fa-solid fa-angle-left"></i> <span>Voltar</span>
             </div>
             <p class="nine">Produto / <%= productFound.product_name %></p>
@@ -141,13 +144,13 @@
             
             <p class="eight"><i class="fa-solid fa-upload" style="margin-top: 20px;"></i> Publicado em 14 de janeiro de 2021</p>
 
-            <p class="eight"><i class="fa-regular fa-user"></i> criado por <a href="/profile/<%= productFound.owner_id %>">
-                <%= ownerName %>
+            <p class="eight"><i class="fa-regular fa-user"></i> criado por <a href="/profile/<%= productFound.userid %>">
+                <%= productFound.full_name %>
             </a></p>
             </div>
 
 
-            <div class="benefits">
+            <!-- <div class="benefits">
                 <h1 class="benefits-title">BENEFICIOS</h1>
     
                 <div class="benefits-cards-container">
@@ -172,11 +175,11 @@
                     
                 </div>
             </div>
-        </div>
+        </div> -->
 
 
 
-            <div class="products"></div>
+            <!-- <div class="products"></div> -->
             
      
 
@@ -185,24 +188,109 @@
                     <button id="carregar-mais-btn">Carregar mais</button>
                 </div>
 
-                
-                <div class="create-comment-container">
-                    
-                    <div class="textarea-and-btn-container">
-                        
-                        <h2 class="create-comment-title">Avalie esse Produto</h2>
-                        <div class="create-comment-stars-container">
-                            <i class="fa-regular fa-heart" id="star1"></i>
-                            <i class="fa-regular fa-heart" id="star2"></i>
-                            <i class="fa-regular fa-heart" id="star3"></i>
-                            <i class="fa-regular fa-heart" id="star4"></i>
-                            <i class="fa-regular fa-heart" id="star5"></i>
+
+
+
+                <div class="comment-design-container">
+                    <div class="comment-design" id="comment-design-one">
+                        <div class="comment-design-pic">
+                        <div class="comment-design-pic-inside"></div>
                         </div>
-                        <textarea name="" id="" cols="30" rows="10" class="ratting-input" placeholder="(opcional)"></textarea>
-                        <button class="ratting-btn">Enviar comentário</button>
+                        <div class="comment-design-texts-container">
+                            <div class="comment-design-bar-one"></div>
+                            <div class="comment-design-bar-two"></div>
+                        </div>
                     </div>
-                
+
+
+                    <div class="comment-design" id="comment-design-two">
+                        <div class="comment-design-pic">
+                            <div class="comment-design-pic-inside"></div>
+                        </div>
+                        <div class="comment-design-texts-container">
+                            <div class="comment-design-bar-one"></div>
+                            <div class="comment-design-bar-two"></div>
+                        </div>
+                    </div>
+
+                    <div class="comment-design" id="comment-design-three">
+                        <div class="comment-design-pic">
+                            <div class="comment-design-pic-inside"></div>
+                        </div>
+                        <div class="comment-design-texts-container">
+                            <div class="comment-design-bar-one"></div>
+                            <div class="comment-design-bar-two"></div>
+                        </div>
+                    </div>
+
+                    <div class="comment-design" id="comment-design-four">
+                        <div class="comment-design-pic">
+                            <div class="comment-design-pic-inside"></div>
+                        </div>
+                        <div class="comment-design-texts-container">
+                            <div class="comment-design-bar-one"></div>
+                            <div class="comment-design-bar-two"></div>
+                        </div>
+                    </div>
+
+
                 </div>
+                
+                <div style="display: flex; align-items: flex-end;height: fit-content; justify-content: space-between; width: 100%;">
+
+                    <div class="create-comment-container">
+                        <div class="textarea-and-btn-container">
+                            <h2 class="create-comment-title">Avalie esse Produto</h2>
+
+                            <div class="pic-and-textarea-container">
+                                <div class="comment-design-pic" id="my-create-comment-pic" style="cursor: pointer;" onclick="window.location.href = '/meuperfil'">
+                                    <img src="" class="comment-design-pic-inside" id="my-create-comment-pic-inside">
+                                </div>
+                                <textarea name="" id="" cols="30" rows="3" class="ratting-input" placeholder="Adicionar comentário..."></textarea>
+
+                            </div>
+                      
+
+                        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0;  margin: 12px 0 12px 0;">
+
+                            <div class="create-comment-stars-container">
+                                <i class="fa-regular fa-heart" id="star1" ></i>
+                                <i class="fa-regular fa-heart" id="star2" ></i>
+                                <i class="fa-regular fa-heart" id="star3" ></i>
+                                <i class="fa-regular fa-heart" id="star4" ></i>
+                                <i class="fa-regular fa-heart" id="star5" ></i>
+                            </div>
+                            <button class="ratting-btn">Enviar comentário</button>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="comment-design-diff-container">
+
+                    <div class="comment-design-pic" id="comment-design-pic-diff">
+                        <img class="comment-design-pic-inside" id="comment-design-pic-inside-diff" src="https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg?auto=compress&cs=tinysrgb&w=600">
+                    </div>
+
+                    <div class="comment-design" id="comment-design-diff">
+                        <div class="comment-design-texts-container" id="comment-design-text-diff">
+                            <div class="comment-design-bar-one"></div>
+                            <div class="comment-design-bar-two" style="height: 45px;"></div>
+                            <div class="comment-design-bar-one"></div>
+                            <div class="comment-design-bar-two"></div>
+                            <div class="comment-design-bar-one"></div>
+                            <div class="comment-design-bar-two"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+
+
                 <div class="comment-container">
                     <div class="comment-image-and-username-container">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Black_hole_-_Messier_87.jpg/1200px-Black_hole_-_Messier_87.jpg" alt="" class="comment-image">
@@ -215,15 +303,15 @@
                         <i class="fa-regular fa-heart"></i>
                         <i class="fa-regular fa-heart"></i>
                     </div>
-                    <p class="comment-text">odiei essa merda de produto, nunca mais compro!</p>
+                    <p class="comment-text">Gostei do produto</p>
                     <p class="comment-created-at">avaliado em 15 de novembro de 1999</p>
                 </div>
             </div>
 
 
-            <div class="propaganda">
+            <!-- <div class="propaganda">
                 <div class="propaganda-inside"></div> 
-            </div> 
+            </div>  -->
 
        
 

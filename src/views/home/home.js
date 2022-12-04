@@ -37,30 +37,29 @@ document.querySelector('.search-btn').addEventListener('click', (e) => {
 
 function searchProducts() {
   const typedValue = document.querySelector('.main-input').value
-  window.location.href = `${BASE_URL_PATH}getprodutos?queryDescriptionAlso=true&pack=${1}&nomeProduto=${typedValue}`
+  window.location.href = `${BASE_URL_PATH}getprodutos?queryDescriptionAlso=true&pack=${1}&nomeProduto=${typedValue}&category=todos`
 }
 
 
 async function handleCardsDisplayOnLoad(){
-  const res = await fetch(`${BASE_URL_PATH}getprodutos/?nomeProduto=as&queryDescriptionAlso=true&number=${8}`);
+  const res = await fetch(`${BASE_URL_PATH}getrandomproducts/19`);
   return await res.json();
 }
 
 async function fitProductsDataInHome(data){
   appendOnPage(data)
-  console.log(data)
 }
 
 
 function appendOnPage(data) {
-  const container = document.querySelector('.c10-main-inside')
+  const container = document.querySelector('.cards-slide-grid-container')
   data.map(item => {
       const cardContainer = createProductCard(item);
       container.append(cardContainer);
   })
 }
 
-
+// cards-slide-block
 {/* <div class="card-container" >
         <img
         class="card-first" 
@@ -93,7 +92,8 @@ function appendOnPage(data) {
 function createProductCard(item) {
   if (!item) return;
 
-  console.log('item', item)
+  const cardContainerMaster = document.createElement('div');
+  cardContainerMaster.className = 'cards-slide-block'
 
   const cardContainer = document.createElement('div');
   cardContainer.className = 'card-container'
@@ -135,23 +135,24 @@ function createProductCard(item) {
   cardPrice.innerText = `R$${item.price}/ ${item.unity}`
   
   const cardCreatedAt = document.createElement('p');
-  cardCreatedAt.style = 'margin:0; font-size:.5em'
+  cardCreatedAt.className = 'card-created-at'
   cardCreatedAt.innerText = `${item.created_at}`
 
   const cardSecond = document.createElement('div');
   cardSecond.className = 'card-second';
 
   cardSecond.append(cardTitle)
-  cardSecond.append(cardTags)
   cardSecond.append(cardStars)
-  cardSecond.append(cardIsOrganic)
+  cardSecond.append(cardTags)
   cardSecond.append(cardPrice)
+  cardSecond.append(cardIsOrganic)
   cardSecond.append(cardCreatedAt)
 
 
   cardContainer.append(cardFirst);
   cardContainer.append(cardSecond);
-  return cardContainer;
+  cardContainerMaster.append(cardContainer)
+  return cardContainerMaster;
 }
 
 function handleAverage(parentElement, number) {
@@ -160,35 +161,72 @@ function handleAverage(parentElement, number) {
   }
 }
 
-const c10main = document.querySelector('.c10-main')
-// const viewableProductScreen = c10main.getBoundingClientRect().width;
-const viewableProductScreen = c10main.clientWidth;
-const walk =  window.innerWidth - 120
-let currentSlider = 0
 
-let total = 0
-let sum = 0
-const productsBar = document.querySelector('.c10-main-inside');
-// Array.from(productsBar.children).map(element => {
-//   total = total + element.getBoundingClientRect().width + 30
-//   sum++
-// })
-// console.log(sum)
-// console.log(total)
-console.log(viewableProductScreen)
-document.querySelector('.c10-right-arrow').addEventListener('click', () => { 
-  // if (currentSlider <= (-1 * (walk * 3))) return;
-  // if (currentSlider >= (total / 4)) return;
-  currentSlider = currentSlider - (viewableProductScreen);
-  productsBar.style.left = `${currentSlider}px`;
+
+
+
+
+
+// here
+let current = 0;
+
+document.querySelector('.foward-btn').addEventListener('click', () => { 
+    const measuresObject = slide();
+    slideFoward(measuresObject)
+
+})
+document.querySelector('.backward-btn').addEventListener('click', () => { 
+    const measuresObject = slide();
+    slideBackward(measuresObject)
 })
 
 
-document.querySelector('.c10-left-arrow').addEventListener('click', () => {
-  if (currentSlider == 0) return;
-  currentSlider = currentSlider + viewableProductScreen;
 
-  productsBar.style.left = `${currentSlider}px`;
-})
+function getBlocksAmount() {
+    return document.querySelector('.cards-slide-grid-container').childElementCount
+}
+
+function slide(){
+    const blocksAmount = getBlocksAmount();
+    const containerWidth =  document.querySelector('.cards-slide-inside-container').getBoundingClientRect().width
+    const blockWidth =  document.querySelector('.cards-slide-block').getBoundingClientRect().width
+    const howManyBlocksfitIn = containerWidth / blockWidth
+    return { blocksAmount, containerWidth, blockWidth, howManyBlocksfitIn }
+}
+
+function slideFoward(measuresObject) {
+    console.log(current)
+    const maximumOfFowardSlides = (measuresObject.blocksAmount / measuresObject.howManyBlocksfitIn) - 1
+    if (current >= maximumOfFowardSlides) return
+    const toBeWalked = measuresObject.howManyBlocksfitIn * measuresObject.blockWidth
+    slideRight(toBeWalked);
+    current++;
+}
+
+function slideRight(toBeWalked){
+    const gridContainer =  document.querySelector('.cards-slide-grid-container')
+    const currentLeft = Number(gridContainer.style.left.toString().replace('px', ''));
+    gridContainer.style.left = `-${toBeWalked - currentLeft}px`
+}
 
 
+function slideBackward(measuresObject) {
+    console.log(current)
+    if (current == 0) return;
+    const toBeWalked = measuresObject.howManyBlocksfitIn * measuresObject.blockWidth
+    slideLeft(toBeWalked);
+    current--;
+}
+
+function slideLeft(toBeWalked){
+    const gridContainer = document.querySelector('.cards-slide-grid-container');
+    const currentLeft = Number(gridContainer.style.left.toString().replace('px', ''));
+    gridContainer.style.left = `${toBeWalked + currentLeft}px`
+}
+
+
+window.onresize = () => { 
+    const gridContainer = document.querySelector('.cards-slide-grid-container');
+    gridContainer.style.left = '0px'
+    current = 0;
+}

@@ -88,7 +88,7 @@ export const controllers = {
         if (!token) return res.json({ error: true, message: "Não autorizado, sua sessao pode ter sido expirada!" });
         const isUserValid = new Authentication().validateToken(token);
         if (!isUserValid) return res.json('token invalid, sir');
-        const inputData = new InputCriarProdutoDTO(isUserValid.user_id, tags, name, isOrganic, description, price, unity, category, req.file.filename);
+        const inputData = new InputCriarProdutoDTO(isUserValid.user_id, tags, name, isOrganic, description, price, unity.toLowerCase(), category, req.file.filename);
         const uuid = new UUIDLibrary();
         // const productValidation = new ProductValidation();
         const criarProduto = new CriarProduto(mySqlDatabase, uuid,

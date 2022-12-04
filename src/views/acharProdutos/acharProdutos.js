@@ -8,16 +8,20 @@ window.onload = async () => {
   
   const data = await handleUserFetchTokenData('stayOnThePageStillNotLoggedIn');
 
+  
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const packparam = urlParams.get('pack')
+  const searchedProductParam = urlParams.get('nomeProduto')
+
   const categoryParam = urlParams.get('category')
   const productsTotal = document.getElementById('product_total').getAttribute('product_total')
   const c1 = document.querySelector('.c1')
+
+  addCategoriesRedirectEventOnClick(searchedProductParam, categoryParam);
   //resultados text
   const resultadosTextElement = document.querySelector('.resultados-text')
-  const searchedName = getResultadosText();
-  resultadosTextElement.innerText = c1.childElementCount - 1 + " de " + productsTotal + ' resultados para "' + searchedName + '"'
+  resultadosTextElement.innerText = c1.childElementCount - 1 + " de " + productsTotal + ' resultados para "' + searchedProductParam + '"'
   
   //
   paintCategory(categoryParam);
@@ -41,6 +45,15 @@ window.onload = async () => {
 
   // console.log(queryParamsString)
   
+}
+
+function addCategoriesRedirectEventOnClick(searchedProduct, category) {
+  Array.from(document.querySelectorAll('.category-circle')).map(element => { 
+    const category = element.getAttribute('category')
+    element.addEventListener('click', () => { 
+      window.location.href = `/getprodutos?queryDescriptionAlso=true&pack=1&nomeProduto=${searchedProduct}&category=${category}`
+    })
+  })
 }
 function paintCategory(category) {
   const selectedCategory = document.createElement('div');
@@ -98,8 +111,12 @@ function createPagination(numberOfPages) {
   
   for (let i = 1; i < numberOfPages + 2; i++) {
     const paginationItem = document.createElement('div');
+
+
+
+    const newPath = window.location.href.toString().replace(/\pack=.[0-9]*/g, `pack=${i}`)
    
-    paginationItem.addEventListener('click', () => window.location.href = `${BASE_URL_PATH}getprodutos?queryDescriptionAlso=true&pack=${i}&nomeProduto=${"as"}`)
+    paginationItem.addEventListener('click', () => window.location.href = `${newPath}`)
     
     paginationItem.className = 'pagination-block';
     paginationItem.innerText = i;
