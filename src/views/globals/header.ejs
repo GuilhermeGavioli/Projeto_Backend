@@ -1,5 +1,54 @@
 <div id="spinning"></div>
 
+<div class="cart-container">
+    <div class="cart-close-btn" onclick="closeCart()">
+        <i class="fa-solid fa-xmark"></i>
+    </div>
+
+
+    <div class="cart-container-inside">
+        <div class="cart-container-first">
+            <h2 class="cart-first-title"><i class="fa-brands fa-opencart" style="margin-right: 7px;"></i> (MEU) CARRINHO DE ITENS</h2>
+            <div class="cart-items-container">
+
+                
+             <div class="cart-no-items-to-be-shown-container">
+                <i class="fa-solid fa-box-open" style="font-size: 1.6em;"></i>
+                 Sem items para serem mostrados...
+             </div>
+            </div>
+
+            <div class="sub-total-container">
+                <div class="sub-total">
+                    <p class="cart-item-price" style="font-size: 1em">Subtotal</p>
+                    <p style="font-size: 1.2em; font-weight: 600; margin: 0; color:var(--cart-main)" id="cart-sub-total-number"></p>
+                </div>
+            </div>
+        </div>
+        <div class="cart-container-second">
+            <h2 class="cart-second-title">Detalhes</h2>
+
+            <div style="width: 100%; display: flex; flex-direction: column; margin: 12px 0 12px 0;">
+                <label style="margin: 0;" class="cart-label">Nome</label>
+                <input type="" class="cart-second-input" value="Joao Almeida da Silva" disabled>
+            </div>
+
+            <div style="width: 100%; display: flex; flex-direction: column; margin: 12px 0 12px 0;">
+                <label style="margin: 0;" class="cart-label">Endereço</label>
+                <input type="" class="cart-second-input" value="Sao Paulo SP" disabled>
+            </div>
+            <div style="width: 100%; display: flex; flex-direction: column; margin: 12px 0 12px 0;">
+                <label style="margin: 0;" class="cart-label">Endereço</label>
+                <input type="" class="cart-second-input" value="Sao Paulo SP" disabled>
+            </div>
+
+            <button class="cart-alterar-dados-btn">Alterar Dados</button>
+        </div>
+    </div>
+</div>
+
+
+
     <div class="first-header">
     <!-- <div style="position: absolute; left: 15px; top: 0; bottom: 0; margin: auto; height: fit-content; color:rgb(7,67,27); font-size: 1.1em; font-weight: 700;">
         <i class="fa-regular fa-copyright"></i>
@@ -25,20 +74,20 @@
         </div>
     </div>
 
-    <div style="color: white; display: flex; align-items: center; background-color: red;"> 
+    <div style="color: white; display: flex; align-items: center;"> 
         <i class="fa-solid fa-location-crosshairs" style="margin: 0; margin-right: 5px; margin-top: 4px; font-size: .8em;"></i> 
         <p style="font-size: .7em; font-weight: 500; margin: 0; letter-spacing: 0px;">
             Sede em São Paulo (SP), Avenida 9 de Julho
         </p>
     </div>
 
-    <div style="color: white; display: flex; align-items: center; background-color: yellow;"> 
+    <div style="color: white; display: flex; align-items: center;"> 
         <i class="fa-solid fa-phone" style="margin: 0; margin-right: 5px; margin-top: 4px; font-size: .8em;"></i> 
         <p style="font-size: .7em; font-weight: 500; margin: 0; letter-spacing: 2px;">
             (11) 96588-2444
         </p>
     </div>
-    <div style="color: white; display: flex; align-items: center; background-color: #1DA1F2;" class="first-header-email"> 
+    <div style="color: white; display: flex; align-items: center;" class="first-header-email"> 
         <!-- <i class="fa-solid fa-phone" style="margin: 0; margin-right: 5px; margin-top: 4px; font-size: .8em;"></i>  -->
         <p style="font-size: .7em; font-weight: 500; margin: 0; letter-spacing: 2px;">
             gogreen.corp@gmail.com
@@ -51,7 +100,7 @@
 
 </div>
 
-<header class="header" style="background: rgb(248,248,248); background-color: gray;">
+<header class="header" style="background: rgb(248,248,248);">
     <div class="logo-header-container" onClick="window.location.href = '/'">
 
         <img src="../assets/My project-1 (1).png" class="company-logo" alt="">
@@ -103,9 +152,14 @@
     </button>
     </div>
 
-    <div class="header-user-icon-container" style="display: flex; align-items: center;">
+    <div class="header-user-icon-container">
+        <i class="fa-solid fa-cart-shopping" id="header-cart" style="font-size: 1.4em;">
+            
+        </i>
         <div  id="header-bell-icon">
-            <i class="fa-regular fa-bell" style="font-size:2.0em;"></i>
+            <i class="fa-regular fa-bell" style="font-size:1.4em; margin-right: 12px;">
+                
+            </i>
             <div class="bell-painel">
                 <div class="bell-painel-inside">
                 <div class="all-messages-container">
@@ -113,12 +167,13 @@
                 </div>
             </div>
         </div>
+
         <img class="header-user-icon" src="" style="position:relative;">
-        <div class="header-painel" style="visibility: hidden;">
+        <div class="header-painel">
 
             <div class="header-painel-first-part">
                 <p style="z-index: 10; color: rgb(255, 255, 255); margin: 8px;">Guilherme Gavioli</p>
-                <img src="https://news.uchicago.edu/sites/default/files/styles/explainer_hero/public/images/2022-10/sgr%20A%2A%20ESO%20and%20M.%20Kornmesser%20690.jpg?h=06d036b4&itok=Lr5t57tH" class="header-painel-pic" alt="" >
+                <img src="/file_system/app/user_default.jpg" class="header-painel-pic" alt="" >
                 <i class="fa-solid fa-house" id="header-painel-home-icon"></i>
             </div>
             <div class="header-painel-second-part">

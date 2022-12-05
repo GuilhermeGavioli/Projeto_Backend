@@ -7,25 +7,27 @@ body{
    
     height: fit-content;
 
-    grid-template-columns: .5fr 1.5fr;
+    grid-template-columns: .6fr 1.5fr;
     grid-template-areas: "friends facade"
                         "friends chat"
                         "friends chat"
                         "friends type-form";
     grid-template-rows: auto auto auto auto;
-    width: 800px;
-    max-width:800px;
+    width: 1000px;
+    max-width:1000px;
     margin: auto;
     background-color: white;
    margin-top: 100px;
     border-radius: 50px 50px 0 0;
     padding: 0;
+    column-gap: 25px;
 }
 
 .main-chat-title{
     text-align: center;
-    font-size: 1.4em;
-    color: rgb(214, 214, 214);
+    font-size: 2em;
+    
+    color: rgb(7,67,27);
     margin: 0;
     margin-right: 85px;
 }
@@ -36,13 +38,16 @@ body{
 
 .friends{
     grid-area: friends;
-    background-color: whitesmoke;
     padding: 0 0 0 0px;
-    box-shadow: 0px -5px -12px 1px rgba(114, 114, 114, 0.639);
-    overflow-y: scroll;
-    height: fit-content;
-    max-height: 500px;
+    overflow-y: auto;
+ 
+    
+    
+    background-color: var(--cart-main);
+    border-radius: 8px;
     border-top-left-radius: 35px;
+    box-shadow: 5px 5px 15px 15px #2887311f;
+    
 
 }
 .friend{
@@ -84,7 +89,7 @@ body{
     bottom: 0px;
     width: 22px;
     height: 22px;
-    background: linear-gradient(to bottom,  rgb(113, 158, 23),  rgb(153, 196, 67));
+    background: linear-gradient(to bottom,  rgb(133, 186, 27),  rgb(84, 227, 62));
     border: 2px solid whitesmoke;
     border-radius: 50%;
     z-index: 2;
@@ -120,6 +125,8 @@ body{
     background-color: rgb(60,68,55);
     background-color: rgb(106, 150, 19);
     background-color: whitesmoke;
+    background-color: var(--main-green);
+    border-top-right-radius: 35px;
     /* border-radius: 65px 65px 0 0; */
    
 }
@@ -266,7 +273,7 @@ text-align: center;
     margin: auto;
     font-size: 1.8em;
     right: 25px;
-    color: rgb(217, 217, 217);
+    color: rgb(7,67,27);
     cursor: pointer;
     height: fit-content;
 }

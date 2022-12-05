@@ -124,8 +124,15 @@
     color: var(--main-green);
     background-color: rgba(255, 255, 255, 0);
 }
-#adicionar-carrinho-btn{
+#adicionar-carrinho-btn, #remover-carrinho-btn{
     font-weight: 700;
+    visibility: hidden;
+    position: absolute;
+}
+#remover-carrinho-btn{
+    background-color: rgba(255, 255, 255, 0);
+    color: var(--main-green);
+    border: 1px solid var(--main-green);
 }
 .product-stars{
     color: var(--main-green);

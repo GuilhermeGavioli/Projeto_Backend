@@ -5,19 +5,93 @@ let commentPack = 0;
 
 window.onload = async () => {
   const p_id = document.getElementById("product_id").getAttribute("product_id");
+  const p_name = document.getElementById("product_name").getAttribute("product_name");
+  const p_image = document.getElementById("product_image").getAttribute("product_image");
+  const p_price = document.getElementById("product_price").getAttribute("product_price");
   const productRatings = await loadProductRatings(p_id);
-  console.log("ratings ", productRatings);
+
+  const product = {
+    product_id: p_id,
+    product_name: p_name,
+    product_image: p_image,
+    price: p_price
+  }
+
 
   document.querySelector(
     ".rating-counts"
   ).innerText = `(${productRatings.length} Avaliaçoes)`;
 
   const data = await handleUserFetchTokenData("stayOnThePageStillNotLoggedIn");
-  console.log("data " + JSON.stringify(data));
+
   await appendCommentsOnPage(productRatings, data?.userid);
-  // await handleSimilarProductsAppereance()
-  console.log(JSON.stringify(data));
+
+
   if (data) {
+
+
+    const addCartButton = document.getElementById("adicionar-carrinho-btn")
+    const removeCartButton = document.getElementById("remover-carrinho-btn")
+    
+    let wasItemFoundInCart = false;
+    let itemFound;
+    cartIdsItems.map( (obj) => {
+      if (obj.product == p_id) {
+        wasItemFoundInCart = true;
+        itemFound = { product: obj.product, cart: obj.cart }
+        console.log('found in the cart')
+      }
+    })
+    
+    // addCartButton.innerText = 'REMOVER DO CARRINHO'
+    //     addCartButton.id = 'remover-carrinho-btn'
+    //     addCartButton.addEventListener('click', async () => {
+      //       cartChanged('deleted', obj.product)
+
+    //       const wasDeleted = await deleteFromCart(obj.cart)
+    //       if (wasDeleted) changeButton(false)
+    //   })
+
+    if (wasItemFoundInCart) {
+      activateButton('remover')
+    }
+
+    if (!wasItemFoundInCart) {
+      activateButton('adicionar')
+    }
+    
+    let recentlyAdded;
+    let recentlyDeleted;
+    let isButtonClickable = true;
+    removeCartButton.addEventListener('click', async () => {
+      if (!isButtonClickable) return;
+      isButtonClickable = false;
+      const wasDeleted = await deleteFromCart(itemFound?.cart || recentlyAdded);
+      if (wasDeleted) { 
+        updateCart('remove', p_id, itemFound?.cart || recentlyAdded, null)
+        recentlyDeleted = itemFound?.cart;
+        activateButton('adicionar');
+      }
+      isButtonClickable = true;
+    })
+    
+    addCartButton.addEventListener('click', async (e) => {
+      if (!isButtonClickable) return;
+      isButtonClickable = false;
+      const data = await addToCart(p_id);
+      if (data.saved) {
+        updateCart('add', p_id, data?.savedItem?.cart_id || recentlyDeleted, product)
+        recentlyAdded = data.savedItem.cart_id
+        activateButton('remover');
+      }
+      isButtonClickable = true;
+    })
+    
+   
+    
+
+    
+
     document.querySelector(".create-comment-container").style.visibility =
       "visible";
     if (!data.user_image || data.user_image.toString().trim() === "") {
@@ -71,6 +145,36 @@ window.onload = async () => {
       // await handleSimilarProductsAppereance()
     });
 };
+
+
+function activateButton(buttonType) {
+  const addCartButton = document.getElementById("adicionar-carrinho-btn")
+  const removeCartButton = document.getElementById("remover-carrinho-btn")
+
+  if (buttonType == 'remover') { 
+    addCartButton.style.visibility = 'hidden';
+    addCartButton.style.position = 'absolute';
+    removeCartButton.style.visibility = 'visible';
+    removeCartButton.style.position = 'unset';
+  } else if (buttonType == 'adicionar') {
+    removeCartButton.style.visibility = 'hidden';
+    removeCartButton.style.position = 'absolute';
+    addCartButton.style.visibility = 'visible';
+    addCartButton.style.position = 'unset';
+  }
+}
+
+async function addToCart(product_id) {
+  const res = await fetch(`${BASE_URL_PATH}insertcartitem/${product_id}`, {
+    method: 'GET',
+    headers: {
+      "Content-type": "application/json",
+      authorization: getStoredToken(),
+    }
+  })
+  const data = await res.json();
+  return { saved: data.saved, savedItem: data.savedItem }
+}
 
 async function handleSimilarProductsAppereance() {
   const category = document

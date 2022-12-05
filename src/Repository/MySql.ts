@@ -312,6 +312,36 @@ export default class MySql implements Repository {
     }
 
 
+    public async findOneOnCart(user_id: string, product_id: string): Promise<any | null> {
+        const [[rows]] = await this.connection.execute(`SELECT 1 FROM cart WHERE owner_id="${user_id}" AND product_id="${product_id}";`)
+        if (!rows) return null;
+        return rows;
+     }
+
+
+    public async saveOnCart(user_id: string, product_id: string): Promise<any> {
+        await this.connection.execute(`INSERT INTO cart (owner_id, product_id)
+        VALUES ("${user_id}", "${product_id}");`);
+        const [[rows]] = await this.connection.execute(
+            `SELECT cart_id FROM cart WHERE owner_id="${user_id}" AND product_id="${product_id}";`
+        )
+        return rows;
+    }
+
+    public async getCartItemsFromUser(user_id: string): Promise<void | null> {
+        const [rows] = await this.connection.execute(`
+        SELECT cart.*, product.product_id, product.product_name, product.price, product.product_image FROM cart
+        INNER JOIN product
+        ON cart.product_id = product.product_id
+        WHERE cart.owner_id="${user_id}";`);
+        if (!rows) return null;
+        return rows;
+    }
+
+    public async deleteFromCart(user_id: string, cart_item_id: string): Promise<void> {
+        await this.connection.execute(`DELETE FROM cart WHERE cart.owner_id="${user_id}" AND cart_id="${cart_item_id}";`);
+    }
+    
 
 
     public async sendRobotMessage(id: string, receiver: string, message_text: string): Promise<void> {

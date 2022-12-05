@@ -223,10 +223,10 @@
     grid-template-columns: 1fr 1fr 1fr 1.5fr 1fr .5fr;
     grid-template-areas: 
     "c1 c1 c1 c1 c1 c1"
+    "c0 c0 c0 c0 c0 c0"
     "c9 c9 c9 c9 c9 c9"
     "c10 c10 c10 c10 c10 c10"
     "cardslides cardslides cardslides cardslides cardslides cardslides"
-    "c0 c0 c0 c0 c0 c0"
     "c12 c12 c12 c12 c12 c12"
     "c11 c11 c11 c11 c11 c11"
     "c3 c3 c3 c3 c3 c3";
@@ -583,7 +583,7 @@ colorido */
     
     display: flex;
     flex-direction: column;
-    box-shadow: 3px 4px 6px -4px rgba(0, 0, 0, 0.154);
+    box-shadow: 6px 6px 15px 6px rgba(1, 65, 20, 0.081);
     
 }
 .website-card-first-part, .website-card-second-part{
@@ -601,8 +601,8 @@ colorido */
 .website-card-circle{
     background-color: var(--main-green);
     border-radius: 50%;
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     color: white;
     
 }

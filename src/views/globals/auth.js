@@ -3,9 +3,10 @@ const BASE_URL_PATH_AUTH = 'http://localhost:3000/'
 authing();
 
 async function handleUserFetchTokenData(action) {  //action to be done in case of not auth
+
   document.querySelector('.logo-header-container').addEventListener('click', () => window.location.href = '/')
   document.getElementById('procurar-and-icon-container').addEventListener('click', () => toggleNavItem())
-    const header = document.querySelector(".header");
+  const header = document.querySelector(".header");
   const headerCircle = document.querySelector('.header-user-icon')
   const headerUserCircleContainer = document.querySelector('.header-user-icon-container')
   
@@ -23,7 +24,7 @@ async function handleUserFetchTokenData(action) {  //action to be done in case o
     hideContent(header,headerCircle, main, spinner, registerAndLoginContainer);
     
   
-    const headerPainel = document.querySelector('.header-painel');
+    
     const headerLogoutButton = document.querySelector('.logout-btn');
   
  
@@ -35,13 +36,24 @@ async function handleUserFetchTokenData(action) {  //action to be done in case o
     handleActionForNonAuthorizedUsers(action, items);
   } else if (data.auth) {
 
-    const lis = document.querySelectorAll('.user-painel-item')
+
+    //cart
+
+    const headerCart = document.getElementById('header-cart')
+    headerCart.style.visibility = 'visible'
+    headerCart.addEventListener('click', () => toggleCart())
+
+    handleCart();
+   
+
+    //cart
+
 
     headerUserCircleContainer.style.position = 'unset';
-        headerCircle.addEventListener('click', (e) => toggleHeaderPainel(headerPainel, headerLogoutButton, lis))
-        headerLogoutButton.addEventListener('click', () => logout())
-        fitUserInfoInHeader(data.fullUser.user_image);
-        // main.addEventListener('click', () => toggleHeaderPainel(headerPainel, headerLogoutButton, lis))
+    headerCircle.addEventListener('click', (e) => toggleHeaderPainel())
+    headerLogoutButton.addEventListener('click', () => logout())
+    fitUserInfoInHeader(data.fullUser.user_image);
+
     showContent(header, headerCircle, main, spinner);
 
     const bellContainer = document.querySelector('#header-bell-icon');
@@ -75,6 +87,174 @@ async function handleUserFetchTokenData(action) {  //action to be done in case o
 }
 
 
+cartStateChanged = false;
+isCartOpen = false;
+function toggleCart() {
+  if (isCartOpen) closeCart()
+  else openCart()
+}
+
+async function openCart() {
+  closeUserPainel();
+  if (cartStateChanged) {
+    await handleCart();
+  }
+  cartContainer = document.querySelector('.cart-container')
+  cartContainer.style.bottom = '0';
+  cartContainer.style.visibility = 'visible';
+  isCartOpen = true;
+}
+
+let cartIdsItems = [];
+async function handleCart() {
+  let cartCont = 0
+  let cartTotalPrice = 0;
+  const cartItems = await getCartData();
+  if (!cartItems || cartItems.length == 0) {
+     document.querySelector('.cart-no-items-to-be-shown-container').style.visibility = 'visible'
+    
+    return;
+    }
+    const cartItemsContainer = document.querySelector('.cart-items-container')
+    cartItems.map(item => { 
+      cartCont++
+      cartTotalPrice += Number(item.price)
+      
+      updateCart('add', item.product_id, item.cart_id, item)
+  })
+  isFirstTimeOpeningCart = false;
+  // if (cartCont != 0) {
+    document.getElementById('cart-sub-total-number').innerText = "R$" + cartTotalPrice.toString();
+  // }
+}
+
+function updateCart(action, product_id, cartid, productInfo) {
+  console.log('i am runnnign')
+
+  const headercart = document.getElementById('header-cart')
+  if (action === 'remove') {
+    cartIdsItems = cartIdsItems.filter((obj) => {
+      return obj.cart.toString() !== cartid.toString()
+    })
+    headercart.firstChild.remove();
+  }
+  if (action === 'add') {
+    // name: p_name,
+    // image: p_image,
+    // price: p_id.price
+    
+    cartIdsItems.push({ product: productInfo, cart: cartid })
+    headercart.firstChild.remove();
+
+    const card = createCartItem(productInfo)
+    document.querySelector('.cart-items-container').append(card)
+
+  }
+  updateCartCount(cartIdsItems.length)
+  console.log(cartIdsItems)
+}
+
+
+function updateCartCount(number) {
+  const noItemsElement = document.querySelector('.cart-no-items-to-be-shown-container')
+
+  if (number != 0) noItemsElement.style.visibility = 'hidden'
+  else noItemsElement.style.visibility = 'visible'
+  const numberCartCount = document.createElement('div');
+  numberCartCount.id = 'cart-number-cont'
+  numberCartCount.innerText = number
+  const headerCart = document.getElementById('header-cart')
+  headerCart.append(numberCartCount)
+}
+
+
+
+
+{/* <div class="cart-item">
+                    <div class="cart-item-first"></div>
+                    <div class="cart-item-second">
+                        <h2 class="cart-item-name">Batatas Orgânicas</h2>
+                        <p class="cart-item-price">R$ 129.00</p>
+                    </div>
+                    <div class="cart-item-third">
+                        <i class="fa-solid fa-xmark" style="margin: 0;"></i>
+                    </div>
+                </div> */}
+function createCartItem(item) {
+  const cartItem = document.createElement('div')
+  cartItem.className = 'cart-item'
+  
+  const cartItemFirst = document.createElement('img')
+  cartItemFirst.className = 'cart-item-first'
+  cartItemFirst.src = `/file_system/product/${item.product_image}`
+  
+  const cartItemSecond = document.createElement('div')
+  cartItemSecond.className = 'cart-item-second'
+  
+  const cartItemName = document.createElement('h2')
+  cartItemName.className = 'cart-item-name'
+  cartItemName.innerText = item.product_name
+  cartItemName.onclick = () => window.location.href = `/produto/${item.product_id}`
+  
+  const cartItemPrice = document.createElement('p')
+  cartItemPrice.className = 'cart-item-price'
+  cartItemPrice.innerText = "R$" + item.price
+
+  const cartItemThird = document.createElement('div')
+  cartItemThird.className = 'cart-item-third'
+  cartItemThird.innerHTML = '<i class="fa-solid fa-xmark" style="margin: 0;"></i>'
+
+  cartItemThird.addEventListener('click', (e) => {
+    const wasDeleted = deleteFromCart(item.cart_id)
+    if (wasDeleted) {
+      e.target.parentElement.parentElement.remove();
+      updateCart('remove', item.product_id, item.cart_id, null)
+    }
+  })
+
+  cartItemSecond.append(cartItemName)
+  cartItemSecond.append(cartItemPrice)
+
+  cartItem.append(cartItemFirst)
+  cartItem.append(cartItemSecond)
+  cartItem.append(cartItemThird)
+  return cartItem;
+}
+
+
+
+async function deleteFromCart(cart_item_id) {
+  console.log('deleting')
+  const res = await fetch(`${BASE_URL_PATH_AUTH}removecartitem/${cart_item_id}`, {
+    method: "GET",
+    headers: {
+      "Content-type": "application/json",
+      authorization: getStoredToken(),
+    }
+  })
+  const data = await res.json();
+  return data.deleted
+}
+
+function closeCart() {
+  cartContainer = document.querySelector('.cart-container')
+  cartContainer.style.bottom = '-100vh';
+  cartContainer.style.visibility = 'hidden';
+  isCartOpen = false;
+}
+
+async function getCartData() {
+  const res = await fetch(`${BASE_URL_PATH_AUTH}mycartitems`, {
+    method: "GET",
+    headers: {
+        "Content-type": "application/json",
+        authorization: getStoredToken(),
+    }
+})
+  return await res.json();
+}
+
+
 async function fireAuthVerificationRequest() {
     const res = await fetch(`${BASE_URL_PATH_AUTH}auth`, {
         method: "GET",
@@ -87,7 +267,6 @@ async function fireAuthVerificationRequest() {
     return await res.json();
 }
   
-
 function handleActionForNonAuthorizedUsers(action, items) {
   if (action == 'stay') return;
   if (action == 'redirect') return window.location.href = `${BASE_URL_PATH_AUTH}login`;
@@ -112,86 +291,41 @@ function hideContent(header,headerCircle, main, spinner, registerAndLoginContain
   main.style.visibility = "hidden";
   headerCircle.style.visibility = 'hidden';
   headerCircle.style.position = 'absolute';
-    header.style.visibility = 'hidden';
+  header.style.visibility = 'hidden';
   spinner.style.visibility = "visible";
-
 }
   
 function fitUserInfoInHeader(imageSource) {
   const headerUserIcon = document.querySelector('.header-user-icon');
   let src = `${BASE_URL_PATH_AUTH}file_system/app/user_default.jpg`
-  
-
-  
-  if (imageSource) { 
-    src = `${BASE_URL_PATH_AUTH}file_system/user/${imageSource}`
-  }
-
+  if (imageSource) src = `${BASE_URL_PATH_AUTH}file_system/user/${imageSource}`
   headerUserIcon.setAttribute('src', src);
-    
 }
   
 function getStoredToken() {
     return window.localStorage.getItem("token") || null;
 }
   
-let closed=true
-let isUserPainelClickable = true
+let isUserPainelClosed = true
+function toggleHeaderPainel() {
+  if (isUserPainelClosed) return openUserPainel()
+  closeUserPainel();
+}
 
-function toggleHeaderPainel(PainelElement, headerLogoutButton, lis) {
-  if (!isUserPainelClickable) return;
-  
-  isUserPainelClickable = false;
+function openUserPainel() {
+  closeCart()
+  const userPainel = document.querySelector('.header-painel');
+  userPainel.style.visibility = 'visible'
+  isUserPainelClosed = false;
+}
+function closeUserPainel() {
+  const userPainel = document.querySelector('.header-painel');
+  userPainel.style.visibility = 'hidden'
+  isUserPainelClosed = true;
+}
 
-  if (closed) {
-    PainelElement.style.visibility = 'visible'
-    PainelElement.style.width = '5px'
-    PainelElement.style.height = '350px'
-    setTimeout(() => { 
-      PainelElement.style.width = '200px'
-      // PainelElement.style.padding = '20px 15px 20px 15px'
-    }, 350)
-    setTimeout(() => { 
-      Array.from(lis).map(li => { 
-        li.style.visibility = 'visible'
-        li.style.position = 'unset'
-        li.style.margin = 'auto'
-        li.style.top = 'unset'
-      })
-      headerLogoutButton.style.visibility = 'visible'
-      // headerLogoutButton.style.position = 'static'
- 
-    headerLogoutButton.style.bottom = '8px'
-    // headerLogoutButton.style.margin = 'auto'
- 
-      isUserPainelClickable = true;
-    }, 525)
-    
-    closed = false;
-  } else {
-    PainelElement.style.padding = '0'
-    PainelElement.style.height = '5px'
-    Array.from(lis).map(li => { 
-      // li.style.visibility = 'hidden'
-      li.style.position = 'fixed'
-      li.style.inset = '0 500px 0 0'
-      li.style.margin = 'unset'
-      li.style.visibility = 'hidden'
-    })
-   
-    // headerLogoutButton.style.visibility = 'hidden'
-    // headerLogoutButton.style.position = 'fixed'
-    headerLogoutButton.style.inset = '0 500px 0 0'
-    // headerLogoutButton.style.margin = 'unset'
-    headerLogoutButton.style.visibility = 'hidden'
-    setTimeout(() => { 
-      PainelElement.style.width = '0'
-      isUserPainelClickable = true
-    }, 350)
-    
-    closed = true;
-  }
-    
+window.onscroll = () => {
+  closeUserPainel();
 }
 
 

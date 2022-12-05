@@ -221,6 +221,45 @@ app.get('/acharavaliacoes/:p_id/:pack', async (req, res) => {
      }
 })
 
+app.get('/mycartitems',ProtectionAgainstNonAuthenticatedUsers, async (req, res) => { 
+    const token_id = res.locals.userInfo.user_id;
+    try {
+        const carItems = await mySqlDatabase.getCartItemsFromUser(token_id);
+        return res.json(carItems);
+    } catch (err) {
+        console.log(err)
+        return res.json({gotten: false, erro: true});
+    }
+})
+
+app.get('/insertcartitem/:productid', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => { 
+    const token_id = res.locals.userInfo.user_id;
+    const { productid } = req.params
+    try {
+        const foundItem = await mySqlDatabase.findOneOnCart(token_id, productid);
+        if (foundItem) return res.json({saved: false, message: "Item já está dentro no carrinho"})
+        const savedItem = await mySqlDatabase.saveOnCart(token_id, productid);
+        return res.json({saved: true, savedItem});
+    } catch (err) {   
+        console.log(err)
+        return res.json({saved: false, erro: true});
+    }
+})
+
+app.get('/removecartitem/:cart_item_id', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => { 
+    const token_id = res.locals.userInfo.user_id;
+    const { cart_item_id } = req.params
+    try {
+        await mySqlDatabase.deleteFromCart(token_id, cart_item_id);
+        return res.json({deleted: true});
+    } catch (err) {
+        console.log(err)
+        return res.json({deleted: false, erro: true});
+    }
+})
+
+
+
 app.delete('/deletaravaliacao/:ratting_id', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => {
     const token_id = res.locals.userInfo.user_id;
     const { ratting_id } = req.params
@@ -247,6 +286,8 @@ app.get('/acharprodutoporcategoria/:amount/:category', async (req, res) => {
         return res.json({error: true});
     }
 })
+
+
 
 app.get('/getrandomproducts/:amount', async (req, res) => { 
     const { amount } = req.params
