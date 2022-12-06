@@ -28,29 +28,8 @@ textarea{
 input{
     outline: none;
 }
-#header-cart{
-    position: relative;
-    visibility: hidden;
-    font-size: 2.2em;
-    color: var(--cart-main);
-    color: rgb(69, 69, 69);
-}
-#cart-number-cont, .bell-number{
-    position: absolute;
-    top: -12px;
-    right: -8px;
-    background-color: var(--main-green);
-    color: white;
-    margin: 0;
-    font-size: 0.4em;
-    font-weight: 700;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+
+
 
 .cart-container{
     width: 55vw;
@@ -361,29 +340,7 @@ a:link, #procurar-and-icon-container{
     display: none;
 }
 
-.header-user-icon-container{
-    position: absolute;
-    /* background-color: red; */
-    display: flex; 
-    align-items: center; 
-    justify-content: space-evenly;
-    padding: 0 85px 0 0;
-    margin-left: 100px;
-    color: rgb(186, 186, 186);
-}
-.header-user-icon{
-    /* position: relative; */
-    /* background-image: url('../assets/user.jpg'); */
-    background-size: cover;
-    visibility: hidden;
-    width: 50px;
 
-    height: 50px;
-    border-radius: 50%;
-    /* margin-right: 45px; */
-    cursor: pointer;
-
-}
 
 #register-and-login{
     cursor: pointer;
@@ -624,26 +581,76 @@ li{
     animation: alternate-reverse 1.7s ease-in-out infinite bellJump;
 }
 
-#bell-icon{
-    height: unset!important;
-    color: white!important;
-    font-size: 2.6em!important;
-    margin-right: 0!important;
-}
+
+
+
 
 @keyframes bellJump{
     from{bottom: 40px;}
     to {bottom: 50px;}
 }
 
+.header-user-icon-container{
+    position: absolute;
+    display: flex; 
+    align-items: center; 
+    justify-content: space-evenly;
+    padding: 0 85px 0 0;
+    margin-left: 100px;
+    height: 100%;
+    color: rgb(186, 186, 186);
+}
+.header-user-icon{
+    background-size: cover;
+    visibility: hidden;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
 
-#header-bell-icon{
-    margin: 0 30px 0 0;
-    /* position: absolute; */
+#cart-number-cont, #bell-number-cont{
+    position: absolute;
+    top: -12px;
+    right: -8px;
+    background-color: var(--main-green);
+    color: white;
+    margin: 0;
+    font-size: 0.4em;
+    font-weight: 700;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    justify-content: center;
+}
+#bell-number-cont{
+    background-color: #288731;
+}
+
+
+
+#header-bell{
     position: relative;
-    display: none;
-    flex-grow: 2;
-    z-index: 50;
+    margin: 0;
+    margin-right: 30px;
+    font-size: 1.4em;
+    color: rgb(69, 69, 69);
+    height: 30px;
+    z-index: 2000;
+}
+
+#header-cart{
+    height: 30px;
+    margin: 0;
+    position: relative;
+    visibility: hidden;
+    font-size: 1.4em;
+    margin-right: 15px;
+    color: var(--cart-main);
+    color: rgb(69, 69, 69);
 }
 
 .bell-inside-container{
@@ -657,23 +664,7 @@ li{
     position: relative;
     cursor: pointer;
 }
-.bell-number2{
-    background-color: var(--main-green);
-    position: absolute;
-    top: -10px;
-    right: -0px;
-    padding: 8px;
-    width: 18px;
-    height: 18px;
-    text-align: center;
-    font-size: .7em;
-    display: flex;
-    justify-content: center;
-    font-weight: 700;
-    align-items: center;
-    border-radius: 50%;
-    color: white;
-}
+
 .bell-painel{
     cursor: default;
     position: absolute;

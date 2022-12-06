@@ -58,11 +58,11 @@ async function handleUserFetchTokenData(action) {  //action to be done in case o
 
     showContent(header, headerCircle, main, spinner);
 
-    const bellContainer = document.querySelector('#header-bell-icon');
+    const bellContainer = document.querySelector('#header-bell');
     bellContainer.style.visibility = 'visible';
     bellContainer.addEventListener('click', () => toggleBellPainel())
       
-    document.getElementById('header-bell-icon').style.display = 'unset'
+    document.getElementById('header-bell').style.display = 'unset'
 
     registerAndLoginContainer.style.visibility = 'hidden'
     registerAndLoginContainer.style.position = 'absolute'
@@ -474,12 +474,12 @@ function appendMessagesOnPainel(messages, userid) {
 }
 
 function appendMessagesContOnBell(numberOfMessages) {
-  const bellInsideContainer = document.querySelector('#header-bell-icon');
+  const bellInsideContainer = document.querySelector('#header-bell');
   const number = document.createElement('p')
   number.style.margin = '0'
   number.innerText = numberOfMessages;
   const bellNumber = document.createElement('div');
-  bellNumber.className = 'bell-number'
+  bellNumber.id = 'bell-number-cont'
   bellNumber.append(number);
   bellInsideContainer.append(bellNumber);
 }
