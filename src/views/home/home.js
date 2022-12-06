@@ -4,6 +4,23 @@ const BASE_URL_PATH =  'http://localhost:3000/'
 window.onload = async () => {
   // const header = document.querySelector(".header");
   const headerPainel = document.querySelector('.header-painel');
+
+  const headerHomeText = document.getElementById('nav-item-home')
+  paintHeader(headerHomeText)
+
+
+
+
+
+  
+ 
+
+  setInterval(() => {
+    console.log('hi')
+    changeHomeBannerState();
+    changeBannerElement();
+  }, 15000)
+
   // const main = document.querySelector(".container");
   // const spinner = document.getElementById("spinning");
 
@@ -33,7 +50,36 @@ document.querySelector('.search-btn').addEventListener('click', (e) => {
   e.preventDefault();
   searchProducts();
 })
-// http://localhost:3000/getprodutos?queryDescriptionAlso=true&number=0&nomeProduto=a
+
+let bannerState = 3;
+function changeHomeBannerState(numberClicked) {
+  console.log(bannerState)
+  if (numberClicked) return bannerState = numberClicked;
+  if (bannerState == 3) bannerState = 1
+  else bannerState++;
+}
+
+function changeBannerElement() {
+  const banner = document.querySelector('.banner')
+  banner.style.opacity = '40%'
+
+  setTimeout(() => {
+    
+    if (bannerState == 1) {
+      banner.style.backgroundImage = "url('https://images.pexels.com/photos/35196/water-plant-green-fine-layers.jpg?auto=compress&cs=tinysrgb&w=600')"
+      
+  }
+  
+  if (bannerState == 2) { 
+    banner.style.backgroundImage = "url('https://images.unsplash.com/photo-1650343403040-f312b05c4995?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fG9yZ2FuaWN8ZW58MHwwfDB8Z3JlZW58&auto=format&fit=crop&w=500&q=60')"
+  }
+
+  if (bannerState == 3) { 
+    banner.style.backgroundImage = "url('https://images.pexels.com/photos/10601784/pexels-photo-10601784.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load')"
+  }
+}, 1000);
+  banner.style.opacity = '100%'
+}
 
 function searchProducts() {
   const typedValue = document.querySelector('.main-input').value

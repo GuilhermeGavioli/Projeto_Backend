@@ -4,6 +4,8 @@ authing();
 
 async function handleUserFetchTokenData(action) {  //action to be done in case of not auth
 
+  // if home it will paint home with green
+
   document.querySelector('.logo-header-container').addEventListener('click', () => window.location.href = '/')
   document.getElementById('procurar-and-icon-container').addEventListener('click', () => toggleNavItem())
   const header = document.querySelector(".header");
@@ -78,6 +80,7 @@ async function handleUserFetchTokenData(action) {  //action to be done in case o
     }
 
     else appendMessagesOnPainel(messagesData, data.fullUser.userid)
+    console.log(myMessages)
 
       return data.fullUser;
   } else {
@@ -100,7 +103,7 @@ async function openCart() {
     await handleCart();
   }
   cartContainer = document.querySelector('.cart-container')
-  cartContainer.style.bottom = '0';
+  cartContainer.style.inset = '0 0 0 0';
   cartContainer.style.visibility = 'visible';
   isCartOpen = true;
 }
@@ -112,7 +115,7 @@ async function handleCart() {
   const cartItems = await getCartData();
   if (!cartItems || cartItems.length == 0) {
      document.querySelector('.cart-no-items-to-be-shown-container').style.visibility = 'visible'
-    
+     updateCartCount(0)  
     return;
     }
     const cartItemsContainer = document.querySelector('.cart-items-container')
@@ -396,14 +399,16 @@ function convertNumberToMonth(month_number) {
 
 // BELL
 
+let myMessages = []
 // testing bell
 let isPainelClosed = true;
 let isPainelClickable = true;
 let firstTimeOpening = true;
 
 async function toggleBellPainel() {
-  if (firstTimeOpening) { 
-
+  if (firstTimeOpening && myMessages.length != 0) { 
+    const hasBeenRead = await readMessages();
+    console.log(hasBeenRead);
   }
 
   const bellPainel = document.querySelector('.bell-painel');
@@ -417,13 +422,32 @@ async function toggleBellPainel() {
   firstTimeOpening = false;
 }
 
+async function readMessages() {
+  console.log(myMessages)
+  const messages = myMessages.filter(message => { return message.has_been_read_by_receiver == 0 })
+  console.log('m' + JSON.stringify(messages))
+  const res = await fetch(`${BASE_URL_PATH_AUTH}readmessage`, {
+    method: 'put',
+    body: JSON.stringify(messages),
+    headers: {
+      "Content-type": "application/json",
+      authorization: getStoredToken(),
+    }
+  })
+  return await res.json();
+}
+
+
 function appendMessagesOnPainel(messages, userid) {
   let notReadMessagesCont = 0;
 
   const allMessagesContainer = document.querySelector('.all-messages-container')
 
+
+
   if (messages.from_system.length > 0) {
-    messages.from_system.map(message => { 
+    messages.from_system.map(message => {
+      myMessages.push(message)
       const messageElement = createMessageElement(message, userid, true);
       allMessagesContainer.append(messageElement);
       if (message.has_been_read_by_receiver == 0) notReadMessagesCont++;
@@ -617,3 +641,11 @@ async function getUserMessages() {
   return data;
 }
 
+
+
+function paintHeader(elementToBePainted) {
+  elementToBePainted.style.background = '#85bb46';
+  elementToBePainted.style.padding = '8px 15px 8px 15px';
+  elementToBePainted.style.color = 'rgb(7,67,27)!important'
+  elementToBePainted.firstChild.style.color = 'rgb(7,67,27)'
+}

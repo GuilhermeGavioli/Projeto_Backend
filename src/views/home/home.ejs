@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="shortcut icon" href="../assets/logo_transparente.png" />
+    <title>GoGreen - Home</title>
+    <link rel="shortcut icon" href="../assets/My project-1 (1).png" />
 
     <!-- PAGE -->
     <link rel="stylesheet" href="./home.css">
@@ -14,6 +14,7 @@
      <!-- GLOBALS -->
      <script src="../globals/auth.js" defer></script>
      <script src="../globals/sidebar.js" defer></script>
+
      <link rel="stylesheet" href="../globals/header.css" type="text/css">
      <link rel="stylesheet" href="../globals/footer.css">
      
@@ -28,6 +29,11 @@
      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
     <style>
 body{
@@ -51,44 +57,6 @@ body{
 
 
 
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <div class="banner-container">
         <form class="banner-title-container">
             <h1 class="banner-title">Aqui voce encontrará informaçoes sobre produtos organicos que tem interesse livre de comissoes e compartilhados por outros criadores na Plataforma.</h1> 
@@ -96,8 +64,18 @@ body{
                 <input type="text" placeholder="Buscar um produto" class="main-input"> 
                 <button type="submit" class="search-btn">  <i class="fa-solid fa-magnifying-glass"></i>  </button>
             </div>
+            <p style="font-weight: 600; width: 95%; padding-top: 12px; font-size: 1.1em; color: white;">
+                <span style="color: rgb(200,200,200); margin-right: 3px;">Populares: </span>
+                vegetais, fertilizantes, frutas, sem açúcar...</p>
             
+                <h1 class="dots-container">
+                    <div class="dots" id="dot-1" value="1"></div>
+                    <div class="dots" id="dot-2" value="2"></div>
+                    <div class="dots" id="dot-3" value="3"></div>
+                </h1>
         </form>
+
+
 
         <!-- <div style="position:absolute; z-index: 5; color:white; margin: auto; bottom:15px; left:0; right: 0;width: fit-content; display: flex; flex-direction: column;">
             <div style="display: flex; align-items: center; font-family: 'Space Mono', monospace;">
@@ -115,6 +93,8 @@ body{
             </div>
         </div>
         <div class="banner">
+        </div>
+        <div class="banner2">
         </div>
     </div>
     
@@ -204,23 +184,23 @@ body{
 
 
         <div class="c9">
-            <div class="c9_1">
+            <div class="c9_1" onclick="window.location.href='/sobreprodutos'">
                 <div class="c9-pic-1">
                     <!-- <img src="../wassets/1909.i305.022.P.m005.c20.realistic_coffee_set-02-removebg-preview.png" width="175px" height="175px"/> -->
                 </div>
                 <div class="c9-texts">
-                    <p style="margin: 5px 0 0 0; color:rgb(161, 180, 137); font-weight: 500;">Organico, Único</p>
-                    <h2 style="margin: 0 0 0 0; color: white;" class="c9-titles" >mercadorias</h2>
-                    <h2 style="margin: 0 0 0 0; color: white;" class="c9-titles">exclusivas</h2>
+                    <p style="margin: 5px 0 0 0; color:var(--cart-main); font-weight: 500;">Organico, Único</p>
+                    <h2 class="c9-titles-first" >mercadorias</h2>
+                    <h2 class="c9-titles-first">exclusivas</h2>
                     <p style="margin: 10px 0 35px 0;" class="c9-text">Encontre produtos unicos e especificos criados por usuarios em nossa plataforma online.</p>
                     <button class="c9-btn">Saiba Mais</button>
                 </div>
             </div>
-            <div class="c9_2">
+            <div class="c9_2"  onclick="window.location.href='/sobreprodutos'">
                 <div class="c9-texts">
-                    <p style="margin: 5px 0 0 0; color:rgb(203,218,183); font-weight: 500;">Organico, Novo</p>
-                    <h2 style="margin: 0 0 0 0" class="c9-titles">novos</h2>
-                    <h2 style="margin: 0 0 0 0" class="c9-titles">produtos</h2>
+                    <p style="margin: 5px 0 0 0; color:var(--cart-main); font-weight: 500;">Organico, Novo</p>
+                    <h2 class="c9-titles-second">novos</h2>
+                    <h2 class="c9-titles-second">produtos</h2>
                     <p style="margin: 10px 0 35px 0;" class="c9-text">Temos uma variedade de produtos publicados em nossa plataforma online. Venha conferi-los!</p>
                     <button class="c9-btn">Saiba Mais</button>
                 </div>
@@ -270,137 +250,9 @@ body{
 
 
         
-        <div class="c12">
-            <h1 class="c12-main-title">Como Funciona</h1>
-            <h2 class="c12-sub-title">Torne-se um usuario gratuitamente em apenas alguns Passos para voce que deseja publicar suas mercadorias. Com isso, voce terá acesso à novas funcionalidades dentro da Plataforma.</h2>
+        
 
-        <div class="c12-steps-container">
-            <!-- <h1 style="
-            position: absolute;
-            inset: 0 0 0 0;
-            margin: auto;
-            z-index: 5;
-            width: fit-content;
-            height: fit-content;
-            ">QUANDO QUALIDADE IMPORTA PRA VOCE E SEU CLIENTE</h1> -->
-            <div class="c12-steps" id="c12-step-one">
-               
-
-                <div class="c12-step-first" style="background-color: #BB4685;">
-                    <h1 class="c12-title-number" style="margin: 0; padding: 0; height: fit-content; padding-top: 0;">1</h1>
-                    <i class="fa-regular fa-address-card"></i>
-                </div>
-                
-                <div class="c12-step-second">
-                    <h2 class="c12-second-title">Crie sua conta</h2>
-                   <p class="c12-text">Crie sua Conta na GoGreen Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore quae excepturi, dolore aliquam commodi libero!</p> 
-                </div>
-            </div> 
-
-            <div class="c12-steps" >
-               
-                <div class="c12-step-first">
-                    <h1 class="c12-title-number" style="margin:0;">2</h1>
-                    <i class="fa-solid fa-gear"></i>
-                </div>
-                
-                <div class="c12-step-second">
-                    <h2 class="c12-second-title">Configure seu Perfil</h2>
-                   <p class="c12-text">Atualize seu Perfil com suas informaçoes Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore quae excepturi, dolore aliquam commodi libero!</p> 
-                </div>
-            </div>
-
-            <div class="c12-steps">
-               
-                <div class="c12-step-first">
-                    <h1 class="c12-title-number"  style="margin:0;">3</h1>
-                    <i class="fa-solid fa-earth-americas"></i>
-                </div>
-                
-                <div class="c12-step-second">
-                    <h2 class="c12-second-title">Divulgue seus Produtos</h2>
-                   <p class="c12-text">Publique suas mercadorias Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore quae excepturi, dolore aliquam commodi libero!</p> 
-                </div>
-                
-            </div>
-            <div class="c12-steps">
-                
-                <div class="c12-step-first" style="background-color: #85BB46;">
-                    <h1 class="c12-title-number"  style="margin:0;">4</h1>
-                    <i class="fa-solid fa-comment-dots"></i>
-                </div>
-                
-                <div class="c12-step-second">
-                    <h2 class="c12-second-title">Contate Usuarios</h2>
-                   <p class="c12-text">Converse com outros produtores e usuarios Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore quam commodi libero!</p> 
-                </div>
-                
-            </div>
-
-        </div>
-        <button class="c12-button">Quero Começar</button>
-        </div>
-
-        <div class="c11" style="margin-top: 300px;">
-            <div class="c11-1">
-                <h2 class="c11-title">CONECETE-SE COM A GENTE</h2>
-                <p>Lorem ipsum doloipisicing elit. Sint ex ut molestias neque! Perspiciatis tenetur nulla explicabo placeat dolor nihil aperiam labore! Consequuntur debitis nulla ipsa perspiciatis illo!i!</p>
-                <div class="socials-layed-down" style="display: flex; flex-direction: row; color:white;">
-                    <div class="social-down" style="background: #4267B2;">
-                        <i class="fa-brands fa-facebook-f"></i>
-                    </div>
-                    <div class="social-down" style="background: #1DA1F2;">
-                        <i class="fa-brands fa-twitter"></i>
-                    </div>
-                    <div class="social-down" style="background: #0A66C2;">
-                        <i class="fa-brands fa-linkedin-in"></i>
-                    </div>
-                    <div class="social-down" style="background: #E60023;">
-                        <i class="fa-brands fa-pinterest-p"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="c11-2">
-                <h2 class="c11-title">POSTS RECENTES</h2>
-                <div style="display: flex; flex-direction: column; height: 190px; justify-content: space-between;">
-                    <div style="display: flex;">
-                        <img src="https://images.pexels.com/photos/3772492/pexels-photo-3772492.jpeg?auto=compress&cs=tinysrgb&w=600" width="90px" height="90px" alt="">
-                        <p style="margin-left: 7px;">Meu Produto é Top demais!!</p>
-                    </div>
-                    <div style="display: flex;">
-                        <img src="https://images.pexels.com/photos/257834/pexels-photo-257834.jpeg?auto=compress&cs=tinysrgb&w=600" width="90px"  height="90px" alt="">
-                        <p style="margin-left: 7px;">Meu Produto B</p>
-                    </div>
-                </div>
-                
-            </div>
-            <div class="c11-3">
-                <h2 class="c11-title">TAGS</h2>
-                <div class="c11-tags">
-                    <p class="c11-tag">Comida</p>
-                    <p class="c11-tag">Organico</p>
-                    <p class="c11-tag">Gluten</p>
-                    <p class="c11-tag">Mercado</p>
-                    <p class="c11-tag">Saúde</p>
-                    <p class="c11-tag">Compartilhar</p>
-                    <p class="c11-tag">Natural</p>
-                    <p class="c11-tag">Estilo de Vida</p>
-                    <p class="c11-tag">Viver Bem</p>
-                    <p class="c11-tag">Cultivo</p>
-                    <p class="c11-tag">Plantar</p>
-                    <p class="c11-tag">Saúdavel</p>
-                    <p class="c11-tag">Transgenicos</p>
-                </div>
-                
-            </div>
-            <div class="c11-4">
-                <h2 class="c11-title">NOSSO BLOG</h2>
-
-                <p>Organismos geneticamente modificados (OGM): Voce está certo em saber Guia para comer Saúdavel. Por que cultivar Organicâmente? O que esta no nosso prato? Produtos livre de Glúten em harmonia com a natureza</p>
-
-            </div>
-        </div>
+     
     
 
 
@@ -527,14 +379,129 @@ body{
      
         <div class="c3">
 
+            <div class="c3-card" style="position: relative;">
+                <i class="fa-solid fa-medal" id="icon-medal"></i>
+                <div style="
+                    position: absolute;
+                    top: 5px;
+                    left: -10px;
+                    font-size: 0.8em;
+                    z-index: 2;
+                    padding: 0 10px 0 10px;
+                    transform: rotate(-15deg);
+                    font-weight: 900;
+                    background-color: rgba(255, 255, 255, 0.725);
+                    color: var(--main-green);
+                    color: rgb(11,156,89);
+                    margin: 0;
+                    border: 4px solid rgb(11,156,89);
+                    text-align: center;
+
+                ">ESSENCIAL
+                <div style="
+                margin: 0;
+                font-weight: 500;
+                font-size: 0.7em;
+                
+                color: rgba(15, 102, 61, 0.955);
+                ">para os outros passos</div>    
+            </div>
+
+                <div class="c3-icon">
+                <ion-icon name="person-outline"></ion-icon>
+                </div>
+                <h2 class="c3-card-title">Crie sua conta</h2>
+                <p class="c3-card-text">Cadastre-se gratuitamente agora mesmo. Voce pode usar sua conta para ter acesso à novas funcionalidades na plataforma, como publicar produtos e enviar mensagens para usuários</p>
+            </div>
+            <div class="c3-card">
+                <div class="c3-icon">
+                    <ion-icon name="card-outline"></ion-icon>
+                </div>
+                <h2 class="c3-card-title">Configure o perfil</h2>
+                <p class="c3-card-text">Adicione novos dados de cadastro em seu perfil para que outros usuários possam te contatar e conhecerem mais sobre voce e seus Produtos.</p>
+            </div>
+            <div class="c3-card">
+                <div class="c3-icon">
+                    <ion-icon name="add-circle-outline"></ion-icon>
+                </div>
+                <h2 class="c3-card-title">Publique produtos</h2>
+                <p class="c3-card-text">Publique seus produtos na plataforma, preencha os campos para que assim outros usuários possam conhecê-los, visualizar suas respectivas informaçoes.</p>
+            </div>
+            <div class="c3-card">
+                <div class="c3-icon">
+                    <ion-icon name="cart-outline"></ion-icon>
+                </div>
+                <h2 class="c3-card-title">Adicione em seu Carrinho</h2>
+                <p class="c3-card-text">Adicionar produtos criados por outros usuarios ao seu carrinho de itens é uma funcionalidade disponivel na aplicação.</p>
+            </div>
+            <div class="c3-card">
+                <div class="c3-icon">
+                    <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+                </div>
+                <h2 class="c3-card-title">Converse</h2>
+                <p class="c3-card-text">Interaja com outros usuários na plataforma, envie mensagens, faça propostas para com seus produtos através do chat dísponivel para todos os usuários da plataforma.</p>
+            </div>
+            <div class="c3-card" style="position: relative;">
+                <div style="
+                    position: absolute;
+                    bottom: 5px;
+                    right: -10px;
+                    font-size: 0.8em;
+                    z-index: 2;
+                    padding: 0 10px 0 10px;
+                    transform: rotate(-15deg);
+                    font-weight: 900;
+                    background-color: rgba(255, 255, 255, 0.725);
+                    color: var(--main-green);
+                    color: rgb(11,156,89);
+                    margin: 0;
+                    border: 4px solid rgb(11,156,89);
+                    text-align: center;
+
+                ">DESENVOLVIMENTO
+                <div style="
+                margin: 0;
+                font-weight: 500;
+                font-size: 0.7em;
+                
+                color: rgba(15, 102, 61, 0.955);
+                ">em desenvolvimento</div>    
+            </div>
+                <div class="c3-icon">
+                    <ion-icon name="star-half-outline"></ion-icon>
+                </div>
+                <h2 class="c3-card-title">Avalie Produtos</h2>
+                <p class="c3-card-text">Voce pode tambem avaliar produtos publicados por usuários, uma vez que esteja autenticado, essa funcionalidade é restringida por uma avaliação por produto por usuario.</p>
+            </div>
                  <!-- <h2 style="
                     position: absolute; top: 25px;
                 ">Produtos em Destaque</h2> -->
 
-                    
-                         
-                        
+                <!-- <div class="healthy-tips-inside">
+                    <div class="healthy-tips">
+                        <div>
+                            <h1 class="healthy-main-title">BENEFICIOS DE</h1>
+                            <h1 class="healthy-second-title">COMER SAUDAVEL</h1>
+                        </div>
+                        <div class="healthy-tips-bar" style="background: rgb(81,208,93)">
+                            
+                        </div>
+                        <div class="healthy-tips-bar" style="width: 70%; background: rgb(151,195,46)">
+                            
+                        </div>
+                        <div class="healthy-tips-bar" style="width: 65%; background: rgb(59,187,234)">
+                        </div>
+                      
+                        <div class="healthy-tips-bar" style="width: 60%; background: rgb(238,135,40)">
+                        </div>
+                    </div>
+                    <div style="width: 55%; position: absolute; right: 15px; top: 145px;">
+                        <img src="../assets/healthyfood.png" alt=""  style="width: 100%;">
+                    </div>
+                </div> -->
         </div> 
+
+
         <!-- <div class="c4">
             <div class="propaganda-text-controller">
 

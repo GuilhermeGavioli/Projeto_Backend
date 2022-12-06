@@ -103,16 +103,16 @@
 <header class="header" style="background: rgb(248,248,248);">
     <div class="logo-header-container" onClick="window.location.href = '/'">
 
-        <img src="../assets/My project-1 (1).png" class="company-logo" alt="">
+        <img src="../assets/My project-1 (1).png" class="company-logo" alt="" style="cursor:pointer;">
         
-        <img src="../assets/text-logo.png" class="company-name" alt="">
+        <img src="../assets/text-logo.png" class="company-name" alt="" style="cursor:pointer;">
         
     </div>
 
     <div class="header-main">
-        <p class="nav-item" style="background: #85bb46; padding: 8px 15px 8px 15px"><a href="/" style="color: rgb(7,67,27);">Home</a></p>
-        <p class="nav-item"><a href="/sobre" style="color: rgb(135, 135, 135)">Sobre</a></p>
-        <p class="nav-item"><a href="/getprodutos?queryDescriptionAlso=true&number=0&nomeProduto=a" style="color: rgb(135,135,135)">Produtos</a></p>
+        <p class="nav-item" id="nav-item-home"><a href="/" style="color: rgb(135, 135, 135)">Home</a></p>
+        <p class="nav-item" id="nav-item-sobre"><a href="/sobre" style="color: rgb(135, 135, 135)">Sobre</a></p>
+        <p class="nav-item" id="nav-item-produtos"><a href="/categorias" style="color: rgb(135,135,135)">Produtos</a></p>
         <div class="nav-item" id="procurar-nav-item">
         <p id="procurar-and-icon-container">
             Procurar
@@ -154,10 +154,13 @@
 
     <div class="header-user-icon-container">
         <i class="fa-solid fa-cart-shopping" id="header-cart" style="font-size: 1.4em;">
+             
             
         </i>
+
+        <!-- <ion-icon name="cart-outline" id="header-cart" style="font-size: 1.4em;"></ion-icon> -->
         <div  id="header-bell-icon">
-            <i class="fa-regular fa-bell" style="font-size:1.4em; margin-right: 12px;">
+            <i class="fa-solid fa-bell" style="font-size:1.6em;color: rgb(150,150,150);  margin-right: 12px;">
                 
             </i>
             <div class="bell-painel">

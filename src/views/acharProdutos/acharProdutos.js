@@ -5,6 +5,9 @@ let fetchCont = 0;
 let isOver = false;
 
 window.onload = async () => {
+
+  const headerProdutosText = document.getElementById('nav-item-produtos')
+  paintHeader(headerProdutosText)
   
   const data = await handleUserFetchTokenData('stayOnThePageStillNotLoggedIn');
 
@@ -24,7 +27,7 @@ window.onload = async () => {
   resultadosTextElement.innerText = c1.childElementCount - 1 + " de " + productsTotal + ' resultados para "' + searchedProductParam + '"'
   
   //
-  paintCategory(categoryParam);
+  // paintCategory(categoryParam);
 
   console.log('TOTAL ', productsTotal)
   if (productsTotal > 12) {
@@ -55,21 +58,21 @@ function addCategoriesRedirectEventOnClick(searchedProduct, category) {
     })
   })
 }
-function paintCategory(category) {
-  const selectedCategory = document.createElement('div');
-  selectedCategory.className = 'selected-category';
-  if (category == "todos") document.getElementById('todos-category').append(selectedCategory);
-  if (category == "vegetais") document.getElementById('vegetais-category').append(selectedCategory);
-  if (category == "frutas") document.getElementById('frutas-category').append(selectedCategory);
-  if (category == "carnes") document.getElementById('carnes-category').append(selectedCategory);
-  if (category == "laticinios") document.getElementById('laticinios-category').append(selectedCategory);
-  if (category == "sementes") document.getElementById('sementes-category').append(selectedCategory);
-  if (category == "graos") document.getElementById('graos-category').append(selectedCategory);
-  if (category == "fertilizantes") document.getElementById('fertilizantes-category').append(selectedCategory);
-  if (category == "outros") document.getElementById('outros-category').append(selectedCategory);
+// function paintCategory(category) {
+//   const selectedCategory = document.createElement('div');
+//   selectedCategory.className = 'selected-category';
+//   if (category == "todos") document.getElementById('todos-category').append(selectedCategory);
+//   if (category == "vegetais") document.getElementById('vegetais-category').append(selectedCategory);
+//   if (category == "frutas") document.getElementById('frutas-category').append(selectedCategory);
+//   if (category == "carnes") document.getElementById('carnes-category').append(selectedCategory);
+//   if (category == "laticinios") document.getElementById('laticinios-category').append(selectedCategory);
+//   if (category == "sementes") document.getElementById('sementes-category').append(selectedCategory);
+//   if (category == "graos") document.getElementById('graos-category').append(selectedCategory);
+//   if (category == "fertilizantes") document.getElementById('fertilizantes-category').append(selectedCategory);
+//   if (category == "outros") document.getElementById('outros-category').append(selectedCategory);
   
   
-}
+// }
 
 function getResultadosText() {
   const queryString = window.location.search;

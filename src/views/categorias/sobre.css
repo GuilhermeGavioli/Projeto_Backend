@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@600&family=Poppins:wght@400;500&family=Roboto+Slab:wght@300&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@600&family=Poppins&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@600&family=Poppins&family=Roboto+Slab:wght@300&display=swap');
+
+
+
+.main{
+    /* background-color: red; */
+    width: 100vw;
+    max-width: 2000px;
+    height: 100vh;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 300px 300px;
+    gap: 50px 25px;
+    padding: 100px;
+  
+}
+
+.category-card{
+    display: flex;
+    flex-direction: column;
+}
+.category-card:hover{
+    opacity: 85%;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+}
+.category-card-first, .category-card-second{
+    width: 100%;
+}
+.category-card-first{
+    height: 80%;
+    background-color: rgb(101, 62, 62);
+    font-size: 4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.category-card-second{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 20%;
+    background-color: white;
+}
+#cat-card-1{
+    background-color: rgb(40,135,49);
+    color: rgb(28, 98, 35);
+}
+
+#cat-card-2{
+    background-color: rgb(137, 187, 70);
+    color: rgb(94, 130, 48);
+}
+#cat-card-3{
+    background-color: rgb(116, 69, 22);
+    color: rgb(70, 41, 13);
+}
+#cat-card-4{
+    background-color: rgb(253,198,56);
+    color: rgb(178, 139, 40);
+}
+#cat-card-5{
+    background-color: rgb(225,102,98);
+    color: rgb(147, 68, 66);
+}
+#cat-card-6{
+    background-color: rgb(12,74,31);
+    color: rgb(6, 38, 16);
+}
+#cat-card-7{
+    background-color: rgb(69, 190, 58);
+    color: rgb(47, 127, 40);
+}
+#cat-card-8{
+    background-color: rgb(238,136,59);
+    color: rgb(149, 85, 36);
+}

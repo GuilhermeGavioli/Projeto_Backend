@@ -50,6 +50,8 @@ app.use(express.static(path.join(__dirname + '/views' + '/sobre')));
 app.use(express.static(path.join(__dirname + '/views' + '/404Error')));
 app.use(express.static(path.join(__dirname + '/views' + '/globalChat')));
 
+app.use(express.static(path.join(__dirname + '/views' + '/sobreprodutos')));
+
 app.use(express.static(path.join(__dirname + '/file_system')));
 app.use(express.static(path.join(__dirname + '/file_system/app')));
 app.use(express.static(path.join(__dirname + '/file_system/user')));
@@ -84,6 +86,14 @@ app.get('/globalchat', (req, res) => {
 
 app.get('/procurarproduto', (req, res) => { 
     res.render(path.join("procurarproduto", "procurarproduto"));
+})
+
+app.get('/sobreprodutos', (req, res) => {
+    res.render(path.join("sobreprodutos", "sobreprodutos"));
+})
+
+app.get('/categorias', (req, res) => { 
+    res.render(path.join("categorias", "categorias"));
 })
 
 app.get('/registrar',(req, res) => { 
@@ -153,6 +163,23 @@ app.get('/mymessages', ProtectionAgainstNonAuthenticatedUsers, async (req, res) 
     const messages = await mySqlDatabase.getMessages(userTokenId);
     console.log(messages)
     return res.json(messages);
+})
+
+app.put('/readmessage', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => {
+    try {
+        const  messages  = req.body.messages
+        console.log(req.body)
+        console.log(messages)
+        if (!messages) return res.json({ read: false, error: true })
+        const userTokenId = res.locals.userInfo.user_id
+        messages.map(async (message: any) => { 
+            await mySqlDatabase.updateRobotMessage(message?.id.toString(), userTokenId);
+        })
+        return res.json({ read: true, error: false });
+    } catch (err) {
+        console.log(err)
+        return res.json({read: false, error: true, error_message: err})
+     }
 })
 
 export async function notifyUser(receiver: string, message: string) {

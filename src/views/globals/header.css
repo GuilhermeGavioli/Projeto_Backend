@@ -31,16 +31,18 @@ input{
 #header-cart{
     position: relative;
     visibility: hidden;
-    font-size: 2em;
+    font-size: 2.2em;
+    color: var(--cart-main);
+    color: rgb(69, 69, 69);
 }
-#cart-number-cont{
+#cart-number-cont, .bell-number{
     position: absolute;
     top: -12px;
     right: -8px;
     background-color: var(--main-green);
     color: white;
     margin: 0;
-    font-size: 0.3em;
+    font-size: 0.4em;
     font-weight: 700;
     width: 18px;
     height: 18px;
@@ -307,13 +309,18 @@ input{
     width: 50px;
     height: 50px;
      margin-left: 8px;
+     cursor: pointer;
 }
 
 .company-name{
+    cursor: pointer;
     width: 100px; 
     margin-top: 4px;
     margin-left: 7px;
-   
+}
+
+.company-logo:hover, .comapny-name:hover{
+    cursor: pointer;
 }
 
 .header-main{
@@ -386,6 +393,7 @@ a:link, #procurar-and-icon-container{
     justify-content: space-between;
     width: fit-content;
     /* width: 145px; */
+    padding-right: 80px;
 
     /* background-color: red; */
 }
@@ -649,21 +657,22 @@ li{
     position: relative;
     cursor: pointer;
 }
-.bell-number{
-    background-color: red;
+.bell-number2{
+    background-color: var(--main-green);
     position: absolute;
     top: -10px;
-    right: -10px;
+    right: -0px;
     padding: 8px;
     width: 18px;
     height: 18px;
     text-align: center;
-    font-size: .3em;
+    font-size: .7em;
     display: flex;
     justify-content: center;
     font-weight: 700;
     align-items: center;
     border-radius: 50%;
+    color: white;
 }
 .bell-painel{
     cursor: default;

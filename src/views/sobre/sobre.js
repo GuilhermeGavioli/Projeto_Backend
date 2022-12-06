@@ -4,6 +4,9 @@ let isOver = false;
 
 window.onload = async () => {
   
+  const headerSobreText = document.getElementById('nav-item-sobre')
+  paintHeader(headerSobreText)
+
   const data = await handleUserFetchTokenData('stayOnThePageStillNotLoggedIn');
 
 

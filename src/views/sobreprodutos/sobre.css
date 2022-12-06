@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@600&family=Poppins:wght@400;500&family=Roboto+Slab:wght@300&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@600&family=Poppins&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@600&family=Poppins&family=Roboto+Slab:wght@300&display=swap');
+
+.container2{
+    margin: auto;
+    /* background-color: gray; */
+    width: 1100px;
+    margin: auto;
+    max-width: 2000px;
+    display: grid;
+    grid-template-columns: 1.2fr 1.2fr;
+    grid-template-areas: 
+    "t1 t2 "
+    "t3 t3 "
+    "t4 t5 ";
+    grid-template-rows: auto auto auto;
+    color: white;
+    column-gap: 100px;
+    row-gap: 125px;
+    margin-top: 75px;
+
+}
+.banner{
+    width: 100vw;
+    max-width: 2000px;
+    margin: auto;
+    height: 400px;
+    /* background-image: url('https://images.pexels.com/photos/1472334/pexels-photo-1472334.jpeg?auto=compress&cs=tinysrgb&w=600');
+    background-image: url('https://media.istockphoto.com/id/1250152599/photo/businessmen-point-to-arrows-and-business-growth-graphs-on-a-modern-virtual-interface-on.jpg?s=612x612&w=0&k=20&c=-lrEobULM-wvKNDlXD30dpPO4YvRo4_EMzS-Wu23NAo=');
+    background-image: url('../assets/plantpic.webp'); */
+
+    background-size: cover;
+    /* filter: grayscale(100%) brightness(80%) sepia(300%) hue-rotate(70deg) saturate(300%) brightness(50%) opacity(90%); */
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    position: relative;
+}
+
+.main-title-container{
+    text-align: center;
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    inset: 300px 0 0 0;
+    width: 800px;
+    
+}
+.main-title{
+    font-family: 'Poppins', sans-serif;
+    /* font-family: 'Alexandria', sans-serif; */
+    /* font-weight: 900; */
+    font-size: 3.3em;
+    margin: 0;
+    color: rgb(23, 66, 23);
+    font-weight: 700;
+    
+
+}
+.sub-title{
+    font-family: 'Roboto', sans-serif;
+    /* font-weight: lighter; */
+    color: rgb(180,180,180);
+    font-size: 1.3em;
+    margin-top: 10px;
+    font-weight: 600;
+    line-height: 30px;
+    font-family: 'Roboto Slab', serif;
+}
+.input-and-button-container{
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.078);
+}
+.main-input{
+    padding-left: 15px;
+    width: 60%;
+    border: none;
+}
+.main-input::placeholder{
+    color: rgb(213,213,213);
+    font-weight: 600;
+}
+
+.main-btn{
+    width: 40%;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    padding: 10px 25px 10px 25px;
+    font-size: 1em;
+    margin: 0;
+    border: none;
+    background-color: rgb(2,134,230);
+    color: white;
+    background: linear-gradient(to bottom, rgb(57,172,70), rgb(57,172,70));
+}
+
+.bottom-text{
+    font-size: 1em;
+    color: rgb(190,190,190);
+    text-align: start;
+    margin: 12px 0 0 8px;
+  
+}
+
+.go-green-container{
+    height: 25px;
+    margin: auto;
+    width: 70%;
+    margin-top: 35px;
+}

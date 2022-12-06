@@ -279,8 +279,19 @@
 
 
         <div class="categories">
-            <h2 class="resultados-text"></h2>
 
+            <div style="display: flex; flex-direction: column;">
+                <div class="input-and-button-container">
+                    <input type="text" class="main-input" placeholder="Avalie os produtos em nossa plataforma...">
+                    <button class="main-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </div>
+            
+            <h2 class="resultados-text"></h2>
+            <p>Buscar por categorias</p>
+
+            
+<!-- 
             <div class="categories-circles">
                 <div class="category-circle" id="todos-category" category="todos">
                     <i class="fa-solid fa-border-all" style="margin:0;"></i>
@@ -289,7 +300,7 @@
                 <div class="category-circle" id="vegetais-category" category="vegetais">
                     <i class="fa-solid fa-carrot" style="margin:0;"></i>
                     <p class="category-text">Vegetais</p>
-                    <!-- <p>vegetables</p> -->
+    
                 </div>
                 <div class="category-circle" id="frutas-category" category="frutas">
                     <i class="fa-solid fa-apple-whole" style="margin:0;"></i>
@@ -321,11 +332,9 @@
                     <i class="fa-solid fa-circle-half-stroke"></i>
                     <p class="category-text">Outros</p>
             </div>
-        </div>
-        
-        
-        
+        </div> -->
     </div>
+
     
     <span id="product_total" product_total="<%=productsFound[0]?.total%>"></span>
     

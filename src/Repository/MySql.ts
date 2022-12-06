@@ -265,42 +265,35 @@ export default class MySql implements Repository {
     }
 
     public async findManyProductsByName(name: string, category: string, queryDescriptionAlso: boolean, pack: number): Promise<GetOneOutputDTO[] | null> {
-        console.log(category)
-        if (category !== "todos") {
-            console.log('todos')
-            const [rows] = await this.connection.execute(`SELECT *, (
+  
+        
+        const [rows] = await this.connection.execute(`SELECT *, (
                 select COUNT(*)
-                FROM product WHERE product_name LIKE "%${name}%" OR product_description LIKE "%${name}%" AND category="Frutas"
+                FROM product WHERE product_name LIKE "%${name}%" 
             ) AS total
             FROM product
-            WHERE product_name LIKE "%${name}%" OR product_description LIKE "%${name}%" AND category="Frutas"
+            WHERE product_name LIKE "%${name}%" 
             LIMIT  12 OFFSET ${(pack - 1) * 11};`);
+        // const [rows] = await this.connection.execute(`SELECT *, (
+        //         select COUNT(*)
+        //         FROM product WHERE product_name LIKE "%${name}%" OR product_description LIKE "%${name}%"
+        //     ) AS total
+        //     FROM product
+        //     WHERE product_name LIKE "%${name}%" OR product_description LIKE "%${name}%"
+        //     LIMIT  12 OFFSET ${(pack - 1) * 11};`);
             if (!rows) return null;
             return rows;
         }
 
-        if (queryDescriptionAlso) {
-            const [rows] = await this.connection.execute(`SELECT *, (
-                select COUNT(*)
-                FROM product WHERE product_name LIKE "%${name}%" OR product_description LIKE "%${name}%"
-            ) AS total
-            FROM product
-            
-            WHERE product_name LIKE "%${name}%" OR product_description LIKE "%${name}%"
-            LIMIT  12 OFFSET ${(pack - 1) * 11};`);
-            if (!rows) return null;
-            return rows;
-
-        } else { 
-            return null;
+       
             // const [rows] = await this.connection.execute(`SELECT 
             // *
             // FROM product WHERE product_name LIKE "%${name}%"
             // LIMIT ${number}, ${number + 8};`); 
             // if (!rows) return null;
             // return rows;
-        }
-    }
+    
+
 
 
     public async findCertainAmountOfRandomProducts(amount: Number): Promise<GetOneOutputDTO[] | null> {
@@ -350,9 +343,13 @@ export default class MySql implements Repository {
         const dateFormated = date.toISOString().slice(0, 19).replace('T', ' ');
         await this.connection.query(
             `INSERT INTO robot_message VALUES (${id}, false, false, "${message_text}", "${receiver}", true, "${dateFormated}")`
-        );
+            );
     }
     
+    public async updateRobotMessage(message_id: string, receiver: string): Promise<void> { 
+        await this.connection.query(`UPDATE FROM robot_message SET has_been_read_by_receiver=true WHERE receiver="${receiver}" AND message_id="${message_id}"; `)
+    }
+        
     public async saveMessage(sender: string, message_text: string, receiver: string): Promise<void> {
         var date = new Date();
         date.setHours(date.getHours() - 3)
