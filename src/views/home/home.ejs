@@ -101,18 +101,23 @@ body{
     
     
     <div class="container">
+
+        <div class="c1">
+            <h1>Plataforma</h1>
+            <p style="margin: 0; font-size:1em;">Compartilhe seus produtos com outros usuarios agora mesmo em alguns cliques e torne-se um produtor em nosso site de forma gratuita. Somos uma empresa ficticia que tem o objetivo de auxiliar diversos tipos de produtores que desejam compartilhar sua mercadoria com mais pessoas. Uma plataforma para trazer produtores e pessoas que querem viver de forma mais saudavel em um unico lugar</p>
+        </div>
+
  
 
         <div class="c0">
             <div class="website-card">
                 <div class="website-card-first-part">
-                    <!-- https://images.pexels.com/photos/270557/pexels-photo-270557.jpeg?auto=compress&cs=tinysrgb&w=600 -->
                     <div class="website-card-circle"
                     style="
                     display: flex; align-items: center; justify-content: center; font-size: 2.2em;
+                    background-color: #6FA037;
                     ">
                    <i class="fa-solid fa-fingerprint" style="margin: auto;"></i>
-                   <!-- <i class="fa-solid fa-lock" style="margin: auto;"></i> -->
                 </div>
                 </div>
                 <div class="website-card-second-part">
@@ -123,7 +128,6 @@ body{
 
             <div class="website-card">
                 <div class="website-card-first-part">
-                    <!-- https://images.pexels.com/photos/270557/pexels-photo-270557.jpeg?auto=compress&cs=tinysrgb&w=600 -->
                     <div class="website-card-circle"
                     style="
                     display: flex; align-items: center; justify-content: center; font-size: 2.2em;
@@ -137,13 +141,13 @@ body{
                 </div>
             </div>
 
-            <div class="website-card">
+            <div class="website-card" >
                 <div class="website-card-first-part">
          
                     <div class="website-card-circle"
                     style="
                     display: flex; align-items: center; justify-content: center; font-size: 2.2em;
-                    ">
+                    background: #39AC46;">
                     <i class="fa-solid fa-heart-pulse" style="margin: auto;"></i>
                 </div>
                 </div>
@@ -168,37 +172,33 @@ body{
                     <p>A expressão Lorem ipsum em design gráfico e editoração é um texto padrão em latim utilizado na produção grá</p>
                 </div>
             </div>
-
-
-        
-           
         </div>
 
 
 
-        <div class="c1">
-            <h1>Plataforma</h1>
-            <p style="margin: 0; font-size:1em;">Compartilhe seus produtos com outros usuarios agora mesmo em alguns cliques e torne-se um produtor em nosso site de forma gratuita. Somos uma empresa ficticia que tem o objetivo de auxiliar diversos tipos de produtores que desejam compartilhar sua mercadoria com mais pessoas. Uma plataforma para trazer produtores e pessoas que querem viver de forma mais saudavel em um unico lugar</p>
-        </div>
-
+       
 
 
         <div class="c9">
             <div class="c9_1" onclick="window.location.href='/sobreprodutos'">
+                <div class="c9_1-triangle"></div>
+
                 <div class="c9-pic-1">
                     <!-- <img src="../wassets/1909.i305.022.P.m005.c20.realistic_coffee_set-02-removebg-preview.png" width="175px" height="175px"/> -->
                 </div>
                 <div class="c9-texts">
-                    <p style="margin: 5px 0 0 0; color:var(--cart-main); font-weight: 500;">Organico, Único</p>
+                    <p style="margin: 5px 0 0 0; color:#39AC46; font-weight: 500;">Organico, Único</p>
                     <h2 class="c9-titles-first" >mercadorias</h2>
                     <h2 class="c9-titles-first">exclusivas</h2>
-                    <p style="margin: 10px 0 35px 0;" class="c9-text">Encontre produtos unicos e especificos criados por usuarios em nossa plataforma online.</p>
+                    <p style="margin: 10px 0 35px 0;" class="c9-text">Encontre produtos únicos e especificos criados por usuarios em nossa plataforma online.</p>
                     <button class="c9-btn">Saiba Mais</button>
                 </div>
             </div>
             <div class="c9_2"  onclick="window.location.href='/sobreprodutos'">
+                <!-- <div class="c9_2-triangle"></div> -->
+
                 <div class="c9-texts">
-                    <p style="margin: 5px 0 0 0; color:var(--cart-main); font-weight: 500;">Organico, Novo</p>
+                    <p style="margin: 5px 0 0 0; color:#39AC46; font-weight: 500;">Organico, Novo</p>
                     <h2 class="c9-titles-second">novos</h2>
                     <h2 class="c9-titles-second">produtos</h2>
                     <p style="margin: 10px 0 35px 0;" class="c9-text">Temos uma variedade de produtos publicados em nossa plataforma online. Venha conferi-los!</p>
@@ -381,67 +381,48 @@ body{
 
             <div class="c3-card" style="position: relative;">
                 <i class="fa-solid fa-medal" id="icon-medal"></i>
-                <div style="
-                    position: absolute;
-                    top: 5px;
-                    left: -10px;
-                    font-size: 0.8em;
-                    z-index: 2;
-                    padding: 0 10px 0 10px;
-                    transform: rotate(-15deg);
-                    font-weight: 900;
-                    background-color: rgba(255, 255, 255, 0.725);
-                    color: var(--main-green);
-                    color: rgb(11,156,89);
-                    margin: 0;
-                    border: 4px solid rgb(11,156,89);
-                    text-align: center;
+               <!-- <p id="first-medal">1</p> -->
 
-                ">ESSENCIAL
-                <div style="
-                margin: 0;
-                font-weight: 500;
-                font-size: 0.7em;
-                
-                color: rgba(15, 102, 61, 0.955);
-                ">para os outros passos</div>    
-            </div>
-
-                <div class="c3-icon">
+                <div class="c3-icon" onclick="window.location.href = '/registrar'">
                 <ion-icon name="person-outline"></ion-icon>
                 </div>
                 <h2 class="c3-card-title">Crie sua conta</h2>
                 <p class="c3-card-text">Cadastre-se gratuitamente agora mesmo. Voce pode usar sua conta para ter acesso à novas funcionalidades na plataforma, como publicar produtos e enviar mensagens para usuários</p>
             </div>
-            <div class="c3-card">
+
+            <div class="c3-card" onclick="window.location.href = '/meuperfil'" style="background: #39AC46;">
                 <div class="c3-icon">
                     <ion-icon name="card-outline"></ion-icon>
                 </div>
                 <h2 class="c3-card-title">Configure o perfil</h2>
                 <p class="c3-card-text">Adicione novos dados de cadastro em seu perfil para que outros usuários possam te contatar e conhecerem mais sobre voce e seus Produtos.</p>
             </div>
-            <div class="c3-card">
+
+            <div class="c3-card" onclick="window.location.href = '/estacaodecriacao'">
                 <div class="c3-icon">
-                    <ion-icon name="add-circle-outline"></ion-icon>
+                    <ion-icon name="pricetag-outline"></ion-icon>
                 </div>
                 <h2 class="c3-card-title">Publique produtos</h2>
                 <p class="c3-card-text">Publique seus produtos na plataforma, preencha os campos para que assim outros usuários possam conhecê-los, visualizar suas respectivas informaçoes.</p>
             </div>
-            <div class="c3-card">
+
+            <div class="c3-card" onclick="window.location.href = '#'" style="background: #39AC46;">
                 <div class="c3-icon">
                     <ion-icon name="cart-outline"></ion-icon>
                 </div>
                 <h2 class="c3-card-title">Adicione em seu Carrinho</h2>
                 <p class="c3-card-text">Adicionar produtos criados por outros usuarios ao seu carrinho de itens é uma funcionalidade disponivel na aplicação.</p>
             </div>
-            <div class="c3-card">
+
+            <div class="c3-card" id="converse-card" onclick="window.location.href = '/globalchat'">
                 <div class="c3-icon">
                     <ion-icon name="chatbox-ellipses-outline"></ion-icon>
                 </div>
                 <h2 class="c3-card-title">Converse</h2>
                 <p class="c3-card-text">Interaja com outros usuários na plataforma, envie mensagens, faça propostas para com seus produtos através do chat dísponivel para todos os usuários da plataforma.</p>
-            </div>
-            <div class="c3-card" style="position: relative;">
+            </div> 
+
+            <div class="c3-card"  onclick="window.location.href = '/categorias'" style="position: relative; background: #39AC46;">
                 <div style="
                     position: absolute;
                     bottom: 5px;
@@ -451,7 +432,7 @@ body{
                     padding: 0 10px 0 10px;
                     transform: rotate(-15deg);
                     font-weight: 900;
-                    background-color: rgba(255, 255, 255, 0.725);
+                    background-color: rgb(255, 255, 255);
                     color: var(--main-green);
                     color: rgb(11,156,89);
                     margin: 0;
@@ -468,10 +449,10 @@ body{
                 ">em desenvolvimento</div>    
             </div>
                 <div class="c3-icon">
-                    <ion-icon name="star-half-outline"></ion-icon>
+                    <ion-icon name="star-outline"></ion-icon>
                 </div>
                 <h2 class="c3-card-title">Avalie Produtos</h2>
-                <p class="c3-card-text">Voce pode tambem avaliar produtos publicados por usuários, uma vez que esteja autenticado, essa funcionalidade é restringida por uma avaliação por produto por usuario.</p>
+                <p class="c3-card-text" style="color:white;">Voce pode tambem avaliar produtos publicados por usuários, uma vez que esteja autenticado, essa funcionalidade é restringida por uma avaliação por produto por usuario.</p>
             </div>
                  <!-- <h2 style="
                     position: absolute; top: 25px;

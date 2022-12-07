@@ -201,6 +201,12 @@ border-radius: 6px;
 input, select, textarea{
     border: 1px solid rgb(207,212,221);
     outline: none;
+    height: 45px;
+}
+.input-field{
+    color: rgb(131,137,145);
+    border: none;
+    box-shadow: 2px 2px 3px -3px rgba(0, 0, 0, 0.886)
 }
 
 label{
@@ -210,12 +216,12 @@ label{
     margin-bottom: 3px;
 }
 input, select, textarea{
-    height: 45px;
+    /* height: 45px; */
     padding-left: 15px;
-    border-radius: 3px;
+    /* border-radius: 3px;
     color: rgb(131,137,145);
     border: none;
-    box-shadow: 2px 2px 3px -3px rgba(0, 0, 0, 0.886)
+    box-shadow: 2px 2px 3px -3px rgba(0, 0, 0, 0.886) */
 }
 
 input:disabled{

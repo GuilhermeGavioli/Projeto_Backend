@@ -192,7 +192,7 @@ function createProductCard(item) {
   cardSecond.append(cardTags)
   cardSecond.append(cardPrice)
   cardSecond.append(cardIsOrganic)
-  cardSecond.append(cardCreatedAt)
+  // cardSecond.append(cardCreatedAt)
 
 
   cardContainer.append(cardFirst);

@@ -20,7 +20,9 @@ window.onload = async () => {
 
     const user = await handleUserFetchTokenData('redirect');
     console.log(JSON.stringify(user))
-    if (!user){  return window.location.href = '/'  }
+    if (!user) {
+        return window.location.href = '/login'
+    }
 
 
     // const ws = new WebSocket(`${BASE_URL_PATH}`);
