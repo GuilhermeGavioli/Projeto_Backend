@@ -13,7 +13,7 @@
 
                 
              <div class="cart-no-items-to-be-shown-container">
-                <i class="fa-solid fa-box-open" style="font-size: 1.6em;"></i>
+                <i class="fa-solid fa-box-open" style="font-size: 1.6em; position: static;"></i>
                  Sem items para serem mostrados...
              </div>
             </div>
@@ -42,7 +42,7 @@
                 <input type="" class="cart-second-input" value="Sao Paulo SP" disabled>
             </div>
 
-            <button class="cart-alterar-dados-btn">Alterar Dados</button>
+            <button class="cart-alterar-dados-btn" onclick="window.location.href='/meuperfil'">Alterar Dados</button>
         </div>
     </div>
 </div>
@@ -113,7 +113,8 @@
         <p class="nav-item" id="nav-item-home"><a href="/" style="color: rgb(135, 135, 135)">Home</a></p>
         <p class="nav-item" id="nav-item-sobre"><a href="/sobre" style="color: rgb(135, 135, 135)">Sobre</a></p>
         <p class="nav-item" id="nav-item-produtos"><a href="/categorias" style="color: rgb(135,135,135)">Produtos</a></p>
-        <div class="nav-item" id="procurar-nav-item">
+        <p class="nav-item" id="nav-item-chat"><a href="/globalchat" style="color: rgb(135,135,135)">Chat</a></p>
+        <!-- <div class="nav-item" id="procurar-nav-item">
         <p id="procurar-and-icon-container">
             Procurar
             <i class="fa-solid fa-caret-down" id="seta" style="font-size: .9em; margin-left: 3px; height: fit-content;"></i>
@@ -126,7 +127,7 @@
             </p>
 
         </div>
-        </div>
+        </div> -->
         <p class="hamburger-icon"><i class="fa-solid fa-bars"></i></p>
     </div>
 
@@ -175,7 +176,7 @@
         <div class="header-painel">
 
             <div class="header-painel-first-part">
-                <p style="z-index: 10; color: rgb(255, 255, 255); margin: 8px;">Guilherme Gavioli</p>
+                <p class="header-painel-name" style="z-index: 10; color: rgb(255, 255, 255); margin: 8px;">Guilherme Gavioli</p>
                 <img src="/file_system/app/user_default.jpg" class="header-painel-pic" alt="" >
                 <i class="fa-solid fa-house" id="header-painel-home-icon"></i>
             </div>

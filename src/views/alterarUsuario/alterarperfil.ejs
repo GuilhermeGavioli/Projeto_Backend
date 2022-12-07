@@ -28,104 +28,14 @@
 </style>
 <body>
 
-    <div id="spinning"></div>
+   
     <div class="success-message-container"></div>
     <div class="fail-message-container"></div>
 
-    <header class="header">
-        <div style="height: 100%; display: flex; align-items: center; background-color: rgb(250,250,250);" class="logo-header-container" onClick="window.location.href = '/'">
-            <img src="../assets/logo.png" style="width: 100%; height: 100%; margin-left: 8px; min-width: 75px; max-width: 85px;" alt="">
-            <div class="company-name" style="height: fit-content; display: flex; padding: 0 35px;">
-                <span style="font-family: monospace; font-size: 1.6em; color:rgb(41, 41, 41); text-decoration: solid;">
-                    Go
-                </span>
-                <span style="font-family: monospace; font-size: 1.6em;color:rgb(122, 192, 16); font-weight: 800;">
-                    Green
-                </span>
-            </div>
-        </div>
-
-        <div class="header-main">
-            <p class="nav-item"><a href="/" style="color: rgb(68,68,68)">Home</a></p>
-            <p class="nav-item"><a href="/sobre" style="color: rgb(68,68,68)">Sobre</a></p>
-            <p class="nav-item"><a href="/produtos" style="color: rgb(68,68,68)">Produtos</a></p>
-            <div class="nav-item" id="procurar-nav-item">
-            <p id="procurar-and-icon-container">
-                Procurar
-                <i class="fa-solid fa-caret-down" id="seta" style="font-size: .9em; margin-left: 3px; height: fit-content;"></i>
-            </p>
-            <div class="procurar-painel-container" isOpen="false">
-                <p style="margin: 0;" id="produtores-item" onClick="window.location.href = '/procurarUsuario'">Produtores</p>
-                <p style="margin: 0; margin-top: 8px;"id="produtos-item" onClick="window.location.href = '/procurarProduto'">Produtos</p>
-            </div>
-            </div>
-            <p class="hamburger-icon"><i class="fa-solid fa-bars"></i></p>
-        </div>
+    
 
 
-        <div id="register-and-login" style="margin-left: 25px; display: flex; background-color: rgb(249, 249, 249); justify-content: center;">
-            <p style="margin:0; padding-right: 15px; border-right: 1px solid rgb(92, 92, 92);" ><a href="/registrar" style="text-decoration: none;">
-                <i class="fa-solid fa-user-plus" style="color:rgb(59, 59, 59); font-size: 1.2em;"></i>
-            </a>
-        </p>
-            <p style="margin:0; padding-left: 15px;">
-                <a href="/login" style="text-decoration: none;">
-                    <i class="fa-solid fa-right-to-bracket" style="color:rgb(59, 59, 59); font-size: 1.2em;"></i>
-                </a>
-            </p>
-        </div>
-
-        <div class="header-user-icon-container">
-            <img class="header-user-icon" src="" style="position:relative;">
-            <div class="header-painel" style="visibility: hidden;">
-                <li class="user-painel-item" style="margin-top: 0;">
-                    <a href="/"
-                    style="text-decoration: none; color: rgb(177, 177, 177);"
-                    >Home</a></li>
-                <li class="user-painel-item" style="margin-top: 0;">
-                    <a href="/MeuPerfil"
-                    style="text-decoration: none; color: rgb(177, 177, 177);"
-                    >Meu Perfil</a></li>
-                <li class="user-painel-item"><a href="/criar"
-                    style="text-decoration: none; color: rgb(177, 177, 177);">Criar</a></li>
-                <li class="user-painel-item"><a href="/criar"
-                    style="text-decoration: none; color: rgb(177, 177, 177); margin-bottom:25px;"
-                    >Meus produtos</a></li>
-                <button class="logout-btn">Logout</button>
-            </div>
-        </div>
-    </header>
-
-
-    <div class="sidebar" isOpen="false">
-        <div class="sidebar-items">
-            <p class="sidebar-item" onclick="window.location.href = '/'">Home</p>
-            <p class="sidebar-item" onclick="window.location.href = '/sobreNos'">Sobre Nós</p>
-            <p class="sidebar-item" onclick="window.location.href = '/produtos'">Produtos</p>
-            <p class="sidebar-item" onclick="window.location.href = '/procurarProduto'">Procurar Produto</p>
-            <p class="sidebar-item" onclick="window.location.href = '/procurarUsuario'">Procurar Produtor</p>
-            <h2 id="click-to-close">CLICK PRA FECHAR</h2>
-        </div>
-    </div>
-
-
-
-    <div class="bell-container">
-        <div class="bell-inside-container">
-            <i class="fa-regular fa-bell" style="font-size: 2.5em;"></i>
-            <div class="bell-painel">
-                <div class="bell-painel-inside">
-                <!-- <div class="select-all-messages-container">
-                    <button class="delete-messages-button">Apagar pra mim</button>
-                </div> -->
-                <div class="all-messages-container">
-
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-
+    <%- include("../globals/header.ejs") %>
 
 
 
@@ -148,7 +58,9 @@
         <div class="c1">
               
             <h2 id="c1-main-name" style="
+            color: rgb(240,238,250);
             text-align: center;
+            margin-bottom: 8px;
                 text-overflow: ellipsis; overflow: hidden; width: 95%;max-height: 150px;"></h2>
             
             <div class=circle>
@@ -163,9 +75,9 @@
 
             <div class="warning-about-file-size-container">
                 <p class="warning-about-file-size-text">Faça updload de um novo avatar. Imagens maiores que 
-                    <span style="font-weight: 700;">200Kbs</span> não serão aceitas. É recomendavel que sua imagem tenha lados proporcionais</p>
+                    <span style="font-weight: 700;">200Kbs</span> não serão aceitas.</p>
             </div>
-            <p id="membro-desde" style="margin-top: 45px; font-size: .8em; color: rgb(160, 160, 160);">Membro desde
+            <p id="membro-desde" style="margin-top: 15px; font-size: .7em; color: rgb(240, 247, 250);">Membro desde
                 
                 <span id="mes"></span>
                 de
@@ -183,18 +95,18 @@
 
 
         <div class="c2">
-            <div class="c2-first-container" >
-   
                 <h2 class="main-title"  id="ola-message" style="
                     text-overflow: ellipsis; white-space: nowrap; overflow: hidden;
-                    margin: 0; font-size: 2.3em; color:rgb(24, 24, 24); font-weight: 700;">Olá, </h2>
+                     color:rgb(29,112,37);text-align: start;  width: 100%;">Olá, </h2>
+            <div class="c2-first-container" >
+   
 
                 <div class="user-info-and-advanced-container">
                     <div class="category-text-container" id="category-user-info" style="border-bottom: 2px solid rgb(126, 176, 28); color: rgb(18,18,18);">
-                        <h3 class="category-text" id="user-info-text">User info</h3>
+                        <h3 class="category-text" id="user-info-text">Informações de usuario</h3>
                     </div>
                     <div class="category-text-container" id="category-advanced"  style="margin-left:30px;">
-                        <h3 class="category-text" id="avancado-text">Avancado</h3>
+                        <h3 class="category-text" id="avancado-text">Avançado</h3>
                     </div>
                 </div>
             </div>
@@ -265,7 +177,7 @@
 
                 <div class="c2-user-info">
                 <div class="label-and-input-from-c1" style="margin-top: 15px;">
-                    <label for="name">name</label>
+                    <label for="name">Nome</label>
                     <input type="text" id="profile-name-input">
                     </div>
             <div class="label-and-input">
@@ -321,8 +233,7 @@
 
         
     </div>
-    <div class="empty"></div>
-    </div>
+  
 
 
 

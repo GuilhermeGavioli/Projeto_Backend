@@ -162,6 +162,20 @@ export const controllers = {
         }
     },
 
+    getProdutosByCategory: async (req: Request, res: Response) => {
+        const pack = req.query.pack?.toString().toLowerCase();
+        const category = req.query.category?.toString().toLowerCase();
+        if (!pack || !category) return res.json('Informacao de Produto nao especificada')
+        try {
+            const productsFound = await mySqlDatabase.findManyProductsByCategory(category, Number(pack));
+            console.log('ppp', productsFound)
+            return res.render(path.join("acharProdutos", "acharProdutos.ejs"), { productsFound, nomeProduto: '' });
+        } catch (err) {
+            console.log(err)
+            return res.json('Querry invalida')
+        }
+    },
+
     getProdutosFromUser: async (req: Request, res: Response) => {
         const token_id = res.locals.userInfo.user_id;
         if (!token_id) return res.json('Nao autorizado - Requisiçao negada, sua sessao pode ter expirado.')

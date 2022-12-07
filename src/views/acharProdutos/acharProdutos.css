@@ -94,14 +94,14 @@
     height: 50px;
     background-color: white;
     border: 1px solid rgb(220,220,220);
-    color: var(--main-green);
+    color:  rgb(57,172,70);
     display: flex;
     flex-direction: center;
     align-items: center;
     padding: 10px 22px 10px 22px;
 }
 .selected-pagination-block{
-    background-color: var(--main-green);
+    background: linear-gradient(to bottom, rgb(57,172,70), rgb(57,172,70));
     color: white;
     border: none;
     font-weight: 600;
@@ -122,6 +122,7 @@
 }
 .resultados-text{
     margin: 0;
+    margin-top: 55px;
 }
 .sidebar{
     grid-area: sidebar;
@@ -248,7 +249,7 @@
     box-shadow: 3px 3px 6px 2px rgba(0, 0, 0, 0.101);
     /* border: 1px solid rgb(235,235,235); */
     min-height: 350px;
-    max-width: 400px;
+    max-width: 280px;
     height: fit-content;
     /* margin: 0 15px 0 15px; */
     /* width: 220px; */
@@ -262,7 +263,7 @@
 .card-first{
     pointer-events: none;
     width: 100%;
-    height: 300px;
+    height: 350px;
     filter: brightness(65%);
     background-position: center center;
     background-repeat: no-repeat;
@@ -277,7 +278,7 @@
 .card-second{
     pointer-events: none;
     width: 100%;
-    min-height: 20%;
+    /* min-height: 20%; */
     height: fit-content;
     
     box-sizing: border-box;
@@ -292,13 +293,13 @@
     text-align: start;
     color: gray;
     margin: 0;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    font-size: .9em;
+     text-overflow: ellipsis;
+    white-space: nowrap; 
+    word-break: keep-all;
+    overflow: hidden; 
+    font-size: 1em;
     width: 100%;
-    pointer-events: none;
-    margin-bottom: 0;
+    /* pointer-events: none; */
 }
 .card-tags{
     display: flex;
@@ -315,14 +316,16 @@
     margin: 0;
     font-size: .7em;
     padding: 0;
+    color:  rgb(57,172,70);
 }
 .card-price{
     text-align: start;
-    font-size: .8em;
+    font-size: 1.5em;
     margin: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     word-break: keep-all;
+    color:  rgb(57,172,70);
 }
 
 .yellow-span{
@@ -363,14 +366,16 @@
 
 .input-and-button-container{
     margin-top: 50px;
-    width: 60%;
+    width: 90%;
+    max-width: 2000px;
     margin: auto;
+    height: 55px;
     display: flex;
-    box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.078);
+    box-shadow: 0px 0px 50px -7px rgba(0, 0, 0, 0.078);
 }
 .main-input{
     padding-left: 15px;
-    width: 90%;
+    width: 85%;
     border: none;
 }
 .main-input::placeholder{
@@ -379,12 +384,12 @@
 }
 
 .main-btn{
-    width: 10%;
+    width: 15%;
     font-family: 'Roboto', sans-serif;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     padding: 10px 25px 10px 25px;
-    font-size: 1em;
+    font-size: 1.2em;
     margin: 0;
     border: none;
     background-color: rgb(2,134,230);

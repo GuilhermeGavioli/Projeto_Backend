@@ -265,8 +265,6 @@ export default class MySql implements Repository {
     }
 
     public async findManyProductsByName(name: string, category: string, queryDescriptionAlso: boolean, pack: number): Promise<GetOneOutputDTO[] | null> {
-  
-        
         const [rows] = await this.connection.execute(`SELECT *, (
                 select COUNT(*)
                 FROM product WHERE product_name LIKE "%${name}%" 
@@ -274,24 +272,23 @@ export default class MySql implements Repository {
             FROM product
             WHERE product_name LIKE "%${name}%" 
             LIMIT  12 OFFSET ${(pack - 1) * 11};`);
-        // const [rows] = await this.connection.execute(`SELECT *, (
-        //         select COUNT(*)
-        //         FROM product WHERE product_name LIKE "%${name}%" OR product_description LIKE "%${name}%"
-        //     ) AS total
-        //     FROM product
-        //     WHERE product_name LIKE "%${name}%" OR product_description LIKE "%${name}%"
-        //     LIMIT  12 OFFSET ${(pack - 1) * 11};`);
             if (!rows) return null;
             return rows;
         }
+        
+    public async findManyProductsByCategory(category: string, pack: number): Promise<GetOneOutputDTO[] | null> {
+        const [rows] = await this.connection.execute(`SELECT *, (
+            select COUNT(*)
+            FROM product WHERE category="${category}" 
+        ) AS total
+        FROM product
+        WHERE category="${category}"
+        LIMIT  12 OFFSET ${(pack - 1) * 11};`);
+        if (!rows) return null;
+        return rows;
 
-       
-            // const [rows] = await this.connection.execute(`SELECT 
-            // *
-            // FROM product WHERE product_name LIKE "%${name}%"
-            // LIMIT ${number}, ${number + 8};`); 
-            // if (!rows) return null;
-            // return rows;
+     }
+
     
 
 
@@ -347,7 +344,7 @@ export default class MySql implements Repository {
     }
     
     public async updateRobotMessage(message_id: string, receiver: string): Promise<void> { 
-        await this.connection.query(`UPDATE FROM robot_message SET has_been_read_by_receiver=true WHERE receiver="${receiver}" AND message_id="${message_id}"; `)
+        await this.connection.query(`UPDATE robot_message SET has_been_read_by_receiver=true WHERE receiver="${receiver}" AND message_id="${message_id}"; `)
     }
         
     public async saveMessage(sender: string, message_text: string, receiver: string): Promise<void> {
@@ -365,7 +362,7 @@ export default class MySql implements Repository {
             "${message_text}", "${sender}", "${receiver}", "${dateFormated}");`);
     }
 
-    public async getMessages(userId: string): Promise<any> {
+    public async getMessages(receiver: string): Promise<any> {
         // const [rows] = await this.connection.query(
         //     `SELECT 
         //     message_id,
@@ -384,38 +381,45 @@ export default class MySql implements Repository {
         //     WHERE (message.sender="${userId}" AND has_been_deleted_by_sender=false) OR (message.receiver="${userId}" AND has_been_deleted_by_receiver=false) ORDER BY message.created_at DESC;`);
         
             
+        const [rows] = await this.connection.query(
+                    `SELECT *
+                    FROM
+                    robot_message
+                    WHERE receiver="${receiver}"
+                    ORDER BY created_at DESC;
+                    `);
+        return rows
         
+        //     const [rows] = await this.connection.query(
+        //         `SELECT 
+        //         message_id,
+        //         message_text,
+        //         user_image,
+        //         userid,
+        //         full_name,
+        //         sender,
+        //         receiver,
+        //         message.created_at,
+        //         has_been_read_by_sender,
+        //         has_been_read_by_receiver,
+        //         has_been_deleted_by_sender,
+        //         has_been_deleted_by_receiver
+        //         FROM
+        //         message
+        //         INNER JOIN user ON message.receiver = user.userid
+        //         WHERE (message.sender="${userId}" AND has_been_deleted_by_sender=false) 
+        //         OR (message.receiver="${userId}" AND has_been_deleted_by_receiver=false)
+        //         ORDER BY message.created_at DESC;
+        //         `);
         
-            const [rows] = await this.connection.query(
-                `SELECT 
-                message_id,
-                message_text,
-                user_image,
-                userid,
-                full_name,
-                sender,
-                receiver,
-                message.created_at,
-                has_been_read_by_sender,
-                has_been_read_by_receiver,
-                has_been_deleted_by_sender,
-                has_been_deleted_by_receiver
-                FROM
-                message
-                INNER JOIN user ON message.receiver = user.userid
-                WHERE (message.sender="${userId}" AND has_been_deleted_by_sender=false) 
-                OR (message.receiver="${userId}" AND has_been_deleted_by_receiver=false)
-                ORDER BY message.created_at DESC;
-                `);
-        
-                const [rows2] = await this.connection.query(`SELECT * from robot_message WHERE robot_message.receiver="${userId}" ORDER BY created_at DESC;`)
+        //         const [rows2] = await this.connection.query(`SELECT * from robot_message WHERE robot_message.receiver="${userId}" ORDER BY created_at DESC;`)
     
         
-        const all = {
-            from_users: rows,
-            from_system: rows2,
-        }
-        return all;
+        // const all = {
+        //     from_users: rows,
+        //     from_system: rows2,
+        // }
+        // return all;
     }
 
     

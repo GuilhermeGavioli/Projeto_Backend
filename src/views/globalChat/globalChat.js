@@ -4,6 +4,10 @@ const SOCKET_BASE_URL_PATH =  'http://localhost:3001'
 
 window.onload = async () => {
   // const header = document.querySelector(".header");
+    
+  const headerChatText = document.getElementById('nav-item-chat')
+    paintHeader(headerChatText)
+    
   const headerPainel = document.querySelector('.header-painel');
   // const main = document.querySelector(".container");
   // const spinner = document.getElementById("spinning");

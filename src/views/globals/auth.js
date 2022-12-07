@@ -7,7 +7,7 @@ async function handleUserFetchTokenData(action) {  //action to be done in case o
   // if home it will paint home with green
 
   document.querySelector('.logo-header-container').addEventListener('click', () => window.location.href = '/')
-  document.getElementById('procurar-and-icon-container').addEventListener('click', () => toggleNavItem())
+  // document.getElementById('procurar-and-icon-container').addEventListener('click', () => toggleNavItem())
   const header = document.querySelector(".header");
   const headerCircle = document.querySelector('.header-user-icon')
   const headerUserCircleContainer = document.querySelector('.header-user-icon-container')
@@ -54,6 +54,11 @@ async function handleUserFetchTokenData(action) {  //action to be done in case o
     headerUserCircleContainer.style.position = 'unset';
     headerCircle.addEventListener('click', (e) => toggleHeaderPainel())
     headerLogoutButton.addEventListener('click', () => logout())
+
+    const headerPainelUserName = document.querySelector('.header-painel-name')
+    headerPainelUserName.innerText = data.fullUser.full_name + 'koasoksaos o asd o dkopapkoadkpodas kpo'
+
+    console.log(data)
     fitUserInfoInHeader(data.fullUser.user_image);
 
     showContent(header, headerCircle, main, spinner);
@@ -68,7 +73,9 @@ async function handleUserFetchTokenData(action) {  //action to be done in case o
     registerAndLoginContainer.style.position = 'absolute'
     
     const messagesData = await getUserMessages();
-    if (messagesData.from_users.length == 0 && messagesData.from_system.length == 0) { 
+    myMessages = messagesData;
+
+    if (messagesData.length == 0) {
       const noMessagesDiv = document.createElement('div');
       noMessagesDiv.setAttribute('style', 'width: 70%;margin: auto;margin-top: 115px;');
 
@@ -76,11 +83,10 @@ async function handleUserFetchTokenData(action) {  //action to be done in case o
 
       const allMessagesContainer = document.querySelector('.all-messages-container')
       allMessagesContainer.append(noMessagesDiv)
-
+    } else { 
+      appendMessagesOnPainel(messagesData);
+      appendMessagesContOnBell(notReadMessagesCont);
     }
-
-    else appendMessagesOnPainel(messagesData, data.fullUser.userid)
-    console.log(myMessages)
 
       return data.fullUser;
   } else {
@@ -99,6 +105,10 @@ function toggleCart() {
 
 async function openCart() {
   closeUserPainel();
+  const bellPainel = document.querySelector('.bell-painel');
+  const bellInsidePainel = document.querySelector('.bell-painel-inside');
+  closeBellPainel(bellPainel, bellInsidePainel)
+
   if (cartStateChanged) {
     await handleCart();
   }
@@ -110,7 +120,6 @@ async function openCart() {
 
 let cartIdsItems = [];
 async function handleCart() {
-  let cartCont = 0
   let cartTotalPrice = 0;
   const cartItems = await getCartData();
   if (!cartItems || cartItems.length == 0) {
@@ -118,22 +127,18 @@ async function handleCart() {
      updateCartCount(0)  
     return;
     }
-    const cartItemsContainer = document.querySelector('.cart-items-container')
     cartItems.map(item => { 
-      cartCont++
       cartTotalPrice += Number(item.price)
       
       updateCart('add', item.product_id, item.cart_id, item)
   })
   isFirstTimeOpeningCart = false;
   // if (cartCont != 0) {
-    document.getElementById('cart-sub-total-number').innerText = "R$" + cartTotalPrice.toString();
+    document.getElementById('cart-sub-total-number').innerText = "R$" + cartTotalPrice.toFixed(2).toString();
   // }
 }
 
 function updateCart(action, product_id, cartid, productInfo) {
-  console.log('i am runnnign')
-
   const headercart = document.getElementById('header-cart')
   if (action === 'remove') {
     cartIdsItems = cartIdsItems.filter((obj) => {
@@ -142,16 +147,10 @@ function updateCart(action, product_id, cartid, productInfo) {
     headercart.firstChild.remove();
   }
   if (action === 'add') {
-    // name: p_name,
-    // image: p_image,
-    // price: p_id.price
-    
     cartIdsItems.push({ product: productInfo, cart: cartid })
     headercart.firstChild.remove();
-
     const card = createCartItem(productInfo)
     document.querySelector('.cart-items-container').append(card)
-
   }
   updateCartCount(cartIdsItems.length)
   console.log(cartIdsItems)
@@ -160,7 +159,6 @@ function updateCart(action, product_id, cartid, productInfo) {
 
 function updateCartCount(number) {
   const noItemsElement = document.querySelector('.cart-no-items-to-be-shown-container')
-
   if (number != 0) noItemsElement.style.visibility = 'hidden'
   else noItemsElement.style.visibility = 'visible'
   const numberCartCount = document.createElement('div');
@@ -281,14 +279,14 @@ function handleActionForNonAuthorizedUsers(action, items) {
 }
 
   
-  function showContent(header,headerCircle, main, spinner) {
-    main.style.visibility = "visible";
-    header.style.visibility = 'visible';
-    headerCircle.style.visibility = "visible";
-    headerCircle.style.position = "unset";
-    spinner.style.visibility = "hidden";
-    spinner.style.position = "absolute";
-  }
+function showContent(header,headerCircle, main, spinner) {
+  main.style.visibility = "visible";
+  header.style.visibility = 'visible';
+  headerCircle.style.visibility = "visible";
+  headerCircle.style.position = "unset";
+  spinner.style.visibility = "hidden";
+  spinner.style.position = "absolute";
+}
   
 function hideContent(header,headerCircle, main, spinner, registerAndLoginContainer) {
   main.style.visibility = "hidden";
@@ -299,10 +297,14 @@ function hideContent(header,headerCircle, main, spinner, registerAndLoginContain
 }
   
 function fitUserInfoInHeader(imageSource) {
+  const headerPainelUserIcon = document.querySelector('.header-painel-pic')
+
+
   const headerUserIcon = document.querySelector('.header-user-icon');
   let src = `${BASE_URL_PATH_AUTH}file_system/app/user_default.jpg`
   if (imageSource) src = `${BASE_URL_PATH_AUTH}file_system/user/${imageSource}`
   headerUserIcon.setAttribute('src', src);
+  headerPainelUserIcon.setAttribute('src', src)
 }
   
 function getStoredToken() {
@@ -317,6 +319,9 @@ function toggleHeaderPainel() {
 
 function openUserPainel() {
   closeCart()
+  const bellPainel = document.querySelector('.bell-painel');
+  const bellInsidePainel = document.querySelector('.bell-painel-inside');
+  closeBellPainel(bellPainel, bellInsidePainel)
   const userPainel = document.querySelector('.header-painel');
   userPainel.style.visibility = 'visible'
   isUserPainelClosed = false;
@@ -329,6 +334,10 @@ function closeUserPainel() {
 
 window.onscroll = () => {
   closeUserPainel();
+
+  const bellPainel = document.querySelector('.bell-painel');
+  const bellInsidePainel = document.querySelector('.bell-painel-inside');
+  closeBellPainel(bellPainel, bellInsidePainel);
 }
 
 
@@ -399,16 +408,28 @@ function convertNumberToMonth(month_number) {
 
 // BELL
 
-let myMessages = []
+let myMessages = [];
 // testing bell
 let isPainelClosed = true;
 let isPainelClickable = true;
 let firstTimeOpening = true;
 
 async function toggleBellPainel() {
-  if (firstTimeOpening && myMessages.length != 0) { 
-    const hasBeenRead = await readMessages();
-    console.log(hasBeenRead);
+  
+  if (firstTimeOpening && myMessages.length != 0) {
+    let notReadMessagesOnly = [];
+
+    notReadMessagesOnly = myMessages.filter(message => { 
+      return message.has_been_read_by_receiver == 0;
+    })
+
+    const data = await readMessages(notReadMessagesOnly);
+    if (data.read) {
+      console.log('has ben reda')
+      // const number = document.getElementById('bell-number-cont')
+      // number.remove();
+      appendMessagesContOnBell(0);
+    }
   }
 
   const bellPainel = document.querySelector('.bell-painel');
@@ -416,19 +437,19 @@ async function toggleBellPainel() {
   
   if (!isPainelClickable) return
   if (isPainelClickable) {
-    if (isPainelClosed) { openBellPainel(bellPainel, bellInsidePainel) }
+    if (isPainelClosed) {
+      openBellPainel(bellPainel, bellInsidePainel)
+      closeCart();
+    }
     else { closeBellPainel(bellPainel, bellInsidePainel) };
   }
   firstTimeOpening = false;
 }
 
-async function readMessages() {
-  console.log(myMessages)
-  const messages = myMessages.filter(message => { return message.has_been_read_by_receiver == 0 })
-  console.log('m' + JSON.stringify(messages))
+async function readMessages(notReadMessages) {
   const res = await fetch(`${BASE_URL_PATH_AUTH}readmessage`, {
-    method: 'put',
-    body: JSON.stringify(messages),
+    method: 'POST',
+    body: JSON.stringify({messages: notReadMessages}),
     headers: {
       "Content-type": "application/json",
       authorization: getStoredToken(),
@@ -438,43 +459,28 @@ async function readMessages() {
 }
 
 
-function appendMessagesOnPainel(messages, userid) {
-  let notReadMessagesCont = 0;
-
+let notReadMessagesCont = 0;
+function appendMessagesOnPainel(messages) {
   const allMessagesContainer = document.querySelector('.all-messages-container')
 
-
-
-  if (messages.from_system.length > 0) {
-    messages.from_system.map(message => {
+  messages.map(message => {
       myMessages.push(message)
-      const messageElement = createMessageElement(message, userid, true);
+      const messageElement = createMessageElement(message);
       allMessagesContainer.append(messageElement);
       if (message.has_been_read_by_receiver == 0) notReadMessagesCont++;
-    })
-  }
-
-
-  if (messages.from_users.length > 0) { 
-    messages.from_users.map(message => {
-      const messageElement = createMessageElement(message, userid, false);
-      allMessagesContainer.append(messageElement);
-
-      //user que enviou
-      if (message.sender == userid) { 
-        if (message.has_been_read_by_sender == 0) notReadMessagesCont++;
-      } else {
-        if (message.has_been_read_by_receiver == 0) notReadMessagesCont++;
-      }
-        
-    })
-  }
-
-  if (notReadMessagesCont !== 0) appendMessagesContOnBell(notReadMessagesCont); //for not read messages only
+  })
 }
 
+let firstTime = true;
 function appendMessagesContOnBell(numberOfMessages) {
   const bellInsideContainer = document.querySelector('#header-bell');
+  if (!firstTimeOpening) {
+    console.log('removing')
+    bellInsideContainer.lastChild.remove();
+    
+  }
+
+
   const number = document.createElement('p')
   number.style.margin = '0'
   number.innerText = numberOfMessages;
@@ -482,9 +488,10 @@ function appendMessagesContOnBell(numberOfMessages) {
   bellNumber.id = 'bell-number-cont'
   bellNumber.append(number);
   bellInsideContainer.append(bellNumber);
+  firstTime = false;
 }
 
-function createMessageElement(message, userid, robot) {
+function createMessageElement(message) {
   const messageContainer = document.createElement('div');
   messageContainer.className = 'message-container'
   messageContainer.setAttribute('message_id', message.message_id)
@@ -492,14 +499,8 @@ function createMessageElement(message, userid, robot) {
   const messageImage = document.createElement('img');
   messageImage.className = 'message-image'
 
-  if (robot) {
-    messageImage.setAttribute('src', '/file_system/app/system.png')
-  } else {
-    if (message.user_image) messageImage.setAttribute('src', message.user_image)
-    else messageImage.setAttribute('src', '/file_system/app/user_default.jpg')
-  }
+  messageImage.setAttribute('src', '/file_system/app/system.png')
   
-
   const month = convertNumberToMonth(message.created_at.toString().substring(5,7))
   const day = message.created_at.toString().substring(8,10)
   const year = message.created_at.toString().substring(0, 4)
@@ -510,24 +511,9 @@ function createMessageElement(message, userid, robot) {
   
   const messageTime = document.createElement('p');
   messageTime.className = 'message-time'
-  
-
-  if (robot) {
-    messageOwner.innerHTML = `<b>GoGreen</b>`
-  } else {
-    if (message.sender == userid) {
-      messageOwner.setAttribute('href', `/profile/${message.receiver}`);
-      messageOwner.innerHTML = `<b>Para:</b> <a  href="/profile/${message.receiver}"> ${message.full_name}</a>`
-      messageOwner.onclick = () => window.location.href=`/profile/${message.receiver}`
-    } else {
-      messageOwner.setAttribute('href', `/profile/${message.sender}`);
-      messageOwner.innerHTML = `<b>Para:</b> <a href="/profile/${message.sender}"> ${message.full_name}</a>`
-      messageOwner.onclick = () => window.location.href=`/profile/${message.sender}`
-    }
-  }
+  messageOwner.innerHTML = `<b>GoGreen</b>`
   messageTime.innerHTML = `${day} de ${month} de ${year}`
   
-
   const messageText = document.createElement('p');
   messageText.className = 'message-text'
   messageText.innerHTML = message.message_text
@@ -547,16 +533,12 @@ function createMessageElement(message, userid, robot) {
 
   messageContainer.append(ImageAndInfoContainer)
   messageContainer.append(messageText)
-
- 
-
   return messageContainer
 }
 
 // const deleteMessagesButton = document.querySelector('.delete-messages-button')
 // deleteMessagesButton.addEventListener('click', () => deleteMessages())
 
-let selectedMessages = [];
 
 function toggleOnList(message_id) {
   const found = selectedMessages.find(id => id == message_id)
@@ -573,14 +555,7 @@ function toggleOnList(message_id) {
   console.log(selectedMessages)
 }
 
-function showDeleteMessagesButton() {
-  deleteMessagesButton.style.visibility = 'visible'
-}
 
-function hideDeleteMessagesButton() {
-  deleteMessagesButton.style.visibility = 'hidden'
-  
-}
 
 
 async function deleteMessages() {
@@ -600,7 +575,10 @@ async function fireDeleteMessagesRequest() {
   return await res.json();
  }
 
- function openBellPainel(bellPainel, bellInsidePainel) {
+function openBellPainel(bellPainel, bellInsidePainel) {
+  closeCart()
+  closeUserPainel();
+
   isPainelClickable = false;
   bellPainel.style.height = '3px';
   bellPainel.style.transition = '0.2s ease-in-out';
@@ -636,9 +614,7 @@ async function getUserMessages() {
       authorization: getStoredToken(),
     }
   })
-  const data = await res.json();
-  console.log('here ' + JSON.stringify(data))
-  return data;
+  return await res.json();
 }
 
 

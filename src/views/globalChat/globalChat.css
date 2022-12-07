@@ -8,7 +8,7 @@ body{
     height: fit-content;
 
     grid-template-columns: .6fr 1.5fr;
-    grid-template-areas: "friends facade"
+    grid-template-areas: "friends chat"
                         "friends chat"
                         "friends chat"
                         "friends type-form";
@@ -20,7 +20,8 @@ body{
    margin-top: 100px;
     border-radius: 50px 50px 0 0;
     padding: 0;
-    column-gap: 25px;
+    gap: 25px;
+    
 }
 
 .main-chat-title{
@@ -38,41 +39,43 @@ body{
 
 .friends{
     grid-area: friends;
-    padding: 0 0 0 0px;
+    padding: 5px 10px 5px 10px;
     overflow-y: auto;
  
     
     
     background-color: var(--cart-main);
     border-radius: 8px;
-    border-top-left-radius: 35px;
+    /* border-top-left-radius: 35px; */
     box-shadow: 5px 5px 15px 15px #2887311f;
-    
+    background: linear-gradient(to bottom, #31943c, #3ab548);
 
 }
 .friend{
     display: flex;
-    height: 85px;
+    height: 65px;
     width: 100%;
-    max-width: 250px;
-    background-color: whitesmoke;
-    align-items: center;
-    padding: 20px 25px 20px 25px;
-    margin: auto;
-}
+    /* max-width: 250px; */
+    /* background-color: rgb(54, 169, 66); */
+    box-shadow:1px 1px 3px 0px #0000001f;
 
-.friend:first-child:hover{
-    filter: brightness(125%);
-    color: gold;
+    align-items: center;
+    padding: 15px 15px 15px 15px;
+    margin: 5px auto 5px auto;
+    border-radius: 5px;
+    color: white;
+}
+.friend:hover{
+    background-color: #2f923a;
     cursor: pointer;
 }
+
 .friend-image-container{
-    width: 55px;
-    height: 55px;
+    width: 45px;
+    height: 45px;
     margin-right: 10px;
     border-radius: 50%;
     position: relative;
-    
 }
 .friend-image{
     border-radius: 50%;
@@ -81,15 +84,15 @@ body{
     z-index: 1;
 }
 .friend-image:hover{
-    filter: brightness(110%);
+    filter: opacity(90%);
     cursor: pointer;
 }
 .green-online-circle{
     position: absolute;
     bottom: 0px;
-    width: 22px;
-    height: 22px;
-    background: linear-gradient(to bottom,  rgb(133, 186, 27),  rgb(84, 227, 62));
+    width: 16px;
+    height: 16px;
+    background: linear-gradient(to bottom,  rgb(155, 220, 25),  rgb(99, 249, 75));
     border: 2px solid whitesmoke;
     border-radius: 50%;
     z-index: 2;
@@ -97,19 +100,18 @@ body{
 }
 .friend-name{
     font-weight: 600;
-    color: rgb(60,68,55);
+    color: rgb(219, 227, 214);
     font-size: 1em;
     margin: 0;
 }
 .friend-name:hover{
     cursor: pointer;
-    color: rgb(126, 176, 28);
-    filter: brightness(110%);
+    filter: opacity(80%);
 }
 .online-text{
     margin: 0;
     font-size: .8em;
-    color: rgb(140, 188, 45);
+    color: rgb(194, 249, 75);
     font-weight: 500;
 }
 
@@ -122,10 +124,8 @@ body{
     justify-content: center;
     align-items: center;
     /* width: 100%; */
-    background-color: rgb(60,68,55);
-    background-color: rgb(106, 150, 19);
-    background-color: whitesmoke;
-    background-color: var(--main-green);
+
+    background-color: var(--cart-main);
     border-top-right-radius: 35px;
     /* border-radius: 65px 65px 0 0; */
    
@@ -133,7 +133,9 @@ body{
 
 .chat-messages{
     grid-area: chat;
+    background-color: rgb(246,247,250);
     /* background-color: rgb(236,229,221); */
+    box-shadow: 5px -5px 15px 2px rgba(0, 0, 0, 0.085);
     height: 500px;
     overflow-y: scroll;
     padding: 5px 20px 105px 20px;
@@ -173,11 +175,12 @@ body{
 
 .my-chat-message{
     /* box-shadow: 3px 3px 6px 2px rgba(0, 0, 0, 0.071); */
-    box-shadow: 1px 2px 6px 2px rgba(0, 0, 0, 0.164);
+    box-shadow: 1px 2px 6px 2px rgba(89, 194, 19, 0.234);
     background-color: #7489FF;
     background-color: rgb(120, 202, 32);
     background-color: #83b42f;
     background: linear-gradient(to right, #8abb34, #98cd3e);
+    background: linear-gradient(to right, #31943c, #3ab548);
    
     color: white;
     width: fit-content;
@@ -310,10 +313,12 @@ text-align: center;
     display: flex;
     height: fit-content;
     margin: auto;
+    box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.078);
 }
 .chat-message-input, .chat-send-message-button{
     height: 43px;
     border: none;
+    
 }
 
 .chat-message-input{
@@ -321,7 +326,6 @@ text-align: center;
     padding-left: 15px;
     font-size: .9em;
     font-weight: 500;
-    background-color: rgb(235,235,235);
     color: rgb(92, 92, 92);
 }
 .chat-message-input::placeholder{
@@ -330,7 +334,7 @@ text-align: center;
 .chat-send-message-button{
     width: 18%;
     color: rgb(255, 255, 255);
-    background: linear-gradient(to right, #83b42f, #98cd3e);
+    background-color: #39AC46;
     font-size: 1.2em;
 }
 

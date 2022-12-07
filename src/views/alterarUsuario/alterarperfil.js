@@ -34,9 +34,12 @@ files.onchange = ((e) => {
 
 
 
+isSalvarButtonClickable = true;
 //ATUALIZA O PERFIL
 const salvarButton = document.getElementById("salvar-btn");
 salvarButton.addEventListener("click", async (e) => {
+  if (!isSalvarButtonClickable) return
+  isSalvarButtonClickable = false;
   e.preventDefault();
   console.log(e.target)
   runSpinAnimation(e.target);
@@ -53,13 +56,21 @@ salvarButton.addEventListener("click", async (e) => {
     
     stopSpinAnimation(e.target);
 
-    if (!data) showMessage(data.message, true);
-    if (data.error) showMessage(data.message, true);
+    if (!data) { 
+      showMessage(data.message, true);
+      isSalvarButtonClickable = true;
+    }
+
+    if (data.error) { 
+      showMessage(data.message, true);
+      isSalvarButtonClickable = true;
+    }
+
     if (!data.error) { 
       showMessage(data.message, false);
       setTimeout(()=> window.location.reload() ,1300)
     }
-  
+    
     setTimeout(() => hideMessage(), 2500);
   
   } catch (err) { 
@@ -102,19 +113,23 @@ function convertDataToForm(data) {
 
 
 
-
+isDeleteButtonClickable = true;
 // DELETE ACCOUNT
 const confirmarDeleteAccountButton = document.getElementById("deletar-btn");
 console.log(confirmarDeleteAccountButton)
 confirmarDeleteAccountButton.addEventListener('click', (e) => deleteAccount(e.target))
 
 function deleteAccount(buttonElement) {
-  console.log('dleeting')
+  if (!isDeleteButtonClickable) return
   runSpinAnimation(buttonElement);
   const data = fireDeleteAccountRequest();
 
-  if (!data) return showMessage(data.message, true);
-  if (data.error) return showMessage(data.message, true);
+  if (!data || data.error) { 
+    isDeleteButtonClickable = true;
+    showMessage(data?.message, true);
+    return;
+  }
+
 
   if (!data.error) {
     showMessage(data.message, false);

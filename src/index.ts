@@ -161,20 +161,21 @@ app.post('/message', ProtectionAgainstNonAuthenticatedUsers, async (req, res) =>
 app.get('/mymessages', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => { 
     const userTokenId = res.locals.userInfo.user_id
     const messages = await mySqlDatabase.getMessages(userTokenId);
-    console.log(messages)
+    console.log(messages);
     return res.json(messages);
 })
 
-app.put('/readmessage', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => {
+app.post('/readmessage', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => {
     try {
-        const  messages  = req.body.messages
-        console.log(req.body)
+        const {  messages   }  = req.body
         console.log(messages)
         if (!messages) return res.json({ read: false, error: true })
         const userTokenId = res.locals.userInfo.user_id
         messages.map(async (message: any) => { 
-            await mySqlDatabase.updateRobotMessage(message?.id.toString(), userTokenId);
+            await mySqlDatabase.updateRobotMessage(message?.message_id.toString(), userTokenId);
         })
+
+   
         return res.json({ read: true, error: false });
     } catch (err) {
         console.log(err)
@@ -211,6 +212,7 @@ app.post('/deletarProduto/:produtoid', ProtectionAgainstNonAuthenticatedUsers, c
 
 //'/getproduto/:procurarnadescricao/:nomeproduto/:number'
 app.get('/getprodutos', controllers.getProdutos)
+app.get('/getprodutosporcategoria', controllers.getProdutosByCategory)
 app.get('/getprodutosfromuser',ProtectionAgainstNonAuthenticatedUsers, controllers.getProdutosFromUser)
 app.get('/auth', controllers.authValidation)
 

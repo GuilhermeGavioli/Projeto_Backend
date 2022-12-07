@@ -24,7 +24,13 @@ window.onload = async () => {
   addCategoriesRedirectEventOnClick(searchedProductParam, categoryParam);
   //resultados text
   const resultadosTextElement = document.querySelector('.resultados-text')
-  resultadosTextElement.innerText = c1.childElementCount - 1 + " de " + productsTotal + ' resultados para "' + searchedProductParam + '"'
+  
+  if (!searchedProductParam || searchedProductParam.trim() == '') {
+    resultadosTextElement.innerText = c1.childElementCount - 1 + " de " + productsTotal + ' resultados em ' + categoryParam
+  } else {
+    
+    resultadosTextElement.innerText = c1.childElementCount - 1 + " de " + productsTotal + ' resultados para "' + searchedProductParam + '"'
+  }
   
   //
   // paintCategory(categoryParam);
