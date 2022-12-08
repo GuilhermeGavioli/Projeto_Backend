@@ -181,8 +181,8 @@ function createProductCard(item) {
   const cardContainer = document.createElement('div');
   cardContainer.className = 'card-container'
   cardContainer.setAttribute('product-id', item.product_id)
-  cardContainer.addEventListener('click', (e) => { 
-    window.location.href = `/produto/${e.target.getAttribute('product-id')}`
+  cardContainer.addEventListener('click', (e) => {
+    window.location.href = `/produto/${item.product_id}`
   })
   
   const cardFirstAndSecond = document.createElement('div');

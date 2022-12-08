@@ -6,11 +6,12 @@
 .container2{
     display: grid;
     grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto;
     grid-template-areas: "c1 c1 c2 c2 c2 c2 c2"
     /* "benefits benefits benefits benefits benefits benefits benefits" */
     /* "products products products products products products products" */
-    "comments comments comments comments comments comments comments";
+    /* "comments comments comments comments comments comments comments" */
+    ;
     
     /* padding: 0 300px 0 300px; */
     max-width: 2000px;
@@ -20,7 +21,7 @@
     width: 85vw;
     margin: 20px 0 100px 0;
     margin: auto;
-    height: fit-content;
+    /* height: fit-content; */
     margin-top: 35px;
     color: rgb(60,58,45);
     row-gap: 50px;
@@ -93,11 +94,7 @@
 }
 .c1{
     grid-area: c1;
-    /* background-image: url('https://images.pexels.com/photos/256318/pexels-photo-256318.jpeg?auto=compress&cs=tinysrgb&w=600'); */
-    background-size: cover;
-    filter: brightness(90%) opacity(90%);
-    background-position: center center;
-    max-height: 350px;
+    background-color: red;
     display: flex;
     flex-direction: column;
     padding-top: 0;
@@ -110,6 +107,8 @@
     display: flex;
     margin: auto;
     width: 100%;
+    height: fit-content;
+    background-color: yellow;
     justify-content: space-between;
 }
 .product-buttons{
@@ -148,6 +147,7 @@
 .c2{
     grid-area: c2;
     border: 1px solid rgb(225,225,225);
+    background-color: green;
 }
 
 
@@ -226,6 +226,7 @@
     align-items: center;
     padding: 12px 8px 12px 8px;
     border-top: 1px solid rgb(235,235,235); margin-top: 30px; padding-top: 15px;
+    background-color: aqua;
 }
 .comment-image-and-username-container:hover{
     cursor: pointer;
@@ -548,12 +549,9 @@
 }
 /* cards test */
 @media (max-width: 1000px){
-    .container{
+    .container2{
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 550px auto;
-        grid-template-areas: "c1"
-        "c2";
         padding: 0 5px 0 5px;
         max-width: 2000px;
         background-color: rgb(125, 194, 61);
@@ -561,28 +559,65 @@
         inset: 0 0 0 0;
         margin: auto;
         height: fit-content;
+
+        grid-template-rows: auto auto;
+        grid-template-areas: "c1 c1 c2 c2 c2 c2 c2";
+    /* "comments comments comments comments comments comments comments"; */
     }
 
 }
 
 @media (max-width: 510px){
-    .container{
+    .container2{
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 550px auto;
-        grid-template-areas: "c1"
-        "c2";
         min-width: 290px;
         background-color: rgb(255, 255, 255);
         position: unset;
         inset: 0 0 0 0;
         margin: auto;
         height: fit-content;
+
+        grid-template-rows: auto auto;
+        grid-template-areas: "c1"
+                            "c2";
+
+    /* "comments comments comments comments comments comments comments"; */
     }
 
+    .c1{
+        background-color: red;
+    }
     .c1,.c2{
-   
-        padding: 20px;
+        padding: 8px;
+        /* padding: 20px; */
 
+    }
+
+
+    .product-buttons{
+        margin-top: 25px;
+        /* padding: 12px 0 12px 0; */
+        background-color: var(--main-green);
+        color: white;
+        border: none;
+        /* font-size: 0.7em; */
+    }
+    #avaliar-btn{
+        border: 1px solid var(--main-green);
+        color: var(--main-green);
+        background-color: rgba(255, 255, 255, 0);
+    }
+    #adicionar-carrinho-btn, #remover-carrinho-btn{
+        font-weight: 700;
+        visibility: hidden;
+        padding: 0!important;
+        position: absolute;
+        background-color: red;
+    }
+    #remover-carrinho-btn{
+        background-color: rgba(255, 255, 255, 0);
+        color: var(--main-green);
+        border: 1px solid var(--main-green);
     }
 }

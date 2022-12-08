@@ -60,12 +60,16 @@
             <div style=" border: 1px solid rgb(245,245,245);">
                 <img class="product-image" src="/file_system/product/<%=productFound.product_image%>" alt="">
             </div>
+            
+            <div style="display: flex; flex-direction: column; width: 100%; background-color: black;">
+                
                 <div class="product-buttons-container">
                     <button class="product-buttons" id="adicionar-carrinho-btn">ADICIONAR AO CARRINHO</button>
                     <button class="product-buttons" id="remover-carrinho-btn">REMOVER DO CARRINHO</button>
                     <button class="product-buttons" id="avaliar-btn">AVALIAR</button>
                 </div>
-                <div>
+
+                <!-- <div style="background: black"> -->
                     <!-- <p style="color: gray; font-weight: 200; margin: 0;">Criado por</p> -->
                     <div class="comment-image-and-username-container" onclick="window.location.href='/profile/<%= productFound.userid%>'">
                         <img src="/file_system/user/<%=productFound.user_image%>" alt="" class="comment-image">
@@ -76,7 +80,9 @@
                             <p style="font-size: .7em; color: gray; margin:0;">membro desde novembro de 2022</p>
                         </div>
                     </div>
+
                 </div>
+                <!-- </div> -->
         </div>
 
 
@@ -188,8 +194,8 @@
             
      
 
-            <div class="comments">
-                <div class="load-more-comments-container">
+            <!--<div class="comments">
+                 <div class="load-more-comments-container">
                     <button id="carregar-mais-btn">Carregar mais</button>
                 </div>
 
@@ -310,8 +316,8 @@
                     </div>
                     <p class="comment-text">Gostei do produto</p>
                     <p class="comment-created-at">avaliado em 15 de novembro de 1999</p>
-                </div>
-            </div>
+                </div> 
+            </div>-->
 
 
             <!-- <div class="propaganda">

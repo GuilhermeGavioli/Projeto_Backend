@@ -1238,8 +1238,11 @@ li{
     .bell-painel{
         cursor: default;
         position: absolute;
-        right: 15px;
+        right: unset;
+        /* left: 0; */
+        right: -50px;
         bottom: 55px;
+        background-color: red;
         width: 0;
         height: 0;
         background-color: white;
@@ -1248,7 +1251,17 @@ li{
         overflow-y: scroll;
     }
 
+    .bell-painel-inside{
+        background-color: blue;
+    }
+
+    .header-painel{
+        top: 140px;
+        right: 15px;
+    }
+
     #header-bell{
+        position: relative;
         margin-right: 15px;   
     }
     

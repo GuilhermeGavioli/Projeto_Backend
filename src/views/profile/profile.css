@@ -458,3 +458,128 @@ body{
     border-radius: 55px;
 }
 
+
+@media (max-width: 420px){
+    body{
+        overflow-x: unset;
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+    }
+
+
+    .container2{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "c2 c2"
+                            /* "c4 c4" */
+                            "c5 c5"
+                            ;
+        grid-template-rows: auto auto;
+        row-gap: 0;
+        background-color: rgb(209, 79, 8);
+        max-width: 1200px;
+        width: 90vw;
+        margin: auto;
+        padding: 0;
+        padding-bottom: 200px;
+        min-width: 290px;
+    }
+    
+    
+    
+    
+    .c1{
+        min-width: 290px;
+        padding-bottom: 85px;
+    }
+    .c2-container{
+        min-width: 290px;
+        width: 100%;
+        padding: 100px 10px 50px 10px;
+    }
+
+    .c1-title, .c2-title{
+        font-size: 2.8em;
+    } 
+    .c1-text, .c2-text{
+        font-size: 1.6em;
+        line-height: 35px;
+    }
+
+    .c2{
+        min-height: 300px;
+    }
+
+    .c3-info-container{
+        background-color: whitesmoke;
+        height: fit-content;
+        width: 100%;
+        font-size: 1.7em;
+        padding: 10px;
+    }
+
+    .banner-text{
+        left: 0px;
+        font-size: 3.8em;
+        line-height: 85px;
+        top: 55px;
+        width: 100%;
+        text-align: center;
+        margin: unset;
+    }
+    
+    .c5{
+        padding: 0;
+        min-width: 290px;
+    }
+    
+    .mais-produtos-container{
+        min-width: 290px;
+        width: 90%;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        row-gap: 20px;
+        height: fit-content;
+        min-height: unset;
+        overflow: unset;
+    }
+    
+
+  
+
+    .card-container{
+        margin: auto;
+        position: relative;
+        width: 95%;
+        max-width: 500px;
+        height: 800px;
+}
+
+.card-title{
+    width: 95%;
+    font-size: 2.3em;
+}
+.card-second{
+    font-size: 1.5em;
+}
+
+
+
+/*  */
+
+
+}
+
+::-webkit-scrollbar{
+    background-color: rgb(233, 233, 233);
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: rgb(143, 143, 143);
+    border-radius: 55px;
+}
+

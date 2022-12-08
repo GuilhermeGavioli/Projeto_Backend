@@ -290,7 +290,7 @@ textarea{
     background-color: rgb(2,134,230);
     color: white;
     background: linear-gradient(to bottom, rgb(57,172,70), rgb(57,172,70));
-    
+    min-width: 200px;
 }
 
 .avancado-item{
@@ -463,7 +463,7 @@ body{
         padding: 0;
         width: 100vw;
         gap: 0;
-        margin: unset;
+        /* margin: unset; */
         justify-content: start;
         min-width: 230px;
     
@@ -479,11 +479,70 @@ body{
     .c2{
         max-width: 100vw;
         margin: 0;
+        background-color: red;
         min-width: 230px;
+    }
+    .c2-first-container{
+        background-color: yellow;
+        padding: 0;
+        overflow: hidden;
     }
 
     .c2-second-container{
+        background-color: blue;
         padding: 35px 19px 45px 19px;
     }
+
+    #salvar-btn, #deletar-btn{
+        width: 70%;
+    }
+
    
 }
+
+
+
+@media (max-width: 410px){
+    body{
+        overflow: scroll;
+    }
+        .container2{
+            display: grid;
+            grid-template-columns: 1fr;
+    
+            grid-template-areas: 
+            "c1"
+            "c2";
+            /* "c3"; */
+            grid-template-rows: auto auto;
+            padding: 0;
+            width: 95vw;
+            gap: 0;
+
+            justify-content: start;
+            min-width: 290px;
+        }
+    
+       
+        .c1{
+            max-width: 100vw;
+            margin: 0;
+            min-width: 230px;
+        }
+    
+        .c2{
+            max-width: 100vw;
+            margin: 0;
+            min-width: 230px;
+        }
+    
+        .c2-second-container{
+            padding: 35px 19px 45px 19px;
+        }
+       
+
+        #salvar-btn, #deletar-btn{
+            width: 80%;
+        }
+
+    }
