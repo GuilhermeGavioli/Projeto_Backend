@@ -135,9 +135,46 @@ function appendOnPage(data) {
     </div>
 </div> */}
 
+
+
+// <div class="cards-slide-block">
+// <div class="card-container">
+//    <div class="card-first-and-second">
+//        <img
+//        class="card-first" 
+//    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrl5VNsAGTXvsPRCvudGWRM9FNhgBgn9ln4zkE90dfqEEcnX-rcPWn&usqp=CAE&s"></img>
+// <div class="card-second">
+//    <h2 class="card-title" style="margin: 0;">Meu Produto top de mais hleo okdkoa pdkdpka coda pck</h2>
+//    <p class="card-tags" style="margin-top:5px;">Fresco - Organico - Natural - ZeroAcucar - Sem Gordura</p>
+//    <p class="card-tags" style="margin-bottom: 15px;"> Venda por unidade</p>
+//    <div style="display: flex; width: 100%; justify-content: space-between; align-items: center; margin: 12px 0 8px 0;">
+//        <div class="card-stars">
+//            <i class="fa-solid fa-heart" style="margin:0;"></i>
+//            <p style="margin:0; margin-left: 6px;">4</p>
+//    </div>
+//    <p class="card-price">
+//        R$10.50
+//    </p>
+// </div>
+//    <div style="display: flex; width: 100%; justify-content: space-between;">
+//        <button class="heart-card-button"><i class="fa-regular fa-heart"></i></button>
+//        <button class="card-button">Adicionar ao Carrinho</button>
+//    </div>
+// </div>
+// </div>
+//    <div class="card-complement">
+//    <div class="card-complement-first">
+//        <p style="margin:0;">Orgânico</p>
+//    </div>
+//    <div class="card-complement-second">
+//        <i class="fa-solid fa-check"></i>
+//    </div>
+// </div> 
+// </div>
+// </div>
 function createProductCard(item) {
   if (!item) return;
-
+  console.log(item)
   const cardContainerMaster = document.createElement('div');
   cardContainerMaster.className = 'cards-slide-block'
 
@@ -148,9 +185,15 @@ function createProductCard(item) {
     window.location.href = `/produto/${e.target.getAttribute('product-id')}`
   })
   
+  const cardFirstAndSecond = document.createElement('div');
+  cardFirstAndSecond.className = 'card-first-and-second'
+
   const cardFirst = document.createElement('img');
   cardFirst.setAttribute('src', `${BASE_URL_PATH}file_system/product/${item.product_image}`);
   cardFirst.className = 'card-first'
+  
+  const cardSecond = document.createElement('div');
+  cardSecond.className = 'card-second';
 
   const cardTitle = document.createElement('h2');
   cardTitle.className = 'card-title'
@@ -159,13 +202,61 @@ function createProductCard(item) {
   
   const cardTags = document.createElement('p');
   cardTags.className = 'card-tags'
+  cardTags.style = 'margin-top:5px;'
   cardTags.innerText = `${item.tags}`
+
+  const cardStarsAndPrice = document.createElement('div');
+  cardStarsAndPrice.style='display: flex; width: 100%; justify-content: space-between; align-items: center; margin: 12px 0 8px 0;'
 
   const cardStars = document.createElement('div');
   cardStars.className = 'card-stars'
-  handleAverage(cardStars, item.average)
+  if (item.average) { 
+    cardStars.innerHTML = `<i class="fa-solid fa-heart" style="margin:0;"></i><p style="margin:0; margin-left: 6px;">${item.average}</p>`
+  } else {
+    cardStars.innerHTML = `<i class="fa-solid fa-heart" style="margin:0;"></i><p style="margin:0; margin-left: 6px;">0</p>`
+  }
+  // handleAverage(cardStars, item.average)
+  
+  const cardPrice = document.createElement('p');
+  cardPrice.className = 'card-price'
+  cardPrice.innerText = `R$${item.price}`
+  
+  const buttonsContainer = document.createElement('div');
+  buttonsContainer.style = 'display: flex; width: 100%; justify-content: space-between;'
+
+  const heartButton = document.createElement('button')
+  heartButton.className = 'heart-card-button'
+  heartButton.innerHTML = '<i class="fa-regular fa-heart"></i>'
+  
+  const cardButton = document.createElement('button')
+  cardButton.className = 'card-button'
+  cardButton.innerText = 'Adicionar ao carrinho'
+
+  const cardComplement = document.createElement('div')
+  cardComplement.className = 'card-complement'
   
   
+  cardStarsAndPrice.append(cardStars)
+  cardStarsAndPrice.append(cardPrice)
+
+  buttonsContainer.append(heartButton)
+  buttonsContainer.append(cardButton)
+  
+  const cardComplementSecond = document.createElement('div')
+  cardComplementSecond.className = 'card-complement-second'
+  
+  const cardComplementFirst = document.createElement('div')
+  cardComplementFirst.className = 'card-complement-first'
+  if (item.organic) { 
+    cardComplementFirst.innerHTML = '<p style="margin:0;">Orgânico</p>'
+    cardComplementSecond.innerHTML = '<i class="fa-solid fa-check"></i>'
+  } else {
+    cardComplementFirst.innerHTML = '<p style="margin:0;">Não Orgânico</p>'
+    cardComplementSecond.innerHTML = '<i class="fa-solid fa-xmark"></i>'
+  }
+  
+  
+
   const cardCategory = document.createElement('p');
   cardCategory.innerText = item.is_organic
 
@@ -176,28 +267,28 @@ function createProductCard(item) {
 
 
   
-  const cardPrice = document.createElement('p');
-  cardPrice.className = 'card-price'
-  cardPrice.innerText = `R$${item.price}/ ${item.unity}`
   
   const cardCreatedAt = document.createElement('p');
   cardCreatedAt.className = 'card-created-at'
   cardCreatedAt.innerText = `${item.created_at}`
 
-  const cardSecond = document.createElement('div');
-  cardSecond.className = 'card-second';
-
+  
   cardSecond.append(cardTitle)
-  cardSecond.append(cardStars)
   cardSecond.append(cardTags)
-  cardSecond.append(cardPrice)
-  cardSecond.append(cardIsOrganic)
+  cardSecond.append(cardStarsAndPrice)
+  cardSecond.append(buttonsContainer)
+
   // cardSecond.append(cardCreatedAt)
+  
+  cardFirstAndSecond.append(cardFirst)
+  cardFirstAndSecond.append(cardSecond)
 
+  cardComplement.append(cardComplementFirst)
+  cardComplement.append(cardComplementSecond)
 
-  cardContainer.append(cardFirst);
-  cardContainer.append(cardSecond);
+  cardContainer.append(cardFirstAndSecond);
   cardContainerMaster.append(cardContainer)
+  cardContainerMaster.append(cardComplement)
   return cardContainerMaster;
 }
 

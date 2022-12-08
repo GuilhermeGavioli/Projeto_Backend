@@ -8,7 +8,7 @@
 
     <div class="cart-container-inside">
         <div class="cart-container-first">
-            <h2 class="cart-first-title"><i class="fa-brands fa-opencart" style="margin-right: 7px;"></i> (MEU) CARRINHO DE ITENS</h2>
+            <h2 class="cart-first-title"><i class="fa-brands fa-opencart" style=" margin: 0; margin-right: 7px;"></i> (MEU) CARRINHO DE ITENS</h2>
             <div class="cart-items-container">
 
                 
@@ -28,16 +28,20 @@
         <div class="cart-container-second">
             <h2 class="cart-second-title">Detalhes</h2>
 
-            <div style="width: 100%; display: flex; flex-direction: column; margin: 12px 0 12px 0;">
-                <label style="margin: 0;" class="cart-label">Nome</label>
-                <input type="" class="cart-second-input" value="Joao Almeida da Silva" disabled>
-            </div>
+            <!-- <div class="both-cart-inputs-containers"> -->
 
-            <div style="width: 100%; display: flex; flex-direction: column; margin: 12px 0 12px 0;">
-                <label style="margin: 0;" class="cart-label">Endereço</label>
-                <input type="" class="cart-second-input" value="Sao Paulo SP" disabled>
-            </div>
-            <div style="width: 100%; display: flex; flex-direction: column; margin: 12px 0 12px 0;">
+                <div class="cart-label-and-input">
+                    <label style="margin: 0;" class="cart-label">Nome</label>
+                    <input type="" class="cart-second-input" value="Joao Almeida da Silva" disabled>
+                </div>
+                
+                <div class="cart-label-and-input">
+                    <label style="margin: 0;" class="cart-label">Endereço</label>
+                    <input type="" class="cart-second-input" value="Sao Paulo SP" disabled>
+                </div>
+            <!-- </div> -->
+
+            <div class="cart-label-and-input" id="last-cart-input">
                 <label style="margin: 0;" class="cart-label">Endereço</label>
                 <input type="" class="cart-second-input" value="Sao Paulo SP" disabled>
             </div>
@@ -103,9 +107,15 @@
 <header class="header" style="background: rgb(248,248,248);">
     <div class="logo-header-container" onClick="window.location.href = '/'">
 
-        <img src="../assets/My project-1 (1).png" class="company-logo" alt="" style="cursor:pointer;">
         
-        <img src="../assets/text-logo.png" class="company-name" alt="" style="cursor:pointer;">
+            <img src="../assets/My project-1 (1).png" class="company-logo" alt="" style="cursor:pointer;">
+   
+
+       
+
+            <img src="../assets/text-logo.png" class="company-name" alt="" style="cursor:pointer;">
+ 
+        
         
     </div>
 
@@ -254,3 +264,14 @@
        
     <!-- </div> -->
 <!-- </div> -->
+
+
+<!-- <div style="
+    position: fixed;
+    width: 100vw;
+    max-width: 2000px;
+    height: 260px;
+    background-color: rgba(201, 199, 199, 0.879);
+    z-index: 3000;
+    bottom: 0;
+"></div> -->
