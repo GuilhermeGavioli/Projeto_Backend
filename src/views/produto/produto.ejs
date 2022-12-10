@@ -32,8 +32,8 @@
 
 
    
-
     <%- include("../globals/header.ejs") %>
+   
 
 
     <div class="container"></div>
@@ -49,9 +49,7 @@
         <span id="product_price" product_price="<%=productFound.price%>"></span>
         
 
-        <!-- <% if (productFound.is_organic == 1){ %>
-            <img src="../assets/organic_symbol.png" style="width: 100px;  position: absolute; top: -13px; left: -12px; background-color: rgba(255, 255, 255, 0.020); border-radius: 50%;" alt="">
-            <% } %> -->
+     
         
         <div class="container2">
         
@@ -75,7 +73,7 @@
                         <img src="/file_system/user/<%=productFound.user_image%>" alt="" class="comment-image">
                         <div style="display: flex; flex-direction: column;">
                             <p class="comment-username" style="color: gray; font-weight: 200; margin: 0;">
-                                <%= productFound.full_name %>
+                               Meu Produto
                             </p>
                             <p style="font-size: .7em; color: gray; margin:0;">membro desde novembro de 2022</p>
                         </div>
@@ -87,76 +85,39 @@
 
 
         <div class="c2" style="position: relative;">
-            <div style="position: absolute; top: 5px; right: 25px; font-size: 2em; cursor: pointer; color: rgb(198, 198, 198)" onclick="window.history.back()">
-                <i class="fa-solid fa-angle-left"></i> <span>Voltar</span>
+            <div onclick="window.history.back()" class="voltar-component">
+                <i class="fa-solid fa-angle-left"></i> <span id="voltar-text">Voltar</span>
             </div>
-            <p class="nine">Produto / <%= productFound.product_name %></p>
-            <h1> <%= productFound.product_name %> </h1>
+            <p class="nine">Produto / opfbopkadpofjbpjofadjpbpajdf bpofda bpoad kpofbk apdfobpoa fdbak d´fbká</p>
+            <h1 class="product-name"> Meu Produto  opasdkop vdpkoopkvadopkva pkoop vapok fvkf vk padfokpv k-afdpv</h1>
             <div class="product-stars">
-                <% const star_rating = JSON.stringify(rating).substring(21,22) %>
-                <% if (star_rating == 1) { %>
-                    <i class="fa-solid fa-heart"></i>
-                    <i class="fa-regular fa-heart"></i>
-                    <i class="fa-regular fa-heart"></i>
-                    <i class="fa-regular fa-heart"></i>
-                    <i class="fa-regular fa-heart"></i>
-                <% } else if (star_rating == 2) { %>
-                    <i class="fa-solid fa-heart"></i>
-                    <i class="fa-solid fa-heart"></i>
-                    <i class="fa-regular fa-heart"></i>
-                    <i class="fa-regular fa-heart"></i>
-                    <i class="fa-regular fa-heart"></i>
-                <% } else if (star_rating == 3) { %>
-                    <i class="fa-solid fa-heart"></i>
-                    <i class="fa-solid fa-heart"></i>
-                    <i class="fa-solid fa-heart"></i>
-                    <i class="fa-regular fa-heart"></i>
-                    <i class="fa-regular fa-heart"></i>
-                <% } else if (star_rating == 4) { %>
-                    <i class="fa-solid fa-heart"></i>
-                    <i class="fa-solid fa-heart"></i>
-                    <i class="fa-solid fa-heart"></i>
-                    <i class="fa-solid fa-heart"></i>
-                    <i class="fa-regular fa-heart"></i>
-                <% } else if (star_rating == 5) { %>
-                <% } else { %>
-                    <i class="fa-regular fa-heart"></i>
-                    <i class="fa-regular fa-heart"></i>
-                    <i class="fa-regular fa-heart"></i>
-                    <i class="fa-regular fa-heart"></i>
-                    <i class="fa-regular fa-heart"></i>
-                    <% } %>
-                    <p class="rating-counts"></p>
+              
             </div>
 
             <p class="nine">
-                <%= productFound.product_description %>
+                 Descricao do produto 
             </p>
             <p class="nine" id="price">
-                R$<%=productFound.price%><span style="font-size: .6em;">/<%=productFound.unity%></span>
+                R$58.88><span style="font-size: .6em;">/Litro</span>
             </p>
             <!-- <p>
                 <%= productFound.average %>
             </p> -->
 
             <p class="eight"><i class="fa-solid fa-tag"></i> 
-                <%= productFound.tags %>
+               tag
             </p>
          
-            <p class="nine">Categoria: <%= productFound.category %></p>
+            <p class="nine">Categoria: Graos</p>
             <p class="nine">
-                <% if (productFound.is_organic == 1){ %>
-                    <i class="fa-solid fa-check"></i> 
-                    <% } else { %>
-                        <i class="fa-solid fa-xmark"></i>
-                <% } %>
+                
             Produto Orgânico</p>
             
             
             <p class="eight"><i class="fa-solid fa-upload" style="margin-top: 20px;"></i> Publicado em 14 de janeiro de 2021</p>
 
             <p class="eight"><i class="fa-regular fa-user"></i> criado por <a href="/profile/<%= productFound.userid %>">
-                <%= productFound.full_name %>
+               Rogerio
             </a></p>
             </div>
 
@@ -194,10 +155,10 @@
             
      
 
-            <!--<div class="comments">
-                 <div class="load-more-comments-container">
+            <div class="comments">
+                 <!-- <div class="load-more-comments-container">
                     <button id="carregar-mais-btn">Carregar mais</button>
-                </div>
+                </div> -->
 
 
 
@@ -245,11 +206,11 @@
                     </div>
 
 
-                </div>
+                 </div> 
                 
                 <div style="display: flex; align-items: flex-end;height: fit-content; justify-content: space-between; width: 100%;">
 
-                    <div class="create-comment-container">
+                    <!-- <div class="create-comment-container">
                         <div class="textarea-and-btn-container">
                             <h2 class="create-comment-title">Avalie esse Produto</h2>
 
@@ -274,12 +235,12 @@
                             <button class="ratting-btn">Enviar comentário</button>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 
 
-                <div class="comment-design-diff-container">
+               <!-- <div class="comment-design-diff-container">
 
-                    <div class="comment-design-pic" id="comment-design-pic-diff">
+                     <div class="comment-design-pic" id="comment-design-pic-diff">
                         <img class="comment-design-pic-inside" id="comment-design-pic-inside-diff" src="https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg?auto=compress&cs=tinysrgb&w=600">
                     </div>
 
@@ -292,9 +253,9 @@
                             <div class="comment-design-bar-one"></div>
                             <div class="comment-design-bar-two"></div>
                         </div>
-                    </div>
+                    </div> 
 
-                </div>
+                </div>-->
 
 
 
@@ -317,7 +278,67 @@
                     <p class="comment-text">Gostei do produto</p>
                     <p class="comment-created-at">avaliado em 15 de novembro de 1999</p>
                 </div> 
-            </div>-->
+                <div class="comment-container">
+                    <div class="comment-image-and-username-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Black_hole_-_Messier_87.jpg/1200px-Black_hole_-_Messier_87.jpg" alt="" class="comment-image">
+                        <p class="comment-username">Joao da Silva</p>
+                    </div>
+                    <div class="comment-stars-container">
+                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-regular fa-heart"></i>
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
+                    <p class="comment-text">Gostei do produto</p>
+                    <p class="comment-created-at">avaliado em 15 de novembro de 1999</p>
+                </div> 
+                <div class="comment-container">
+                    <div class="comment-image-and-username-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Black_hole_-_Messier_87.jpg/1200px-Black_hole_-_Messier_87.jpg" alt="" class="comment-image">
+                        <p class="comment-username">Joao da Silva</p>
+                    </div>
+                    <div class="comment-stars-container">
+                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-regular fa-heart"></i>
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
+                    <p class="comment-text">Gostei do produto</p>
+                    <p class="comment-created-at">avaliado em 15 de novembro de 1999</p>
+                </div> 
+                <div class="comment-container">
+                    <div class="comment-image-and-username-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Black_hole_-_Messier_87.jpg/1200px-Black_hole_-_Messier_87.jpg" alt="" class="comment-image">
+                        <p class="comment-username">Joao da Silva</p>
+                    </div>
+                    <div class="comment-stars-container">
+                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-regular fa-heart"></i>
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
+                    <p class="comment-text">Gostei do produto</p>
+                    <p class="comment-created-at">avaliado em 15 de novembro de 1999</p>
+                </div> 
+                <div class="comment-container">
+                    <div class="comment-image-and-username-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Black_hole_-_Messier_87.jpg/1200px-Black_hole_-_Messier_87.jpg" alt="" class="comment-image">
+                        <p class="comment-username">Joao da Silva</p>
+                    </div>
+                    <div class="comment-stars-container">
+                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-regular fa-heart"></i>
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
+                    <p class="comment-text">Gostei do produto</p>
+                    <p class="comment-created-at">avaliado em 15 de novembro de 1999</p>
+                </div> 
+            </div>
 
 
             <!-- <div class="propaganda">

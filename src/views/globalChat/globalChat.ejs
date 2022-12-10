@@ -58,16 +58,20 @@
 
 
     <div class="container2">
-        <!-- <div class="facade">
+        <div class="facade">
+            <h2 class="main-title">GoGreen</h2>
 
-
-            <h1 class="main-chat-title">Chat Global <i class="fa-regular fa-comments"></i></h1>
-
-
+            <!-- <h1 class="main-chat-title">Chat Global <i class="fa-regular fa-comments"></i></h1>
             <div class="home"><i class="fa-solid fa-house" onclick="window.location.href = '/'"></i></div>
-            <div class="home"><i class="fa-solid fa-person-walking-arrow-right" onclick="window.location.href = '/'"></i></div>
+            <div class="home"><i class="fa-solid fa-person-walking-arrow-right" onclick="window.location.href = '/'"></i></div> -->
+           <div class="facade-bottom-container">
+                <p class="facade-texts" onclick="slideChatTopBar()">Chat</p>
+                <p class="facade-texts" onclick="slideChatTopBar()">Friends</p>
            
-        </div> -->
+                <div class="facade-bottom-container-slider" state="chat"></div>
+           </div>
+
+        </div>
         
         <div class="chat-messages">
         </div>
@@ -79,7 +83,9 @@
         <form class="type-form">
             <div class="input-and-btn-container">
                 <input type="text" class="chat-message-input" placeholder="Sua mensagem..."> 
-                <button type="submit" class="chat-send-message-button"> <i class="fa-solid fa-paper-plane"></i>  </button>
+                <div style="width: fit-content; padding-left: 8px;">
+                    <button type="submit" class="chat-send-message-button"> <i class="fa-solid fa-paper-plane"></i>  </button>
+                </div>
             </div>
         </form>
     </div>

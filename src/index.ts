@@ -231,6 +231,37 @@ app.post('/avaliarproduto', ProtectionAgainstNonAuthenticatedUsers, async (req, 
     return res.json({created: true});
 })
 
+
+// likes
+app.get('/mylikes',ProtectionAgainstNonAuthenticatedUsers, async (req, res) => { 
+    const token_id = res.locals.userInfo.user_id;
+    try {
+        const userLikes = await mySqlDatabase.getLikesFromUser(token_id);
+        return res.json(userLikes);
+    } catch (err) {
+        console.log(err)
+        return res.json({gotten: false, erro: true});
+    }
+})
+
+app.get('/likeproduct/:p_id', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => { 
+    const { p_id } = req.params
+    const token_id = res.locals.userInfo.user_id;
+    console.log(p_id)
+    try {
+        await mySqlDatabase.saveLike(token_id, p_id);
+        return res.json({saved: true});
+    } catch (err) {
+        console.log(err)
+        return res.json({gotten: false, erro: true});
+    }
+})
+
+// likes
+
+
+
+
 app.post('/acharavaliacao', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => {
     const token_id = res.locals.userInfo.user_id;
     const {p_id} = req.body

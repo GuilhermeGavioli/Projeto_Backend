@@ -71,6 +71,14 @@ async function handleUserFetchTokenData(action) {  //action to be done in case o
 
     registerAndLoginContainer.style.visibility = 'hidden'
     registerAndLoginContainer.style.position = 'absolute'
+
+
+
+
+    const likesData = await getUserLikes();
+    console.log('likes ' + likesData)
+
+
     
     const messagesData = await getUserMessages();
     myMessages = messagesData;
@@ -119,6 +127,7 @@ async function openCart() {
 }
 
 let cartIdsItems = [];
+
 async function handleCart() {
   let cartTotalPrice = 0;
   const cartItems = await getCartData();
@@ -130,7 +139,7 @@ async function handleCart() {
     cartItems.map(item => { 
       cartTotalPrice += Number(item.price)
       
-      updateCart('add', item.product_id, item.cart_id, item)
+      updateCart('add', item.cart_id, item)
   })
   isFirstTimeOpeningCart = false;
   // if (cartCont != 0) {
@@ -138,33 +147,46 @@ async function handleCart() {
   // }
 }
 
-function updateCart(action, product_id, cartid, productInfo) {
-  const headercart = document.getElementById('header-cart')
+function updateCart(action, cartid, productInfo) {
+ 
+
   if (action === 'remove') {
     cartIdsItems = cartIdsItems.filter((obj) => {
+      console.log(obj)
       return obj.cart.toString() !== cartid.toString()
     })
-    headercart.firstChild.remove();
+    removeCardItem(cartid);
   }
+
   if (action === 'add') {
     cartIdsItems.push({ product: productInfo, cart: cartid })
-    headercart.firstChild.remove();
-    const card = createCartItem(productInfo)
+    const card = createCartItem(productInfo, cartid)
     document.querySelector('.cart-items-container').append(card)
   }
+
   updateCartCount(cartIdsItems.length)
   console.log(cartIdsItems)
+  // updateCartInterface();
 }
 
+function removeCardItem(cartid) {
+  Array.from(document.querySelector('.cart-items-container').children).map(element => { 
+    if (element.getAttribute('cartid') == cartid.toString()) {
+      element.remove();
+    }
+  })
+}
 
 function updateCartCount(number) {
+  console.log('removing cont')
+  const headerCart = document.getElementById('header-cart')
+  if (headerCart.firstChild) headerCart.firstChild.remove();
   const noItemsElement = document.querySelector('.cart-no-items-to-be-shown-container')
   if (number != 0) noItemsElement.style.visibility = 'hidden'
   else noItemsElement.style.visibility = 'visible'
   const numberCartCount = document.createElement('div');
   numberCartCount.id = 'cart-number-cont'
   numberCartCount.innerText = number
-  const headerCart = document.getElementById('header-cart')
   headerCart.append(numberCartCount)
 }
 
@@ -181,9 +203,10 @@ function updateCartCount(number) {
                         <i class="fa-solid fa-xmark" style="margin: 0;"></i>
                     </div>
                 </div> */}
-function createCartItem(item) {
+function createCartItem(item, cartid) {
   const cartItem = document.createElement('div')
   cartItem.className = 'cart-item'
+  cartItem.setAttribute('cartid', cartid)
   
   const cartItemFirst = document.createElement('img')
   cartItemFirst.className = 'cart-item-first'
@@ -205,11 +228,12 @@ function createCartItem(item) {
   cartItemThird.className = 'cart-item-third'
   cartItemThird.innerHTML = '<i class="fa-solid fa-xmark" style="margin: 0;"></i>'
 
-  cartItemThird.addEventListener('click', (e) => {
-    const wasDeleted = deleteFromCart(item.cart_id)
+  cartItemThird.addEventListener('click', async (e) => {
+    const wasDeleted = await deleteFromCart(item.cart_id)
     if (wasDeleted) {
+      console.log('iii '+ JSON.stringify(item))
+      removeCardItem(cartid)
       e.target.parentElement.parentElement.remove();
-      updateCart('remove', item.product_id, item.cart_id, null)
     }
   })
 
@@ -605,6 +629,16 @@ function openBellPainel(bellPainel, bellInsidePainel) {
   isPainelClosed = true;
 }
 
+async function getUserLikes() { 
+  const res = await fetch(`${BASE_URL_PATH_AUTH}mylikes`, {
+    method: 'GET',
+    headers: {
+      "Content-type": "application/json",
+      authorization: getStoredToken(),
+    }
+  })
+  return await res.json();
+}
 
 async function getUserMessages() {
   const res = await fetch(`${BASE_URL_PATH_AUTH}mymessages`, {
@@ -624,4 +658,18 @@ function paintHeader(elementToBePainted) {
   elementToBePainted.style.padding = '8px 15px 8px 15px';
   elementToBePainted.style.color = 'rgb(7,67,27)!important'
   elementToBePainted.firstChild.style.color = 'rgb(7,67,27)'
+}
+
+
+
+async function addToCart(product_id) {
+  const res = await fetch(`${BASE_URL_PATH}insertcartitem/${product_id}`, {
+    method: 'GET',
+    headers: {
+      "Content-type": "application/json",
+      authorization: getStoredToken(),
+    }
+  })
+  const data = await res.json();
+  return { saved: data.saved, savedItem: data.savedItem }
 }

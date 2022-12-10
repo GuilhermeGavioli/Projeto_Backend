@@ -18,9 +18,9 @@ window.onload = async () => {
   }
 
 
-  document.querySelector(
-    ".rating-counts"
-  ).innerText = `(${productRatings.length} Avaliaçoes)`;
+  // document.querySelector(
+  //   ".rating-counts"
+  // ).innerText = `(${productRatings.length} Avaliaçoes)`;
 
   const data = await handleUserFetchTokenData("stayOnThePageStillNotLoggedIn");
 
@@ -35,7 +35,7 @@ window.onload = async () => {
     
     let wasItemFoundInCart = false;
     let itemFound;
-    cartIdsItems.map( (obj) => {
+    cartIdsItems.map((obj) => {
       if (obj.product == p_id) {
         wasItemFoundInCart = true;
         itemFound = { product: obj.product, cart: obj.cart }
@@ -46,7 +46,7 @@ window.onload = async () => {
     // addCartButton.innerText = 'REMOVER DO CARRINHO'
     //     addCartButton.id = 'remover-carrinho-btn'
     //     addCartButton.addEventListener('click', async () => {
-      //       cartChanged('deleted', obj.product)
+    //       cartChanged('deleted', obj.product)
 
     //       const wasDeleted = await deleteFromCart(obj.cart)
     //       if (wasDeleted) changeButton(false)
@@ -67,7 +67,7 @@ window.onload = async () => {
       if (!isButtonClickable) return;
       isButtonClickable = false;
       const wasDeleted = await deleteFromCart(itemFound?.cart || recentlyAdded);
-      if (wasDeleted) { 
+      if (wasDeleted) {
         updateCart('remove', p_id, itemFound?.cart || recentlyAdded, null)
         recentlyDeleted = itemFound?.cart;
         activateButton('adicionar');
@@ -89,62 +89,60 @@ window.onload = async () => {
     
    
     
+    // document.querySelector(".create-comment-container").style.visibility =
+    //   "visible";
+    // if (!data.user_image || data.user_image.toString().trim() === "") {
+    //   document
+    //     .getElementById("my-create-comment-pic-inside")
+    //     .setAttribute("src", "/file_system/app/user_default.jpg");
+    // } else {
+    //   document
+    //     .getElementById("my-create-comment-pic-inside")
+    //     .setAttribute(
+    //       "src",
+    //       `${BASE_URL_PATH}file_system/user${data.user_image}`
+    //     );
+    // }
+    // const ratingInput = document.querySelector(".ratting-input");
+    // const ratingButton = document.querySelector(".ratting-btn");
+    // ratingInput.style.visibility = "visible";
+    // ratingButton.style.visibility = "visible";
+    // ratingButton.addEventListener("click", () => ratting(ratingInput));
 
-    
-
-    document.querySelector(".create-comment-container").style.visibility =
-      "visible";
-    if (!data.user_image || data.user_image.toString().trim() === "") {
-      document
-        .getElementById("my-create-comment-pic-inside")
-        .setAttribute("src", "/file_system/app/user_default.jpg");
-    } else {
-      document
-        .getElementById("my-create-comment-pic-inside")
-        .setAttribute(
-          "src",
-          `${BASE_URL_PATH}file_system/user${data.user_image}`
-        );
-    }
-    const ratingInput = document.querySelector(".ratting-input");
-    const ratingButton = document.querySelector(".ratting-btn");
-    ratingInput.style.visibility = "visible";
-    ratingButton.style.visibility = "visible";
-    ratingButton.addEventListener("click", () => ratting(ratingInput));
-
-    document
-      .getElementById("avaliar-btn")
-      .addEventListener(
-        "click",
-        () => (window.location.href = "#my-create-comment-pic")
-      );
+    // document
+    //   .getElementById("avaliar-btn")
+    //   .addEventListener(
+    //     "click",
+    //     () => (window.location.href = "#my-create-comment-pic")
+    //   );
 
     //stars
-    for (let i = 1; i < 6; i++) {
-      document
-        .getElementById(`star${i}`)
-        .addEventListener("click", () => handleCreateCommentStarsChange(i));
-    }
-  } else {
-    document
-      .getElementById("avaliar-btn")
-      .addEventListener("click", () => (window.location.href = "/login"));
-    document
-      .getElementById("adicionar-carrinho-btn")
-      .addEventListener("click", () => (window.location.href = "/login"));
+    //   for (let i = 1; i < 6; i++) {
+    //     document
+    //       .getElementById(`star${i}`)
+    //       .addEventListener("click", () => handleCreateCommentStarsChange(i));
+    //   }
+    // } else {
+    //   document
+    //     .getElementById("avaliar-btn")
+    //     .addEventListener("click", () => (window.location.href = "/login"));
+    //   document
+    //     .getElementById("adicionar-carrinho-btn")
+    //     .addEventListener("click", () => (window.location.href = "/login"));
+    // }
+
+    // document
+    //   .getElementById("carregar-mais-btn")
+    //   .addEventListener("click", async () => {
+    //     commentPack = commentPack + 2;
+
+    //     const productRatings = await loadProductRatings(p_id);
+    //     await appendCommentsOnPage(productRatings, data?.userid);
+    //     console.log(commentPack);
+
+    //   });
   }
-
-  document
-    .getElementById("carregar-mais-btn")
-    .addEventListener("click", async () => {
-      commentPack = commentPack + 2;
-
-      const productRatings = await loadProductRatings(p_id);
-      await appendCommentsOnPage(productRatings, data?.userid);
-      console.log(commentPack);
-      // await handleSimilarProductsAppereance()
-    });
-};
+}
 
 
 function activateButton(buttonType) {

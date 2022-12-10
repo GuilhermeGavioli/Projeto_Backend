@@ -66,7 +66,7 @@ window.onload = async () => {
 
     socket.on('last-ten-messages', data => {
         if (data) { 
-            data.map(message => { 
+            data.map(message => {
                 appendLastMessages(user.userid, message)
             })
         } 
@@ -221,6 +221,7 @@ function appendMyMessage(message) {
     const myMessage = document.createElement('p')
     myMessage.innerText = message
     myMessage.className = 'chat-message-text'
+    console.log(message)
 
     const myTime = document.createElement('p')
    
@@ -238,7 +239,7 @@ function appendMyMessage(message) {
     const myChatMessage = document.createElement('div')
     myChatMessage.className = 'my-chat-message'
     myChatMessage.append(myMessage)
-    myChatMessage.append(myTime)
+    // myChatMessage.append(myTime)
 
     document.querySelector('.chat-messages').append(myChatMessage);
 }
@@ -276,4 +277,43 @@ function appendLastMessages(userid, message) {
 function convertNumberToMonth(month_number) {
     const months = new Array("Janeiro", "Fevereiro", "Marco", "Abril", "Maio", "Junho", "Julho", "Agosto", "Septembro", "Outubro", "Novembro", "Dezembro");
     return months[month_number - 1]
+}
+
+
+
+function slideChatTopBar() {
+    const slider = document.querySelector('.facade-bottom-container-slider')
+    const currentState = slider.getAttribute('state')
+    if (currentState == 'chat') {
+        slider.style.inset = 'auto 0 0 auto'
+        slider.setAttribute('state', 'friends')
+
+        displayFriends()
+    } else {
+        slider.style.inset = 'auto auto 0 0'
+        slider.setAttribute('state', 'chat')
+        displayChat()
+    }
+}
+
+function displayChat() {
+    // document.querySelector('.chat-messages').style.display = 'unset'
+    document.querySelector('.chat-messages').style.position = 'static'
+    document.querySelector('.chat-messages').style.visibility = 'visible'
+
+    document.querySelector('.friends').style.display = 'none'
+    document.querySelector('.type-form').style.display = 'unset'
+
+    document.querySelector('.container2').style.gridTemplateAreas = '"facade facade" "chat chat" "type-form type-form"'
+}
+
+function displayFriends() {
+    // document.querySelector('.chat-messages').style.display = 'none'
+    document.querySelector('.chat-messages').style.position = 'absolute'
+    document.querySelector('.chat-messages').style.visibility = 'hidden'
+    document.querySelector('.type-form').style.display = 'none'
+    document.querySelector('.friends').style.display = 'unset'
+
+    document.querySelector('.container2').style.gridTemplateAreas = '"facade facade" "friends friends" "friends friends"'
+    
 }

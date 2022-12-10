@@ -82,6 +82,7 @@ CREATE TABLE ratting(
     PRIMARY KEY(ratting_id)
 );
 
+
 CREATE TABLE cart(
     cart_id INT NOT NULL AUTO_INCREMENT,
     owner_id VARCHAR(255) NOT NULL,
@@ -89,6 +90,15 @@ CREATE TABLE cart(
     FOREIGN KEY (owner_id) REFERENCES user(userid) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES product(product_id) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY(cart_id)
+);
+
+CREATE TABLE product_like(
+    like_id INT NOT NULL AUTO_INCREMENT,
+    owner_id VARCHAR(255) NOT NULL,
+    product_id VARCHAR(255) NOT NULL,
+    FOREIGN KEY (owner_id) REFERENCES user(userid) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES product(product_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    PRIMARY KEY(like_id)
 );
 
 

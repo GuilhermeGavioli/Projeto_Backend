@@ -328,6 +328,32 @@ export default class MySql implements Repository {
         return rows;
     }
 
+
+    public async saveLike(user_id: string, product_id: string): Promise<any> {
+        console.log(user_id)
+        console.log(product_id)
+        await this.connection.execute(`INSERT INTO product_like (owner_id, product_id)
+        VALUES ("${user_id}", "${product_id}");`);
+    }
+
+    public async findOneLike(user_id: string, product_id: string): Promise<any | null> {
+        const [[rows]] = await this.connection.execute(`SELECT 1 FROM product_like WHERE owner_id="${user_id}" AND product_id="${product_id}";`)
+        if (!rows) return null;
+        return rows;
+     }
+
+    public async getLikesFromUser(user_id: string): Promise<void | null> {
+        const [rows] = await this.connection.execute(`
+        SELECT * FROM product_like
+        WHERE owner_id="${user_id}";`);
+        if (!rows) return null;
+        return rows;
+    }
+
+    public async deleteLike(user_id: string, like_id: string): Promise<void> {
+        await this.connection.execute(`DELETE FROM product_like WHERE owner_id="${user_id}" AND like_id="${like_id}";`);
+    }
+
     public async deleteFromCart(user_id: string, cart_item_id: string): Promise<void> {
         await this.connection.execute(`DELETE FROM cart WHERE cart.owner_id="${user_id}" AND cart_id="${cart_item_id}";`);
     }

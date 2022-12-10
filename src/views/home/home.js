@@ -1,3 +1,4 @@
+
 const BASE_URL_PATH =  'http://localhost:3000/'
 
 
@@ -8,7 +9,7 @@ window.onload = async () => {
   const headerHomeText = document.getElementById('nav-item-home')
   paintHeader(headerHomeText)
 
-
+  
 
 
 
@@ -16,7 +17,6 @@ window.onload = async () => {
  
 
   setInterval(() => {
-    console.log('hi')
     changeHomeBannerState();
     changeBannerElement();
   }, 15000)
@@ -32,10 +32,16 @@ window.onload = async () => {
 
   const data = await handleUserFetchTokenData('stayOnThePageStillNotLoggedIn');
 
-
+  
+  
   const productData = await handleCardsDisplayOnLoad();
   await fitProductsDataInHome(productData);
+  
+  if (data) {
 
+    
+    console.log('cart' + cartIdsItems)
+  }
   
  
 
@@ -53,7 +59,6 @@ document.querySelector('.search-btn').addEventListener('click', (e) => {
 
 let bannerState = 3;
 function changeHomeBannerState(numberClicked) {
-  console.log(bannerState)
   if (numberClicked) return bannerState = numberClicked;
   if (bannerState == 3) bannerState = 1
   else bannerState++;
@@ -99,10 +104,22 @@ async function fitProductsDataInHome(data){
 
 function appendOnPage(data) {
   const container = document.querySelector('.cards-slide-grid-container')
-  data.map(item => {
-      const cardContainer = createProductCard(item);
-      container.append(cardContainer);
+  // a b c
+  // 1 2
+  let productID = 0;
+  data.map(product => {
+
+      // cartIdsItems.every(cartItem => {
+      //   if (product.product_id == cartItem.product.product_id) {
+    const cardContainer = createProductCard(product, productID);
+    container.append(cardContainer);
+    productID++
+          // return false;
+        // }
+      // })
+    
   })
+
 }
 
 // cards-slide-block
@@ -172,17 +189,95 @@ function appendOnPage(data) {
 // </div> 
 // </div>
 // </div>
-function createProductCard(item) {
+function createProductCard(item, cardid) {
   if (!item) return;
-  console.log(item)
+
+  const filtered = cartIdsItems.filter(cartItem => {
+    return cartItem.product.product_id == item.product_id;
+  })
+
+  console.log('f' + filtered)
   const cardContainerMaster = document.createElement('div');
   cardContainerMaster.className = 'cards-slide-block'
+  // cardContainerMaster.addEventListener('click', () => goToProduct(item.product_id))
+  cardContainerMaster.addEventListener('click', async () => {
+    await likeProduct(item.product_id)
+  })
 
   const cardContainer = document.createElement('div');
   cardContainer.className = 'card-container'
   cardContainer.setAttribute('product-id', item.product_id)
-  cardContainer.addEventListener('click', (e) => {
-    window.location.href = `/produto/${item.product_id}`
+  // cardContainer.setAttribute('product-id', item.product_id)
+
+  const removeButton = document.createElement('button')
+  removeButton.id = 'remove-button'
+  removeButton.innerText = 'Remover do Carrinho'
+
+  const cardButton = document.createElement('button')
+  cardButton.className = 'card-button'
+  cardButton.innerText = 'Adicionar ao carrinho'
+
+  if (filtered.length > 0) {
+    cardContainer.setAttribute('isOnCart', true);
+    cardButton.style.display = 'none';
+    removeButton.style.display = 'unset';
+  } else {
+    cardContainer.setAttribute('isOnCart', false);
+    cardButton.style.display = 'unset';
+    removeButton.style.display = 'none';
+  }
+
+
+  cardButton.addEventListener('click',async  (e) => {
+    const cardID = cardContainer.getAttribute('product-id')
+    if (cardContainer.getAttribute('isOnCart') == 'true') return
+
+      const data = await addToCart(cardID);
+      if (data.saved) {
+    
+        updateCart('add', data.savedItem.cart_id, item)
+        console.log(cartIdsItems)
+        
+        cardContainer.setAttribute('isOnCart', 'true')
+        removeButton.style.display = 'unset';
+        e.target.style.display = 'none';
+      } else {
+        console.log('not saved')
+        return
+      }
+   
+
+    console.log('added')
+  })
+
+  removeButton.addEventListener('click', (e) => { 
+    if (cardContainer.getAttribute('isOnCart') == 'false') return
+
+    
+    //map throguh cart items to get id, then request it is removen
+    cartIdsItems.map(async (cartItem) => {
+      const cardID = cardContainer.getAttribute('product-id')
+      // console.log(e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement)
+      
+      if (cartItem.product.product_id == cardID) {
+        console.log('cardid', cardID)
+        console.log('deleting')
+        const wasDeleted = await deleteFromCart(cartItem.cart);
+        if (wasDeleted) {
+          console.log('deleted')
+          console.log(cartItem)
+          console.log('cartItem.product.cartid ' + cartItem.cart)
+          updateCart('remove', cartItem.cart, null) 
+          cardButton.style.display = 'unset';
+          e.target.style.display = 'none';
+          cardContainer.setAttribute('isOnCart', 'false')
+        }
+      //   }
+      // } else {
+      //   console.log('item not found')
+      //   return
+      }
+    })
   })
   
   const cardFirstAndSecond = document.createElement('div');
@@ -206,7 +301,7 @@ function createProductCard(item) {
   cardTags.innerText = `${item.tags}`
 
   const cardStarsAndPrice = document.createElement('div');
-  cardStarsAndPrice.style='display: flex; width: 100%; justify-content: space-between; align-items: center; margin: 12px 0 8px 0;'
+  cardStarsAndPrice.style='display: flex; width: 100%; justify-content: space-between; align-items: center; margin: 12px 0 8px 0; background: red;'
 
   const cardStars = document.createElement('div');
   cardStars.className = 'card-stars'
@@ -216,6 +311,14 @@ function createProductCard(item) {
     cardStars.innerHTML = `<i class="fa-solid fa-heart" style="margin:0;"></i><p style="margin:0; margin-left: 6px;">0</p>`
   }
   // handleAverage(cardStars, item.average)
+
+  const cardFirstTop = document.createElement('div')
+  cardFirstTop.append(cardTitle)
+  cardFirstTop.append(cardTags)
+
+  const cardFirstBottom = document.createElement('div')
+  cardFirstBottom.style = 'width: 100%'
+ 
   
   const cardPrice = document.createElement('p');
   cardPrice.className = 'card-price'
@@ -223,23 +326,20 @@ function createProductCard(item) {
   
   const buttonsContainer = document.createElement('div');
   buttonsContainer.style = 'display: flex; width: 100%; justify-content: space-between;'
-
-  const heartButton = document.createElement('button')
-  heartButton.className = 'heart-card-button'
-  heartButton.innerHTML = '<i class="fa-regular fa-heart"></i>'
   
-  const cardButton = document.createElement('button')
-  cardButton.className = 'card-button'
-  cardButton.innerText = 'Adicionar ao carrinho'
-
+  console.log('filtered ' + JSON.stringify(filtered))
+  
   const cardComplement = document.createElement('div')
   cardComplement.className = 'card-complement'
   
+  cardFirstBottom.append(cardStarsAndPrice)
+  cardFirstBottom.append(buttonsContainer)
   
   cardStarsAndPrice.append(cardStars)
   cardStarsAndPrice.append(cardPrice)
 
-  buttonsContainer.append(heartButton)
+  // buttonsContainer.append(heartButton)
+  buttonsContainer.append(removeButton)
   buttonsContainer.append(cardButton)
   
   const cardComplementSecond = document.createElement('div')
@@ -255,7 +355,6 @@ function createProductCard(item) {
     cardComplementSecond.innerHTML = '<i class="fa-solid fa-xmark"></i>'
   }
   
-  
 
   const cardCategory = document.createElement('p');
   cardCategory.innerText = item.is_organic
@@ -264,19 +363,14 @@ function createProductCard(item) {
   cardIsOrganic.style = 'margin:0; font-size:.6em;'
   if (cardIsOrganic == 0) cardIsOrganic.innerHTML = '<i class="fa-solid fa-check" style="margin:0;"></i> organico'
   else cardIsOrganic.innerHTML = '<i class="fa-solid fa-x" style="margin:0;"></i> organico'
-
-
-  
   
   const cardCreatedAt = document.createElement('p');
   cardCreatedAt.className = 'card-created-at'
   cardCreatedAt.innerText = `${item.created_at}`
 
   
-  cardSecond.append(cardTitle)
-  cardSecond.append(cardTags)
-  cardSecond.append(cardStarsAndPrice)
-  cardSecond.append(buttonsContainer)
+  cardSecond.append(cardFirstTop)
+  cardSecond.append(cardFirstBottom)
 
   // cardSecond.append(cardCreatedAt)
   
@@ -287,10 +381,23 @@ function createProductCard(item) {
   cardComplement.append(cardComplementSecond)
 
   cardContainer.append(cardFirstAndSecond);
+  cardContainer.append(cardComplement)
   cardContainerMaster.append(cardContainer)
-  cardContainerMaster.append(cardComplement)
   return cardContainerMaster;
 }
+
+
+async function likeProduct(p_id) {
+    const res = await fetch(`${BASE_URL_PATH_AUTH}likeproduct/${p_id}`, {
+      method: 'GET',
+      headers: {
+        "Content-type": "application/json",
+        authorization: getStoredToken(),
+      }
+    })
+    return await res.json();
+}
+
 
 function handleAverage(parentElement, number) {
   if (!number) {
@@ -366,4 +473,9 @@ window.onresize = () => {
     const gridContainer = document.querySelector('.cards-slide-grid-container');
     gridContainer.style.left = '0px'
     current = 0;
+}
+
+
+function goToProduct(id) {
+  window.location.href = `${BASE_URL_PATH_AUTH}produto/${id}`
 }
