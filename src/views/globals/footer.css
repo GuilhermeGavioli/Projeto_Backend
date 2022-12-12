@@ -1,179 +1,131 @@
 
-.footer{
-    /* background-color: white; */
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+
+
+
+.fw-300{
+    font-weight: 300;
+}
+.centrar-texto{    
+    text-align: center;
+}
+
+.d-block{
+    display: block!important;
+}
+
+.contenido-centrado {
+    max-width: 800px;
+}
+
+/** Navegacion **/
+.navegacion{
     color: white;
-    height: 180px;
-    position: relative;
-    overflow: hidden;
-    /* background: linear-gradient(to top, rgb(198, 198, 198), white); */
-    background-color: white;
-    box-shadow: 3px 3px 15px 5px rgba(0, 0, 0, 0.149);
-    margin: auto;
-    background-color: rgb(11,156,89);
-}
-
-.f1, .f2, .f3{
-    width: 33.3%;
-    height: 100%;
-    /* border: 1px solid white; */
-}
-
-.f1{
+    text-decoration: none;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2;
-    height: 100%;
-    box-sizing: border-box;
-    padding: 0 20px 0 20px;
+    font-size: 1.2rem;    
+    
 }
 
-.f1-main{
-    text-align: center;
-    width: fit-content;
-    /* background-color: blue; */
-    width: 300px;
-    height: fit-content;
-    
-    color: rgb(60,68,55);
-    /* background-color: green; */
-    
+.footer-a{
+    margin: 0 20px 0 20px!important;
+    color: white;
 }
-.f1-text, .f1-title, .f1-second-title{
+
+.footer-a:hover{
+    color: rgb(186, 224, 186);
+    cursor: pointer;
+}
+
+
+
+
+
+
+/** Iconos Nosotros **/
+
+
+.icono{    
+    text-align: center;
+}
+
+.texto-nosotros blockquote {
+    font-weight: 900;
+    font-size: 2rem;
     margin: 0;
-    padding: 0;
-    z-index: 1;
-    /* background-color: red; */
-}
-.f1-title{
-    font-size: 1em;
-    font-weight: 600;
+    padding: 1rem 0 3rem 0;
 }
 
-.f1-second-title{
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 1.6em;
 
-    /* background-color: red; */
-}
-
-.f1-text{
-    /* background-color: yellow; */
-    padding-top: 20px;
-    /* max-width: 200px; */
-    /* background-color: red; */
+/** Footer **/
+.site-footer {
+    background-color: #2cb94a;
+    width: 100vw;
+    max-width: 2000px;
     margin: auto;
-    width: 70%;
-    font-size: .7em;
-}
-.f2{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 1em;
-    padding: 0 0 20px 0;
+    margin-top: 150px;
 }
 
-.f2-circle{
-    background-image: url('../assets/logo_transparente.png');
-    background-size: cover;
-    width: 80px;
-    height: 60px;
-} 
-
-.f3{
-    /* background-color: rgb(126, 176, 28); */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2;
-    height: 100%;
-    box-sizing: border-box;
-    padding: 0 20px 0 20px;
- 
-}
-.socials-container{
-    margin: auto;
-    display: flex;
-    width: 50%;
-    margin-top: 18px;
-    justify-content: space-evenly;
-}
-.fa-brands{
-    font-size: 1.4em;
-}
-
-/*.footer-circle{
-    width: 600px;
-    background-color: white;
-    /* background-color: rgb(80,117,73); */
-    /* border-radius: 68%;
-    position: absolute;
-    height: 600px;
-    z-index: 0;
-    left: -90px;
-    bottom: -130px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 15px solid rgb(128, 192, 18);
-}
-
-
-.footer-circle-inside{
-    width: 550px;
-    height: 550px;
-    border-radius: 68%;
-    z-index: 1;
-    /* background-color: rgb(119,181,12); */
-    /* background: linear-gradient(to top right, rgb(102, 155, 11), rgb(119,181,12));
-}
-
-
-.footer-circle-2{
-    width: 415px;
-    background-color: white;
-  
-    border-radius: 50%;
-    position: absolute;
-    height: 415px;
-    z-index: 0;
-    right: -70px;
-    bottom: -210px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 10px solid rgb(127, 188, 22);
-}
-
-.footer-circle-inside-2{
-    width: 390px;
-    height: 390px;
-    border-radius: 50%;
-    z-index: 1;
-    background-color: rgb(119,181,12);
-    background: linear-gradient(to top left, rgb(102, 155, 11), rgb(119,181,12));
+.container-footer {
+    padding: 3rem 0;    
     text-align: center;
-    position: relative;
-} 
-.sobre-nos-text{
-  
-    height: fit-content;
-  
-    position: absolute;
-    font-size: .9em;
-    inset: 0 40px 105px 0;
-    margin: auto;
-}  */
-
-
-@media (max-width: 440px) {
-    .footer{
-        flex-direction: column;
-        height: fit-content;
-    }
 }
+
+
+
+@media (min-width: 768px) {
+    .container-footer {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+.site-footer {
+    display: none;
+}
+
+.iconos-nosotros{
+    display: flex;
+    justify-content: space-between;    
+}
+
+.icono{
+    flex-basis: calc(33.3% - 1rem);
+    text-align: center;
+}
+
+
+.site-footer {
+        display: block;
+    }
+    
+
+.copyright {
+    margin: 0;
+    color: white;
+}
+.contenido-nosotros{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 2rem;
+    text-align: justify;
+}
+
+}
+
+
+
+
+    @media (min-width: 420px) {
+        .navegacion{
+            color: white;
+            text-decoration: none;
+            display: flex;
+            font-size: 1.2rem;
+            flex-direction: column;    
+            
+        }
+
+        .site-footer{
+            min-width: 290px;
+            overflow: hidden;
+        }
+    }

@@ -1,7 +1,7 @@
 const BASE_URL_PATH =  'http://localhost:3000/'
 const SOCKET_BASE_URL_PATH =  'http://localhost:3001'
 
-
+let lastMessageOwner = ''
 window.onload = async () => {
   // const header = document.querySelector(".header");
     
@@ -64,10 +64,14 @@ window.onload = async () => {
     appendSystemMessage("Bem vindo ao chat " + user.full_name)
 
 
+    
     socket.on('last-ten-messages', data => {
         if (data) { 
             data.map(message => {
-                appendLastMessages(user.userid, message)
+                message.userid
+                console.log(message)
+                appendLastMessages(user.userid, message, lastMessageOwner)
+                lastMessageOwner = message.id
             })
         } 
         scrollToBottom();
@@ -92,7 +96,9 @@ window.onload = async () => {
 
     removeFromFriends();
     socket.on('send-message-server', message => {
-        appendOthersMessage(message.message, message.name, message.id, message.image, message.date);
+        console.log('m', message)
+        appendOthersMessage(message.message, message.name, message.id, message.image, message.date, message.id == lastMessageOwner);
+        
         scrollToBottom();
     })
 }
@@ -145,6 +151,7 @@ function appendOnFriends(user) {
 
     const friends = document.querySelector('.friends')
     friends.append(friend)
+    
 }
 
 
@@ -159,7 +166,7 @@ function sendMessage(e, user, socket) {
     scrollToBottom()
     messageInput = document.querySelector('.chat-message-input');
     if (messageInput.value.length > 500 || messageInput.value.trim() == '') return;
-    appendMyMessage(messageInput.value)
+    appendMyMessage(messageInput.value,user.userid, user.userid == lastMessageOwner)
     socket.emit('send-message', {
         id: user.userid,
         name: user.full_name,
@@ -174,9 +181,13 @@ function scrollToBottom() {
     container.scrollTop = (container.scrollHeight)
 }
 
-function appendOthersMessage(messageTextValue, name, id, pic, date) {
+function appendOthersMessage(messageTextValue, name, id, pic, date, isSameOwnerAsBeforeMessage) {
     const message = document.createElement('div');
     message.className = 'chat-message';
+    if (isSameOwnerAsBeforeMessage) {
+        message.style.margin = '3px 0 3px 0';
+        message.style.borderRadius = '25px';
+    }
 
     const userMessageImage = document.createElement('img');
     if (!pic || pic.toString().trim() == '') userMessageImage.setAttribute('src', '/file_system/app/user_default.jpg')
@@ -187,7 +198,7 @@ function appendOthersMessage(messageTextValue, name, id, pic, date) {
     const userName = document.createElement('p')
     userName.className = 'chat-user-name'
     userName.innerText = name;
-    userName.addEventListener("click", () => { 
+    userName.addEventListener("click", () => {
         window.location.href = `/profile/${id}`
     })
     const messageText = document.createElement('p')
@@ -204,23 +215,31 @@ function appendOthersMessage(messageTextValue, name, id, pic, date) {
     chatTime.innerText = finalDate;
 
     const emptyDivJustForFlexPurposes = document.createElement('div');
-    emptyDivJustForFlexPurposes.append(userName)
+    
+    if (!isSameOwnerAsBeforeMessage) { 
+        emptyDivJustForFlexPurposes.append(chatTime)
+        emptyDivJustForFlexPurposes.append(userName)
+        message.append(userMessageImage)
+    }
+    
     emptyDivJustForFlexPurposes.append(messageText)
-    emptyDivJustForFlexPurposes.append(chatTime)
-    emptyDivJustForFlexPurposes.className='emptyDivJustForFlexPurposes'
-    message.append(userMessageImage)
+    emptyDivJustForFlexPurposes.className = 'emptyDivJustForFlexPurposes'
+
     message.append(emptyDivJustForFlexPurposes)
     document.querySelector('.chat-messages').append(message);
+
+    lastMessageOwner = id
 }
 
 
-function appendMyMessage(message) {
+function appendMyMessage(message,id, isSameOwnerAsBeforeMessage) {
     const date = new Date()
     date.setHours(date.getHours() - 3)
 
     const myMessage = document.createElement('p')
     myMessage.innerText = message
     myMessage.className = 'chat-message-text'
+
     console.log(message)
 
     const myTime = document.createElement('p')
@@ -234,14 +253,22 @@ function appendMyMessage(message) {
     const finalDate = `${date.getDate()} de ${month} de ${date.getFullYear()} às ${date.getHours() + 3}:${date.getMinutes()}`
 
     myTime.innerText = finalDate
-    myTime.className = 'chat-time'
+    myTime.className = 'my-chat-time'
     
     const myChatMessage = document.createElement('div')
     myChatMessage.className = 'my-chat-message'
+    if (isSameOwnerAsBeforeMessage) {
+        myChatMessage.style.margin = '3px 0 3px'
+        myChatMessage.style.borderRadius = '25px'
+    }
     myChatMessage.append(myMessage)
-    // myChatMessage.append(myTime)
+    if (!isSameOwnerAsBeforeMessage) {
+        myChatMessage.append(myTime)
+    }
 
     document.querySelector('.chat-messages').append(myChatMessage);
+
+    lastMessageOwner = id
 }
 
 function appendSystemMessage(message) {
@@ -263,11 +290,11 @@ function appendSystemMessage(message) {
     document.querySelector('.chat-messages').append(myChatMessage);
 }
 
-function appendLastMessages(userid, message) {
+function appendLastMessages(userid, message, lastMessageOwner) {
     if (userid == message.id) {
-        appendMyMessage(message.message)
+        appendMyMessage(message.message, message.id, message.id == lastMessageOwner)
     } else {
-        appendOthersMessage(message.message, message.name, message.id, message.image, message.date);
+        appendOthersMessage(message.message, message.name, message.id, message.image, message.date, message.id == lastMessageOwner);
     }
 }
 

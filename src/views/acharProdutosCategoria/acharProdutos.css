@@ -1,53 +1,76 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-.thrash-icon{
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    z-index: 500;
-}
-
-.yellow-span{
-    background-color: yellow;
-}
-
-.no-results-container{
-    /* background-color: green; */
-    width: 650px;
+.banner-container{
+    height: fit-content;
+    max-width: 1400px;
+    width: 100vw;
     margin: auto;
-    margin-top: 35px;
-    text-align: center;
-    color: rgb(60,68,55);
+    /* background-color: rgb(205, 49, 49); */
+    /* border-left: 40px solid rgba(0, 0, 0, 0); */
+   overflow: hidden;
+   position: relative;
+   max-height: 700px;
+   background-color: #e4e4e4;
+}
+
+
+
+.banner{
+   
+    height: 85vh;
+    /* /* background-image: url('https://images.pexels.com/photos/691166/pexels-photo-691166.jpeg?auto=compress&cs=tinysrgb&w=600'); */
+    /* background-image: url('https://images.pexels.com/photos/699422/pexels-photo-699422.jpeg?auto=compress&cs=tinysrgb&w=600'); */
+    background-image: url('https://images.pexels.com/photos/70862/pexels-photo-70862.jpeg?auto=compress&cs=tinysrgb&w=600');
+    background-image: url('https://images.pexels.com/photos/775031/pexels-photo-775031.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-image: url('https://images.pexels.com/photos/1414131/pexels-photo-1414131.jpeg?auto=compress&cs=tinysrgb&w=600');
+    background-color: rgb(231, 223, 223);
+    background-attachment: fixed;
+    filter: blur(12px) contrast(0.7);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    min-width: 100vw;
+    background-position: center;
+
+    /* background-color: orange; */
+}
+
+.banner-title-container{
     position: absolute;
     inset: 0 0 0 0;
-    height: fit-content;
     margin: auto;
-    visibility: hidden;
+    z-index: 5;
+    width: fit-content;
+    height: fit-content;
+    /* background-color: red; */
+    width: 750px;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
-.no-results-title{
-    text-overflow: ellipsis;
-    overflow: hidden;
+.banner-title{
+    font-size: 2.1em;
+    /* color: white; */
+    
+    color: #79a601;
+    text-align: justify;
+    margin: 0;
+    padding: 3px 25px 3px 25px;
+    font-weight: 500;
+
 }
 
-
-
-
+.checkbox-and-text-container{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
 
 .container2{
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas: 
+                        "categories categories categories categories categories categories"
                         "c1 c1 c1 c1 c1 c1"
                         "c1 c1 c1 c1 c1 c1"
                         "c1 c1 c1 c1 c1 c1";

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="./index.css"> -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Meu Perfil</title>
+    <link rel="shortcut icon" href="../assets/My project-1 (1).png" />
+    
+    
+    <link rel="stylesheet" href="./alterarperfil.css" type="text/css">
+    <script src="./alterarperfil.js" defer></script>
+    
+    <link rel="stylesheet" href="../globals/footer.css">
+    <link rel="stylesheet" href="../globals/header.css">
+    <script src="../globals/auth.js" defer></script>
+    <script src="../globals/sidebar.js" defer></script>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/69266619cf.js" crossorigin="anonymous"></script>
+</head>
+<style>
+   
+</style>
+<body>
+
+   
+    <div class="success-message-container"></div>
+    <div class="fail-message-container"></div>
+
+    
+
+
+    <%- include("../globals/header.ejs") %>
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+    <div class="container"></div>
+
+    <div class="container2">
+        <div class="c1">
+              
+            <h2 id="c1-main-name" style="
+            color: rgb(240,238,250);
+            text-align: center;
+            margin-bottom: 8px;
+                text-overflow: ellipsis; overflow: hidden; width: 95%;max-height: 150px;"></h2>
+            
+            <div class=circle>
+               
+            
+                <% if (!userFound.user_image || userFound.user_image.toString().trim() == '') { %>
+                    <img id="circle-change-image-cover" src='/file_system/app/user_default.jpg' style="width: 100%; height: 100%; border-radius: 50%;" alt="user-profile-pic"></img>
+                    <% } else {%>
+                        <img id="circle-change-image-cover" src='/file_system/user/<%=userFound.user_image%>' style="width: 100%; height: 100%; border-radius: 50%;" alt="user-profile-pic"></img>
+                <% }%>
+<!-- 
+                    <img id="circle-change-image-cover" src="" alt="user-profile-pic"
+                    style="width: 100%; height: 100%; border-radius: 50%;"
+                    ></img> -->
+            </div>
+
+           
+            <p id="membro-desde" style="margin-top: 15px; font-size: .7em; color: rgb(240, 247, 250);">Membro desde
+                
+                <span id="mes"></span>
+                de <%=userFound.created_at%>
+                <span id="ano"></span>
+            </p>
+     
+                
+        </div>
+
+        
+
+
+        <div class="c2">
+                <h2 class="main-title"  id="ola-message" style="
+                    text-overflow: ellipsis; white-space: nowrap; overflow: hidden;
+                     color:rgb(29,112,37);text-align: start;  width: 100%;"><%= userFound.full_name %></h2>
+            <!-- <div class="c2-first-container" >
+   
+
+                <div class="user-info-and-advanced-container">
+                    <div class="category-text-container" id="category-user-info" style="border-bottom: 2px solid rgb(126, 176, 28); color: rgb(18,18,18);">
+                        <h3 class="category-text" id="user-info-text">Informações de usuario</h3>
+                    </div>
+                  
+                </div>
+            </div> -->
+
+
+            <div class="c2-second-container" >
+             
+
+
+                <div class="c2-user-info">
+                <div class="label-and-input-from-c1" style="margin-top: 5px;">
+                    <label for="name">Nome</label>
+                    <input type="text" id="profile-name-input" value="<%= userFound.full_name %>" class="input-field" disabled>
+                    </div>
+            <div class="label-and-input">
+                <label for="Local/Cidade">Local/Cidade</label>
+                <input type="text" id="profile-cidade-input" class="input-field" value="<%= userFound.addr_state %>" disabled>
+            </div>
+            
+            <div class="label-and-input">
+                <label for="Sobre">Sobre</label>
+                <!-- <textarea type="text" style="height: 150px; resize: none;" id="profile-sobre-input" class="input-field"
+                placeholder="<%= userFound.about_me %>" disabled></textarea> -->
+                <p >
+                    <%= userFound.about_me %>
+                </p>
+            </div>
+
+            <div class="label-and-input">
+                <label for="Bio">Bio (Breve descricão)</label>
+                
+                <p "><%= userFound.bio %></p>
+                    
+             
+            </div>
+            
+            <div class="gender-and-born-date">
+                <div class="label-and-input" style="width: 35%;">
+                    <label>Genero</label>
+                    <% if (userFound.user_gender == 1) { %>
+                        <input type="text" id="profile-data-nascimento-input" class="input-field" value="Masculino" disabled>
+                    <% } else if (userFound.user_gender == 2) { %>
+                        <input type="text" id="profile-data-nascimento-input" class="input-field" value="Feminino" disabled>
+                    <% } else { %>
+                        <input type="text" id="profile-data-nascimento-input" class="input-field" value="Outro" disabled>
+                    <% } %>
+                </div> 
+                
+
+                   
+            </div>
+                
+                <div class="label-and-input">
+                    <label for="Sobre">Telefone para contato</label>
+                <input type="text" placeholder="" id="profile-phone-input" class="input-field" value="<%= userFound.phone_number %>" disabled>
+            </div>
+
+           
+
+            </div>
+        </div>
+
+
+
+
+
+        
+    </div>
+  
+
+
+
+
+  
+</body>
+</html>

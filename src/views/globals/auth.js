@@ -51,15 +51,16 @@ async function handleUserFetchTokenData(action) {  //action to be done in case o
     //cart
 
 
-    headerUserCircleContainer.style.position = 'unset';
+    headerUserCircleContainer.style.display = 'flex';
     headerCircle.addEventListener('click', (e) => toggleHeaderPainel())
     headerLogoutButton.addEventListener('click', () => logout())
 
     const headerPainelUserName = document.querySelector('.header-painel-name')
-    headerPainelUserName.innerText = data.fullUser.full_name + 'koasoksaos o asd o dkopapkoadkpodas kpo'
+    headerPainelUserName.innerText = data.fullUser.full_name
 
     console.log(data)
     fitUserInfoInHeader(data.fullUser.user_image);
+    fitUserInfoInCart(data.fullUser)
 
     showContent(header, headerCircle, main, spinner);
 
@@ -76,7 +77,7 @@ async function handleUserFetchTokenData(action) {  //action to be done in case o
 
 
     const likesData = await getUserLikes();
-    console.log('likes ' + likesData)
+    myLikes = likesData;
 
 
     
@@ -116,6 +117,7 @@ async function openCart() {
   const bellPainel = document.querySelector('.bell-painel');
   const bellInsidePainel = document.querySelector('.bell-painel-inside');
   closeBellPainel(bellPainel, bellInsidePainel)
+  // document.querySelector('.cart-no-items-to-be-shown-container').style.display = 'unset'
 
   if (cartStateChanged) {
     await handleCart();
@@ -127,12 +129,13 @@ async function openCart() {
 }
 
 let cartIdsItems = [];
+let myLikes = [];
 
 async function handleCart() {
   let cartTotalPrice = 0;
   const cartItems = await getCartData();
   if (!cartItems || cartItems.length == 0) {
-     document.querySelector('.cart-no-items-to-be-shown-container').style.visibility = 'visible'
+    //  document.querySelector('.cart-no-items-to-be-shown-container').style.visibility = 'visible'
      updateCartCount(0)  
     return;
     }
@@ -181,9 +184,9 @@ function updateCartCount(number) {
   console.log('removing cont')
   const headerCart = document.getElementById('header-cart')
   if (headerCart.firstChild) headerCart.firstChild.remove();
-  const noItemsElement = document.querySelector('.cart-no-items-to-be-shown-container')
-  if (number != 0) noItemsElement.style.visibility = 'hidden'
-  else noItemsElement.style.visibility = 'visible'
+  // const noItemsElement = document.querySelector('.cart-no-items-to-be-shown-container')
+  // if (number != 0) noItemsElement.style.visibility = 'hidden'
+  // else noItemsElement.style.visibility = 'visible'
   const numberCartCount = document.createElement('div');
   numberCartCount.id = 'cart-number-cont'
   numberCartCount.innerText = number
@@ -265,6 +268,7 @@ function closeCart() {
   cartContainer = document.querySelector('.cart-container')
   cartContainer.style.bottom = '-100vh';
   cartContainer.style.visibility = 'hidden';
+  // document.querySelector('.cart-no-items-to-be-shown-container').style.display = 'none'
   isCartOpen = false;
 }
 
@@ -322,8 +326,6 @@ function hideContent(header,headerCircle, main, spinner, registerAndLoginContain
   
 function fitUserInfoInHeader(imageSource) {
   const headerPainelUserIcon = document.querySelector('.header-painel-pic')
-
-
   const headerUserIcon = document.querySelector('.header-user-icon');
   let src = `${BASE_URL_PATH_AUTH}file_system/app/user_default.jpg`
   if (imageSource) src = `${BASE_URL_PATH_AUTH}file_system/user/${imageSource}`
@@ -331,6 +333,11 @@ function fitUserInfoInHeader(imageSource) {
   headerPainelUserIcon.setAttribute('src', src)
 }
   
+function fitUserInfoInCart(user) {
+  document.querySelector('#cart-name-input').setAttribute('value', user.full_name)
+  document.querySelector('#cart-address-input').setAttribute('value', user.addr_state)
+}
+
 function getStoredToken() {
     return window.localStorage.getItem("token") || null;
 }

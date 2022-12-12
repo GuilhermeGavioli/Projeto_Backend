@@ -7,15 +7,15 @@
 
 
     <div class="cart-container-inside">
-        <div class="cart-container-first">
-            <h2 class="cart-first-title"><i class="fa-brands fa-opencart" style=" margin: 0; margin-right: 7px;"></i> (MEU) CARRINHO DE ITENS</h2>
+        <div class="cart-container-first" >
+            <h2 class="cart-first-title" style="width: 100%; text-align: start; background-color: var(--cart-main); color: white;"><i class="fa-brands fa-opencart" style=" margin: 0; margin-right: 7px; "></i> (MEU) CARRINHO DE ITENS</h2>
             <div class="cart-items-container">
 
                 
-             <div class="cart-no-items-to-be-shown-container">
-                <i class="fa-solid fa-box-open" style="font-size: 1.6em; position: static;"></i>
+             <!-- <div class="cart-no-items-to-be-shown-container">
+                <i class="fa-solid fa-box-open" style="font-size: 1.6em;"></i>
                  Sem items para serem mostrados...
-             </div>
+             </div> -->
             </div>
 
             <div class="sub-total-container">
@@ -32,12 +32,12 @@
 
                 <div class="cart-label-and-input">
                     <label style="margin: 0;" class="cart-label">Nome</label>
-                    <input type="" class="cart-second-input" value="Joao Almeida da Silva" disabled>
+                    <input type="" class="cart-second-input" id="cart-name-input" value="" disabled>
                 </div>
                 
                 <div class="cart-label-and-input">
                     <label style="margin: 0;" class="cart-label">Endereço</label>
-                    <input type="" class="cart-second-input" value="Sao Paulo SP" disabled>
+                    <input type="" class="cart-second-input" id="cart-address-input" value="Sao Paulo SP" disabled>
                 </div>
             <!-- </div> -->
 
@@ -186,12 +186,12 @@
         <div class="header-painel">
 
             <div class="header-painel-first-part">
-                <p class="header-painel-name" style="z-index: 10; color: rgb(255, 255, 255); margin: 8px;">Guilherme Gavioli</p>
                 <img src="/file_system/app/user_default.jpg" class="header-painel-pic" alt="" >
-                <i class="fa-solid fa-house" id="header-painel-home-icon"></i>
+                <!-- <i class="fa-solid fa-house" id="header-painel-home-icon"></i> -->
             </div>
+            <p class="header-painel-name" style="z-index: 10; color: rgb(0, 0, 0); width: fit-content; max-width: 70%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; margin: auto; margin-top: 30px; font-weight:700; font-size: .8em;"></p>
             <div class="header-painel-second-part">
-                <li class="user-painel-item" >
+                <li class="user-painel-item" style="margin-top: 8px;">
                     <a href="/MeuPerfil"
                     style="text-decoration: none;"
                     class="header-painel-li"
@@ -216,7 +216,7 @@
 
             <div class="header-painel-third-part" style="border-bottom: none;">
                 <li class="user-painel-item">
-                    <a href="/"
+                    <a href="/reportar"
                     style="text-decoration: none;" class="header-painel-li"
                     >Reportar</a></li>
             </div>
@@ -234,10 +234,11 @@
 <div class="sidebar" isOpen="false">
     <div class="sidebar-items">
         <p class="sidebar-item" onclick="window.location.href = '/'">Home</p>
-        <p class="sidebar-item" onclick="window.location.href = '/sobreNos'">Sobre Nós</p>
-        <p class="sidebar-item" onclick="window.location.href = '/produtos'">Produtos</p>
-        <p class="sidebar-item" onclick="window.location.href = '/procurarProduto'">Procurar Produto</p>
-        <p class="sidebar-item" onclick="window.location.href = '/procurarUsuario'">Procurar Produtor</p>
+        <p class="sidebar-item" onclick="window.location.href = '/sobre'">Sobre Nós</p>
+        <p class="sidebar-item" onclick="window.location.href = '/categorias'">Produtos</p>
+        <p class="sidebar-item" onclick="window.location.href = '/globalchat'">Chat</p>
+        <p class="sidebar-item" onclick="window.location.href = '/estacaodecriacao'">Publicar Produto</p>
+
         <h2 id="click-to-close">CLICK PRA FECHAR</h2>
     </div>
 </div>

@@ -32,10 +32,7 @@ export default class MySql implements Repository {
 
     public async findProductsFromUser(userid: string, number?: number): Promise<any | null> { 
         const [rows] = await this.connection.execute(`SELECT 
-        product_id,
-        product_name,
-        product_image,
-        product_description
+        *
         FROM product WHERE owner_id="${userid}"
         LIMIT ${50};`);
         if (!rows) return null;
@@ -264,7 +261,7 @@ export default class MySql implements Repository {
         await this.connection.query(`DELETE FROM user WHERE userid="${id}" && email="${email}";`);
     }
 
-    public async findManyProductsByName(name: string, category: string, queryDescriptionAlso: boolean, pack: number): Promise<GetOneOutputDTO[] | null> {
+    public async findManyProductsByName(name: string, pack: number): Promise<GetOneOutputDTO[] | null> {
         const [rows] = await this.connection.execute(`SELECT *, (
                 select COUNT(*)
                 FROM product WHERE product_name LIKE "%${name}%" 
@@ -294,7 +291,7 @@ export default class MySql implements Repository {
 
 
     public async findCertainAmountOfRandomProducts(amount: Number): Promise<GetOneOutputDTO[] | null> {
-        const [rows] = await this.connection.execute(`SELECT * FROM product  
+        const [rows] = await this.connection.execute(`SELECT * FROM product
         ORDER BY RAND()
         LIMIT ${amount}`);
         if (!rows) return null;
@@ -330,10 +327,20 @@ export default class MySql implements Repository {
 
 
     public async saveLike(user_id: string, product_id: string): Promise<any> {
-        console.log(user_id)
-        console.log(product_id)
         await this.connection.execute(`INSERT INTO product_like (owner_id, product_id)
         VALUES ("${user_id}", "${product_id}");`);
+
+        await this.connection.execute(`UPDATE product SET product.average = (
+            SELECT COUNT(product_like.like_id) FROM product_like WHERE product_like.product_id = product.product_id
+        );`)
+    }
+
+    public async removeLike(user_id: string, product_id: string): Promise<any> {
+        await this.connection.execute(`DELETE FROM product_like WHERE owner_id="${user_id}" AND product_id="${product_id}";`);
+
+        await this.connection.execute(`UPDATE product SET product.average = (
+            SELECT COUNT(product_like.like_id) FROM product_like WHERE product_like.product_id = product.product_id
+        );`)
     }
 
     public async findOneLike(user_id: string, product_id: string): Promise<any | null> {
@@ -348,10 +355,6 @@ export default class MySql implements Repository {
         WHERE owner_id="${user_id}";`);
         if (!rows) return null;
         return rows;
-    }
-
-    public async deleteLike(user_id: string, like_id: string): Promise<void> {
-        await this.connection.execute(`DELETE FROM product_like WHERE owner_id="${user_id}" AND like_id="${like_id}";`);
     }
 
     public async deleteFromCart(user_id: string, cart_item_id: string): Promise<void> {

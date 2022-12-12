@@ -66,7 +66,7 @@ body{
             </div>
             <p id="populares-text">
                 <span style="color: rgb(200,200,200); margin-right: 3px;">Populares: </span>
-                vegetais, fertilizantes, frutas, sem açúcar...</p>
+                cenouras, morango, vegetais, fertilizantes, frutas, sem açúcar...</p>
             
                 <h1 class="dots-container">
                     <div class="dots" id="dot-1" value="1"></div>
@@ -76,15 +76,6 @@ body{
         </form>
 
 
-
-        <!-- <div style="position:absolute; z-index: 5; color:white; margin: auto; bottom:15px; left:0; right: 0;width: fit-content; display: flex; flex-direction: column;">
-            <div style="display: flex; align-items: center; font-family: 'Space Mono', monospace;">
-                <h1 style="font-size: .8em;">GoGreen</h1>
-                <img src="../assets/whiteone.png" style="width:30px; margin: 0 5px 0 5px;" alt="">
-                <h1 style="font-size: .8em;">Farm</h1>
-            </div>
-            <p id="produto-natural">Produto Natural</p>
-        </div> -->
 
 
         <div class="text-and-btn-container">
@@ -112,9 +103,8 @@ body{
         <div class="c0">
             <div class="website-card">
                 <div class="website-card-first-part">
-                    <div class="website-card-circle"
+                    <div class="website-card-circle flex-center"
                     style="
-                    display: flex; align-items: center; justify-content: center; font-size: 2.2em;
                     background-color: #6FA037;
                     ">
                    <i class="fa-solid fa-fingerprint" style="margin: auto;"></i>
@@ -128,10 +118,7 @@ body{
 
             <div class="website-card">
                 <div class="website-card-first-part">
-                    <div class="website-card-circle"
-                    style="
-                    display: flex; align-items: center; justify-content: center; font-size: 2.2em;
-                    ">
+                    <div class="website-card-circle flex-center">
                     <i class="fa-solid fa-check" style="margin:auto;"></i>
                 </div>
                 </div>
@@ -144,9 +131,8 @@ body{
             <div class="website-card" >
                 <div class="website-card-first-part">
          
-                    <div class="website-card-circle"
+                    <div class="website-card-circle flex-center"
                     style="
-                    display: flex; align-items: center; justify-content: center; font-size: 2.2em;
                     background: #39AC46;">
                     <i class="fa-solid fa-heart-pulse" style="margin: auto;"></i>
                 </div>
@@ -160,10 +146,7 @@ body{
             <div class="website-card"  id="fourth-card">
                 <div class="website-card-first-part">
    
-                    <div class="website-card-circle"
-                    style="
-                    display: flex; align-items: center; justify-content: center; font-size: 2.2em;
-                    ">
+                    <div class="website-card-circle flex-center">
                     <i class="fa-solid fa-couch" style="margin: auto;"></i>
                 </div>
                 </div>
@@ -180,7 +163,7 @@ body{
 
 
         <div class="c9">
-            <div class="c9_1" onclick="window.location.href='/sobreprodutos'">
+            <div class="c9_1" onclick="window.location.href='/sobre'">
                 <div class="c9_1-triangle"></div>
 
                 <div class="c9-pic-1">
@@ -194,7 +177,7 @@ body{
                     <button class="c9-btn">Saiba Mais</button>
                 </div>
             </div>
-            <div class="c9_2"  onclick="window.location.href='/sobreprodutos'">
+            <div class="c9_2"  onclick="window.location.href='/sobre'">
                 <!-- <div class="c9_2-triangle"></div> -->
 
                 <div class="c9-texts">
@@ -224,7 +207,7 @@ body{
     
                 <div class="cards-slide-grid-container" style="left: 0;">
 
-                    <div class="cards-slide-block">
+                    <!-- <div class="cards-slide-block">
                      <div class="card-container">
 
                         <div class="card-first-and-second">
@@ -235,13 +218,18 @@ body{
                     <div class="card-second">
                         <div>
 
-                            <h2 class="card-title" style="margin: 0;">Meu Produto top de mais hl daokpoc dpokad pokdap kpo opokpdc pokd opckopad ceo okdkoa pdkdpka coda pck</h2>
-                            <p class="card-tags" style="margin-top:5px;">Fresco - Organico - Na ckadpkoa opcpokda pkoa poskapo pko kocadkopad pokpoad kpo pokpdoa ctural - ZeroAcucar - Sem Gordura</p>
-                            <p class="card-tags" style="margin-bottom: 15px;"> Venda por unidade</p>
-                        </div>
+                            <h2 class="card-title ellipsis-on-two-lines" style="margin: 0;">Meu Produto top de mais hl daokpoc dpokad pokdap kpo opokpdc pokd opckopad ceo okdkoa pdkdpka coda pck</h2>
+                            <p class="card-tags ellipsis-on-two-lines" style="margin-top: 5px;">Fresco - Organico - Na ckadpkoa opcpokda pkoa poskapo pko kocadkopad pokpoad kpo pokpdoa ctural - ZeroAcucar - Sem Gordura</p>
+     </div>
                         
                         <div style="width: 100%;">
 
+                            <div style="display: flex; width: 100%; justify-content: space-between;">
+                    
+                                <button>hello world</button>
+                                <button class="">like</button>
+                            </div>
+                            
                             <div style="display: flex; width: 100%; justify-content: space-between; align-items: center; margin: 12px 0 8px 0; background-color: red;">
                                 
                                 <div class="card-stars">
@@ -252,24 +240,20 @@ body{
                             R$108484.50
                         </p>
                     </div>
+                  
                     <div style="display: flex; width: 100%; justify-content: space-between;">
-                        <!-- <button class="heart-card-button"><i class="fa-regular fa-heart"></i></button> -->
+  
                         <button class="card-button" style="display: none;">Adicionar ao Carrinho</button>
                         <button id="remove-button">Remover do Carrinho</button>
+                    </div>
+                    <div style="text-align: end; margin-top: 12px; ">
+                        ver mais
                     </div>
                 </div>
                 </div>
                 </div>
-                        <div class="card-complement">
-                        <div class="card-complement-first">
-                            <p style="margin:0;">Orgânico</p>
-                        </div>
-                        <div class="card-complement-second">
-                            <i class="fa-solid fa-check"></i>
-                        </div>
-                    </div> 
                 </div>
-            </div>
+            </div> -->
                      
                    
                     
@@ -278,10 +262,10 @@ body{
                 </div>
             </div>
     
+            <button class="backward-btn flex-center">  <i class="fa-solid fa-less-than" style="margin: 0;"></i> </button>
+            <button class="foward-btn flex-center">  <i class="fa-solid fa-greater-than" style="margin: 0"></i> </button>
         </div>
 
-        <button class="backward-btn">  <i class="fa-solid fa-less-than" style="margin: 0"></i> </button>
-        <button class="foward-btn">  <i class="fa-solid fa-greater-than" style="margin: 0"></i> </button>
 
     </div>
     
@@ -426,20 +410,20 @@ body{
      
         <div class="c3">
 
-            <div class="c3-card" style="position: relative;">
-                <i class="fa-solid fa-medal" id="icon-medal"></i>
+            <div class="c3-card" >
+                <!-- <i class="fa-solid fa-medal" id="icon-medal"></i> -->
                <!-- <p id="first-medal">1</p> -->
 
                 <div class="c3-icon" onclick="window.location.href = '/registrar'">
-                <ion-icon name="person-outline"></ion-icon>
+                <ion-icon name="person-outline" style="background: #39AC46; padding: 12px; border-radius: 50%;"></ion-icon>
                 </div>
                 <h2 class="c3-card-title">Crie sua conta</h2>
                 <p class="c3-card-text">Cadastre-se gratuitamente agora mesmo. Voce pode usar sua conta para ter acesso à novas funcionalidades na plataforma, como publicar produtos e enviar mensagens para usuários</p>
             </div>
 
-            <div class="c3-card" onclick="window.location.href = '/meuperfil'" style="background: #39AC46;">
+            <div class="c3-card" onclick="window.location.href = '/meuperfil'">
                 <div class="c3-icon">
-                    <ion-icon name="card-outline"></ion-icon>
+                    <ion-icon name="card-outline" style="background: #39AC46; padding: 12px; border-radius: 50%;"></ion-icon>
                 </div>
                 <h2 class="c3-card-title">Configure o perfil</h2>
                 <p class="c3-card-text">Adicione novos dados de cadastro em seu perfil para que outros usuários possam te contatar e conhecerem mais sobre voce e seus Produtos.</p>
@@ -447,15 +431,15 @@ body{
 
             <div class="c3-card" onclick="window.location.href = '/estacaodecriacao'">
                 <div class="c3-icon">
-                    <ion-icon name="pricetag-outline"></ion-icon>
+                    <ion-icon name="pricetag-outline" style="background: #39AC46; padding: 12px; border-radius: 50%;"></ion-icon>
                 </div>
                 <h2 class="c3-card-title">Publique produtos</h2>
                 <p class="c3-card-text">Publique seus produtos na plataforma, preencha os campos para que assim outros usuários possam conhecê-los, visualizar suas respectivas informaçoes.</p>
             </div>
 
-            <div class="c3-card" onclick="window.location.href = '#'" style="background: #39AC46;">
+            <div class="c3-card" onclick="window.location.href = '#'" >
                 <div class="c3-icon">
-                    <ion-icon name="cart-outline"></ion-icon>
+                    <ion-icon name="cart-outline" style="background: #39AC46; padding: 12px; border-radius: 50%;"></ion-icon>
                 </div>
                 <h2 class="c3-card-title">Adicione em seu Carrinho</h2>
                 <p class="c3-card-text">Adicionar produtos criados por outros usuarios ao seu carrinho de itens é uma funcionalidade disponivel na aplicação.</p>
@@ -463,43 +447,19 @@ body{
 
             <div class="c3-card" id="converse-card" onclick="window.location.href = '/globalchat'">
                 <div class="c3-icon">
-                    <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+                    <ion-icon name="chatbox-ellipses-outline" style="background: #39AC46; padding: 12px; border-radius: 50%;"></ion-icon>
                 </div>
                 <h2 class="c3-card-title">Converse</h2>
                 <p class="c3-card-text">Interaja com outros usuários na plataforma, envie mensagens, faça propostas para com seus produtos através do chat dísponivel para todos os usuários da plataforma.</p>
             </div> 
 
-            <div class="c3-card"  onclick="window.location.href = '/categorias'" style="position: relative; background: #39AC46;">
-                <div style="
-                    position: absolute;
-                    bottom: 5px;
-                    right: -10px;
-                    font-size: 0.8em;
-                    z-index: 2;
-                    padding: 0 10px 0 10px;
-                    transform: rotate(-15deg);
-                    font-weight: 900;
-                    background-color: rgb(255, 255, 255);
-                    color: var(--main-green);
-                    color: rgb(11,156,89);
-                    margin: 0;
-                    border: 4px solid rgb(11,156,89);
-                    text-align: center;
-
-                ">DESENVOLVIMENTO
-                <div style="
-                margin: 0;
-                font-weight: 500;
-                font-size: 0.7em;
-                
-                color: rgba(15, 102, 61, 0.955);
-                ">em desenvolvimento</div>    
-            </div>
+            <div class="c3-card"  onclick="window.location.href = '/categorias'">
+               
                 <div class="c3-icon">
-                    <ion-icon name="star-outline"></ion-icon>
+                    <ion-icon name="star-outline" style="background: #39AC46; padding: 12px; border-radius: 50%;"></ion-icon>
                 </div>
                 <h2 class="c3-card-title">Avalie Produtos</h2>
-                <p class="c3-card-text" style="color:white;">Voce pode tambem avaliar produtos publicados por usuários, uma vez que esteja autenticado, essa funcionalidade é restringida por uma avaliação por produto por usuario.</p>
+                <p class="c3-card-text">Voce pode tambem avaliar produtos publicados por usuários, uma vez que esteja autenticado, essa funcionalidade é restringida por uma avaliação por produto por usuario.</p>
             </div>
                  <!-- <h2 style="
                     position: absolute; top: 25px;

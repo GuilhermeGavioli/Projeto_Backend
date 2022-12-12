@@ -13,16 +13,16 @@ window.onload = async () => {
 
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const searchParam = urlParams.get('search')
   const packParam = urlParams.get('pack')
-  // const searchedProductParam = urlParams.get('nomeProduto')
+  const categoryParam = urlParams.get('categoria')
+
 
   
   if (data) {
     isAuthenticated = true;
   }
   
-  const res = await fetch(`${BASE_URL_PATH}getprodutos?nomeProduto=${searchParam}&pack=${packParam}`);
+  const res = await fetch(`${BASE_URL_PATH}getprodutosporcategoria?categoria=${categoryParam}&pack=${packParam}`);
   const productsFound = await res.json();
   console.log(productsFound)
 
@@ -154,7 +154,7 @@ function createPagination(numberOfPages) {
 
 
     const newPath = window.location.href.toString().replace(/\pack=.[0-9]*/g, `pack=${i}`)
-   
+    // const res = await fetch(`${BASE_URL_PATH}getprodutosporcategoria?categoria=${categoryParam}&pack=${packParam}`);
     paginationItem.addEventListener('click', () => window.location.href = `${newPath}`)
     
     paginationItem.className = 'pagination-block';

@@ -43,7 +43,7 @@ app.use(express.static(path.join(__dirname + '/views' + '/login')));
 app.use(express.static(path.join(__dirname + '/views' + '/registrar')));
 app.use(express.static(path.join(__dirname + '/views' + '/criarProduto')));
 app.use(express.static(path.join(__dirname + '/views' + '/meusProdutos')));
-app.use(express.static(path.join(__dirname + '/views' + '/profile')));
+app.use(express.static(path.join(__dirname + '/views' + '/profile2')));
 app.use(express.static(path.join(__dirname + '/views' + '/procurarproduto')));
 app.use(express.static(path.join(__dirname + '/views' + '/produto')));
 app.use(express.static(path.join(__dirname + '/views' + '/sobre')));
@@ -104,7 +104,9 @@ app.get('/login',(req, res) => {
     res.render(path.join("login", "login"));
 })
 
-app.get('/profile/:idprodutor', controllers.acharUsuarioPorId);
+
+
+app.get('/profile2/:idprodutor', controllers.acharUsuarioPorId);
 
 app.get('/produto/:idProduto', controllers.acharProdutoPorId)
 
@@ -132,11 +134,33 @@ app.get('/sobre', (req, res) => {
     res.render(path.join("sobre", "sobre"));
 })
 
+app.get('/acharprodutos', (req, res) => {
+    try {
+        const search = req.query.search
+        console.log(search)
+        if (!search) return res.json('invalid')
+        return res.render(path.join("acharProdutos", "acharProdutos"));
+    } catch (err) { 
+        return res.json({err: true, message: 'Algo deu errado'})
+    }
+})
+
+app.get('/acharprodutoscategoria', (req, res) => {
+    try {
+        const categoria = req.query.categoria;
+        if (!categoria) return res.json('invalid')
+        return res.render(path.join("acharProdutosCategoria", "acharProdutosCategoria"));
+    } catch (err) { 
+        return res.json({err: true, message: 'Algo deu errado'})
+    }
+})
 
 
 import { uploadUser, uploadProduct } from './multer'
 
 
+
+//falta
 app.post('/alterarUsuario', uploadUser.single("files"), controllers.updateUser)
 app.post('/criarProduto', uploadProduct.single("productFile"), controllers.createProduct)
 
@@ -149,20 +173,28 @@ app.post('/criarProduto', uploadProduct.single("productFile"), controllers.creat
 
 import { mySqlDatabase } from './controllers/index';
 app.post('/message', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => { 
-    const tokenUser = res.locals.userInfo
-    const sender = tokenUser.user_id
-    const { message, receiver } = req.body
-    console.log('sender ' + sender)
-    console.log('receiver ' + receiver)
-    await mySqlDatabase.saveMessage(sender, message, receiver);
-    return res.json({ok : true})
+    try {
+        const tokenUser = res.locals.userInfo
+        const sender = tokenUser.user_id
+        const { message, receiver } = req.body
+        console.log('sender ' + sender)
+        console.log('receiver ' + receiver)
+        await mySqlDatabase.saveMessage(sender, message, receiver);
+        return res.json({ok : true})
+    } catch (err) { 
+        return res.json({err: true, message: 'Algo deu errado'})
+    }
 })
 
 app.get('/mymessages', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => { 
-    const userTokenId = res.locals.userInfo.user_id
-    const messages = await mySqlDatabase.getMessages(userTokenId);
-    console.log(messages);
-    return res.json(messages);
+    try {
+        const userTokenId = res.locals.userInfo.user_id
+        const messages = await mySqlDatabase.getMessages(userTokenId);
+        console.log(messages);
+        return res.json(messages);
+    } catch (err) { 
+        return res.json({err: true, message: 'Algo deu errado'})
+    }
 })
 
 app.post('/readmessage', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => {
@@ -184,19 +216,26 @@ app.post('/readmessage', ProtectionAgainstNonAuthenticatedUsers, async (req, res
 })
 
 export async function notifyUser(receiver: string, message: string) {
-    let id = Math.random().toString();
-    await mySqlDatabase.sendRobotMessage(id.toString(), receiver, message);
+    try {
+        let id = Math.random().toString();
+        await mySqlDatabase.sendRobotMessage(id.toString(), receiver, message);
+    } catch (err) { 
+        return {err: true, message: 'Algo deu errado'}
+    }
 
 }
 
 app.post('/deletemessages', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => { 
-    const userTokenId = res.locals.userInfo.user_id
-    console.log('hello here')
-    const  selectedMessages  = req.body
-    console.log(selectedMessages)
-    if (!selectedMessages) return;
-    await mySqlDatabase.deleteMessages(userTokenId, selectedMessages);
-    return res.json({ok : true});
+    try {
+        const userTokenId = res.locals.userInfo.user_id
+        const  selectedMessages  = req.body
+        console.log(selectedMessages)
+        if (!selectedMessages) return;
+        await mySqlDatabase.deleteMessages(userTokenId, selectedMessages);
+        return res.json({ok : true});
+    } catch (err) { 
+        return res.json({err: true, message: 'Algo deu errado'})
+    }
 })
 
 // User routes
@@ -222,20 +261,24 @@ app.get('/auth', controllers.authValidation)
 
 
 app.post('/avaliarproduto', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => {
-    const token_id = res.locals.userInfo.user_id;
-    const {p_id, critic} = req.body
-     console.log(p_id)
-    const rating = await mySqlDatabase.findRatting(p_id, token_id);
-    if (rating) return res.json(rating)
-    await mySqlDatabase.createRatting(p_id, token_id, critic);
-    return res.json({created: true});
+    try {
+        const token_id = res.locals.userInfo.user_id;
+        const {p_id, critic} = req.body
+        console.log(p_id)
+        const rating = await mySqlDatabase.findRatting(p_id, token_id);
+        if (rating) return res.json(rating)
+        await mySqlDatabase.createRatting(p_id, token_id, critic);
+        return res.json({created: true});
+    } catch (err) { 
+        return res.json({err: true, message: 'Algo deu errado'})
+    }
 })
 
 
 // likes
 app.get('/mylikes',ProtectionAgainstNonAuthenticatedUsers, async (req, res) => { 
-    const token_id = res.locals.userInfo.user_id;
     try {
+    const token_id = res.locals.userInfo.user_id;
         const userLikes = await mySqlDatabase.getLikesFromUser(token_id);
         return res.json(userLikes);
     } catch (err) {
@@ -245,15 +288,26 @@ app.get('/mylikes',ProtectionAgainstNonAuthenticatedUsers, async (req, res) => {
 })
 
 app.get('/likeproduct/:p_id', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => { 
+    try {
     const { p_id } = req.params
     const token_id = res.locals.userInfo.user_id;
-    console.log(p_id)
-    try {
         await mySqlDatabase.saveLike(token_id, p_id);
-        return res.json({saved: true});
+        return res.json({liked: true, error: false});
     } catch (err) {
         console.log(err)
-        return res.json({gotten: false, erro: true});
+        return res.json({liked: false, erro: true});
+    }
+})
+
+app.get('/dislikeproduct/:p_id', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => { 
+    try {
+    const { p_id } = req.params
+    const token_id = res.locals.userInfo.user_id;
+        await mySqlDatabase.removeLike(token_id, p_id);
+        return res.json({disliked: true, error: false});
+    } catch (err) {
+        console.log(err)
+        return res.json({disliked: false, erro: true});
     }
 })
 
@@ -263,16 +317,19 @@ app.get('/likeproduct/:p_id', ProtectionAgainstNonAuthenticatedUsers, async (req
 
 
 app.post('/acharavaliacao', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => {
-    const token_id = res.locals.userInfo.user_id;
-    const {p_id} = req.body
-    await mySqlDatabase.findRatting(p_id, token_id);
-    return res.json('ok');
+    try {
+        const token_id = res.locals.userInfo.user_id;
+        const {p_id} = req.body
+        await mySqlDatabase.findRatting(p_id, token_id);
+        return res.json('ok');
+    } catch (err) { 
+        return res.json({err: true, message: 'Algo deu errado'})
+    }
 })
 
 app.get('/acharavaliacoes/:p_id/:pack', async (req, res) => {
-    const { p_id, pack } = req.params
-    console.log('pack ' + pack)
     try {
+    const { p_id, pack } = req.params
         const ratings = await mySqlDatabase.findRattings(p_id, Number(pack));
         if (!ratings) return res.json(null)
         return res.json(ratings);
@@ -282,26 +339,24 @@ app.get('/acharavaliacoes/:p_id/:pack', async (req, res) => {
 })
 
 app.get('/mycartitems',ProtectionAgainstNonAuthenticatedUsers, async (req, res) => { 
-    const token_id = res.locals.userInfo.user_id;
     try {
+    const token_id = res.locals.userInfo.user_id;
         const carItems = await mySqlDatabase.getCartItemsFromUser(token_id);
         return res.json(carItems);
     } catch (err) {
-        console.log(err)
         return res.json({gotten: false, erro: true});
     }
 })
 
 app.get('/insertcartitem/:productid', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => { 
+    try {
     const token_id = res.locals.userInfo.user_id;
     const { productid } = req.params
-    try {
         const foundItem = await mySqlDatabase.findOneOnCart(token_id, productid);
         if (foundItem) return res.json({saved: false, message: "Item já está dentro no carrinho"})
         const savedItem = await mySqlDatabase.saveOnCart(token_id, productid);
         return res.json({saved: true, savedItem});
     } catch (err) {   
-        console.log(err)
         return res.json({saved: false, erro: true});
     }
 })
@@ -313,7 +368,6 @@ app.get('/removecartitem/:cart_item_id', ProtectionAgainstNonAuthenticatedUsers,
         await mySqlDatabase.deleteFromCart(token_id, cart_item_id);
         return res.json({deleted: true});
     } catch (err) {
-        console.log(err)
         return res.json({deleted: false, erro: true});
     }
 })
@@ -321,9 +375,9 @@ app.get('/removecartitem/:cart_item_id', ProtectionAgainstNonAuthenticatedUsers,
 
 
 app.delete('/deletaravaliacao/:ratting_id', ProtectionAgainstNonAuthenticatedUsers, async (req, res) => {
+    try {
     const token_id = res.locals.userInfo.user_id;
     const { ratting_id } = req.params
-    try {
         await mySqlDatabase.deleteRatting(token_id, ratting_id);
         return res.json({deleted: true});
     } catch (err) {   
@@ -332,17 +386,14 @@ app.delete('/deletaravaliacao/:ratting_id', ProtectionAgainstNonAuthenticatedUse
 })
 
 app.get('/acharprodutoporcategoria/:amount/:category', async (req, res) => { 
-    console.log('hellou')
-    const { amount, category } = req.params
-    console.log(category)
     try {
+    const { amount, category } = req.params
         if (Number(amount) > 10 || Number(amount) < 1) return res.json({ error: true, message: 'Invalid amount to be fetched' }) 
         const products: any = await mySqlDatabase.findProductByCategory(category, Number(amount));
         if (!products) return res.json({ found: null });
         console.log('prod ' + products)
         return res.json(products);
     } catch (err) {
-        console.log(err)
         return res.json({error: true});
     }
 })
@@ -350,14 +401,13 @@ app.get('/acharprodutoporcategoria/:amount/:category', async (req, res) => {
 
 
 app.get('/getrandomproducts/:amount', async (req, res) => { 
+    try {
     const { amount } = req.params
     if (!amount || Number(amount) > 21) return res.json('error')
-    try {
         const products: any = await mySqlDatabase.findCertainAmountOfRandomProducts(Number(amount));
         if (!products) return res.json({ found: null });
         return res.json(products);
     } catch (err) {
-        console.log(err)
         return res.json({error: true});
     }
 })
@@ -433,12 +483,6 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Listening on port: ... ${PORT}`))
 
 
-// app.get('/get', async (req, res) => {
-//     const allUsers = await mySqlDatabase.getAllUsers();
-//     return res.json(allUsers);
-// })
-
-//Handle errors page
 app.use(function (req, res) {
     res.render(path.join("404Error", "404Error"));
 });

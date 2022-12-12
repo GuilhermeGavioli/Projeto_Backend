@@ -10,6 +10,8 @@ window.onload = async () => {
   const p_price = document.getElementById("product_price").getAttribute("product_price");
   const productRatings = await loadProductRatings(p_id);
 
+  const p_average = document.querySelector('.average')
+
   const product = {
     product_id: p_id,
     product_name: p_name,
@@ -18,6 +20,17 @@ window.onload = async () => {
   }
 
 
+  const addToCartButton = document.querySelector('#adicionar-carrinho-btn');
+  const removeFromCartButton = document.querySelector('#remover-carrinho-btn');
+
+  const likeButton = document.querySelector('.like-button')
+  const dislikeButton = document.querySelector('.dislike-button')
+
+
+
+  myLikes.filter(like => {
+    return like.product_id == item.product_id;
+  })
   // document.querySelector(
   //   ".rating-counts"
   // ).innerText = `(${productRatings.length} Avaliaçoes)`;
@@ -30,119 +43,134 @@ window.onload = async () => {
   if (data) {
 
 
-    const addCartButton = document.getElementById("adicionar-carrinho-btn")
-    const removeCartButton = document.getElementById("remover-carrinho-btn")
-    
-    let wasItemFoundInCart = false;
-    let itemFound;
-    cartIdsItems.map((obj) => {
-      if (obj.product == p_id) {
-        wasItemFoundInCart = true;
-        itemFound = { product: obj.product, cart: obj.cart }
-        console.log('found in the cart')
+    cartIdsItems.map(async (cartItem) => {
+      if (cartItem.product.product_id == p_id) {
+        addToCartButton.style.display = 'none'
+        removeFromCartButton.style.display = 'unset'
       }
     })
-    
-    // addCartButton.innerText = 'REMOVER DO CARRINHO'
-    //     addCartButton.id = 'remover-carrinho-btn'
-    //     addCartButton.addEventListener('click', async () => {
-    //       cartChanged('deleted', obj.product)
 
-    //       const wasDeleted = await deleteFromCart(obj.cart)
-    //       if (wasDeleted) changeButton(false)
-    //   })
-
-    if (wasItemFoundInCart) {
-      activateButton('remover')
-    }
-
-    if (!wasItemFoundInCart) {
-      activateButton('adicionar')
-    }
-    
-    let recentlyAdded;
-    let recentlyDeleted;
-    let isButtonClickable = true;
-    removeCartButton.addEventListener('click', async () => {
-      if (!isButtonClickable) return;
-      isButtonClickable = false;
-      const wasDeleted = await deleteFromCart(itemFound?.cart || recentlyAdded);
-      if (wasDeleted) {
-        updateCart('remove', p_id, itemFound?.cart || recentlyAdded, null)
-        recentlyDeleted = itemFound?.cart;
-        activateButton('adicionar');
-      }
-      isButtonClickable = true;
-    })
-    
-    addCartButton.addEventListener('click', async (e) => {
-      if (!isButtonClickable) return;
-      isButtonClickable = false;
-      const data = await addToCart(p_id);
+    addToCartButton.addEventListener('click', async (e) => { 
+      const data = await addToCart(p_id); // pid
+      console.log(data)
       if (data.saved) {
-        updateCart('add', p_id, data?.savedItem?.cart_id || recentlyDeleted, product)
-        recentlyAdded = data.savedItem.cart_id
-        activateButton('remover');
+    
+        updateCart('add', data.savedItem.cart_id, product)
+        console.log(cartIdsItems)
+        
+        removeFromCartButton.style.display = 'unset';
+        removeFromCartButton.style.visibility = 'visible';
+        e.target.style.display = 'none';
+      } else {
+        console.log('not saved')
       }
-      isButtonClickable = true;
+    })
+
+    removeFromCartButton.addEventListener('click', (e) => { 
+      cartIdsItems.map(async (cartItem) => {
+        if (cartItem.product.product_id == p_id) {
+          const wasDeleted = await deleteFromCart(cartItem.cart);
+          if (wasDeleted) {
+            updateCart('remove', cartItem.cart, null) 
+            addToCartButton.style.display = 'unset';
+            e.target.style.display = 'none';
+          }
+        }
+      })
+    })
+
+    myLikes.map(like => { 
+      if (like.product_id == p_id) {
+        likeButton.style.display = 'none'
+        dislikeButton.style.display = 'unset'
+      }
+    })
+
+    likeButton.addEventListener('click', async (e) => { 
+      const data = await likeProduct(p_id);
+      if (data.liked) {
+        
+        dislikeButton.style.display = 'unset'
+        e.target.style.display = 'none';
+
+        let average = Number(p_average.innerText)
+        average++
+        p_average.innerText = average
+
+      }
     })
     
-   
+    dislikeButton.addEventListener('click', async (e) => { 
+      const data = await dislikeProduct(p_id);
+      if(data.disliked){
+
+        likeButton.style.display = 'unset';
+        e.target.style.display = 'none';
+
+        let average = Number(p_average.innerText)
+        average--;
+        p_average.innerText = average
+      }
+   })
+
+
+  
     
-    // document.querySelector(".create-comment-container").style.visibility =
-    //   "visible";
-    // if (!data.user_image || data.user_image.toString().trim() === "") {
-    //   document
-    //     .getElementById("my-create-comment-pic-inside")
-    //     .setAttribute("src", "/file_system/app/user_default.jpg");
-    // } else {
-    //   document
-    //     .getElementById("my-create-comment-pic-inside")
-    //     .setAttribute(
-    //       "src",
-    //       `${BASE_URL_PATH}file_system/user${data.user_image}`
-    //     );
-    // }
-    // const ratingInput = document.querySelector(".ratting-input");
-    // const ratingButton = document.querySelector(".ratting-btn");
-    // ratingInput.style.visibility = "visible";
-    // ratingButton.style.visibility = "visible";
-    // ratingButton.addEventListener("click", () => ratting(ratingInput));
 
-    // document
-    //   .getElementById("avaliar-btn")
-    //   .addEventListener(
-    //     "click",
-    //     () => (window.location.href = "#my-create-comment-pic")
-    //   );
 
-    //stars
-    //   for (let i = 1; i < 6; i++) {
-    //     document
-    //       .getElementById(`star${i}`)
-    //       .addEventListener("click", () => handleCreateCommentStarsChange(i));
-    //   }
-    // } else {
-    //   document
-    //     .getElementById("avaliar-btn")
-    //     .addEventListener("click", () => (window.location.href = "/login"));
-    //   document
-    //     .getElementById("adicionar-carrinho-btn")
-    //     .addEventListener("click", () => (window.location.href = "/login"));
+    // if (wasItemFoundInCart) {
+    //   activateButton('remover')
     // }
 
-    // document
-    //   .getElementById("carregar-mais-btn")
-    //   .addEventListener("click", async () => {
-    //     commentPack = commentPack + 2;
+    // if (!wasItemFoundInCart) {
+    //   activateButton('adicionar')
+    // }
+    
 
-    //     const productRatings = await loadProductRatings(p_id);
-    //     await appendCommentsOnPage(productRatings, data?.userid);
-    //     console.log(commentPack);
+   
 
-    //   });
+  } else {
+    addToCartButton.addEventListener('click', () => window.location.href = '/login')
+    removeFromCartButton.addEventListener('click', () => window.location.href = '/login')
+    likeButton.addEventListener('click', () => window.location.href = '/login')
+    dislikeButton.addEventListener('click', () => window.location.href = '/login')
   }
 }
+
+
+
+
+
+
+async function likeProduct(p_id) {
+  const res = await fetch(`${BASE_URL_PATH_AUTH}likeproduct/${p_id}`, {
+    method: 'GET',
+    headers: {
+      "Content-type": "application/json",
+      authorization: getStoredToken(),
+    }
+  })
+  return await res.json();
+}
+
+async function dislikeProduct(p_id) {
+  const res = await fetch(`${BASE_URL_PATH_AUTH}dislikeproduct/${p_id}`, {
+    method: 'GET',
+    headers: {
+      "Content-type": "application/json",
+      authorization: getStoredToken(),
+    }
+  })
+  return await res.json();
+}
+
+
+
+
+
+
+
+
 
 
 function activateButton(buttonType) {

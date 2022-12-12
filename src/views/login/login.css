@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
 
+:root{
+    --main-green: #76b82a;
+    /* --cart-main: rgb(43, 50, 67); */
+    --cart-main: rgb(1, 65, 20);
+    --cart-main: rgb(29, 112, 37);
+}
+
 body{
     background-color: #F5F5F5;
     background-color: red;
@@ -18,7 +25,7 @@ body{
 }
 
 .login-title{
-    background-color: #72a220;
+    background-color: var(--main-green);
     border-radius: 25px 25px 0 0;
     color: white;
     width: 85%;
@@ -107,7 +114,7 @@ button, input{
     font-size: 1.2em;
     font-weight: 300;
     margin-top: 35px;
-    background: linear-gradient(to bottom, #7db023, #72a220);
+    background: linear-gradient(to bottom, var(--main-green), #479f17);
     border: none;
     margin-top: 25px;
     margin-bottom: 25px;

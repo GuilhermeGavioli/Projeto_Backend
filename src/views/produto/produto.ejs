@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produtos Encontrados</title>
+    <link rel="shortcut icon" href="../assets/My project-1 (1).png" />
 
     <!-- PAGE -->
     
@@ -49,27 +50,32 @@
         <span id="product_price" product_price="<%=productFound.price%>"></span>
         
 
-     
+
         
         <div class="container2">
         
          <div class="c1">
             <p class="eight" style="margin-top: 0; margin-bottom: 8px; font-size: .6em;"> Publicado em 14 de janeiro de 2021</p>
-            <div style=" border: 1px solid rgb(245,245,245);">
+            <div style=" border: 1px solid rgb(245,245,245);" class="pic-container">
                 <img class="product-image" src="/file_system/product/<%=productFound.product_image%>" alt="">
             </div>
             
-            <div style="display: flex; flex-direction: column; width: 100%; background-color: black;">
+            <div style="display: flex; flex-direction: column; width: 100%;">
                 
                 <div class="product-buttons-container">
                     <button class="product-buttons" id="adicionar-carrinho-btn">ADICIONAR AO CARRINHO</button>
                     <button class="product-buttons" id="remover-carrinho-btn">REMOVER DO CARRINHO</button>
-                    <button class="product-buttons" id="avaliar-btn">AVALIAR</button>
+                    <button class="like-button" >
+                        <i class="fa-solid fa-heart" style="pointer-events: none;"></i>
+                    </button>
+                    <button class="dislike-button" >
+                        <i class="fa-solid fa-heart" style="pointer-events: none;"></i>
+                    </button>
                 </div>
 
                 <!-- <div style="background: black"> -->
                     <!-- <p style="color: gray; font-weight: 200; margin: 0;">Criado por</p> -->
-                    <div class="comment-image-and-username-container" onclick="window.location.href='/profile/<%= productFound.userid%>'">
+                    <div class="comment-image-and-username-container" onclick="window.location.href='/profile2/<%= productFound.userid%>'">
                         <img src="/file_system/user/<%=productFound.user_image%>" alt="" class="comment-image">
                         <div style="display: flex; flex-direction: column;">
                             <p class="comment-username" style="color: gray; font-weight: 200; margin: 0;">
@@ -88,36 +94,50 @@
             <div onclick="window.history.back()" class="voltar-component">
                 <i class="fa-solid fa-angle-left"></i> <span id="voltar-text">Voltar</span>
             </div>
-            <p class="nine">Produto / opfbopkadpofjbpjofadjpbpajdf bpofda bpoad kpofbk apdfobpoa fdbak d´fbká</p>
-            <h1 class="product-name"> Meu Produto  opasdkop vdpkoopkvadopkva pkoop vapok fvkf vk padfokpv k-afdpv</h1>
-            <div class="product-stars">
-              
-            </div>
+            <p class="nine"><a href="/categorias">Produtos</a> / <%= productFound.product_name%> </p>
+            <h1 class="product-name"> <%= productFound.product_name%></h1>
+           
 
-            <p class="nine">
-                 Descricao do produto 
+            <p class="ten">
+                <%= productFound.product_description%>
             </p>
             <p class="nine" id="price">
-                R$58.88><span style="font-size: .6em;">/Litro</span>
-            </p>
-            <!-- <p>
-                <%= productFound.average %>
-            </p> -->
-
-            <p class="eight"><i class="fa-solid fa-tag"></i> 
-               tag
+                R$<%= productFound.price%>
+                <span style="font-size: .6em;">
+                    / <%= productFound.unity %> 
+                </span>
             </p>
          
-            <p class="nine">Categoria: Graos</p>
-            <p class="nine">
-                
-            Produto Orgânico</p>
-            
-            
-            <p class="eight"><i class="fa-solid fa-upload" style="margin-top: 20px;"></i> Publicado em 14 de janeiro de 2021</p>
 
-            <p class="eight"><i class="fa-regular fa-user"></i> criado por <a href="/profile/<%= productFound.userid %>">
-               Rogerio
+            <p class="eight">
+                <i class="fa-solid fa-tag"></i> 
+                <%= productFound.tags %> 
+            </p>
+
+            <div  style="margin: 12px 0 12px 0;">
+               
+                    <div class="card-stars">
+                        <i class="fa-solid fa-heart" style="margin:0;"></i>
+                        <p class="average"
+                        style="margin:0; margin-left: 6px;"><%= productFound.average %></p>
+                    </div>
+                </div>
+      
+         
+            <p class="nine">Categoria: <%= productFound.category %> </p>
+            <% if (productFound.is_organic == 0) { %>
+                
+                <p class="nine"> <i class="fa-solid fa-x"></i>Não Orgânico</p>
+
+                <% }  else { %>
+                    <p class="nine"> <i class="fa-solid fa-check"></i>Orgânico</p>
+                    <% } %>
+            
+            
+            <p class="eight"><i class="fa-solid fa-upload" style="margin-top: 20px;"></i> Publicado em <%= productFound.created_at %></p>
+
+            <p class="eight"><i class="fa-regular fa-user"></i> criado por <a href="/profile2/<%= productFound.userid %>">
+                <%= productFound.full_name %>
             </a></p>
             </div>
 
@@ -154,11 +174,9 @@
             <!-- <div class="products"></div> -->
             
      
-
+<!-- 
             <div class="comments">
-                 <!-- <div class="load-more-comments-container">
-                    <button id="carregar-mais-btn">Carregar mais</button>
-                </div> -->
+            
 
 
 
@@ -210,52 +228,7 @@
                 
                 <div style="display: flex; align-items: flex-end;height: fit-content; justify-content: space-between; width: 100%;">
 
-                    <!-- <div class="create-comment-container">
-                        <div class="textarea-and-btn-container">
-                            <h2 class="create-comment-title">Avalie esse Produto</h2>
-
-                            <div class="pic-and-textarea-container">
-                                <div class="comment-design-pic" id="my-create-comment-pic" style="cursor: pointer;" onclick="window.location.href = '/meuperfil'">
-                                    <img src="" class="comment-design-pic-inside" id="my-create-comment-pic-inside">
-                                </div>
-                                <textarea name="" id="" cols="30" rows="3" class="ratting-input" placeholder="Adicionar comentário..."></textarea>
-
-                            </div>
-                      
-
-                        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0;  margin: 12px 0 12px 0;">
-
-                            <div class="create-comment-stars-container">
-                                <i class="fa-regular fa-heart" id="star1" ></i>
-                                <i class="fa-regular fa-heart" id="star2" ></i>
-                                <i class="fa-regular fa-heart" id="star3" ></i>
-                                <i class="fa-regular fa-heart" id="star4" ></i>
-                                <i class="fa-regular fa-heart" id="star5" ></i>
-                            </div>
-                            <button class="ratting-btn">Enviar comentário</button>
-                        </div>
-                    </div>
-                </div> -->
-                
-
-               <!-- <div class="comment-design-diff-container">
-
-                     <div class="comment-design-pic" id="comment-design-pic-diff">
-                        <img class="comment-design-pic-inside" id="comment-design-pic-inside-diff" src="https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg?auto=compress&cs=tinysrgb&w=600">
-                    </div>
-
-                    <div class="comment-design" id="comment-design-diff">
-                        <div class="comment-design-texts-container" id="comment-design-text-diff">
-                            <div class="comment-design-bar-one"></div>
-                            <div class="comment-design-bar-two" style="height: 45px;"></div>
-                            <div class="comment-design-bar-one"></div>
-                            <div class="comment-design-bar-two"></div>
-                            <div class="comment-design-bar-one"></div>
-                            <div class="comment-design-bar-two"></div>
-                        </div>
-                    </div> 
-
-                </div>-->
+                  
 
 
 
@@ -338,7 +311,7 @@
                     <p class="comment-text">Gostei do produto</p>
                     <p class="comment-created-at">avaliado em 15 de novembro de 1999</p>
                 </div> 
-            </div>
+            </div> -->
 
 
             <!-- <div class="propaganda">
@@ -356,14 +329,7 @@
     <button class="ratting-btn">rate</button> -->
 
     
-    <footer class="footer" style="margin-top: 100px;">
-        <div class="f2">
-            <div class="f2-circle"></div>
-            <h3 style="color:rgb(60,68,55); margin-bottom: 0;">Go<span style="color:rgb(122, 192, 16)">Green</span></h3>
-            <h5 style="color: rgb(84, 84, 84);">Viva Bem</h5>
-        </div>
-        </div>
-    </footer>
+    <%- include("../globals/footer.ejs") %>
 
         </body>
             

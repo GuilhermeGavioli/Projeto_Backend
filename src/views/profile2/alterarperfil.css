@@ -31,11 +31,7 @@
    
 }
 .c1, .c2, .c3{
-    /* background-color: rgb(232, 232, 232); */
-    /* background-color: rgba(232, 232, 232, 0.233); */
-    /* border: 1px solid black; */
-    /* padding: 20px 5px 20px 5px; */
-    background-color: white;
+
 }
 .c2,.c3{
 }
@@ -50,6 +46,7 @@
     align-items: center;
     border-radius: 12px;
     background-color: #39AC46;
+    background-color: var(--main-green);
 }
 .warning-about-file-size-container{
     width: 100%;
@@ -81,10 +78,7 @@ border-radius: 6px;
     /* margin: auto; */
     /* overflow: hidden; */
 }
-.circle:hover{
-    opacity: 55%;
-    cursor: pointer;
-}
+
 .edit-circle-icon-container{
     position: absolute;
     right: 5px;
@@ -114,9 +108,7 @@ border-radius: 6px;
     cursor: pointer;
     /* background-color: red; */
 }
-#files:hover{
-    opacity: 5%;
-}
+
 #circle-change-image-cover{
     position: absolute;
     margin: auto;
@@ -148,7 +140,8 @@ border-radius: 6px;
     flex-direction: column;
     align-items: center;
     z-index: 1;
-    background-color: white;
+
+    padding: 0 45px 45px 35px;
     /* padding: 45px; */
     /* background-color: rgb(1, 65, 20); */
     /* background-color: rgb(77, 29, 29); */
@@ -187,9 +180,10 @@ border-radius: 6px;
     padding: 0 5px 0 5px;
 }
 .c2-second-container{
-    padding: 0 45px 45px 35px;
+    /* padding: 0 45px 45px 35px; */
     width: 100%;
     background-color: white;
+
 }
 .c2-user-info{
     
@@ -345,7 +339,7 @@ li{
 .success-message-container, .fail-message-container{
     font-family: 'Inter', sans-serif;
     color: white;
-    font-size: 1.2em;
+    font-size: 1.6em;
     font-weight: lighter;
     text-align: center;
     margin: auto;
@@ -362,12 +356,12 @@ li{
 }
 
 .success-message-container {
-    background: linear-gradient(to bottom, var(--main-green), #72b006);
-    z-index: 10000;
+    background: linear-gradient(to bottom, #95d920, #72b006);
+    z-index: 100;
 }
 
 .fail-message-container{
-    z-index: 10000;
+    z-index: 100;
     background: linear-gradient(to bottom, #D21B1B, #C10606);
 }
 
@@ -417,13 +411,14 @@ li{
     .success-message-container, .fail-message-container{
         font-family: 'Inter', sans-serif;
         color: white;
-        font-size: 1.2em;
+        font-size: 1.6em;
         font-weight: lighter;
         text-align: center;
         position: fixed;
         margin: auto;
         inset: -150px 0 0 0;
         bottom: unset;
+        z-index: 20;
         border-radius: 15px;
         padding: 20px 12px 20px 12px;
         width: fit-content;
@@ -478,20 +473,18 @@ body{
     .c2{
         max-width: 100vw;
         margin: 0;
- 
+
         
         min-width: 230px;
     }
     .c2-first-container{
- 
-        
+
         padding: 0;
         overflow: hidden;
     }
 
     .c2-second-container{
 
-        
         padding: 35px 19px 45px 19px;
     }
 
@@ -534,6 +527,7 @@ body{
     
         .c2{
             max-width: 100vw;
+            padding: 0;
             margin: 0;
             min-width: 230px;
         }

@@ -15,165 +15,47 @@
     <link rel="stylesheet" href="../globals/header.css">
     <link rel="stylesheet" href="../globals/footer.css">
 
-    <title>Meus Produto</title>
+    <title>Meus Produtos</title>
+    <link rel="shortcut icon" href="../assets/My project-1 (1).png" />
 
 
     <script src="https://kit.fontawesome.com/69266619cf.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    <style>
-        /* body{background-color: rgb(68, 68, 68);} */
-       
-       
-        #spinning{
-            border-radius: 50%;
-            border: 3px solid black;
-            border-bottom: 3px solid white;
-            margin: auto;
-            position: absolute;
-            inset: 0 0 175px 0;
-            width: 50px;
-            height: 50px;
-            animation: infinite 1s rotate linear;
-            visibility: hidden;
-        }
 
-        @keyframes rotate{
-            from{transform: rotate(0deg);}
-            to{transform: rotate(359deg);}
-        }
-    </style>
 </head>
 <body>
-    <div id="spinning"></div>
-
-    <!-- <div class="concluido-container">
-        <div class="v-first"></div>
-        <div class="v-second"></div>
-    </div> -->
-
-    <header class="header">
-        <div style="height: 100%; display: flex; align-items: center; background-color: rgb(250,250,250);" class="logo-header-container" onClick="window.location.href = '/'">
-            <img src="../assets/logo_sem_marcadagua.png" style="width: 100%; height: 100%; margin-left: 8px; min-width: 75px; max-width: 85px;" alt="">
-            <div class="company-name" style="height: fit-content; display: flex; padding: 0 35px;">
-                <span style="font-family: monospace; font-size: 1.6em; color:rgb(41, 41, 41); text-decoration: solid;">
-                    Go
-                </span>
-                <span style="font-family: monospace; font-size: 1.6em;color:rgb(122, 192, 16); font-weight: 800;">
-                    Green
-                </span>
-            </div>
-        </div>
-
-        <div class="header-main">
-            <p class="nav-item"><a href="/" style="color: rgb(68,68,68)">Home</a></p>
-            <p class="nav-item"><a href="/sobre" style="color: rgb(68,68,68)">Sobre</a></p>
-            <p class="nav-item"><a href="/produtos" style="color: rgb(68,68,68)">Produtos</a></p>
-            <div class="nav-item" id="procurar-nav-item">
-            <p id="procurar-and-icon-container">
-                Procurar
-                <i class="fa-solid fa-caret-down" id="seta" style="font-size: .9em; margin-left: 3px; height: fit-content;"></i>
-            </p>
-            <div class="procurar-painel-container" isOpen="false">
-                <p style="margin: 0;" id="produtores-item" onClick="window.location.href = '/procurarUsuario'">Produtores</p>
-                <p style="margin: 0; margin-top: 8px;"id="produtos-item" onClick="window.location.href = '/procurarProduto'">Produtos</p>
-            </div>
-            </div>
-            <p class="hamburger-icon"><i class="fa-solid fa-bars"></i></p>
-        </div>
-
-
-        <div id="register-and-login" style="margin-left: 25px; display: flex; background-color: rgb(249, 249, 249); justify-content: center;">
-            <p style="margin:0; padding-right: 15px; border-right: 1px solid rgb(92, 92, 92);" ><a href="/registrar" style="text-decoration: none;">
-                <i class="fa-solid fa-user-plus" style="color:rgb(59, 59, 59); font-size: 1.2em;"></i>
-            </a>
-        </p>
-            <p style="margin:0; padding-left: 15px;">
-                <a href="/login" style="text-decoration: none;">
-                    <i class="fa-solid fa-right-to-bracket" style="color:rgb(59, 59, 59); font-size: 1.2em;"></i>
-                </a>
-            </p>
-        </div>
-
-        <div class="header-user-icon-container">
-            <img class="header-user-icon" src="" style="position:relative;">
-            <div class="header-painel" style="visibility: hidden;">
-                <li class="user-painel-item" style="margin-top: 0;">
-                    <a href="/"
-                    style="text-decoration: none; color: rgb(177, 177, 177);"
-                    >Home</a></li>
-                <li class="user-painel-item" style="margin-top: 0;">
-                    <a href="/MeuPerfil"
-                    style="text-decoration: none; color: rgb(177, 177, 177);"
-                    >Meu Perfil</a></li>
-                <li class="user-painel-item"><a href="/estacaoDeCriacao"
-                    style="text-decoration: none; color: rgb(177, 177, 177);">Criar</a></li>
-                <li class="user-painel-item"><a href="/criar"
-                    style="text-decoration: none; color: rgb(177, 177, 177); margin-bottom:25px;"
-                    >Meus produtos</a></li>
-                <button class="logout-btn">Logout</button>
-            </div>
-        </div>
-    </header>
-
-
-    <div class="sidebar" isOpen="false">
-        <div class="sidebar-items">
-            <p class="sidebar-item" onclick="window.location.href = '/'">Home</p>
-            <p class="sidebar-item" onclick="window.location.href = '/sobreNos'">Sobre Nós</p>
-            <p class="sidebar-item" onclick="window.location.href = '/produtos'">Produtos</p>
-            <p class="sidebar-item" onclick="window.location.href = '/procurarProduto'">Procurar Produto</p>
-            <p class="sidebar-item" onclick="window.location.href = '/procurarUsuario'">Procurar Produtor</p>
-            <h2 id="click-to-close">CLICK PRA FECHAR</h2>
-        </div>
-    </div>
     
 
-    <div class="bell-container">
-        <div class="bell-inside-container">
-            <i class="fa-regular fa-bell" style="font-size: 2.5em;"></i>
-            <div class="bell-painel">
-                <div class="bell-painel-inside">
-                <!-- <div class="select-all-messages-container">
-                    <button class="delete-messages-button">Apagar pra mim</button>
-                </div> -->
-                <div class="all-messages-container">
 
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
+   
+    <%- include("../globals/header.ejs") %>
+
+    
 
 
 
 
+    <div class="container"></div>
  
-    <div class="container" style="margin-top: 85px;">
-       <div class="c1" style="position: relative;">
+    <div class="container2" style="margin-top: 85px;">
+       <div class="c1">
 
-
-
-
-
+        <div class="product-not-found">
+            <h1>Voce nao tem Produtos</h1>
+            <p>Voce ainda nao possui nenhum Produto Publicado...</p>
+            <!-- <button>Voltar</button> -->
+            <button class="main-btn" onclick="window.location.href = '/estacaoDeCriacao'">Publicar</button>
+        </div>
        </div>
+
+       
        </div>
        
-       
-               <div class="no-results-container" style="padding: 10px 25px 25px 25px;">
-                   <img src="../../assets/nao_encontrado.jpg" alt="" style="width: 255px;">
-                   <h1 class="no-results-title" style="font-size: 1.2em; width: 350px; margin: auto;">Desculpe, não conseguimos encontrar nenhum resultado para a sua busca
-      
-                       !</h1>
-                       <!-- <div style="display: flex; justify-content: space-between; padding: 0 115px 0 115px"> -->
-                           <button class="voltar-btn" onclick="window.location.href = '/procurarproduto'">Procurar Novamente</button>
-                           <!-- <button class="voltar-btn" onclick="window.history.back()">Voltar</button> -->
-
-                       <!-- </div> -->
-                   </div>
 
 
 
+                   <%- include("../globals/footer.ejs") %>
 
 
 

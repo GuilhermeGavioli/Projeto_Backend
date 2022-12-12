@@ -7,7 +7,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 
 :root{
-    --main-green: rgb(118, 184, 42);
+    --main-green: #76b82a;
     /* --cart-main: rgb(43, 50, 67); */
     --cart-main: rgb(1, 65, 20);
     --cart-main: rgb(29, 112, 37);
@@ -104,11 +104,12 @@ input{
     color: var(--cart-main);
     font-size: .9em;
     text-align: center;
-    inset: 0 0 0 0;
-    position: absolute;
-    margin: auto;
-    visibility: hidden;
+    /* inset: 0 0 0 0; */
+    /* position: absolute; */
+    /* margin: auto; */
+ 
     display: flex;
+    background-color: red;
     opacity: 95%;
     flex-direction: column;
 }
@@ -206,7 +207,8 @@ input{
     font-family: 'Kanit', sans-serif;
     color: var(--cart-main);
     font-weight: 600;
-    padding: 8px 70px 0 70px;
+    padding: 8px 25px 8px 25px;
+    border-radius: 8px;
     font-size: 1.6em;
 }
 .cart-second-title{
@@ -263,14 +265,35 @@ input{
     font-size: .5em;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* header */
 .header{
     width: 100vw;
     height: 75px;
-    /* position: fixed; */
-    /* top: 0; */
     z-index: 20;
-    /* background-color: rgba(255, 255, 255, 0.033); */
-    background-color: white;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -360,7 +383,6 @@ a:link, #procurar-and-icon-container{
     width: fit-content;
     /* width: 145px; */
     padding-right: 80px;
-
     /* background-color: red; */
 }
 .login-header-btn, .register-header-btn{
@@ -402,15 +424,15 @@ a:hover{
     background-color: rgb(255, 255, 255);
     z-index: 50;
     position: absolute;
-    top: 75px;
-    right: 135px;
+    top: 85px;
+    right: 125px;
     box-sizing: border-box;
     padding: 0;
     margin: auto;
     list-style: none;
     display: flex;
     flex-direction: column;
-    color: rgb(127, 176, 28);
+    background-color: var(--cart-main);
     height: fit-content;
     box-shadow: 6px 6px 10px -3px rgba(0, 0, 0, 0.154);
     visibility: hidden;
@@ -419,29 +441,18 @@ a:hover{
     
 }
 .header-painel-first-part{
-    height: 80px;
+    height: 60px;
     background-color: var(--main-green);
     background-color: rgb(133,187,70);
+    background-color: var(--cart-main);
     position: relative;
-}
-#header-painel-home-icon{
-    position: absolute;
-    bottom: 8px;
-    right: 8px;
-    margin: 0;
-    color: rgb(98, 141, 49);
-    font-size: 1.2em;
-}
-#header-painel-home-icon:hover{
-    color: white;
-    cursor: pointer;
 }
 .header-painel-second-part, .header-painel-third-part{
     width: 85%;
     margin: auto;
-    margin-top: 35px;
+    margin-top: 0;
     border-bottom: 1px solid rgb(225,225,225);
-    padding: 0 0 12px 0;
+    padding: 0 0 8px 0;
 }
 .header-painel-third-part{
     margin-top: 0;
@@ -461,28 +472,22 @@ a:hover{
 }
 
 .user-painel-item{
-    /* background-color: yellow; */
     width: fit-content;
-    font-size: .9em;
-    margin: 4px 0 4px 0;
-    padding: 0 8px 0 8px;
+    font-size: .8em;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
     font-weight: lighter;
-
-    /* inset: 0 500px 0 0; */
-  
-    /* background-color: blue; */
     width: 100%;
-
-    /* position: unset;
-    top: unset;
-    margin: auto; */
 }
 
 .header-painel-li{
-    color: rgb(214, 214, 214);
+    color: rgb(51, 51, 51);
     font-weight: lighter;
     font-size: .9em;
     width: 100%;
+}
+.header-painel-li:hover{
+    color: #288731;
 }
 
 li{
@@ -495,7 +500,7 @@ li{
 
 .logout-btn{
     border: none;
-    background: linear-gradient(to right, #7ba82e, #98cd3e);
+    background-color: var(--main-green);
     color: white;
     border-radius: 3px;
     padding: 5px 30px 5px 30px;
@@ -507,7 +512,7 @@ li{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 30px auto 20px auto;
+    margin: 15px auto 12px auto;
 }
 .sidebar-items{
     display: none;
@@ -600,16 +605,16 @@ li{
 }
 
 .header-user-icon-container{
-    position: absolute;
+    /* position: absolute; */
     display: flex; 
+    display: none;
     align-items: center; 
     justify-content: space-evenly;
     padding: 0 85px 0 0;
     margin-left: 100px;
-    visibility: hidden;
+    /* visibility: hidden; */
     height: 100%;
     color: rgb(186, 186, 186);
- 
 }
 .header-user-icon{
     background-size: cover;
@@ -692,10 +697,10 @@ li{
     height: 0;
     overflow-y: scroll;
     background-color: whitesmoke;
-    background-color: green;
+    /* background-color: green;
     background-color: blue;
     background-color: var(--cart-main);
-    background-color: rgb(1,65,20);
+    background-color: rgb(1,65,20); */
 }
 
 .bell-painel-inside{
@@ -836,32 +841,64 @@ li{
 
 
 
-@media (max-width: 960px){
+@media (max-width: 970px){
     .header{
         padding: 0 10px 0 0;
     }
 
-    .company-logo{
-        position: absolute;
-        margin: auto;
-        inset: 0 0 auto 0;
+    .header-user-icon-container{
+        padding: 0 85px 0 0;
+        margin-left: 35px;
     }
 
-    .logo-header-container{
-        margin: 0;
-        width: 100px;
+    #register-and-login{
+        cursor: pointer;
+        align-items: center;
+        height: 100%;
+        
+        justify-content: space-between;
+        width: fit-content;
+        /* width: 145px; */
+        padding-right: 0;
+        /* background-color: red; */
     }
-    .company-name{
-        /* display: none; */
-        bottom: 8px;
-        height: 20px;
-        z-index: 10;
-        position: absolute;
+
+    .cart-container{
+        width: 70vw;
     }
+
 }
 
 
 
+@media (max-width: 895px){
+    .logo-header-container{
+        margin: 0 0 0 12px;
+    }
+}
+
+@media (max-width: 840px){
+    .logo-header-container{
+        margin: 0 0 0 0;
+    }
+    .header-main{
+        font-family: 'Noto Sans Mono', monospace;
+        flex-grow: 1;
+        text-decoration: none;
+        height: 100%;
+    }
+
+    .nav-item{
+        margin: 0 12px 0 12px;
+    }
+    .nav-item:hover{
+        text-decoration: underline;
+    }
+
+    .cart-container{
+        width: 90vw;
+    }
+}
 
 
 
@@ -876,6 +913,11 @@ li{
         display: flex;
         align-items: center;
         margin: auto;
+    }
+
+    .header-user-icon-container{
+        padding: 0 8px 0 0;
+        margin-left: 10px;
     }
 
     .header-main{
@@ -929,6 +971,14 @@ li{
         width: 100vw;
         z-index: 0;
     }
+
+    .logo-header-container{
+        margin: 0 0 0 15px;
+    }
+
+    #register-and-login{
+        padding-right: 35px;
+    }
     
     .header-main{
         display: flex;
@@ -937,20 +987,19 @@ li{
     }
 
     .sidebar-items{
-        position: absolute;
-        visibility: hidden;
-        cursor: pointer;
+       
+     
+    }
+    
+    .sidebar-items{
         width: 100%;
         height: 100%;
-        
-    }
-
-    .sidebar-items{
+        padding: 0;
+        cursor: pointer;
         position: absolute;
         visibility: hidden;
         width: 0;
         height: 0;
-        
     }
     
     .nav-item{
@@ -975,6 +1024,7 @@ li{
         position: fixed;
         height: 100vh;
         top: 0;
+        padding: 0;
         left: 0;
         transition: 0.2s ease-in-out;
     }
@@ -987,7 +1037,7 @@ li{
         height: 100%;
         color: rgb(255, 255, 255);
         font-weight: 600;
-        background-color: rgb(33, 98, 55);
+        background-color: var(--cart-main);
         visibility: hidden;
         display: flex;
         z-index: 60;
@@ -1000,8 +1050,10 @@ li{
         font-size: 1.4em;
         font-weight: 900;
         margin-top: 20px;
-        color: rgba(0, 0, 0, 0.135);
+        color: rgba(0, 0, 0, 0.362);
     }
+    
+
     
 }
 
@@ -1032,239 +1084,14 @@ li{
         display: flex;
         justify-content: start;
         align-items: center;
-      
     }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-@media (max-width: 450px){
-    .header-user-icon-container{
-        position: absolute;
-        display: flex; 
-        align-items: center; 
-        justify-content: space-evenly;
-        padding: 0 0 0 0;
-        margin-left: 0;
-        visibility: hidden;
-        width: fit-content;
-        height: 100%;
-        padding-right: 15px;
-        color: rgb(186, 186, 186);
-        background-color: rgb(51, 19, 19);
-    }
-    .header-user-icon{
-        background-size: cover;
-        visibility: hidden;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        cursor: pointer;
-    }
-
-    .logo-header-container{
-        background-color: red;
-        display: flex;
-        flex-direction: unset;
-        align-items: center;
-        margin: unset;
-        justify-content: center;
-    }
-    .company-logo{
-        width: 40px;
-        height: 40px;
-   
-        margin-left: 0;
-        cursor: pointer;
-        z-index: 49;
-        margin: auto;
-        margin-top: 5px;
-        margin-bottom: 5px;
-    }
-    
-    .company-name{
-        margin: auto;
-      
-        cursor: pointer;
-        width: 90px;
-        height: 18px;
-
-        z-index: 49;
-        margin-left: 0;
-        
-    }
-
-    .first-header{
-
-        width: 100%;
-        height: 80px;
-        background: linear-gradient(to bottom, rgb(57,172,70), rgb(57,172,70));
-        /* padding: 0 150px 0 150px; */
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto auto;
-        align-items: center;
-        justify-items: start;
-        justify-content: space-around;
-        
-        position: relative;
-        min-width: 290px;
-    }
-    .header-circle{
-        width: 18px;
-        height: 18px;
-        background-color: #288731;
-        color: rgb(245,245,245);
-        border-radius: 50%;
-        margin: 0 2px 0 2px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: .5em;
-    }
-    .first-header-email{
-        font-size: .8em;
-    }
-
-    .header{
-        width: 100vw;
-        height: 75px;
-        display: flex;
-        background-color: aqua;
-        align-items: center;
-        min-width: 290px;
-        padding: 0 0 0 0;
-    }
-
-
-    /* .logo-header-container{
-        cursor: pointer;
-        height: 100%; 
-        minw
-        display: flex;
-        align-items: center;
-        margin-left: 50px;
-        background-color: rgb(110, 32, 32);
-        position: relative;
-    } */
-
-    .hamburger-icon{
-        background-color: blue;
-        margin-left: 4px;
-        margin-right: 4px;
-        text-align: center;
-    }
-
-    .header-main{
-        padding: 0;
-        flex-grow: 1;
-        max-width: unset;
-        height: 100%;
-        padding-left: 8px;
-        padding-right: 8px;
-        background-color: rgb(67, 26, 26);
-    }
-
-    .login-header-btn, .register-header-btn{
-        padding: 10px 15px 10px 15px;
-    }
-
-    .fa-right-to-bracket, .fa-user-plus{
-        font-size: 1.7em;
-    }
-
-    .header-btn-text{
-        display: none;
-        position: absolute;
-    }
-
-    .header-user-icon{
-        background-size: cover;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        margin-right: 0;
-        cursor: pointer;
-    }
-
-    #register-and-login{
-        background-color: blue;
-        padding: 0;
-        padding-right: 15px;
-    }
-
-    .bell-container{
-        position: fixed;
-        right: 5px;
-        bottom: 0px;
-        top: unset;
-        padding-bottom: 0;
-        margin-bottom: 0;
-        margin: unset;
-        width: 45px;
-        height: 45px;
-        z-index: 25;
-        box-shadow: 3px 3px 15px 3px rgba(0, 0, 0, 0.147);
-        color: #c5cfb3;
-        animation: alternate-reverse 1.7s ease-in-out infinite bellJump;
-        visibility: hidden;
-       /* visibility: hidden; */
-
-    }
-
-    @keyframes bellJump{
-        from{bottom: 10px;}
-        to {bottom: 20px;}
-    }
-
-    #bell-icon{
-        height: unset!important;
-        color: white!important;
-        font-size: 1.6em!important;
-        margin-right: 0!important;
-    }
-   
-    
-    .bell-painel{
-        cursor: default;
-        position: absolute;
-        right: unset;
-        /* left: 0; */
-        right: -50px;
-        bottom: 55px;
-        background-color: red;
-        width: 0;
-        height: 0;
-        background-color: white;
-        box-shadow: 3px 3px 15px 3px rgba(0, 0, 0, 0.147);
-        padding: 0;
-        overflow-y: scroll;
-    }
-
-    .bell-painel-inside{
-        background-color: blue;
-    }
-
     .header-painel{
-        top: 140px;
-        right: 15px;
+        top: 130px;
+        right: 65px;
     }
 
-    #header-bell{
-        position: relative;
-        margin-right: 15px;   
-    }
-    
+
+
     .cart-container{
         width: 90vw;
         height: 100%;
@@ -1292,7 +1119,6 @@ li{
         height: 100%;
         background-color: rgb(246,247,250);
         display: flex;
-        background-color: red;
         padding: 8px;
         overflow-y: auto;
         flex-direction: column-reverse;
@@ -1302,14 +1128,11 @@ li{
 
     .cart-container-first, .cart-container-second{
         width: 100%;
-        
         display: flex;
         flex-direction: column;
         justify-content: start;
         align-items: flex-end;
-        
-        /* height: fit-content; */
-        background-color: rgb(62, 16, 73);
+        margin: 5px 0 5px 0;
     }
     .cart-container-first{
         height: 80%;
@@ -1317,18 +1140,19 @@ li{
        
     }
     .cart-container-second{
-        background-color: black;
         height: fit-content;
         padding: 0;
-        width: 90%;
-     
+        width: 100%;
     }
+
     #last-cart-input{
         display: none;
     }
 
     .cart-label-and-input{
-        width: 100%; display: flex; flex-direction: column; margin: 0 0 0 0;
+        width: 95%; display: flex; flex-direction: column; margin: 0 auto 0 auto;
+        
+
     }
     .cart-second-input{
         font-weight: 600;
@@ -1383,7 +1207,7 @@ li{
         padding: 0;
         margin-bottom: 15px;
         min-height: 160px;
-        background-color: yellow;
+  
     }
     .cart-item{
         box-shadow: 0px 4px 2px -2px rgba(0, 0, 0, 0.139);
@@ -1401,7 +1225,7 @@ li{
     .sub-total-container{
         width: 125px;
         flex-grow: unset;
-        background-color: blue;
+   
         padding-right: 0;
         min-height: 100px;
         margin-top: 0;
@@ -1416,6 +1240,228 @@ li{
         height: fit-content;
         border-radius: 8px;
         border: 1px solid rgb(221, 221, 221);
+    }
+}
+
+
+
+
+
+
+
+@media (max-width: 550px){
+    .logo-header-container{
+        margin: 0 0 0 3px;
+    }
+
+    #register-and-login{
+        padding-right: 5px;
+    }
+
+
+    /* logo flex colum */
+    .logo-header-container{
+        margin: 0;
+        width: 100px;
+  
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    } 
+
+    .hamburger-icon{
+        margin-left: 15px;
+    }
+
+    .company-logo{
+  
+        margin: auto;
+    }
+    
+    .company-name{
+    
+         bottom: 8px;
+        height: 17px;
+        z-index: 10;
+        /* position: absolute;  */
+    }
+}
+
+
+
+
+
+
+@media (max-width: 510px){
+  
+    
+    .header-user-icon{
+        background-size: cover;
+        visibility: hidden;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .header-user-icon-container{
+        padding: 0 5px 0 0;
+        margin-left: 0;
+    }
+
+    
+ 
+
+    .first-header{
+
+        width: 100%;
+        height: 80px;
+        background: linear-gradient(to bottom, rgb(57,172,70), rgb(57,172,70));
+        /* padding: 0 150px 0 150px; */
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        align-items: center;
+        justify-items: start;
+        justify-content: space-around;
+        
+        position: relative;
+        min-width: 290px;
+    }
+    .header-circle{
+        width: 18px;
+        height: 18px;
+        background-color: #288731;
+        color: rgb(245,245,245);
+        border-radius: 50%;
+        margin: 0 2px 0 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: .5em;
+    }
+    .first-header-email{
+        font-size: .8em;
+    }
+
+    .header{
+        width: 100vw;
+        height: 75px;
+        display: flex;
+        background-color: aqua;
+        align-items: center;
+        min-width: 290px;
+        padding: 0 0 0 0;
+    }
+
+
+    .hamburger-icon{
+
+        margin-left: 4px;
+        margin-right: 10px;
+        text-align: center;
+    }
+
+    .header-main{
+        padding: 0;
+        flex-grow: 1;
+        max-width: unset;
+        height: 100%;
+        padding-left: 8px;
+        padding-right: 8px;
+ 
+    }
+
+    .login-header-btn, .register-header-btn{
+        padding: 10px 15px 10px 15px;
+    }
+
+    .fa-right-to-bracket, .fa-user-plus{
+        font-size: 1.7em;
+    }
+
+    .header-btn-text{
+        display: none;
+        position: absolute;
+    }
+
+    .header-user-icon{
+        background-size: cover;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 0;
+        cursor: pointer;
+    }
+
+    #register-and-login{
+   
+        padding: 0;
+        padding-right: 15px;
+    }
+
+    .bell-container{
+        position: fixed;
+        right: 5px;
+        bottom: 0px;
+        top: unset;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        margin: unset;
+        width: 45px;
+        height: 45px;
+        z-index: 25;
+        box-shadow: 3px 3px 15px 3px rgba(0, 0, 0, 0.147);
+        color: #c5cfb3;
+        animation: alternate-reverse 1.7s ease-in-out infinite bellJump;
+        visibility: hidden;
+       /* visibility: hidden; */
+
+    }
+
+    @keyframes bellJump{
+        from{bottom: 10px;}
+        to {bottom: 20px;}
+    }
+
+    #bell-icon{
+        height: unset!important;
+        color: white!important;
+        font-size: 1.6em!important;
+        margin-right: 0!important;
+    }
+   
+    
+    .bell-painel{
+        cursor: default;
+        position: absolute;
+        right: unset;
+        /* left: 0; */
+        right: -50px;
+        bottom: 55px;
+
+        width: 0;
+        height: 0;
+        background-color: white;
+        box-shadow: 3px 3px 15px 3px rgba(0, 0, 0, 0.147);
+        padding: 0;
+        overflow-y: scroll;
+    }
+
+    
+
+    
+
+    #header-bell{
+        position: relative;
+        margin-right: 15px;   
+    }
+    
+    
+
+    .header-painel{
+        top: 130px;
+        right: 35px;
     }
 }
 

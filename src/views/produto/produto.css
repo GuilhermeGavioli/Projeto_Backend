@@ -10,10 +10,10 @@
     display: grid;
     grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
-    grid-template-areas: "c1 c1 c2 c2 c2 c2 c2"
+    grid-template-areas: "c1 c1 c2 c2 c2 c2 c2";
     /* "benefits benefits benefits benefits benefits benefits benefits" */
     /* "products products products products products products products" */
-    "comments comments comments comments comments comments comments";
+    /* "comments comments comments comments comments comments comments"; */
     ;
     
     /* padding: 0 300px 0 300px; */
@@ -94,7 +94,6 @@
 }
 .c1{
     grid-area: c1;
-    background-color: red;
     display: flex;
     flex-direction: column;
     padding-top: 0;
@@ -103,36 +102,7 @@
     width: 100%;
     height: 320px;
 }
-.product-buttons-container{
-    display: flex;
-    margin: auto;
-    width: 100%;
-    height: fit-content;
-    background-color: yellow;
-    justify-content: space-between;
-}
-.product-buttons{
-    margin-top: 25px;
-    padding: 20px;
-    background-color: var(--main-green);
-    color: white;
-    border: none;
-}
-#avaliar-btn{
-    border: 1px solid var(--main-green);
-    color: var(--main-green);
-    background-color: rgba(255, 255, 255, 0);
-}
-#adicionar-carrinho-btn, #remover-carrinho-btn{
-    font-weight: 700;
-    visibility: hidden;
-    position: absolute;
-}
-#remover-carrinho-btn{
-    background-color: rgba(255, 255, 255, 0);
-    color: var(--main-green);
-    border: 1px solid var(--main-green);
-}
+
 .product-stars{
     color: var(--main-green);
     font-size: 0.9em;
@@ -147,7 +117,7 @@
 .c2{
     grid-area: c2;
     border: 1px solid rgb(225,225,225);
-    background-color: green;
+    
 }
 
 
@@ -155,7 +125,7 @@
     font-size: .8em;
     color: rgb(120,120,120);
 }
-.nine{
+.nine, .ten{
     font-size: .9em;
     color: gray;
     display: -webkit-box;
@@ -164,6 +134,10 @@
 -webkit-box-orient: vertical;
 overflow: hidden;
 text-overflow: ellipsis;
+}
+
+.ten{
+    -webkit-line-clamp: unset;
 }
 .product-name{
     display: -webkit-box;
@@ -241,7 +215,6 @@ text-overflow: ellipsis;
     align-items: center;
     padding: 12px 8px 12px 8px;
     border-top: 1px solid rgb(235,235,235); margin-top: 30px; padding-top: 15px;
-    background-color: aqua;
 }
 .comment-image-and-username-container:hover{
     cursor: pointer;
@@ -276,71 +249,8 @@ text-overflow: ellipsis;
 }
 
 
-.comment-design-container{
-    height: 255px;
-    background-color: purple;
-    position: relative;
-    width: 100%;
-    margin-top: 45px;
-}
-.comment-design{
-    width: 330px;
-    height: 90px;
-    padding: 17px 15px 17px 15px;
-    border-radius: 20px;
-    position: absolute;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-    background-color: pink;
-    box-shadow: 3px 3px 10px 2px rgba(0, 0, 0, 0.183);
-    margin: auto;
-    left: 0;
-    right: 0;
-}
-.comment-design-pic{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    position: relative;
-    border: 3px solid var(--main-green);
-}
-.comment-design-pic-inside{
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    position: absolute;
-    inset: 0 0 0 0;
-    margin: auto;
-    background-color: rgb(225,225,225);
-}
-#my-create-comment-pic{
-    width: 38px;
-    height: 38px;
-}
 
-.comment-design-texts-container{
-    width: 70%;
-    height: 100%;
-    padding: 5px 8px 8px 5px;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-}
-#comment-design-pic-diff{
-    position: absolute;
-    bottom: 18px;
-    z-index: 2;
-    right: 18px;
-    width: 85px;
-    height: 85px;
-    border: 4px solid var(--main-green);
-}
-#comment-design-pic-inside-diff{
-    width: 69px;
-    height: 69px;
-}
+
 #comment-design-diff{
 
     height: 260px;
@@ -357,12 +267,12 @@ text-overflow: ellipsis;
 }
 #comment-design-two{
     bottom: 0;
-    background-color: blue;
+ 
     left: 60px;
 }
 #comment-design-three{
     bottom: 45px;
-    background-color: yellow;
+
 }
 #comment-design-four{
     bottom: 0px;
@@ -452,10 +362,7 @@ text-overflow: ellipsis;
     outline: none;
 }
 
-.fa-heart:hover{
-    cursor: pointer;
-    opacity: 70%;
-}
+
 .ratting-btn{
     width: 200px;
     border: none;
@@ -482,97 +389,134 @@ text-overflow: ellipsis;
 
 
 
-/* cards test */
-.card-container{
-    position: relative;
-    background-color: white;
-    box-shadow: 3px 3px 6px 2px rgba(0, 0, 0, 0.101);
-    /* border: 1px solid rgb(235,235,235); */
-    min-height: 350px;
-    height: fit-content;
-    /* margin: 0 15px 0 15px; */
-    width: 220px;
-}
 
-.card-container:hover{
-    opacity: 95%;
-    cursor: pointer;
-}
-.card-first{
-    pointer-events: none;
+/* BUTTONS */
+
+.product-buttons-container{
+    display: flex;
+    align-items: center;
+    margin: auto;
     width: 100%;
-    height: 300px;
-    filter: brightness(65%);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    transition: 0.3s ease-in-out;
+    padding: 25px 12px 25px 12px;
+    height: fit-content;
+    justify-content: space-between;
+}
+.product-buttons{
+    /* margin-top: 25px; */
+    padding: 20px;
+    background-color: var(--main-green);
+    color: white;
     border: none;
 }
-.card-first:hover{
-    filter: none;
+#avaliar-btn{
+    border: 1px solid var(--main-green);
+    color: var(--main-green);
+    background-color: rgba(255, 255, 255, 0);
 }
-.card-second{
-    pointer-events: none;
-    width: 100%;
-    min-height: 20%;
-    height: fit-content;
-    
-    box-sizing: border-box;
-    
-    padding: 8px 8px 8px 8px;
-    color: #5B5B5B;
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
+#adicionar-carrinho-btn, #remover-carrinho-btn{
+    font-weight: 700;
 }
-.card-title{
-    text-align: start;
-    color: rgb(101, 101, 101);
-    margin: 0;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    font-size: .9em;
-    width: 100%;
-    pointer-events: none;
-    margin-bottom: 0;
+#remover-carrinho-btn{
+    background-color: rgba(255, 255, 255, 0);
+    color: var(--main-green);
+    display: none;
+    border: 1px solid var(--main-green);
 }
-.card-tags{
-    display: flex;
-    font-size: .6em;
-    word-break: keep-all;
-    margin: 0;
+
+.like-button, .dislike-button{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 1.3em;
+    border: 2px solid rgb(57,172,70);
 }
+.like-button{
+    color: white;
+    background-color: rgb(57,172,70);
+}
+.dislike-button{
+    background-color: white;
+    color: rgb(57,172,70);
+    display: none;
+}
+.like-button:hover{
+    background-color: white;
+    color: rgb(57,172,70);
+}
+.dislike-button:hover{
+    background-color: white;
+    color: rgb(57,172,70);
+}
+
+
+
+/* BUTTONS */
+
+
+
+
+
+
+
 .card-stars{
     display: flex;
     justify-content: start;
     width: fit-content;
-    font-size: .8em;
-    margin: 4px 0 4px 0;
     color: var(--main-green);
+    align-items: center;
+    font-size: 1.5em;
+
+ 
 }
-.fa-heart{
-    margin: 0;
-    padding: 0 2px 0 2px;
-}
-.card-price{
-    text-align: start;
-    color: var(--main-green);
-    font-size: .9em;
-    margin: 0;
-    margin: 4px 0 4px 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-break: keep-all;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* cards test */
-@media (max-width: 1000px){
+@media (max-width: 1350px){
     .container2{
         display: grid;
         padding: 0 5px 0 5px;
         max-width: 2000px;
-        background-color: rgb(4, 6, 2);
         position: unset;
         inset: 0 0 0 0;
         margin: auto;
@@ -581,14 +525,15 @@ text-overflow: ellipsis;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto auto;
         grid-template-areas: "c1 c1 c2 c2 c2 c2 c2"
-    "comments comments comments comments comments comments comments";
-
-    grid-template-columns: 4fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: auto;
-    grid-template-areas: "c1 c1 c2 c2 c2 c2 c2"
-    /* "benefits benefits benefits benefits benefits benefits benefits" */
-    /* "products products products products products products products" */
-    "comments comments comments comments comments comments comments";
+        "comments comments comments comments comments comments comments";
+        
+        grid-template-columns: 4fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: auto;
+        grid-template-areas: "c1 c1 c2 c2 c2 c2 c2"
+        /* "benefits benefits benefits benefits benefits benefits benefits" */
+        /* "products products products products products products products" */
+        "comments comments comments comments comments comments comments";
+        margin-top: 75px;
     ;
     }
 
@@ -602,6 +547,52 @@ text-overflow: ellipsis;
 
 }
 
+@media (max-width: 910px){
+    .product-buttons-container{
+    }
+
+    .product-buttons{
+        /* margin-top: 25px; */
+        padding: 20px 5px 20px 5px;
+        background-color: var(--main-green);
+        color: white;
+        border: none;
+    }
+
+}
+
+@media (max-width: 850px){
+    .product-buttons-container{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .product-buttons{
+        width: 100%;
+        padding: 20px;
+    }
+
+    
+.like-button, .dislike-button{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 1.3em;
+    border: 2px solid rgb(57,172,70);
+    margin-top: 12px;
+}
+.like-button{
+    color: white;
+
+    background-color: rgb(57,172,70);
+}
+.dislike-button{
+    background-color: white;
+    color: rgb(57,172,70);
+    
+}
+}
+
 @media (max-width: 710px){
     .container2{
         display: grid;
@@ -612,28 +603,29 @@ text-overflow: ellipsis;
         inset: 0 0 0 0;
         margin: auto;
         height: fit-content;
-        background-color: black;
+   
         grid-template-rows: auto auto;
         grid-template-areas: "c1"
                             "c2"
                             "comments";
+                            margin-top: 75px;
 
     /* "comments comments comments comments comments comments comments"; */
     }
 
     .c1{
-        background-color: red;
+        
     }
     .c1,.c2{
         padding: 8px;
         /* padding: 20px; */
 
     }
-.product-buttons-container{
-    background-color: gray;
-    justify-content: space-around;
-}
 
+.pic-container{
+    max-width: 500px;
+    margin: auto;
+}
     .product-buttons{
         margin-top: 25px;
         /* padding: 12px 0 12px 0; */
@@ -649,13 +641,9 @@ text-overflow: ellipsis;
     }
     #adicionar-carrinho-btn, #remover-carrinho-btn{
         font-weight: 700;
-        visibility: hidden;
-        /* padding: 0!important; */
-        position: absolute;
-        background-color: red;
     }
     #adicionar-carrinho-btn{
-        visibility: visible;
+     
         position: static;
 
     }
@@ -666,22 +654,8 @@ text-overflow: ellipsis;
         border: 1px solid var(--main-green);
     }
 
-    .comments{
-        padding: 10px 15px 10px 15px;
-    }
-    .comment-container{
-        width: 90%;
-        max-width: 430px;
-        background-color: black;
-        padding: 0;
-    }
 
-    #comment-design-two{
-        bottom: 90px;
-        background-color: blue;
-        left: 60px;
-        right: 0;
-    }
+  
 
   
 
@@ -692,86 +666,15 @@ text-overflow: ellipsis;
         flex-direction: column;
     }
 
-    #comment-design-one{
-        top: 0;
-        left: 0;
-        background-color: green;
-        right: 35px;
-    }
-    #comment-design-two{
-        top: 30px;
-        background-color: blue;
-        left: 70px;
-        right: 0;
-    }
-    #comment-design-three{
-        bottom: 45px;
-        background-color: yellow;
-        left: 45px;
-        margin: auto;
-        right: 0;
-    }
-    #comment-design-four{
-        bottom: 0px;
-        right: 45px;
-        background-color: black;
-        left: 0;
-        margin: auto;
-    }
 }
 
 
 
 @media (max-width: 550px){
-    .product-buttons{
-        margin-top: 25px;
-        /* padding: 12px 0 12px 0; */
-        background-color: var(--main-green);
-        color: white;
-        border: none;
-        /* font-size: 0.7em; */
-    }
-    #avaliar-btn{
-        border: 1px solid var(--main-green);
-        color: var(--main-green);
-        background-color: rgba(255, 255, 255, 0);
-    }
-    #adicionar-carrinho-btn, #remover-carrinho-btn{
-        font-weight: 700;
-        visibility: hidden;
-        padding: 0!important;
-        position: absolute;
-        background-color: red;
-    }
-    #adicionar-carrinho-btn{
-        visibility: visible;
-        position: static;
-
-    }
-    #remover-carrinho-btn{
     
-        background-color: rgba(255, 255, 255, 0);
-        color: var(--main-green);
-        border: 1px solid var(--main-green);
-    }
-
-    .comments{
-        padding: 0;
-    }
-
-    .comment-container{
-        width: 100%;
-        max-width: 100%;
-        background-color: black;
-        padding: 0;
-    }
-
-    #comment-design-two{
-        top: 30px;
-        background-color: blue;
-        left: 10px;
-        right: 0;
-    }
+   
+  
+   
 
  
 }
